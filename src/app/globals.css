@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---- Global Theme CSS Variables ---- */
+:root,
+[data-theme="light"] {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --text: #1f2430;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --primary: #4f46e5;
+  --primary-soft: #eef2ff;
+  --ok: #16a34a;
+  --warn: #dc2626;
+  --radius: 14px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme="dark"] {
+  --bg: #0f1115;
+  --panel: #171a21;
+  --text: #e7e9ee;
+  --muted: #9aa3b2;
+  --border: #2a2f3a;
+  --primary: #818cf8;
+  --primary-soft: #1e2230;
+  --ok: #4ade80;
+  --warn: #f87171;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Responsive helpers */
+@media (max-width: 480px) {
+  .hide-mobile { display: none !important; }
 }
