@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useLang } from "@/components/lang-context";
 import { dict, type Lang } from "@/lib/i18n";
 import {
   createFileItem, compressItem, downloadBlob, zipFiles,
@@ -17,7 +18,7 @@ const FREE_DAILY_LIMIT = 10;
 
 export default function HomePage() {
   const { data: session, status } = useSession();
-  const [lang, setLang] = useState<Lang>("zh");
+  const { lang, setLang } = useLang();
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [items, setItems] = useState<FileItem[]>([]);
   const [quality, setQuality] = useState(75);
