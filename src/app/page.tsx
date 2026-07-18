@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useLang } from "@/components/lang-context";
+import { useTheme } from "@/components/theme-context";
 import { dict, type Lang } from "@/lib/i18n";
 import {
   createFileItem, compressItem, downloadBlob, zipFiles,
@@ -19,7 +20,7 @@ const FREE_DAILY_LIMIT = 10;
 export default function HomePage() {
   const { data: session, status } = useSession();
   const { lang, setLang } = useLang();
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const { theme, toggleTheme } = useTheme();
   const [items, setItems] = useState<FileItem[]>([]);
   const [quality, setQuality] = useState(75);
   const [format, setFormat] = useState("keep");
@@ -31,31 +32,11 @@ export default function HomePage() {
   const [selectAll, setSelectAll] = useState(true);
   const toastTimer = useRef<any>(null);
 
-  // Theme from localStorage
-  useEffect(() => {
-    const th = localStorage.getItem("ic_theme");
-    if (th === "dark") setTheme("dark");
-    const lg = localStorage.getItem("ic_lang");
-    if (lg === "en" || lg === "zh") setLang(lg);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    const mt = document.querySelector('meta[name="theme-color"]');
-    if (mt) mt.setAttribute("content", theme === "dark" ? "#0f1115" : "#4f46e5");
-  }, [theme]);
-
   const showToast = useCallback((msg: string) => {
     setToast(msg);
     clearTimeout(toastTimer.current);
     toastTimer.current = setTimeout(() => setToast(""), 2200);
   }, []);
-
-  const toggleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    localStorage.setItem("ic_theme", next);
-  };
 
   // File upload
   const addFiles = useCallback(async (files: FileList | File[]) => {
@@ -128,19 +109,6 @@ export default function HomePage() {
   const removeItem = (id: string) => setItems(prev => prev.filter(i => i.id !== id));
 
   // CSS
-  const cssVars = {
-    "--bg": theme === "dark" ? "#0f1115" : "#f6f7f9",
-    "--panel": theme === "dark" ? "#171a21" : "#ffffff",
-    "--text": theme === "dark" ? "#e7e9ee" : "#1f2430",
-    "--muted": theme === "dark" ? "#9aa3b2" : "#6b7280",
-    "--border": theme === "dark" ? "#2a2f3a" : "#e5e7eb",
-    "--primary": theme === "dark" ? "#818cf8" : "#4f46e5",
-    "--primary-soft": theme === "dark" ? "#1e2230" : "#eef2ff",
-    "--ok": theme === "dark" ? "#4ade80" : "#16a34a",
-    "--warn": theme === "dark" ? "#f87171" : "#dc2626",
-    "--radius": "14px",
-  } as React.CSSProperties;
-
   const s = (key: string) => t(lang, key);
 
   const doneCount = items.filter(i => i.status === "done" && i.result).length;
@@ -149,7 +117,7 @@ export default function HomePage() {
   const totalComp = items.filter(i => i.status === "done" && i.result).reduce((s, i) => s + (i.result?.size || 0), 0);
 
   return (
-    <div style={{ ...cssVars, background: "var(--bg)", color: "var(--text)", minHeight: "100vh", fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif' }}>
+    <div style={{ background: "var(--bg)", color: "var(--text)", minHeight: "100vh" }}>
       <div style={{ maxWidth: 980, margin: "0 auto", padding: "24px 18px 64px" }}>
         {/* Header */}
         <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 22, flexWrap: "wrap" }}>
