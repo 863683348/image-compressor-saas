@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta property="og:description" content="100% local image compression. No uploads. No watermark." />
         <meta name="twitter:card" content="summary_large_image" />
       </head>
-      <body style={{ margin: 0, padding: 0, background: "#f6f7f9", color: "#1f2430", fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif', lineHeight: 1.5, WebkitFontSmoothing: "antialiased" }}>
+      <body>
         <Providers>
           <HeaderClient />
           {children}
