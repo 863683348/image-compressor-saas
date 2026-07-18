@@ -339,6 +339,9 @@ export default function HomePage() {
             <a href="/terms" style={{ color: "var(--muted)", textDecoration: "none", fontSize: 13, fontWeight: 500 }}>{s("footerTerms")}</a>
             <a href="/contact" style={{ color: "var(--muted)", textDecoration: "none", fontSize: 13, fontWeight: 500 }}>{s("footerContact")}</a>
           </div>
+          <div style={{ marginTop: 10, fontSize: 12, color: "var(--muted)" }}>
+            📧 <a href="mailto:ahmedlzany423@gmail.com" style={{ color: "var(--muted)", textDecoration: "none" }}>ahmedlzany423@gmail.com</a>
+          </div>
         </div>
       </div>
 
