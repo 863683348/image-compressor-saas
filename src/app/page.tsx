@@ -316,16 +316,30 @@ export default function HomePage() {
         )}
 
         {/* Guide link */}
-        <div style={{ textAlign: "center", margin: "32px 0 0" }}>
+        <div style={{ textAlign: "center", margin: "32px 0 16px" }}>
           <a href="/guide.html" style={{ color: "var(--primary)", fontWeight: 600, fontSize: 14, textDecoration: "none" }}>
             📖 {lang === "zh" ? "阅读完整指南：如何将图片压缩到指定大小（200KB / 100KB / 50KB）" : "Read the guide: How to compress images to any target size"}
           </a>
         </div>
 
-        {/* Footer */}
-        <footer style={{ marginTop: 48, paddingTop: 20, borderTop: "1px solid var(--border)", fontSize: 13, color: "var(--muted)", textAlign: "center" }}>
-          {s("footer")}
-        </footer>
+        {/* Resources section (also lives in global Footer) */}
+        <div style={{
+          marginTop: 32, padding: "20px 22px",
+          background: "var(--panel)", border: "1px solid var(--border)",
+          borderRadius: "var(--radius)",
+        }}>
+          <div style={{ fontWeight: 700, color: "var(--text)", fontSize: 14, marginBottom: 12 }}>
+            {s("brand")}
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 18px" }}>
+            <a href="/pricing" style={{ color: "var(--muted)", textDecoration: "none", fontSize: 13, fontWeight: 500 }}>{s("pricing")}</a>
+            <a href="/blog" style={{ color: "var(--muted)", textDecoration: "none", fontSize: 13, fontWeight: 500 }}>{s("footerBlog")}</a>
+            <a href="/faq" style={{ color: "var(--muted)", textDecoration: "none", fontSize: 13, fontWeight: 500 }}>{s("footerFaq")}</a>
+            <a href="/privacy" style={{ color: "var(--muted)", textDecoration: "none", fontSize: 13, fontWeight: 500 }}>{s("footerPrivacy")}</a>
+            <a href="/terms" style={{ color: "var(--muted)", textDecoration: "none", fontSize: 13, fontWeight: 500 }}>{s("footerTerms")}</a>
+            <a href="/contact" style={{ color: "var(--muted)", textDecoration: "none", fontSize: 13, fontWeight: 500 }}>{s("footerContact")}</a>
+          </div>
+        </div>
       </div>
 
       {/* Preview Modal */}
