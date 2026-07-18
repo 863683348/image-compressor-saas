@@ -40,4 +40,28 @@ body {
 /* Responsive helpers */
 @media (max-width: 480px) {
   .hide-mobile { display: none !important; }
+  body { font-size: 15px; }
+  h1 { font-size: 22px !important; }
+  h2 { font-size: 16px !important; }
+}
+
+/* Tap target sizing for mobile */
+button, a, input, select, textarea {
+  min-height: 44px;
+}
+input[type="checkbox"] {
+  min-height: auto;
+}
+
+/* Prevent horizontal overflow */
+* {
+  box-sizing: border-box;
+}
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+}
+pre, code {
+  white-space: pre-wrap;
+  word-break: break-word;
 }
