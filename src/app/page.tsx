@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useLang } from "@/components/lang-context";
 import { useTheme } from "@/components/theme-context";
 import { dict, type Lang } from "@/lib/i18n";
@@ -127,16 +127,7 @@ export default function HomePage() {
             <span style={{ fontSize: 12, fontWeight: 600, color: "var(--ok)", background: `color-mix(in srgb, var(--ok) 14%, transparent)`, border: `1px solid color-mix(in srgb, var(--ok) 35%, transparent)`, padding: "3px 9px", borderRadius: 999, whiteSpace: "nowrap" }}>{s("badge")}</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-            {/* Auth button */}
-            {status === "authenticated" ? (
-              <button onClick={() => signOut()} style={{ border: "1px solid var(--border)", background: "var(--panel)", color: "var(--text)", minWidth: 38, height: 38, borderRadius: 10, cursor: "pointer", fontSize: 13, padding: "0 12px", fontWeight: 600, transition: ".15s" }}>
-                {session.user?.name || s("signOut")}
-              </button>
-            ) : (
-              <button onClick={() => signIn("google")} style={{ border: "1px solid var(--border)", background: "var(--panel)", color: "var(--text)", minWidth: 38, height: 38, borderRadius: 10, cursor: "pointer", fontSize: 13, padding: "0 12px", fontWeight: 600, transition: ".15s" }}>
-                {s("signInWithGoogle")}
-              </button>
-            )}
+            {/* Theme toggle only — auth is in HeaderClient */}
             <button onClick={toggleTheme} style={{ border: "1px solid var(--border)", background: "var(--panel)", color: "var(--text)", minWidth: 38, height: 38, borderRadius: 10, cursor: "pointer", fontSize: 15, padding: "0 10px", fontWeight: 600, display: "grid", placeItems: "center", transition: ".15s" }} title={s("themeTitle")}>
               {theme === "dark" ? "☀️" : "🌙"}
             </button>
