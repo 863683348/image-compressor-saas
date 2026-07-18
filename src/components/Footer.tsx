@@ -34,9 +34,12 @@ export default function Footer() {
           <div style={{ fontWeight: 700, color: "var(--text, #1f2430)", fontSize: 15, marginBottom: 6 }}>
             {s(lang, "brand")}
           </div>
-          <p style={{ margin: 0, maxWidth: 480, lineHeight: 1.6, color: "var(--muted, #6b7280)" }}>
+          <p style={{ margin: "0 0 4px", maxWidth: 480, lineHeight: 1.6, color: "var(--muted, #6b7280)" }}>
             {s(lang, "footerDesc")}
           </p>
+          <a href="mailto:ahmedlzany423@gmail.com" style={{ color: "var(--muted, #6b7280)", fontSize: 12, textDecoration: "none" }}>
+            ahmedlzany423@gmail.com
+          </a>
         </div>
 
         {/* Horizontal link list — no duplicate brand titles */}
