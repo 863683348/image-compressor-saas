@@ -18,6 +18,13 @@ export default function ContactPage() {
       <h1 style={{ fontSize: 24, margin: "0 0 4px", color: "var(--text, #1f2430)" }}>{s(lang, "contactTitle")}</h1>
       <p style={{ fontSize: 14, color: "var(--muted, #6b7280)", marginBottom: 32 }}>{s(lang, "contactSub")}</p>
 
+      <div style={{ fontSize: 13, color: "var(--text, #1f2430)", marginBottom: 20, padding: "12px 16px", background: "var(--panel, #fff)", borderRadius: 10, border: "1px solid var(--border, #e5e7eb)", display: "flex", alignItems: "center", gap: 8 }}>
+        <span style={{ color: "var(--muted, #6b7280)" }}>📧</span>
+        <a href="mailto:ahmedlzany423@gmail.com" style={{ color: "var(--primary, #4f46e5)", textDecoration: "none" }}>
+          ahmedlzany423@gmail.com
+        </a>
+      </div>
+
       {sent ? (
         <div style={{ padding: 24, background: "var(--panel, #fff)", borderRadius: 14, border: "1px solid var(--border, #e5e7eb)", textAlign: "center", fontSize: 15, color: "var(--ok, #16a34a)" }}>
           {s(lang, "contactSuccess")}
