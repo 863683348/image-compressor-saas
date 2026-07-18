@@ -57,12 +57,6 @@ export default function HomePage() {
     localStorage.setItem("ic_theme", next);
   };
 
-  const toggleLang = () => {
-    const next = lang === "zh" ? "en" : "zh";
-    setLang(next);
-    localStorage.setItem("ic_lang", next);
-  };
-
   // File upload
   const addFiles = useCallback(async (files: FileList | File[]) => {
     const valid = Array.from(files).filter(f => isSupported(f.type));
@@ -175,9 +169,6 @@ export default function HomePage() {
                 {s("signInWithGoogle")}
               </button>
             )}
-            <button onClick={toggleLang} style={{ border: "1px solid var(--border)", background: "var(--panel)", color: "var(--text)", minWidth: 38, height: 38, borderRadius: 10, cursor: "pointer", fontSize: 13, padding: "0 10px", fontWeight: 600, transition: ".15s" }} title={s("langTitle")}>
-              {lang === "zh" ? "EN" : "中"}
-            </button>
             <button onClick={toggleTheme} style={{ border: "1px solid var(--border)", background: "var(--panel)", color: "var(--text)", minWidth: 38, height: 38, borderRadius: 10, cursor: "pointer", fontSize: 15, padding: "0 10px", fontWeight: 600, display: "grid", placeItems: "center", transition: ".15s" }} title={s("themeTitle")}>
               {theme === "dark" ? "☀️" : "🌙"}
             </button>
