@@ -119,20 +119,12 @@ export default function HomePage() {
   return (
     <div style={{ background: "var(--bg)", color: "var(--text)", minHeight: "100vh" }}>
       <div style={{ maxWidth: 980, margin: "0 auto", padding: "24px 18px 64px" }}>
-        {/* Header */}
-        <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 22, flexWrap: "wrap" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, fontWeight: 700, fontSize: 18, minWidth: 0 }}>
-            <div style={{ width: 34, height: 34, borderRadius: 9, background: "linear-gradient(135deg, #4f46e5, #06b6d4)", display: "grid", placeItems: "center", color: "#fff", fontWeight: 800, fontSize: 16, flexShrink: 0 }}>🖼</div>
-            <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s("brand")}</span>
-            <span style={{ fontSize: 12, fontWeight: 600, color: "var(--ok)", background: `color-mix(in srgb, var(--ok) 14%, transparent)`, border: `1px solid color-mix(in srgb, var(--ok) 35%, transparent)`, padding: "3px 9px", borderRadius: 999, whiteSpace: "nowrap" }}>{s("badge")}</span>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-            {/* Theme toggle only — auth is in HeaderClient */}
-            <button onClick={toggleTheme} style={{ border: "1px solid var(--border)", background: "var(--panel)", color: "var(--text)", minWidth: 38, height: 38, borderRadius: 10, cursor: "pointer", fontSize: 15, padding: "0 10px", fontWeight: 600, display: "grid", placeItems: "center", transition: ".15s" }} title={s("themeTitle")}>
-              {theme === "dark" ? "☀️" : "🌙"}
-            </button>
-          </div>
-        </header>
+        {/* Theme toggle only — brand is in HeaderClient */}
+        <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 8 }}>
+          <button onClick={toggleTheme} style={{ border: "1px solid var(--border)", background: "var(--panel)", color: "var(--text)", minWidth: 38, height: 38, borderRadius: 10, cursor: "pointer", fontSize: 15, padding: "0 10px", fontWeight: 600, display: "grid", placeItems: "center", transition: ".15s" }} title={s("themeTitle")}>
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
+        </div>
 
         {/* Quota bar (when logged in) */}
         {status === "authenticated" && (
