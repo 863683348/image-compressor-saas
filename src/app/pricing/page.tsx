@@ -195,6 +195,22 @@ export default function PricingPage() {
       <p style={{ textAlign: "center", color: "var(--muted, #6b7280)", fontSize: 12, marginTop: 20 }}>
         {s(lang, "pricingNote")}
       </p>
+
+      {/* Pricing page footer links */}
+      <div style={{
+        marginTop: 48, paddingTop: 24, borderTop: "1px solid var(--border, #e5e7eb)",
+        display: "flex", flexWrap: "wrap", gap: "12px 20px",
+        justifyContent: "center", fontSize: 13,
+      }}>
+        <a href="/privacy" style={{ color: "var(--muted, #6b7280)", textDecoration: "none" }}>{s(lang, "footerPrivacy")}</a>
+        <a href="/terms" style={{ color: "var(--muted, #6b7280)", textDecoration: "none" }}>{s(lang, "footerTerms")}</a>
+        <a href="/faq" style={{ color: "var(--muted, #6b7280)", textDecoration: "none" }}>{s(lang, "footerFaq")}</a>
+        <a href="/blog" style={{ color: "var(--muted, #6b7280)", textDecoration: "none" }}>{s(lang, "footerBlog")}</a>
+        <a href="/contact" style={{ color: "var(--muted, #6b7280)", textDecoration: "none" }}>{s(lang, "footerContact")}</a>
+        <span style={{ color: "var(--muted, #6b7280)" }}>
+          📧 <a href="mailto:ahmedlzany423@gmail.com" style={{ color: "var(--muted, #6b7280)", textDecoration: "none" }}>ahmedlzany423@gmail.com</a>
+        </span>
+      </div>
     </div>
   );
 }
