@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   alternates: {
     languages: {
       "zh-CN": "/",
-      "en": "/en",
       "x-default": "/",
     },
   },
@@ -36,6 +35,10 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Only load analytics in real production (avoid localhost/preview data pollution)
+  const isProd =
+    process.env.NODE_ENV === "production" && process.env.VERCEL_ENV !== "preview";
+
   return (
     <html lang="zh-CN" suppressHydrationWarning>
       <head>
@@ -72,11 +75,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKHEV8W1T7" />
-        <script dangerouslySetInnerHTML={{
-          __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XKHEV8W1T7');`,
-        }} />
+        {isProd && (
+          <>
+            {/* Google tag (gtag.js) — production only */}
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKHEV8W1T7" />
+            <script dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XKHEV8W1T7');`,
+            }} />
+          </>
+        )}
         <Providers>
           <HeaderClient />
           {children}

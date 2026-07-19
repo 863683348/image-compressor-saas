@@ -14,6 +14,10 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
     const saved = localStorage.getItem("ic_lang") as Lang | null;
     if (saved === "en" || saved === "zh") setLang(saved);
   }, []);
+  // Keep <html lang> in sync with the active language for correct SEO/aria.
+  useEffect(() => {
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+  }, [lang]);
   const syncLang = useCallback((l: Lang) => {
     setLang(l);
     try { localStorage.setItem("ic_lang", l); } catch {}

@@ -113,17 +113,28 @@ async function verifyWebhookSignature(
 ): Promise<boolean> {
   const webhookId = process.env.PAYPAL_WEBHOOK_ID;
   if (!webhookId) {
-    // No webhook ID configured — skip validation in dev
-    console.warn("PAYPAL_WEBHOOK_ID not set, skipping webhook verification");
+    // Production MUST verify signatures — fail closed if webhook id is missing.
+    if (process.env.NODE_ENV === "production") {
+      console.error("PAYPAL_WEBHOOK_ID not set in production; rejecting webhook (fail-closed)");
+      return false;
+    }
+    // Dev convenience only: skip verification when id not configured.
+    console.warn("PAYPAL_WEBHOOK_ID not set, skipping webhook verification (dev only)");
     return true;
   }
+
+  // Respect PAYPAL_SANDBOX so verification hits the correct PayPal environment.
+  const API_BASE =
+    process.env.PAYPAL_SANDBOX === "true"
+      ? "https://api-m.sandbox.paypal.com"
+      : "https://api-m.paypal.com";
 
   try {
     const auth = Buffer.from(
       `${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_CLIENT_SECRET}`
     ).toString("base64");
 
-    const tokenRes = await fetch("https://api-m.sandbox.paypal.com/v1/oauth2/token", {
+    const tokenRes = await fetch(`${API_BASE}/v1/oauth2/token`, {
       method: "POST",
       headers: { Authorization: `Basic ${auth}`, "Content-Type": "application/x-www-form-urlencoded" },
       body: "grant_type=client_credentials",
@@ -132,7 +143,7 @@ async function verifyWebhookSignature(
     const accessToken = tokenData.access_token;
 
     const verifyRes = await fetch(
-      "https://api-m.sandbox.paypal.com/v1/notifications/verify-webhook-signature",
+      `${API_BASE}/v1/notifications/verify-webhook-signature`,
       {
         method: "POST",
         headers: {
