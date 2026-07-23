@@ -1,23 +1,22 @@
-// 直接调用 NextAuth handlers.GET 模拟浏览器访问 /api/auth/signin/google
+// 通过 fetch 调用真实端点（Next.js 正确构造 Request），捕获 status 和 location
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  const url = "https://image-compressor-saas.vercel.app/api/auth/signin/google";
   try {
-    const { handlers } = await import("@/lib/auth");
-    const fakeReq = new Request("https://image-compressor-saas.vercel.app/api/auth/signin/google", {
+    const res = await fetch(url, {
       method: "GET",
+      redirect: "manual", // 不自动跟随 redirect，捕获 Location header
       headers: {
-        host: "image-compressor-saas.vercel.app",
-        "x-forwarded-proto": "https",
-        "x-forwarded-host": "image-compressor-saas.vercel.app",
+        // 模拟浏览器
+        accept: "text/html,application/xhtml+xml",
       },
     });
-    const res = await handlers.GET(fakeReq as any);
-    const status = res?.status;
-    const location = res?.headers?.get?.("location");
-    const setCookie = res?.headers?.get?.("set-cookie");
+    const status = res.status;
+    const location = res.headers.get("location");
+    const setCookie = res.headers.get("set-cookie");
     let body = "";
-    try { body = (await res?.text?.())?.slice(0, 200) || ""; } catch {}
+    try { body = (await res.text()).slice(0, 300); } catch {}
     return Response.json({
       ok: true,
       status,
@@ -31,7 +30,6 @@ export async function GET() {
       errorName: e?.name,
       errorMessage: e?.message,
       errorCause: e?.cause?.message || e?.cause,
-      stack: (e?.stack || "").split("\n").slice(0, 12).join("\n"),
     }, { status: 200 });
   }
 }
