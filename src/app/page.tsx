@@ -3,7 +3,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useSession } from "next-auth/react";
 import { useLang } from "@/components/lang-context";
-import { useTheme } from "@/components/theme-context";
 import { dict, type Lang } from "@/lib/i18n";
 import {
   createFileItem, compressItem, downloadBlob, zipFiles,
@@ -20,7 +19,6 @@ const FREE_DAILY_LIMIT = 10;
 export default function HomePage() {
   const { data: session, status } = useSession();
   const { lang, setLang } = useLang();
-  const { theme, toggleTheme } = useTheme();
   const [items, setItems] = useState<FileItem[]>([]);
   const [quality, setQuality] = useState(75);
   const [format, setFormat] = useState("keep");
@@ -118,13 +116,8 @@ export default function HomePage() {
 
   return (
     <div style={{ background: "var(--bg)", color: "var(--text)", minHeight: "100vh" }}>
-      <div style={{ maxWidth: 980, margin: "0 auto", padding: "24px 18px 64px" }}>
-        {/* Theme toggle only — brand is in HeaderClient */}
-        <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 8 }}>
-          <button onClick={toggleTheme} style={{ border: "1px solid var(--border)", background: "var(--panel)", color: "var(--text)", minWidth: 38, height: 38, borderRadius: 10, cursor: "pointer", fontSize: 15, padding: "0 10px", fontWeight: 600, display: "grid", placeItems: "center", transition: ".15s" }} title={s("themeTitle")}>
-            {theme === "dark" ? "☀️" : "🌙"}
-          </button>
-        </div>
+      <div style={{ maxWidth: 980, margin: "0 auto", padding: "0 18px 64px" }}>
+        {/* Theme toggle is now in HeaderClient — no separate row needed */}
 
         {/* Quota bar (when logged in) */}
         {status === "authenticated" && (
