@@ -1,55 +1,40 @@
-// 调用 @auth/core 内部 Auth，捕获 logger 输出（真实错误）
+// 测试 POST /api/auth/signin/google（next-auth/react 的 signIn 走的就是这个）
 export const dynamic = "force-dynamic";
 
-export async function GET(request: Request) {
-  const out: any = { ok: true, logs: [] };
+export async function GET() {
+  const out: any = { ok: true, tests: {} };
   try {
-    const { Auth } = await import("@auth/core");
-    const Google = (await import("next-auth/providers/google")).default;
-    const { DrizzleAdapter } = await import("@auth/drizzle-adapter");
-    const { neon } = await import("@neondatabase/serverless");
-    const { drizzle } = await import("drizzle-orm/neon-http");
-    const sql = neon(process.env.DATABASE_URL!);
-    const db = drizzle(sql);
+    // Get csrf token first
+    const csrfRes = await fetch("https://image-compressor-saas.vercel.app/api/auth/csrf");
+    const csrfData = await csrfRes.json();
+    const csrfToken = csrfData.csrfToken;
+    out.tests.csrf = csrfToken?.slice(0, 10) + "...";
 
-    const logs: string[] = [];
-    const logger = {
-      debug: (...args: any[]) => logs.push("DEBUG: " + args.map(a => JSON.stringify(a)).join(" ")),
-      info: (...args: any[]) => logs.push("INFO: " + args.map(a => JSON.stringify(a)).join(" ")),
-      warn: (...args: any[]) => logs.push("WARN: " + args.map(a => (a?.message || JSON.stringify(a))).join(" ")),
-      error: (...args: any[]) => logs.push("ERROR: " + args.map(a => (a?.message || a?.stack || JSON.stringify(a))).join(" | ")),
-    };
-
-    // Construct a fake request URL to /api/auth/signin/google
-    const url = new URL("https://image-compressor-saas.vercel.app/api/auth/signin/google");
-    const fakeReq = new Request(url, { headers: { host: "image-compressor-saas.vercel.app" } });
-
-    const res = await Auth(fakeReq as any, {
-      adapter: DrizzleAdapter(db as any),
-      secret: process.env.AUTH_SECRET,
-      trustHost: true,
-      basePath: "/api/auth",
-      providers: [Google({
-        clientId: process.env.GOOGLE_CLIENT_ID!,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      })],
-      logger,
-    } as any);
-
-    out.status = (res as any)?.status;
-    out.headers = Object.fromEntries((res as any)?.headers?.entries?.() || []);
+    // Now POST to signin/google with csrfToken
+    const params = new URLSearchParams({
+      csrfToken,
+      callbackUrl: "https://image-compressor-saas.vercel.app/",
+      json: "true",
+    });
+    const signinRes = await fetch("https://image-compressor-saas.vercel.app/api/auth/signin/google", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Auth-Return-Redirect": "1",
+      },
+      body: params.toString(),
+      redirect: "manual",
+    });
+    out.tests.signinStatus = signinRes.status;
+    out.tests.signinLocation = signinRes.headers.get("location")?.slice(0, 200);
     let body = "";
-    try { body = ((res as any)?.body ? String((res as any).body).slice(0, 200) : ""); } catch {}
-    out.body = body;
-    out.logs = logs;
+    try { body = (await signinRes.text()).slice(0, 200); } catch {}
+    out.tests.signinBody = body;
     return Response.json(out);
   } catch (e: any) {
     return Response.json({
       ok: false,
-      errorName: e?.name,
-      errorMessage: e?.message,
-      errorCause: e?.cause?.message || JSON.stringify(e?.cause),
-      stack: (e?.stack || "").split("\n").slice(0, 12).join("\n"),
+      errorMessage: e.message,
     }, { status: 200 });
   }
 }
