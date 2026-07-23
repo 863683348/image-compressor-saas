@@ -13,9 +13,10 @@ export async function GET() {
     const csrfCookie = csrfRes.headers.get("set-cookie");
     out.tests.csrf = { token: csrfToken?.slice(0, 10), cookie: csrfCookie?.slice(0, 60) };
 
-    // Step 2: extract csrf cookie value
-    const csrfCookieMatch = csrfCookie?.match(/authjs\.csrf-token=([^;]+)/);
-    const csrfCookieValue = csrfCookieMatch ? `authjs.csrf-token=${csrfCookieMatch[1]}` : "";
+    // Step 2: extract csrf cookie value (NextAuth uses __Host- prefix on https)
+    const csrfCookieMatch = csrfCookie?.match(/authjs\.csrf-token=([^;]+)/) || csrfCookie?.match(/__Host-authjs\.csrf-token=([^;]+)/);
+    const csrfCookieName = csrfCookie?.includes("__Host-") ? "__Host-authjs.csrf-token" : "authjs.csrf-token";
+    const csrfCookieValue = csrfCookieMatch ? `${csrfCookieName}=${csrfCookieMatch[1]}` : "";
 
     // Step 3: POST with cookie
     const params = new URLSearchParams({
