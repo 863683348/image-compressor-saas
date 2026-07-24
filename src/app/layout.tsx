@@ -4,11 +4,31 @@ import { Providers } from "./providers";
 import FooterClient from "@/components/FooterClient";
 import HeaderClient from "@/components/HeaderClient";
 
+// Single source of truth for the production canonical domain.
+const SITE_URL = "https://image-compressor-saas.shop";
+
 export const metadata: Metadata = {
-  title: "Image Compressor · 100% Local, Privacy First",
-  description: "Free online image compressor — 100% in-browser, private, no upload, no watermark. Compress & convert JPG/PNG/WebP/AVIF, auto-fit a target size (e.g. 200KB), batch compress and export ZIP.",
-  metadataBase: new URL("https://image-compressor-saas.vercel.app"),
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Image Compressor · 100% Local, Privacy First",
+    template: "%s · Image Compressor",
+  },
+  description:
+    "Free online image compressor — 100% in-browser, private, no upload, no watermark. Compress & convert JPG/PNG/WebP/AVIF, auto-fit a target size (e.g. 200KB), batch compress and export ZIP.",
+  applicationName: "Image Compressor",
+  keywords: [
+    "image compressor",
+    "compress image to 200kb",
+    "reduce image size",
+    "jpg png webp avif converter",
+    "batch image compressor",
+    "no watermark image compressor",
+    "private in-browser image compression",
+    "compress photo for email",
+  ],
+  category: "utilities",
   alternates: {
+    canonical: "/",
     languages: {
       "zh-CN": "/",
       "x-default": "/",
@@ -17,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Image Compressor · Free, Private, In-Browser",
     description: "100% local image compression. No uploads. No watermark.",
-    url: "https://image-compressor-saas.vercel.app",
+    url: SITE_URL,
     siteName: "Image Compressor",
     type: "website",
     locale: "zh_CN",
@@ -30,11 +50,20 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    "max-image-preview": "large",
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   // Only load analytics in real production (avoid localhost/preview data pollution)
   const isProd =
     process.env.NODE_ENV === "production" && process.env.VERCEL_ENV !== "preview";
@@ -42,9 +71,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="zh-CN" suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
         <meta name="theme-color" content="#4f46e5" />
-        <link rel="canonical" href="https://image-compressor-saas.vercel.app" />
         {/* JSON-LD structured data */}
         <script
           type="application/ld+json"
@@ -53,8 +84,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "WebApplication",
               name: "Image Compressor",
-              url: "https://image-compressor-saas.vercel.app",
-              description: "Free online image compressor — 100% in-browser, private, no upload, no watermark. Compress JPG/PNG/WebP/AVIF.",
+              url: SITE_URL,
+              description:
+                "Free online image compressor — 100% in-browser, private, no upload, no watermark. Compress JPG/PNG/WebP/AVIF.",
               applicationCategory: "Multimedia",
               operatingSystem: "All",
               offers: {
@@ -79,9 +111,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <>
             {/* Google tag (gtag.js) — production only */}
             <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKHEV8W1T7" />
-            <script dangerouslySetInnerHTML={{
-              __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XKHEV8W1T7');`,
-            }} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XKHEV8W1T7');`,
+              }}
+            />
           </>
         )}
         <Providers>
