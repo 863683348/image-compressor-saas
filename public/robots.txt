@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://image-compressor-saas.vercel.app/sitemap.xml
+Sitemap: https://image-compressor-saas.shop/sitemap.xml
