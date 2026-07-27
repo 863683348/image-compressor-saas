@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import "./globals.css";
 
 // ── Single source of truth for the production domain ──
@@ -50,17 +51,39 @@ export const metadata: Metadata = {
 };
 
 /**
- * Root layout — serves as the outermost shell.
+ * Root layout — required by Next.js to contain <html>/<body>.
  *
- * The actual <html>/<body> tags, locale-specific metadata (hreflang,
- * canonical), I18nProvider, and analytics scripts live in
- * `[lang]/layout.tsx` so that the lang attribute and hreflang values
- * are server-rendered correctly for each locale.
+ * The lang attribute is detected from the NEXT_LOCALE cookie (set by
+ * middleware.ts) so that even the initial SSR HTML carries the correct
+ * language. If no cookie is present, falls back to "zh-CN".
+ *
+ * All locale-specific content rendering (I18nProvider, hreflang
+ * metadata, JSON-LD, analytics) lives in `[lang]/layout.tsx`.
  */
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  let htmlLang = "zh-CN";
+  try {
+    const store = await cookies();
+    const locale = store.get("NEXT_LOCALE")?.value;
+    if (locale === "en") htmlLang = "en";
+  } catch {
+    // cookies() may throw during build / static generation
+  }
+
+  return (
+    <html lang={htmlLang} suppressHydrationWarning>
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
+        <meta name="theme-color" content="#4f46e5" />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
 }

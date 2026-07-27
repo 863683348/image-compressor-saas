@@ -50,66 +50,57 @@ export default async function LocaleLayout({
   const messages = await loadMessages(lang);
 
   return (
-    <html lang={toHreflang(lang)} suppressHydrationWarning>
-      <head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-        />
-        <meta name="theme-color" content="#4f46e5" />
-        {/* JSON-LD — WebApplication structured data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              name: "Image Compressor",
-              url: SITE_URL,
-              description:
-                "Free online image compressor — 100% in-browser, private, no upload, no watermark. Compress JPG/PNG/WebP/AVIF.",
-              applicationCategory: "Multimedia",
-              operatingSystem: "All",
-              offers: {
-                "@type": "Offer",
-                price: "0",
-                priceCurrency: "USD",
-              },
-              featureList: [
-                "Compress images locally in browser",
-                "No upload to server",
-                "No watermark",
-                "Batch compression",
-                "ZIP export",
-                "JPG / PNG / WebP / AVIF support",
-              ],
-            }),
-          }}
-        />
-      </head>
-      <body>
-        {isProd && (
-          <>
-            {/* Google tag (gtag.js) — production only */}
-            <script
-              async
-              src="https://www.googletagmanager.com/gtag/js?id=G-XKHEV8W1T7"
-            />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XKHEV8W1T7');`,
-              }}
-            />
-          </>
-        )}
-        <I18nProvider locale={lang} messages={messages.flat}>
-          <Providers>
-            <HeaderClient />
-            {children}
-            <FooterClient />
-          </Providers>
-        </I18nProvider>
-      </body>
-    </html>
+    <>
+      {/* JSON-LD — WebApplication structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: "Image Compressor",
+            url: SITE_URL,
+            description:
+              "Free online image compressor — 100% in-browser, private, no upload, no watermark. Compress JPG/PNG/WebP/AVIF.",
+            applicationCategory: "Multimedia",
+            operatingSystem: "All",
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+            },
+            featureList: [
+              "Compress images locally in browser",
+              "No upload to server",
+              "No watermark",
+              "Batch compression",
+              "ZIP export",
+              "JPG / PNG / WebP / AVIF support",
+            ],
+          }),
+        }}
+      />
+      {isProd && (
+        <>
+          {/* Google tag (gtag.js) — production only */}
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-XKHEV8W1T7"
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XKHEV8W1T7');`,
+            }}
+          />
+        </>
+      )}
+      <I18nProvider locale={lang} messages={messages.flat}>
+        <Providers>
+          <HeaderClient />
+          {children}
+          <FooterClient />
+        </Providers>
+      </I18nProvider>
+    </>
   );
 }
