@@ -139,6 +139,6 @@ GitHub (main) ──push──▶ Vercel (auto-deploy)
                             └── Static Assets (_next/static, public/)
 ```
 
-- 域名：`image-compressor-saas.vercel.app`
+- 域名：`image-compressor-saas.shop`（正式）/ `image-compressor-saas.vercel.app`（Vercel 自动预览域名）
 - 环境变量通过 Vercel Dashboard 配置（Production）
 - 任何 `main` 分支 push 自动触发部署

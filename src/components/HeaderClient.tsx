@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useLang } from "@/components/lang-context";
+import { useLang } from "@/i18n/i18n-provider";
 import { useTheme } from "@/components/theme-context";
 
 export default function HeaderClient() {
