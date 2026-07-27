@@ -1,2 +1,11 @@
-// Re-export the existing homepage — locale is injected via I18nProvider context
+import type { Metadata } from "next";
+import { generatePageMetadata } from "@/i18n/metadata-helper";
+
+type Props = { params: Promise<{ lang: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  return generatePageMetadata(lang, "/");
+}
+
 export { default } from "@/app/page";
