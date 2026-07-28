@@ -2,6 +2,16 @@ import type { Metadata } from "next";
 
 export const slug = "compress-to-target-size";
 
+// Raw strings for JSON-LD structured data
+export const titles: Record<string, string> = {
+  zh: "如何将图片压缩到指定大小（200KB/100KB/50KB）",
+  en: "How to Compress Images to Any Target Size (200KB/100KB/50KB) — Free & Private",
+};
+export const descriptions: Record<string, string> = {
+  zh: "完整指南：如何将图片精确压缩到 200KB、100KB、50KB 或任意指定大小。100% 浏览器本地处理，不上传服务器，无水印，完全免费。",
+  en: "Complete guide: compress images to exactly 200KB, 100KB, 50KB, or any file size. 100% in-browser, no upload, no watermark, free forever.",
+};
+
 export function meta(lang: string): Metadata {
   if (lang === "zh") {
     return {
