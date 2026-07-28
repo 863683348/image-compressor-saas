@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { getPost, getAllSlugs } from "@/content/blog";
 import { generatePageMetadata } from "@/i18n/metadata-helper";
 
+const SITE_URL = "https://image-compressor-saas.shop";
+
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
 export async function generateStaticParams() {
@@ -25,8 +27,55 @@ export default async function BlogPostPage({ params }: Props) {
 
   const { default: Content } = await post.loadContent(lang);
 
+  // Load raw title/description for JSON-LD
+  let articleTitle = slug;
+  let articleDesc = slug;
+  let articleLang = "en";
+  try {
+    const postMeta = await import(`@/content/blog/${slug}/index`);
+    articleTitle = postMeta.titles?.[lang] || postMeta.titles?.en || slug;
+    articleDesc = postMeta.descriptions?.[lang] || postMeta.descriptions?.en || slug;
+    articleLang = lang === "zh" ? "zh-CN" : "en";
+  } catch {}
+
+  const articleUrl = lang === "zh"
+    ? `${SITE_URL}/blog/${slug}`
+    : `${SITE_URL}/${lang}/blog/${slug}`;
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: articleTitle,
+    description: articleDesc,
+    url: articleUrl,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
+    author: {
+      "@type": "Organization",
+      name: "Image Compressor",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Image Compressor",
+      url: SITE_URL,
+    },
+    inLanguage: articleLang,
+    about: {
+      "@type": "Thing",
+      name: "Image Compression",
+    },
+  };
+
   return (
     <div style={{ maxWidth: 720, margin: "0 auto", padding: "40px 18px 60px" }}>
+      {/* Article JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <style>{`
         article { line-height: 1.8; color: var(--text, #1f2430); }
         article h1 { font-size: 24px; margin: 0 0 8px; }

@@ -1,0 +1,39 @@
+# Image Compressor — Free, Private, In-Browser
+> 100% local image compression. No uploads. No watermark. Free forever. Compress and convert JPG, PNG, WebP, and AVIF images entirely in your browser with zero server uploads. Supports batch processing, ZIP export, and automatic target-size compression (e.g., 200KB, 100KB, 50KB).
+
+## Core Pages
+- [Image Compressor Tool](https://image-compressor-saas.shop/): Free online image compressor — drag & drop, set target size, download. 100% in-browser, no upload.
+- [How to Compress Images to Any Target Size (Guide)](https://image-compressor-saas.shop/guide.html): Step-by-step guide to compress images to exactly 200KB, 100KB, 50KB or any file size.
+- [Pricing](https://image-compressor-saas.shop/pricing): Free & Pro plans. Free tier: 10 compressions/day, JPG/PNG/WebP. Pro: unlimited, AVIF, ZIP batch, priority support.
+- [FAQ](https://image-compressor-saas.shop/faq): Frequently asked questions about image compression, privacy, formats, and limits.
+- [Blog](https://image-compressor-saas.shop/zh/blog): Practical guides on image compression, web optimization, and privacy.
+  - [Compress Images to Any Target Size](https://image-compressor-saas.shop/zh/blog/compress-to-target-size): How to compress images to 200KB, 100KB, or 50KB.
+  - [Compress Images to Any Target Size (en)](https://image-compressor-saas.shop/en/blog/compress-to-target-size): Same guide in English.
+- [Privacy Policy](https://image-compressor-saas.shop/privacy)
+- [Terms of Service](https://image-compressor-saas.shop/terms)
+- [Contact](https://image-compressor-saas.shop/contact)
+
+## Key Features
+- **100% local processing**: Runs on Canvas API + WebAssembly in browser. No files uploaded to any server.
+- **No watermark**: Completely clean output, no branding.
+- **Target size compression**: Set exact file size (200KB, 100KB, 50KB, custom). Tool auto-adjusts quality.
+- **Batch processing**: Compress multiple images at once. Download as ZIP.
+- **Format conversion**: JPG ↔ PNG ↔ WebP ↔ AVIF.
+- **Privacy first**: Disconnect internet after page load — tool still works. Suitable for sensitive documents.
+- **Free forever**: No sign-up required for basic use.
+
+## Supported Formats
+- JPEG / JPG
+- PNG
+- WebP
+- AVIF
+
+## Languages
+- [Chinese (zh)](https://image-compressor-saas.shop/zh) — Default
+- [English (en)](https://image-compressor-saas.shop/en)
+
+## SEO-Relevant Data
+- Canonical domain: `https://image-compressor-saas.shop`
+- All pages available in zh and en via URL prefix: `/zh/page` and `/en/page`
+- Sitemap: `https://image-compressor-saas.shop/sitemap.xml`
+- robots.txt: `https://image-compressor-saas.shop/robots.txt`

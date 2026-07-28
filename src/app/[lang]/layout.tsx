@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import {
   locales,
   isValidLocale,
-  toHreflang,
   buildLanguageAlternates,
 } from "@/i18n/config";
 import { loadMessages } from "@/i18n/load-messages";
@@ -76,6 +75,24 @@ export default async function LocaleLayout({
               "Batch compression",
               "ZIP export",
               "JPG / PNG / WebP / AVIF support",
+            ],
+          }),
+        }}
+      />
+      {/* JSON-LD — BreadcrumbList (homepage root) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: lang === "zh" ? "首页" : "Home",
+                item: lang === "zh" ? SITE_URL : `${SITE_URL}/${lang}`,
+              },
             ],
           }),
         }}

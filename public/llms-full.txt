@@ -1,0 +1,146 @@
+# Image Compressor — Full Site Content
+
+> This file contains the full text content of key pages on https://image-compressor-saas.shop for LLM consumption.
+
+---
+
+## Homepage — Image Compressor Tool
+
+**URL**: https://image-compressor-saas.shop/
+
+Free online image compressor. 100% in-browser, private, no upload, no watermark. Compress and convert JPG/PNG/WebP/AVIF, auto-fit a target size (e.g. 200KB), batch compress and export ZIP.
+
+### How to use
+1. Drag and drop images onto the drop zone, or click to select files.
+2. Supports: JPG, PNG, WebP, AVIF. Multiple files can be selected.
+3. Paste screenshots (Ctrl+V) to upload directly.
+4. Adjust compression quality slider (default 75%).
+5. Choose output format: keep original, JPG, PNG, or WebP.
+6. Optionally set a Target Size in KB (e.g. 200KB, 100KB, 50KB). The tool auto-adjusts quality to hit the target.
+7. Select all / deselect all controls for batch operations.
+8. Download individual files or batch export as ZIP.
+9. Compare original vs compressed with a side-by-side slider.
+
+### Privacy
+The tool runs entirely in the browser using the Canvas API and WebAssembly. No files are uploaded to any server. You can test this by disconnecting your internet after the page loads — it still works.
+
+### Batch Features
+- Upload multiple images at once
+- Set global target size for all files
+- Download all as ZIP
+- Table view with file name, original size, compressed size, compression rate, status, and action buttons
+
+---
+
+## Guide — How to Compress Images to Any Target Size
+
+**URL**: https://image-compressor-saas.shop/guide.html
+
+### Overview
+A complete guide teaching users how to compress images to exactly 200KB, 100KB, 50KB, or any custom file size for free, without uploading to any server, without watermarks, and with 100% privacy.
+
+### Key Sections
+1. **Why Image Compression Matters in 2026**: Email attachment limits, website upload limits, bandwidth savings, SEO page speed (Core Web Vitals LCP).
+2. **The Problem with Upload-Based Compressors**: TinyPNG, Compressor.io, iLoveIMG require server uploads. Privacy concerns.
+3. **Step-by-Step Instructions**: Open the tool, upload image, set target size (e.g. 200KB), pick output format (JPG/PNG/WebP/AVIF), download.
+4. **Target Size Cheat Sheet**: 200KB (email attachments, CMS images) with ~80-85% quality. 100KB (thumbnails, social media) with ~70-75% quality. 50KB (avatars, previews) with ~55-65% quality.
+5. **Real-World Example**: A 2.5MB JPEG photo compressed to 200KB, 100KB, and 50KB with quality trade-offs.
+6. **FAQ**: Answers about batch compression, WebP/AVIF conversion, privacy guarantees, watermark policy, and usage limits.
+
+### TL;DR
+Use the free image compressor at https://image-compressor-saas.shop — it runs entirely in your browser. Nothing is uploaded. Set your target file size and it automatically adjusts quality to hit it. Supports JPG, PNG, WebP, and AVIF.
+
+---
+
+## FAQ Page
+
+**URL**: https://image-compressor-saas.shop/faq
+
+### Questions & Answers
+
+1. **Is it really free?** Yes, completely free. No hidden charges, no credit card required. The free plan covers basic image compression needs with a daily limit. Pro plan available for unlimited use.
+
+2. **Are my images private?** Absolutely. The tool runs 100% in your browser using JavaScript and WebAssembly. No images are uploaded to any server. Your files never leave your device.
+
+3. **What image formats are supported?** JPG, PNG, WebP, and AVIF. You can compress and convert between any of these formats.
+
+4. **Can I compress multiple images at once?** Yes, batch compression is supported. Select multiple files and compress them all at once. Download individual files or as a ZIP archive.
+
+5. **Do you add a watermark?** No watermark. The output is completely clean.
+
+6. **Can I set a specific target file size?** Yes. Enable the "Target size" option and enter your desired file size in KB (e.g. 200, 100, 50). The tool automatically adjusts compression quality to hit that target.
+
+7. **What is AVIF?** AVIF (AV1 Image File Format) is a modern image format that offers superior compression compared to JPEG and WebP. Files can be 20-30% smaller than WebP at the same quality. Supported in Chrome, Firefox, and Safari.
+
+8. **Is there a mobile app?** The tool is a web application that works on any device with a modern browser, including iOS and Android. No app installation needed.
+
+---
+
+## Blog — Compress Images to Any Target Size (200KB / 100KB / 50KB)
+
+**URL (zh)**: https://image-compressor-saas.shop/zh/blog/compress-to-target-size
+**URL (en)**: https://image-compressor-saas.shop/en/blog/compress-to-target-size
+
+### English Version Summary
+A comprehensive guide covering:
+- Why compress to a target file size (email attachments, website uploads, bandwidth, SEO)
+- The problem with upload-based compressors (privacy, speed, limits)
+- Step-by-step: Open tool, upload, set target size (200KB/100KB/50KB), pick format, download
+- Target size cheat sheet with quality estimations
+- Real-world example: reducing a 2.5MB photo to 200KB, 100KB, 50KB
+- FAQ: batch compression, WebP/AVIF conversion, privacy, watermark/usage limits
+
+### Chinese Version Summary (如何将图片压缩到指定大小)
+相同内容的完整中文版。包括：
+- 为什么要压缩到指定大小（邮件附件、网站上传、带宽、SEO）
+- 传统压缩工具的痛点（需要上传服务器）
+- 分步指南：打开工具、上传、设定目标大小、选择格式、下载
+- 目标大小速查表
+- 实际案例：将2.5MB照片压缩到不同大小
+- 常见问题
+
+---
+
+## Pricing Page
+
+**URL**: https://image-compressor-saas.shop/pricing
+
+### Free Plan
+- $0/month
+- 10 compressions per day
+- JPG/PNG/WebP support
+- 100% local processing
+- No watermark
+- No sign-up required
+
+### Pro Plan
+- $4.99/month or $49.99/year (save 17%)
+- Unlimited compressions
+- ZIP batch export
+- AVIF format support
+- Priority customer support
+- Requires sign-in (Google)
+
+---
+
+## Privacy Policy
+
+**URL**: https://image-compressor-saas.shop/privacy
+
+The image compressor processes all images locally in the user's browser. No images are uploaded to any server. No personal data is collected or stored from the compression process. Basic analytics (Google Analytics) may track page views anonymously.
+
+---
+
+## Terms of Service
+
+**URL**: https://image-compressor-saas.shop/terms
+
+Standard terms covering tool usage, intellectual property, disclaimer of warranties, limitation of liability, and governing law. The tool is provided as-is for free and paid tiers.
+
+---
+
+## Contact
+
+**URL**: https://image-compressor-saas.shop/contact
+
+Contact form for support inquiries, business inquiries, and feedback. Fields: name, email, message.

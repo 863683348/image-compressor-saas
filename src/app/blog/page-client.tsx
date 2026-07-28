@@ -10,7 +10,7 @@ const s = (lang: string, key: string): string => {
 
 const posts = [
   { title: "blog1Title", desc: "blog1Desc", link: "/blog/compress-to-target-size" },
-  { title: "blog2Title", desc: "blog2Desc" },
+  { title: "blog2Title", desc: "blog2Desc", link: "/blog/webp-avif-jpeg-comparison" },
   { title: "blog3Title", desc: "blog3Desc" },
 ];
 
