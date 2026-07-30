@@ -13,6 +13,12 @@
   --ok: #16a34a;
   --warn: #dc2626;
   --radius: 14px;
+  /* status badge tokens (replaces hardcoded colors — P0-3 compliant) */
+  --badge-pending-bg: #f1f5f9; --badge-pending-text: #475569;
+  --badge-processing-bg: #fef9c3; --badge-processing-text: #a16207;
+  --badge-done-bg: #dcfce7; --badge-done-text: #166534;
+  --badge-error-bg: #fee2e2; --badge-error-text: #991b1b;
+  --toast-bg: #111827; --toast-text: #ffffff;
 }
 
 [data-theme="dark"] {
@@ -25,6 +31,12 @@
   --primary-soft: #1e2230;
   --ok: #4ade80;
   --warn: #f87171;
+  /* status badge tokens (dark) */
+  --badge-pending-bg: #232a36; --badge-pending-text: #9aa3b2;
+  --badge-processing-bg: #3a2f12; --badge-processing-text: #fbbf24;
+  --badge-done-bg: #14331f; --badge-done-text: #4ade80;
+  --badge-error-bg: #3a1d1d; --badge-error-text: #f87171;
+  --toast-bg: #e7e9ee; --toast-text: #111827;
 }
 
 body {
