@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import "./globals.css";
-import { Providers } from "./providers";
-import FooterClient from "@/components/FooterClient";
-import HeaderClient from "@/components/HeaderClient";
 
-// Single source of truth for the production canonical domain.
+// ── Single source of truth for the production domain ──
 const SITE_URL = "https://image-compressor-saas.shop";
 
 export const metadata: Metadata = {
@@ -27,13 +25,6 @@ export const metadata: Metadata = {
     "compress photo for email",
   ],
   category: "utilities",
-  alternates: {
-    canonical: "/",
-    languages: {
-      "zh-CN": "/",
-      "x-default": "/",
-    },
-  },
   openGraph: {
     title: "Image Compressor · Free, Private, In-Browser",
     description: "100% local image compression. No uploads. No watermark.",
@@ -59,71 +50,47 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+/**
+ * Root layout — required by Next.js to contain <html>/<body>.
+ *
+ * The lang attribute is detected from the NEXT_LOCALE cookie (set by
+ * middleware.ts) so that even the initial SSR HTML carries the correct
+ * language. If no cookie is present, falls back to "zh-CN".
+ *
+ * All locale-specific content rendering (I18nProvider, hreflang
+ * metadata, JSON-LD, analytics) lives in `[lang]/layout.tsx`.
+ */
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Only load analytics in real production (avoid localhost/preview data pollution)
-  const isProd =
-    process.env.NODE_ENV === "production" && process.env.VERCEL_ENV !== "preview";
+  let htmlLang = "zh-CN";
+  try {
+    const store = await cookies();
+    const locale = store.get("NEXT_LOCALE")?.value;
+    if (locale === "en") htmlLang = "en";
+  } catch {
+    // cookies() may throw during build / static generation
+  }
+
+  // AdSense publisher ID — set NEXT_PUBLIC_ADSENSE_CLIENT_ID in env
+  const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "";
 
   return (
-    <html lang="zh-CN" suppressHydrationWarning>
+    <html lang={htmlLang} suppressHydrationWarning>
       <head>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         />
         <meta name="theme-color" content="#4f46e5" />
-        {/* JSON-LD structured data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              name: "Image Compressor",
-              url: SITE_URL,
-              description:
-                "Free online image compressor — 100% in-browser, private, no upload, no watermark. Compress JPG/PNG/WebP/AVIF.",
-              applicationCategory: "Multimedia",
-              operatingSystem: "All",
-              offers: {
-                "@type": "Offer",
-                price: "0",
-                priceCurrency: "USD",
-              },
-              featureList: [
-                "Compress images locally in browser",
-                "No upload to server",
-                "No watermark",
-                "Batch compression",
-                "ZIP export",
-                "JPG / PNG / WebP / AVIF support",
-              ],
-            }),
-          }}
-        />
-      </head>
-      <body>
-        {isProd && (
-          <>
-            {/* Google tag (gtag.js) — production only */}
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKHEV8W1T7" />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XKHEV8W1T7');`,
-              }}
-            />
-          </>
+        {/* Google AdSense site verification — production only */}
+        {adsenseClient && (
+          <meta name="google-adsense-account" content={adsenseClient} />
         )}
-        <Providers>
-          <HeaderClient />
-          {children}
-          <FooterClient />
-        </Providers>
-      </body>
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
