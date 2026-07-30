@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { generatePageMetadata } from "@/i18n/metadata-helper";
-import HomePage from "@/app/page";
+import { CompressorTool } from "@/components/CompressorTool";
 
 type Props = { params: Promise<{ lang: string }> };
 
@@ -10,9 +10,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // Note: this MUST be a server component (it has generateMetadata above).
-// We import the client HomePage and render it as a child. Re-exporting
-// `export { default } from "@/app/page"` is forbidden by Next.js when the
-// source is a "use client" module — that's what caused the prior /zh 404.
+// We render <CompressorTool /> — a client component that contains ONLY the
+// tool UI (no Header/Footer). The Header/Footer are provided by
+// [lang]/layout.tsx one level above, so the [lang] route gets exactly one
+// header — no duplicates.
 export default async function Page(_props: Props) {
-  return <HomePage />;
+  return <CompressorTool />;
 }
