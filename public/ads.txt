@@ -1,3 +1,2 @@
 # Google AdSense
-# 将以下行中的 ca-pub-XXXXXXXXXXXXXXXX 替换为你在 AdSense 中的实际发布商 ID
-# google.com, ca-pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-9043592188127461, DIRECT, f08c47fec0942fa0
