@@ -1,6 +1,6 @@
-"use client";
-
 // i18n dictionary — ported from index.html
+// NOTE: 这是纯数据模块（只导出 dict / Lang），刻意不加 "use client"，
+// 否则服务端组件（如 faq/page.tsx 的 JSON-LD 生成）导入 dict 会在服务端被解析成 undefined。
 const zh = {
   title: "图片压缩 · 纯本地处理，隐私优先",
   brand: "图片压缩",
