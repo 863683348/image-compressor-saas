@@ -1,8 +1,8 @@
 {
-  "contactSub": "有问题或建议？我们很乐意倾听",
-  "contactName": "姓名",
-  "contactEmail": "邮箱",
-  "contactMsg": "留言",
-  "contactSend": "发送消息",
-  "contactSuccess": "消息已发送，我们会尽快回复！"
+  "contactSub": "Have questions or suggestions? We'd love to hear from you",
+  "contactName": "Name",
+  "contactEmail": "Email",
+  "contactMsg": "Message",
+  "contactSend": "Send Message",
+  "contactSuccess": "Message sent! We'll get back to you as soon as possible."
 }
