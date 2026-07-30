@@ -22,6 +22,8 @@ import { QuotaBar } from "@/components/QuotaBar";
 import { ResultTable } from "@/components/ResultTable";
 import { PreviewModal } from "@/components/PreviewModal";
 import { SeoContent } from "@/components/SeoContent";
+import HeaderClient from "@/components/HeaderClient";
+import FooterClient from "@/components/FooterClient";
 
 export default function HomePage() {
   const { status } = useSession();
@@ -138,7 +140,9 @@ export default function HomePage() {
     .reduce((s, i) => s + (i.result?.size || 0), 0);
 
   return (
-    <div style={{ background: "var(--bg)", color: "var(--text)", minHeight: "100vh" }}>
+    <>
+      <HeaderClient />
+      <div style={{ background: "var(--bg)", color: "var(--text)", minHeight: "100vh" }}>
       <div style={{ maxWidth: 980, margin: "0 auto", padding: "0 18px 64px" }}>
         {/* Quota bar (when logged in) */}
         {status === "authenticated" && <QuotaBar lang={lang} />}
@@ -299,5 +303,7 @@ export default function HomePage() {
         {toast}
       </div>
     </div>
+      <FooterClient />
+    </>
   );
 }
