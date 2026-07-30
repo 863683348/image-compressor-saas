@@ -1,0 +1,15 @@
+{
+  "title": "图片压缩 · 纯本地处理，隐私优先",
+  "brand": "图片压缩",
+  "badge": "隐私优先",
+  "privacy": "图片不上传服务器",
+  "langTitle": "切换到英文",
+  "themeTitle": "切换暗色/亮色",
+  "footer": "所有图片仅在你的浏览器内压缩，不会发送到任何服务器 · 断网也可用",
+  "footerTerms": "服务条款",
+  "footerFaq": "常见问题",
+  "footerBlog": "博客",
+  "footerContact": "联系我们",
+  "footerDesc": "Image Compressor — 隐私优先的在线图片压缩工具，所有处理在浏览器本地完成，不上传任何图片到服务器。",
+  "footerRights": "© 2026 Image Compressor. All rights reserved."
+}
