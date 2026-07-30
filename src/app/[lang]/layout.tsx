@@ -5,7 +5,6 @@ import {
   isValidLocale,
   buildLanguageAlternates,
 } from "@/i18n/config";
-import { loadMessages } from "@/i18n/load-messages";
 import { I18nProvider } from "@/i18n/i18n-provider";
 import HeaderClient from "@/components/HeaderClient";
 import FooterClient from "@/components/FooterClient";
@@ -44,8 +43,6 @@ export default async function LocaleLayout({
   const isProd =
     process.env.NODE_ENV === "production" &&
     process.env.VERCEL_ENV !== "preview";
-
-  const messages = await loadMessages(lang);
 
   return (
     <>
@@ -118,7 +115,7 @@ export default async function LocaleLayout({
           )}
         </>
       )}
-      <I18nProvider locale={lang} messages={messages.flat}>
+      <I18nProvider locale={lang}>
         <HeaderClient />
         {children}
         <FooterClient />
