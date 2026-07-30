@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import "./globals.css";
+import { Providers } from "./providers";
 
 // ── Single source of truth for the production domain ──
 const SITE_URL = "https://image-compressor-saas.shop";
@@ -90,7 +91,9 @@ export default async function RootLayout({
           <meta name="google-adsense-account" content={adsenseClient} />
         )}
       </head>
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
