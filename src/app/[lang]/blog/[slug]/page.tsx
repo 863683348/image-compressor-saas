@@ -76,6 +76,33 @@ export default async function BlogPostPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
+      {/* Breadcrumb JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: lang === "zh" ? "首页" : "Home", item: lang === "zh" ? SITE_URL : `${SITE_URL}/${lang}` },
+              { "@type": "ListItem", position: 2, name: lang === "zh" ? "博客" : "Blog", item: `${SITE_URL}/${lang}/blog` },
+              { "@type": "ListItem", position: 3, name: articleTitle, item: articleUrl },
+            ],
+          }),
+        }}
+      />
+      {/* Visible breadcrumb */}
+      <nav style={{ fontSize: 12, color: "var(--muted, #6b7280)", marginBottom: 20 }}>
+        <a href={lang === "zh" ? "/" : `/${lang}`} style={{ color: "var(--muted, #6b7280)", textDecoration: "none" }}>
+          {lang === "zh" ? "首页" : "Home"}
+        </a>
+        <span style={{ margin: "0 6px" }}>›</span>
+        <a href={`/${lang}/blog`} style={{ color: "var(--muted, #6b7280)", textDecoration: "none" }}>
+          {lang === "zh" ? "博客" : "Blog"}
+        </a>
+        <span style={{ margin: "0 6px" }}>›</span>
+        <span style={{ color: "var(--text, #1f2430)" }}>{articleTitle}</span>
+      </nav>
       <style>{`
         article { line-height: 1.8; color: var(--text, #1f2430); }
         article h1 { font-size: 24px; margin: 0 0 8px; }

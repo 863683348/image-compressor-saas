@@ -266,6 +266,48 @@ export default function HomePage() {
           </a>
         </div>
 
+        {/* ── SEO body content: H1 + features + use cases ── */}
+        <div style={{
+          marginTop: 36, padding: "24px 22px",
+          background: "var(--panel)", border: "1px solid var(--border)",
+          borderRadius: "var(--radius)", lineHeight: 1.7,
+        }}>
+          <h1 style={{ fontSize: 20, fontWeight: 700, margin: "0 0 12px", color: "var(--text)" }}>
+            {lang === "zh"
+              ? "免费在线图片压缩工具 — 100% 本地处理，隐私优先"
+              : "Free Online Image Compressor — 100% Local, Privacy First"}
+          </h1>
+          <p style={{ fontSize: 14, color: "var(--text)", margin: "0 0 16px" }}>
+            {lang === "zh"
+              ? "Image Compressor 是一款完全在浏览器中运行的免费图片压缩工具。无需上传任何文件到服务器，无需注册，无水印。支持 JPG、PNG、WebP 和 AVIF 格式的压缩与互转，可按目标文件大小（200KB/100KB/50KB）自动调整压缩质量，并支持批量处理与 ZIP 导出。"
+              : "Image Compressor is a free image compression tool that runs entirely in your browser. No files uploaded to any server, no sign-up required, no watermarks. Supports JPG, PNG, WebP, and AVIF compression and conversion, with automatic target-size compression (200KB/100KB/50KB), batch processing, and ZIP export."}
+          </p>
+
+          <h2 style={{ fontSize: 15, fontWeight: 700, margin: "20px 0 8px", color: "var(--text)" }}>
+            {lang === "zh" ? "核心功能" : "Key Features"}
+          </h2>
+          <ul style={{ fontSize: 13, color: "var(--text)", paddingLeft: 18, margin: 0 }}>
+            {(lang === "zh"
+              ? ["🛡️ 100% 隐私安全 — 所有处理在浏览器本地完成，不上传服务器", "⚡ 精准压缩 — 设定目标大小（如 200KB），自动调整质量达到精确值", "🖼️ 多格式支持 — JPG / PNG / WebP / AVIF 压缩与相互转换", "📦 批量处理 — 一次上传多个文件，一键压缩并导出 ZIP 压缩包", "🌐 双语界面 — 中文和英文界面，自动适配", "💧 无水印 — 输出文件完全纯净，无任何品牌标记"]
+              : ["🛡️ 100% Private — All processing happens locally in your browser", "⚡ Target Size — Set exact size (200KB/100KB/50KB), auto-adjusts quality", "🖼️ Multi-format — JPG / PNG / WebP / AVIF compression & conversion", "📦 Batch & ZIP — Upload multiple files, compress all, export as ZIP", "🌐 Bilingual — Chinese and English UI, auto-detected", "💧 No Watermark — Output is completely clean, no branding"]
+            ).map((item, i) => (
+              <li key={i} style={{ marginBottom: 6 }}>{item}</li>
+            ))}
+          </ul>
+
+          <h2 style={{ fontSize: 15, fontWeight: 700, margin: "20px 0 8px", color: "var(--text)" }}>
+            {lang === "zh" ? "适用场景" : "Use Cases"}
+          </h2>
+          <ul style={{ fontSize: 13, color: "var(--text)", paddingLeft: 18, margin: 0 }}>
+            {(lang === "zh"
+              ? ["📧 邮件附件 — 将照片压缩到 200KB 以内，确保邮件顺利送达", "🌐 网站优化 — 压缩图片减少页面加载时间，提升 Core Web Vitals 评分", "📋 求职系统 — 证件照和简历图片压缩到系统要求的 200KB/100KB", "🛒 电商平台 — 批量压缩产品图片，统一上传到淘宝/Shopify 等平台"]
+              : ["📧 Email Attachments — Compress photos under 200KB for reliable delivery", "🌐 Web Optimization — Reduce image sizes to improve Core Web Vitals scores", "📋 Job Applications — Fit headshots and documents into 200KB/100KB limits", "🛒 E-commerce — Batch compress product images for Shopify, Amazon, etc."]
+            ).map((item, i) => (
+              <li key={i} style={{ marginBottom: 6 }}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
         {/* Resources section (also lives in global Footer) */}
         <div style={{
           marginTop: 32, padding: "20px 22px",
@@ -308,8 +350,8 @@ export default function HomePage() {
               </div>
               {cmpMode === "side" ? (
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-                  <div><img src={previewItem.origUrl} alt="original" style={{ width: "100%", borderRadius: 8, display: "block" }} /></div>
-                  <div><img src={previewItem.result.url} alt="compressed" style={{ width: "100%", borderRadius: 8, display: "block" }} /></div>
+                  <div><img src={previewItem.origUrl} alt={lang === "zh" ? "压缩前的原图" : "Original image before compression"} style={{ width: "100%", borderRadius: 8, display: "block" }} /></div>
+                  <div><img src={previewItem.result.url} alt={lang === "zh" ? "压缩后的效果对比图" : "Compressed image after compression"} style={{ width: "100%", borderRadius: 8, display: "block" }} /></div>
                 </div>
               ) : (
                 <SliderCompare orig={previewItem.origUrl} comp={previewItem.result.url} />
@@ -368,9 +410,9 @@ function SliderCompare({ orig, comp }: { orig: string; comp: string }) {
 
   return (
     <div ref={containerRef} style={{ position: "relative", userSelect: "none", cursor: "ew-resize" }} onMouseMove={handleMouse} onMouseDown={handleMouse}>
-      <img src={comp} alt="compressed" style={{ width: "100%", borderRadius: 8, display: "block" }} />
+      <img src={comp} alt={lang === "zh" ? "压缩后的图片效果" : "Compressed image preview"} style={{ width: "100%", borderRadius: 8, display: "block" }} />
       <div style={{ position: "absolute", top: 0, left: 0, width: `${pos}%`, overflow: "hidden", borderRadius: "8px 0 0 8px" }}>
-        <img src={orig} alt="original" style={{ width: `${100 / pos * 100}%`, maxWidth: "none", display: "block", height: "auto" }} />
+        <img src={orig} alt={lang === "zh" ? "压缩前的原图（滑块对比）" : "Original image (slider comparison)"} style={{ width: `${100 / pos * 100}%`, maxWidth: "none", display: "block", height: "auto" }} />
       </div>
       <div style={{ position: "absolute", top: 0, bottom: 0, left: `${pos}%`, width: 3, background: "#fff", transform: "translateX(-50%)", boxShadow: "0 0 6px rgba(0,0,0,.3)" }}>
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 30, height: 30, borderRadius: "50%", background: "#fff", boxShadow: "0 2px 8px rgba(0,0,0,.2)", display: "grid", placeItems: "center", fontSize: 14 }}>⟷</div>
