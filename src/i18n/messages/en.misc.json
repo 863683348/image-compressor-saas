@@ -1,0 +1,17 @@
+{
+  "m": "number) => `今日已压缩 ${n} 次，剩余 ${m} 次`",
+  "// Pricing\n  pricing": "定价",
+  "// Footer\n  footerPrivacy": "隐私政策",
+  "// Privacy\n  privacyTitle": "隐私政策",
+  "privacyUpdated": "最后更新：2026 年 7 月",
+  "privacyP1": "我们非常重视您的隐私。本隐私政策说明 Image Compressor 如何处理您的数据。",
+  "privacyP2": "数据收集：本工具为纯前端应用，所有图片压缩处理均在您的浏览器本地完成。我们不会收集、存储或传输您的原始图片到任何服务器。",
+  "privacyP3": "Cookie：我们使用必要的 Cookie 来维持主题和语言偏好设置。这些 Cookie 不包含个人身份信息。",
+  "privacyP4": "第三方服务：本网站使用 Google Analytics (GA4) 收集匿名使用统计数据，帮助我们改进产品。GA4 不会访问您的图片内容。",
+  "privacyP5": "账户信息：如您选择登录，我们将通过 Google 登录获取您的基本账户信息（姓名、邮箱、头像），仅用于识别您的账户和配额管理。",
+  "privacyP6": "数据保留：使用统计数据保留 26 个月。账户信息在您注销后 30 天内删除。",
+  "privacyP7": "联系我们：如有隐私相关问题，请通过联系页面与我们取得联系。",
+  "// Terms\n  termsTitle": "服务条款",
+  "// Blog\n  blogTitle": "博客",
+  "// Contact\n  contactTitle": "联系我们"
+}
