@@ -5,13 +5,41 @@ import {
   useContext,
   useCallback,
   useMemo,
+  useState,
   type ReactNode,
 } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import { locales } from "./config";
+
+// 预载双语言全部 messages，实现 in-place 语言切换（不导航，即时生效）。
+import zhCommon from "./messages/zh.common.json";
+import zhTool from "./messages/zh.tool.json";
+import zhFaq from "./messages/zh.faq.json";
+import zhPricing from "./messages/zh.pricing.json";
+import zhAuth from "./messages/zh.auth.json";
+import zhLegal from "./messages/zh.legal.json";
+import zhContact from "./messages/zh.contact.json";
+import zhMisc from "./messages/zh.misc.json";
+import enCommon from "./messages/en.common.json";
+import enTool from "./messages/en.tool.json";
+import enFaq from "./messages/en.faq.json";
+import enPricing from "./messages/en.pricing.json";
+import enAuth from "./messages/en.auth.json";
+import enLegal from "./messages/en.legal.json";
+import enContact from "./messages/en.contact.json";
+import enMisc from "./messages/en.misc.json";
+
+const ALL_MSGS: Record<string, Record<string, string>> = {
+  zh: {
+    ...zhCommon, ...zhTool, ...zhFaq, ...zhPricing,
+    ...zhAuth, ...zhLegal, ...zhContact, ...zhMisc,
+  },
+  en: {
+    ...enCommon, ...enTool, ...enFaq, ...enPricing,
+    ...enAuth, ...enLegal, ...enContact, ...enMisc,
+  },
+};
 
 /* ------------------------------------------------------------------ */
-/*  Context shape — mirrors the old `useLang()` API exactly            */
+/*  Context shape                                                     */
 /* ------------------------------------------------------------------ */
 interface I18nContextValue {
   lang: string;
@@ -21,7 +49,7 @@ interface I18nContextValue {
 
 const I18nContext = createContext<I18nContextValue>({
   lang: "zh",
-  dict: {},
+  dict: ALL_MSGS.zh,
   setLang: () => {},
 });
 
@@ -30,48 +58,35 @@ export function useLang(): I18nContextValue {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Provider — wraps the app tree inside [lang]/layout.tsx             */
+/*  Provider — provides lang / dict / setLang                          */
+/*  setLang now switches messages in-place (no router.push), making     */
+/*  language changes instant — no full page navigation overhead.        */
+/*  Language preference is persisted to cookie for SSR consistency.     */
 /* ------------------------------------------------------------------ */
 export function I18nProvider({
   children,
   locale,
-  messages,
 }: {
   children: ReactNode;
   locale: string;
-  messages: Record<string, string>;
 }) {
-  const router = useRouter();
-  const pathname = usePathname();
+  const [lang, setLangState] = useState(locale);
 
   const setLang = useCallback(
     (newLang: string) => {
-      // Extract the path without the current locale prefix
-      const segments = pathname.split("/").filter(Boolean);
-      let pathWithoutLocale: string;
-
-      if (segments.length > 0 && (locales as readonly string[]).includes(segments[0])) {
-        pathWithoutLocale = "/" + segments.slice(1).join("/");
-      } else {
-        pathWithoutLocale = pathname;
-      }
-
-      // Build the new URL
-      const normalized = pathWithoutLocale || "/";
-      const newPath = newLang === "zh" ? normalized : `/${newLang}${normalized}`;
-
-      router.push(newPath);
+      if (newLang === lang) return;
+      setLangState(newLang);
+      // Persist language preference for SSR / next visit
+      document.cookie = `NEXT_LOCALE=${newLang};path=/;max-age=${365 * 24 * 60 * 60};samesite=lax`;
     },
-    [pathname, router],
+    [lang],
   );
 
+  const dict = ALL_MSGS[lang] || ALL_MSGS.zh;
+
   const value = useMemo(
-    () => ({
-      lang: locale,
-      dict: messages,
-      setLang,
-    }),
-    [locale, messages, setLang],
+    () => ({ lang, dict, setLang }),
+    [lang, dict, setLang],
   );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
