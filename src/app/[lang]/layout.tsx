@@ -7,7 +7,6 @@ import {
 } from "@/i18n/config";
 import { loadMessages } from "@/i18n/load-messages";
 import { I18nProvider } from "@/i18n/i18n-provider";
-import { Providers } from "../providers";
 import HeaderClient from "@/components/HeaderClient";
 import FooterClient from "@/components/FooterClient";
 
@@ -120,11 +119,9 @@ export default async function LocaleLayout({
         </>
       )}
       <I18nProvider locale={lang} messages={messages.flat}>
-        <Providers>
-          <HeaderClient />
-          {children}
-          <FooterClient />
-        </Providers>
+        <HeaderClient />
+        {children}
+        <FooterClient />
       </I18nProvider>
     </>
   );
