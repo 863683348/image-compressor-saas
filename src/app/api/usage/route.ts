@@ -27,8 +27,8 @@ export async function GET() {
     .where(
       and(
         eq(usage.user_id, userId),
-        gte(usage.periodStart, periodStart),
-        lte(usage.periodEnd, periodEnd)
+        gte(usage.period_start, periodStart),
+        lte(usage.period_end, periodEnd)
       )
     )
     .then((rows) => rows[0]);
@@ -45,12 +45,12 @@ export async function GET() {
     };
   }
 
-  const remaining = Math.max(0, FREE_DAILY_LIMIT - usageRecord.compressCount);
+  const remaining = Math.max(0, FREE_DAILY_LIMIT - usageRecord.compress_count);
 
   return NextResponse.json({
     plan: "free",
     limit: FREE_DAILY_LIMIT,
-    used: usageRecord.compressCount,
+    used: usageRecord.compress_count,
     remaining,
     resetsAt: periodEnd.toISOString(),
   });
@@ -77,8 +77,8 @@ export async function POST(req: Request) {
     .where(
       and(
         eq(usage.user_id, userId),
-        gte(usage.periodStart, periodStart),
-        lte(usage.periodEnd, periodEnd)
+        gte(usage.period_start, periodStart),
+        lte(usage.period_end, periodEnd)
       )
     )
     .then((rows) => rows[0]);
@@ -96,7 +96,7 @@ export async function POST(req: Request) {
   }
 
   // Check limit
-  if (usageRecord.compressCount >= FREE_DAILY_LIMIT) {
+  if (usageRecord.compress_count >= FREE_DAILY_LIMIT) {
     return NextResponse.json({ error: "Daily limit reached", remaining: 0 }, { status: 403 });
   }
 
@@ -117,7 +117,7 @@ export async function POST(req: Request) {
     });
   }
 
-  const remaining = Math.max(0, FREE_DAILY_LIMIT - usageRecord.compressCount - 1);
+  const remaining = Math.max(0, FREE_DAILY_LIMIT - usageRecord.compress_count - 1);
 
   return NextResponse.json({
     success: true,
