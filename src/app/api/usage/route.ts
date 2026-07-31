@@ -39,9 +39,9 @@ export async function GET() {
       user_id,
       periodStart,
       periodEnd,
-      compressCount: 0,
-      batchCount: 0,
-      zipCount: 0,
+      compress_count: 0,
+      batch_count: 0,
+      zip_count: 0,
     };
   }
 
@@ -89,9 +89,9 @@ export async function POST(req: Request) {
       user_id,
       periodStart,
       periodEnd,
-      compressCount: 0,
-      batchCount: 0,
-      zipCount: 0,
+      compress_count: 0,
+      batch_count: 0,
+      zip_count: 0,
     };
   }
 
@@ -111,9 +111,9 @@ export async function POST(req: Request) {
       user_id,
       periodStart,
       periodEnd,
-      compressCount: 1,
-      batchCount: 0,
-      zipCount: 0,
+      compress_count: 1,
+      batch_count: 0,
+      zip_count: 0,
     });
   }
 
