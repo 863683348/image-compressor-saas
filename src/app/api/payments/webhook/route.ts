@@ -67,8 +67,8 @@ export async function POST(req: Request) {
       const expiresAt = new Date(now.getTime() + planConfig.period * 86400000);
 
       await db.update(users)
-        .set({ plan: planConfig.plan, planExpiresAt: expiresAt })
-        .where(eq(users.id, existingOrder.userId));
+        .set({ plan: planConfig.plan, plan_expires_at: expiresAt })
+        .where(eq(users.id, existingOrder.user_id));
     }
   }
 
@@ -99,8 +99,8 @@ export async function POST(req: Request) {
       const now = new Date();
       const expiresAt = new Date(now.getTime() + planConfig.period * 86400000);
       await db.update(users)
-        .set({ plan: planConfig.plan, planExpiresAt: expiresAt })
-        .where(eq(users.id, existingOrder.userId));
+        .set({ plan: planConfig.plan, plan_expires_at: expiresAt })
+        .where(eq(users.id, existingOrder.user_id));
     }
   }
 
