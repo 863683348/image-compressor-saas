@@ -1,28 +1,16 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, useCallback } from "react";
-import type { Lang } from "@/lib/i18n";
+/**
+ * ⚠️ Compatibility bridge — file kept for backward compatibility.
+ *
+ * All `useLang()` consumers across the app still import from this path.
+ * Do not delete; this re-exports from the new I18nProvider so
+ * existing components (page-client.tsx, Footer.tsx, etc.) work
+ * without modification.
+ *
+ * The old `LangProvider` is no longer used — `I18nProvider` in
+ * `[lang]/layout.tsx` replaces it.
+ */
 
-const LangContext = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({
-  lang: "zh",
-  setLang: () => {},
-});
-
-export function LangProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Lang>("zh");
-  useEffect(() => {
-    const saved = localStorage.getItem("ic_lang") as Lang | null;
-    if (saved === "en" || saved === "zh") setLang(saved);
-  }, []);
-  // Keep <html lang> in sync with the active language for correct SEO/aria.
-  useEffect(() => {
-    document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
-  }, [lang]);
-  const syncLang = useCallback((l: Lang) => {
-    setLang(l);
-    try { localStorage.setItem("ic_lang", l); } catch {}
-  }, []);
-  return <LangContext.Provider value={{ lang, setLang: syncLang }}>{children}</LangContext.Provider>;
-}
-
-export const useLang = () => useContext(LangContext);
+export { useLang } from "@/i18n/i18n-provider";
+export type { Locale } from "@/i18n/config";
