@@ -43,7 +43,7 @@ export async function POST(req: Request) {
     const existingOrders = await db
       .select()
       .from(orders)
-      .where(eq(orders.providerOrderId, orderId))
+      .where(eq(orders.provider_order_id, orderId))
       .limit(1);
 
     const existingOrder = existingOrders[0];
@@ -80,7 +80,7 @@ export async function POST(req: Request) {
     const existingOrders = await db
       .select()
       .from(orders)
-      .where(eq(orders.providerOrderId, orderId))
+      .where(eq(orders.provider_order_id, orderId))
       .limit(1);
 
     const existingOrder = existingOrders[0];
