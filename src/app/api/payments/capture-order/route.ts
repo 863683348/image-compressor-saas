@@ -60,7 +60,7 @@ export async function POST(req: Request) {
       await db.update(users)
         .set({
           plan: planConfig.plan,
-          planExpiresAt: expiresAt,
+          plan_expires_at: expiresAt,
         })
         .where(eq(users.id, session.user.id));
     }
