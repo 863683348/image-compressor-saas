@@ -48,8 +48,8 @@ interface I18nContextValue {
 }
 
 const I18nContext = createContext<I18nContextValue>({
-  lang: "zh",
-  dict: ALL_MSGS.zh,
+  lang: "en",
+  dict: ALL_MSGS.en,
   setLang: () => {},
 });
 
