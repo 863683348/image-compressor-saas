@@ -2,6 +2,12 @@ import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@/db";
+import {
+  users,
+  accounts,
+  sessions,
+  verificationTokens,
+} from "@/db/schema";
 
 // Surface config state to runtime logs so we can diagnose
 // NextAuth's masked "Configuration" page error from Vercel logs.
@@ -26,7 +32,14 @@ if (!process.env.DATABASE_URL) {
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: DrizzleAdapter(db),
+  adapter: DrizzleAdapter(db, {
+    // 表名是复数（accounts/users/...），必须显式传给 adapter，
+    // 否则 DrizzleAdapter 默认查单数表 account/user → 42P01 表不存在。
+    usersTable: users,
+    accountsTable: accounts,
+    sessionsTable: sessions,
+    verificationTokensTable: verificationTokens,
+  }),
   trustHost: true, // required on Vercel — behind reverse proxy
   debug: true, // log full OAuth errors to Vercel runtime logs
   secret: process.env.AUTH_SECRET,
