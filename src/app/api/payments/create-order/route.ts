@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       amount: plan.amount,
       currency: plan.currency,
       provider: "paypal",
-      providerOrderId: paypalOrder.id,
+      provider_order_id: paypalOrder.id,
       status: "pending",
     });
 
