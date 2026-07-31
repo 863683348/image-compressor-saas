@@ -28,6 +28,7 @@ if (!process.env.DATABASE_URL) {
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: DrizzleAdapter(db),
   trustHost: true, // required on Vercel — behind reverse proxy
+  debug: true, // log full OAuth errors to Vercel runtime logs
   secret: process.env.AUTH_SECRET,
   providers: [
     Google({
