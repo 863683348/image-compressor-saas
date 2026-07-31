@@ -26,7 +26,7 @@ export async function POST(req: Request) {
 
     // Store order in DB (pending)
     await db.insert(orders).values({
-      userId: session.user.id,
+      user_id: session.user.id,
       plan: plan.plan,
       amount: plan.amount,
       currency: plan.currency,
