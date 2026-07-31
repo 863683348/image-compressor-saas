@@ -187,7 +187,7 @@ export default function HeaderClient() {
             title={lang === "zh" ? "切换到英文" : "Switch to Chinese"}
             aria-label={lang === "zh" ? "切换到英文" : "Switch to Chinese"}
           >
-            <span style={{ fontSize: 13, fontWeight: 700 }}>{lang === "zh" ? "中" : "EN"}</span>
+            <span style={{ fontSize: 13, fontWeight: 700 }}>{lang === "zh" ? "EN" : "中"}</span>
           </button>
 
           {/* 主题切换 —— 使用锁定 SVG 图标，不再用 emoji（P0-1） */}
