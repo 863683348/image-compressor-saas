@@ -49,7 +49,7 @@ export async function POST(req: Request) {
 
     // Update order status
     await db.update(orders)
-      .set({ status: "completed", completedAt: new Date() })
+      .set({ status: "completed", completed_at: new Date() })
       .where(eq(orders.id, existingOrder.id));
 
     // Upgrade user's plan
