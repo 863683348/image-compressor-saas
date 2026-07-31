@@ -55,7 +55,7 @@ export async function POST(req: Request) {
 
     // Update order status
     await db.update(orders)
-      .set({ status: "completed", completedAt: new Date() })
+      .set({ status: "completed", completed_at: new Date() })
       .where(eq(orders.id, existingOrder.id));
 
     // Determine plan from the order record
@@ -89,7 +89,7 @@ export async function POST(req: Request) {
     }
 
     await db.update(orders)
-      .set({ status: "completed", completedAt: new Date() })
+      .set({ status: "completed", completed_at: new Date() })
       .where(eq(orders.id, existingOrder.id));
 
     const planConfig = PLAN_PRICES[`${existingOrder.plan}_monthly` as keyof typeof PLAN_PRICES]
