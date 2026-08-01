@@ -37,8 +37,8 @@ export async function GET() {
     usageRecord = {
       id: crypto.randomUUID(),
       user_id: userId,
-      periodStart,
-      periodEnd,
+      period_start: periodStart,
+      period_end: periodEnd,
       compress_count: 0,
       batch_count: 0,
       zip_count: 0,
@@ -87,8 +87,8 @@ export async function POST(req: Request) {
     usageRecord = {
       id: crypto.randomUUID(),
       user_id: userId,
-      periodStart,
-      periodEnd,
+      period_start: periodStart,
+      period_end: periodEnd,
       compress_count: 0,
       batch_count: 0,
       zip_count: 0,
@@ -109,8 +109,8 @@ export async function POST(req: Request) {
   } else {
     await db.insert(usage).values({
       user_id: userId,
-      periodStart,
-      periodEnd,
+      period_start: periodStart,
+      period_end: periodEnd,
       compress_count: 1,
       batch_count: 0,
       zip_count: 0,
