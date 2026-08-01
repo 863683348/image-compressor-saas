@@ -34,43 +34,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  // Handle CHECKOUT.ORDER.APPROVED — payment captured
-  if (event.event_type === "CHECKOUT.ORDER.APPROVED") {
-    const orderId = event.resource?.id;
-    if (!orderId) return NextResponse.json({ error: "Missing order ID" }, { status: 400 });
-
-    // Find our order
-    const existingOrders = await db
-      .select()
-      .from(orders)
-      .where(eq(orders.provider_order_id, orderId))
-      .limit(1);
-
-    const existingOrder = existingOrders[0];
-    if (!existingOrder) return NextResponse.json({ error: "Order not found" }, { status: 404 });
-
-    if (existingOrder.status === "completed") {
-      return NextResponse.json({ success: true });
-    }
-
-    // Update order status
-    await db.update(orders)
-      .set({ status: "completed", completed_at: new Date() })
-      .where(eq(orders.id, existingOrder.id));
-
-    // Determine plan from the order record
-    const planConfig = PLAN_PRICES[`${existingOrder.plan}_monthly` as keyof typeof PLAN_PRICES]
-      || PLAN_PRICES[`${existingOrder.plan}_yearly` as keyof typeof PLAN_PRICES];
-
-    if (planConfig) {
-      const now = new Date();
-      const expiresAt = new Date(now.getTime() + planConfig.period * 86400000);
-
-      await db.update(users)
-        .set({ plan: planConfig.plan, planExpiresAt: expiresAt })
-        .where(eq(users.id, existingOrder.user_id));
-    }
-  }
+  // NOTE: CHECKOUT.ORDER.APPROVED is intentionally NOT handled — it only means the
+  // buyer approved the payment in PayPal, NOT that money was captured. Upgrading the
+  // plan there would let cancelled/failed payments still grant Pro.
+  // Plan upgrades happen in capture-order (frontend onApprove) with PAYMENT.CAPTURE.COMPLETED
+  // below as an idempotent fallback.
 
   // Handle PAYMENT.CAPTURE.COMPLETED
   if (event.event_type === "PAYMENT.CAPTURE.COMPLETED") {
