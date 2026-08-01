@@ -138,18 +138,78 @@ export default function HeaderClient() {
         {/* 右侧操作区 */}
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           {status === "authenticated" ? (
-            <button
-              onClick={() => signOut()}
-              style={{
-                ...iconBtn(),
-                width: "auto",
-                padding: "0 14px",
-                fontSize: 13,
-                fontWeight: 600,
-              }}
-            >
-              {session.user?.name || (lang === "zh" ? "退出" : "Sign out")}
-            </button>
+            <>
+              {/* 已登录标识（只读，显示头像 + 用户名） */}
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  height: 44,
+                  padding: "0 12px",
+                  borderRadius: 10,
+                  background: "var(--panel)",
+                  border: "1px solid var(--border)",
+                  color: "var(--text)",
+                  fontSize: 13,
+                  fontWeight: 600,
+                }}
+                title={session.user?.email || ""}
+              >
+                {/* 头像：优先用 Google 头像，否则取用户名首字母 */}
+                {session.user?.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={session.user.image}
+                    alt=""
+                    width={24}
+                    height={24}
+                    style={{ borderRadius: "50%", objectFit: "cover" }}
+                  />
+                ) : (
+                  <span
+                    style={{
+                      width: 24,
+                      height: 24,
+                      borderRadius: "50%",
+                      background: "var(--primary)",
+                      color: "#fff",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: 11,
+                      fontWeight: 700,
+                    }}
+                  >
+                    {(session.user?.name || session.user?.email || "?")[0]?.toUpperCase()}
+                  </span>
+                )}
+                <span style={{ maxWidth: 120, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {session.user?.name || session.user?.email}
+                </span>
+              </div>
+              {/* 独立退出按钮 */}
+              <button
+                onClick={() => signOut({ callbackUrl: "/" })}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  height: 44,
+                  padding: "0 14px",
+                  borderRadius: 10,
+                  border: "1px solid var(--border)",
+                  background: "var(--panel)",
+                  color: "var(--text)",
+                  fontWeight: 600,
+                  fontSize: 13,
+                  cursor: "pointer",
+                }}
+                title={lang === "zh" ? "退出登录" : "Sign out"}
+                aria-label={lang === "zh" ? "退出登录" : "Sign out"}
+              >
+                {lang === "zh" ? "退出" : "Sign out"}
+              </button>
+            </>
           ) : (
             <button
               onClick={() => signIn("google")}
