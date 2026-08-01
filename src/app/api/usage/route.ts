@@ -36,7 +36,7 @@ export async function GET() {
   if (!usageRecord) {
     usageRecord = {
       id: crypto.randomUUID(),
-      user_id,
+      user_id: userId,
       periodStart,
       periodEnd,
       compress_count: 0,
@@ -86,7 +86,7 @@ export async function POST(req: Request) {
   if (!usageRecord) {
     usageRecord = {
       id: crypto.randomUUID(),
-      user_id,
+      user_id: userId,
       periodStart,
       periodEnd,
       compress_count: 0,
@@ -108,7 +108,7 @@ export async function POST(req: Request) {
     await db.update(usage).set(updateData).where(eq(usage.id, usageRecord.id));
   } else {
     await db.insert(usage).values({
-      user_id,
+      user_id: userId,
       periodStart,
       periodEnd,
       compress_count: 1,
