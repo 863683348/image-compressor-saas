@@ -1,30 +1,32 @@
 import { pgTable, text, timestamp, integer, uuid, varchar, boolean } from "drizzle-orm/pg-core";
 
-// ---- Auth.js tables (required by @auth/drizzle-adapter) ----
-// 注意：列属性名必须用 snake_case（与数据库列名一致），
-// 因为 @auth/drizzle-adapter 通过 accountsTable.refresh_token 等方式访问列。
-// 之前用 camelCase 属性名（refreshToken）+ snake_case 列名，
-// adapter 找不到 refresh_token 属性 → 类型报错 / 42P01。
+// ---- Auth.js tables (required by @auth/drizzle-adapter v1.11.2) ----
+// 属性名必须精确匹配 adapter 的类型定义（混合命名！）：
+//   users:     emailVerified（camelCase）
+//   accounts:  userId / providerAccountId（camelCase）+ refresh_token / access_token /
+//              expires_at / token_type / scope / id_token / session_state（snake_case）
+//   sessions:  sessionToken / userId（camelCase）
+// 数据库列名用 snake_case（pgTable 第二参数指定），Drizzle 负责映射。
 
 export const users = pgTable("users", {
   id: uuid("id").defaultRandom().primaryKey(),
   name: varchar("name", { length: 255 }),
   email: varchar("email", { length: 255 }).notNull().unique(),
-  email_verified: timestamp("email_verified"),
+  emailVerified: timestamp("email_verified"),
   image: text("image"),
   // Custom fields
   plan: varchar("plan", { length: 20 }).notNull().default("free"),
-  plan_expires_at: timestamp("plan_expires_at"),
-  created_at: timestamp("created_at").defaultNow().notNull(),
-  updated_at: timestamp("updated_at").defaultNow().notNull(),
+  planExpiresAt: timestamp("plan_expires_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
 export const accounts = pgTable("accounts", {
   id: uuid("id").defaultRandom().primaryKey(),
-  user_id: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
   type: varchar("type", { length: 50 }).notNull(),
   provider: varchar("provider", { length: 50 }).notNull(),
-  provider_account_id: varchar("provider_account_id", { length: 255 }).notNull(),
+  providerAccountId: varchar("provider_account_id", { length: 255 }).notNull(),
   refresh_token: text("refresh_token"),
   access_token: text("access_token"),
   expires_at: integer("expires_at"),
@@ -36,8 +38,8 @@ export const accounts = pgTable("accounts", {
 
 export const sessions = pgTable("sessions", {
   id: uuid("id").defaultRandom().primaryKey(),
-  session_token: varchar("session_token", { length: 255 }).notNull().unique(),
-  user_id: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  sessionToken: varchar("session_token", { length: 255 }).notNull().unique(),
+  userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
   expires: timestamp("expires").notNull(),
 });
 
@@ -47,7 +49,7 @@ export const verificationTokens = pgTable("verification_tokens", {
   expires: timestamp("expires").notNull(),
 });
 
-// ---- App tables ----
+// ---- App tables（应用代码已按 snake_case 属性引用）----
 
 export const usage = pgTable("usage", {
   id: uuid("id").defaultRandom().primaryKey(),
