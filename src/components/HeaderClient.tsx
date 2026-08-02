@@ -9,6 +9,46 @@ import { SunIcon, MoonIcon, MenuIcon, CloseIcon } from "@/components/icons";
 
 type NavItem = { key: string; zh: string; en: string; getPath: (lang: string) => string };
 
+// 头像组件：Google 头像有防盗链（拒绝非常规 Referrer）；
+// 用 referrerPolicy="no-referrer" 让浏览器请求不带来源，避开防盗链；
+// onError 兜底到首字母圆，避免页面出现破碎图标。
+function AvatarAvatar({ image, name }: { image?: string | null; name: string }) {
+  const [broken, setBroken] = useState(false);
+  if (!image || broken) {
+    return (
+      <span
+        style={{
+          width: 24,
+          height: 24,
+          borderRadius: "50%",
+          background: "var(--primary)",
+          color: "#fff",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: 11,
+          fontWeight: 700,
+          flexShrink: 0,
+        }}
+      >
+        {(name || "?")[0]?.toUpperCase()}
+      </span>
+    );
+  }
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={image}
+      alt=""
+      width={24}
+      height={24}
+      referrerPolicy="no-referrer"
+      onError={() => setBroken(true)}
+      style={{ borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
+    />
+  );
+}
+
 // 网站主导航——之前缺失，导致博客/FAQ/联系我们等页面在顶部没有任何入口。
 const NAV: NavItem[] = [
   { key: "home", zh: "首页", en: "Home", getPath: (l) => `/${l}` },
@@ -16,6 +56,7 @@ const NAV: NavItem[] = [
   { key: "pricing", zh: "定价", en: "Pricing", getPath: (l) => `/${l}/pricing` },
   { key: "faq", zh: "FAQ", en: "FAQ", getPath: (l) => `/${l}/faq` },
   { key: "contact", zh: "联系我们", en: "Contact", getPath: (l) => `/${l}/contact` },
+  { key: "account", zh: "个人中心", en: "Account", getPath: (l) => `/${l}/account` },
 ];
 
 export default function HeaderClient() {
@@ -137,10 +178,11 @@ export default function HeaderClient() {
 
         {/* 右侧操作区 */}
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          {status === "authenticated" ? (
+              {status === "authenticated" ? (
             <>
-              {/* 已登录标识（只读，显示头像 + 用户名） */}
-              <div
+              {/* 已登录：可点击跳个人中心 */}
+              <a
+                href={`/${lang}/account`}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -153,41 +195,19 @@ export default function HeaderClient() {
                   color: "var(--text)",
                   fontSize: 13,
                   fontWeight: 600,
+                  textDecoration: "none",
                 }}
                 title={session.user?.email || ""}
               >
-                {/* 头像：优先用 Google 头像，否则取用户名首字母 */}
-                {session.user?.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={session.user.image}
-                    alt=""
-                    width={24}
-                    height={24}
-                    style={{ borderRadius: "50%", objectFit: "cover" }}
-                  />
-                ) : (
-                  <span
-                    style={{
-                      width: 24,
-                      height: 24,
-                      borderRadius: "50%",
-                      background: "var(--primary)",
-                      color: "#fff",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: 11,
-                      fontWeight: 700,
-                    }}
-                  >
-                    {(session.user?.name || session.user?.email || "?")[0]?.toUpperCase()}
-                  </span>
-                )}
+                {/* 头像：优先 Google image，失败兜底首字母圆 */}
+                <AvatarAvatar
+                  image={session.user?.image}
+                  name={session.user?.name || session.user?.email || "?"}
+                />
                 <span style={{ maxWidth: 120, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                   {session.user?.name || session.user?.email}
                 </span>
-              </div>
+              </a>
               {/* 独立退出按钮 */}
               <button
                 onClick={() => signOut({ callbackUrl: "/" })}
