@@ -20,7 +20,7 @@ export default function PricingPage() {
   const { lang } = useLang();
   const { data: session, status } = useSession();
   const isZh = lang === "zh";
-  const [planMode, setPlanMode] = useState<"monthly" | "yearly">("monthly");
+  const [planMode, setPlanMode] = useState<"monthly" | "yearly">("yearly");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
