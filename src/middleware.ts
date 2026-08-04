@@ -19,6 +19,11 @@ import { locales, defaultLocale, isValidLocale } from "@/i18n/config";
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // ── 0. "/" renders the root page directly (which ships Header + Footer) ──
+  if (pathname === "/") {
+    return NextResponse.next();
+  }
+
   // ── 1. Skip requests that already have a locale prefix ──
   const pathnameHasLocale = locales.some(
     (locale) =>
@@ -30,7 +35,7 @@ export function middleware(request: NextRequest) {
 
   // ── 2. Skip static / API / special paths ──
   const isSpecialPath =
-    /^\/(?:api|_next|_static|_verjel|sitemap\.xml|robots\.txt|favicon\.ico|guide\.html|sw\.js|og-cover\.png)(?:\/|$)/.test(
+    /^\/(?:api|_next|_static|_vercel|sitemap\.xml|robots\.txt|favicon\.ico|guide\.html|sw\.js|og-cover\.png)(?:\/|$)/.test(
       pathname,
     );
   if (isSpecialPath) {

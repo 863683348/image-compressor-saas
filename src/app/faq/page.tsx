@@ -26,7 +26,7 @@ const faqPairs = [
 
 /** Build FAQPage JSON-LD for a given locale. */
 function faqSchema(lang: "zh" | "en") {
-  const d = dict[lang] as Record<string, string>;
+  const d = dict[lang] as Record<string, any>;
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",

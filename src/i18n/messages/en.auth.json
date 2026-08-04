@@ -1,5 +1,5 @@
 {
-  "signIn": "登录",
-  "signOut": "退出",
-  "signInWithGoogle": "使用 Google 登录"
+  "signIn": "Sign In",
+  "signOut": "Sign Out",
+  "signInWithGoogle": "Sign in with Google"
 }

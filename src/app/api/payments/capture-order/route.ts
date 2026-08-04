@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     const existingOrders = await db
       .select()
       .from(orders)
-      .where(eq(orders.providerOrderId, orderId))
+      .where(eq(orders.provider_order_id, orderId))
       .limit(1);
 
     const existingOrder = existingOrders[0];
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
 
     // Update order status
     await db.update(orders)
-      .set({ status: "completed", completedAt: new Date() })
+      .set({ status: "completed", completed_at: new Date() })
       .where(eq(orders.id, existingOrder.id));
 
     // Upgrade user's plan

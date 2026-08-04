@@ -63,6 +63,11 @@ export async function createPayPalOrder(planId: PlanId): Promise<PayPalOrder> {
           },
         },
       ],
+      application_context: {
+        brand_name: "Image Compressor",
+        shipping_preference: "NO_SHIPPING",
+        user_action: "PAY_NOW",
+      },
     }),
   });
 

@@ -5,9 +5,7 @@ import {
   isValidLocale,
   buildLanguageAlternates,
 } from "@/i18n/config";
-import { loadMessages } from "@/i18n/load-messages";
 import { I18nProvider } from "@/i18n/i18n-provider";
-import { Providers } from "../providers";
 import HeaderClient from "@/components/HeaderClient";
 import FooterClient from "@/components/FooterClient";
 
@@ -45,8 +43,6 @@ export default async function LocaleLayout({
   const isProd =
     process.env.NODE_ENV === "production" &&
     process.env.VERCEL_ENV !== "preview";
-
-  const messages = await loadMessages(lang);
 
   return (
     <>
@@ -109,14 +105,20 @@ export default async function LocaleLayout({
               __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XKHEV8W1T7');`,
             }}
           />
+          {/* Google AdSense — Auto Ads, production only */}
+          {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
+            <script
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}`}
+              crossOrigin="anonymous"
+            />
+          )}
         </>
       )}
-      <I18nProvider locale={lang} messages={messages.flat}>
-        <Providers>
-          <HeaderClient />
-          {children}
-          <FooterClient />
-        </Providers>
+      <I18nProvider locale={lang}>
+        <HeaderClient />
+        {children}
+        <FooterClient />
       </I18nProvider>
     </>
   );

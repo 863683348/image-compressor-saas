@@ -2,28 +2,46 @@ import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@/db";
+import {
+  users,
+  accounts,
+  sessions,
+  verificationTokens,
+} from "@/db/schema";
 
-// Surface missing env early in Vercel Function Logs.
-// NextAuth masks most real errors as a generic "Configuration" page error,
-// so we log explicitly which required variable is absent.
-const REQUIRED_ENV = [
-  "AUTH_SECRET",
-  "GOOGLE_CLIENT_ID",
-  "GOOGLE_CLIENT_SECRET",
-  "DATABASE_URL",
-] as const;
-const missingEnv = REQUIRED_ENV.filter((k) => !process.env[k]);
-if (missingEnv.length > 0) {
-  console.error(
-    `[auth] MISSING ENV VARS: ${missingEnv.join(
-      ", ",
-    )} — NextAuth will report a masked "Configuration" error.`,
-  );
+// Surface config state to runtime logs so we can diagnose
+// NextAuth's masked "Configuration" page error from Vercel logs.
+console.log("[auth init] env:", {
+  AUTH_SECRET: !!process.env.AUTH_SECRET,
+  GOOGLE_CLIENT_ID: !!process.env.GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET: !!process.env.GOOGLE_CLIENT_SECRET,
+  DATABASE_URL: !!process.env.DATABASE_URL,
+  AUTH_URL: process.env.AUTH_URL || "(unset)",
+  NODE_ENV: process.env.NODE_ENV,
+  VERCEL_ENV: process.env.VERCEL_ENV || "(unset)",
+});
+
+if (!process.env.AUTH_SECRET) {
+  throw new Error("[auth] AUTH_SECRET is required");
+}
+if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+  throw new Error("[auth] GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET are required");
+}
+if (!process.env.DATABASE_URL) {
+  throw new Error("[auth] DATABASE_URL is required");
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: DrizzleAdapter(db),
+  adapter: DrizzleAdapter(db, {
+    // 表名是复数（accounts/users/...），必须显式传给 adapter，
+    // 否则 DrizzleAdapter 默认查单数表 account/user → 42P01 表不存在。
+    usersTable: users,
+    accountsTable: accounts,
+    sessionsTable: sessions,
+    verificationTokensTable: verificationTokens,
+  }),
   trustHost: true, // required on Vercel — behind reverse proxy
+  debug: true, // log full OAuth errors to Vercel runtime logs
   secret: process.env.AUTH_SECRET,
   providers: [
     Google({

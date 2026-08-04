@@ -9,3 +9,6 @@ Sitemap: https://image-compressor-saas.shop/sitemap.xml
 # GEO — Generative Engine Optimization
 # llms.txt helps AI assistants understand site structure
 # https://llmstxt.org
+
+# 2026-07-30 — trigger deploy (in-place lang switch, en translations, nav fix)
+# 2026-08-01 — trigger deploy (oauth table fix, snake_case schema, webhook test)

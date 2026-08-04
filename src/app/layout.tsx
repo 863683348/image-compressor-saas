@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import "./globals.css";
+import { Providers } from "./providers";
 
 // ── Single source of truth for the production domain ──
 const SITE_URL = "https://image-compressor-saas.shop";
@@ -74,6 +75,9 @@ export default async function RootLayout({
     // cookies() may throw during build / static generation
   }
 
+  // AdSense publisher ID — set NEXT_PUBLIC_ADSENSE_CLIENT_ID in env
+  const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "";
+
   return (
     <html lang={htmlLang} suppressHydrationWarning>
       <head>
@@ -82,8 +86,14 @@ export default async function RootLayout({
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         />
         <meta name="theme-color" content="#4f46e5" />
+        {/* Google AdSense site verification — production only */}
+        {adsenseClient && (
+          <meta name="google-adsense-account" content={adsenseClient} />
+        )}
       </head>
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
