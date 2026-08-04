@@ -46,6 +46,24 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://image-compressor-saas.shop/blog/compress-jpg-under-100kb</loc>
+    <lastmod>2026-08-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://image-compressor-saas.shop/blog/compress-jpg-under-100kb"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://image-compressor-saas.shop/en/blog/compress-jpg-under-100kb"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://image-compressor-saas.shop/blog/compress-jpg-under-100kb"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://image-compressor-saas.shop/en/blog/compress-jpg-under-100kb</loc>
+    <lastmod>2026-08-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://image-compressor-saas.shop/blog/compress-jpg-under-100kb"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://image-compressor-saas.shop/en/blog/compress-jpg-under-100kb"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://image-compressor-saas.shop/blog/compress-jpg-under-100kb"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://image-compressor-saas.shop/guide.html</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
