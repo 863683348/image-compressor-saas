@@ -36,6 +36,7 @@ function define(slug: string) {
 // ── Register all blog posts here ──
 define("compress-to-target-size");
 define("webp-avif-jpeg-comparison");
+define("compress-jpg-under-100kb");
 
 export function getPost(slug: string): BlogPost | null {
   return registry.find((p) => p.slug === slug) ?? null;
