@@ -254,6 +254,119 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "compress-webp-images-guide",
+    date: "2026-08-06",
+    title: {
+      zh: "WebP 图片压缩完全指南：原理、工具与最佳实践",
+      en: "The Complete Guide to Compressing WebP Images",
+    },
+    description: {
+      zh: "WebP 比 JPG 小 25-35% 但常被压缩不当。本文讲清 WebP 压缩原理、有损/无损区别、在线与本地工具对比，以及 2026 年的最佳实践。",
+      en: "WebP is 25-35% smaller than JPG but often compressed poorly. A full guide to WebP compression: lossy vs lossless, tool comparison, and 2026 best practices.",
+    },
+    keywords: [
+      "compress webp",
+      "compress webp images online",
+      "webp vs jpeg size",
+      "lossy vs lossless webp",
+      "webp image compression best practices",
+      "webp 压缩",
+      "webp 在线压缩",
+    ],
+    content: {
+      zh: [
+        "WebP 是 Google 推出的现代图片格式，比同画质 JPG 小 25-35%，已经成为网页默认格式之一。但很多站长把 WebP 当 JPG 直接压，反而让文件更大或画质更差。这篇把 WebP 压缩的原理、工具和最佳实践一次讲清。",
+        { type: "h2", text: "WebP 为什么更小？（压缩原理）" },
+        "WebP 的有损压缩结合了预测编码（参考相邻像素块）与更高效的熵编码，在同等视觉质量下比 JPG 平均小 25-35%。无损 WebP 通常比 PNG 小 15-25%，适合截图、图标、透明背景图。",
+        { type: "h2", text: "有损 vs 无损：怎么选" },
+        {
+          type: "ul",
+          items: [
+            "照片/渐变图 → 有损 WebP（质量 70-85），画质几乎无感知差异",
+            "截图/图标/线稿 → 无损 WebP，保持锐利边缘",
+            "带透明通道 → 用 WebP（支持 alpha），比 PNG 小得多",
+            "不要重复压缩：WebP 再压 WebP 会累积画质损失",
+          ],
+        },
+        { type: "h2", text: "在线工具 vs 本地工具对比" },
+        {
+          type: "ul",
+          items: [
+            "在线工具：免安装、快；注意选不上传的（浏览器本地处理），隐私更安全",
+            "本地工具：cwebp / ImageMagick / Squoosh CLI，适合批量处理",
+            "批量压缩几百张图时，本地脚本效率远高于网页逐张上传",
+          ],
+        },
+        { type: "h2", text: "2026 最佳实践清单" },
+        {
+          type: "ul",
+          items: [
+            "质量 70-80 起步，肉眼对比后再降",
+            "大图先缩分辨率再压缩（显示尺寸 ≤ 压缩尺寸）",
+            "用 srcset 提供多档尺寸，移动端不加载桌面大图",
+            "CDN/平台自动转换时，检查是否二次压缩",
+            "压缩后用文件大小 + 肉眼双重验收，别只看数字",
+          ],
+        },
+        { type: "h2", text: "常见问题 FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "WebP 一定比 JPG 小吗？", a: "绝大多数情况下小 25-35%；但对噪点极多的照片，某些 JPG 压缩器可能更优。建议逐图对比。" },
+            { q: "WebP 兼容性如何？", a: "2026 年所有主流浏览器（Chrome/Edge/Firefox/Safari）均原生支持，可放心使用。" },
+            { q: "WebP 能无损压缩吗？", a: "能。无损 WebP 适合截图和图标，通常比 PNG 小 15-25%。" },
+          ],
+        },
+        { type: "cta", text: "免费压缩你的 WebP →", href: "/en" },
+      ],
+      en: [
+        "WebP is Google's modern image format — 25-35% smaller than JPG at the same visual quality, and now a default on the web. But many site owners compress WebP like it were JPG, ending up with bigger files or worse quality. This guide covers the principles, tools, and best practices.",
+        { type: "h2", text: "Why WebP is smaller (compression principles)" },
+        "WebP lossy compression combines predictive coding (referencing neighboring pixel blocks) with more efficient entropy coding, averaging 25-35% smaller than JPG at equal visual quality. Lossless WebP is typically 15-25% smaller than PNG — ideal for screenshots, icons, and images with transparency.",
+        { type: "h2", text: "Lossy vs lossless: which to pick" },
+        {
+          type: "ul",
+          items: [
+            "Photos/gradients → lossy WebP (quality 70-85), visually indistinguishable",
+            "Screenshots/icons/line art → lossless WebP, keeps sharp edges",
+            "Transparency → use WebP (alpha support), far smaller than PNG",
+            "Never re-compress WebP: WebP → WebP accumulates quality loss",
+          ],
+        },
+        { type: "h2", text: "Online tools vs local tools" },
+        {
+          type: "ul",
+          items: [
+            "Online: instant, no install; prefer no-upload tools (browser-local) for privacy",
+            "Local: cwebp / ImageMagick / Squoosh CLI — great for batch jobs",
+            "Bulk compressing hundreds of images is far faster with a local script",
+          ],
+        },
+        { type: "h2", text: "2026 best-practice checklist" },
+        {
+          type: "ul",
+          items: [
+            "Start at quality 70-80, compare visually before going lower",
+            "Downscale before compressing (display size ≤ compressed size)",
+            "Use srcset for multiple sizes; mobile shouldn't load desktop images",
+            "With CDN auto-conversion, check for double compression",
+            "Verify by file size AND eyeball — never just the number",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Is WebP always smaller than JPG?", a: "In the vast majority of cases, 25-35% smaller; for very noisy photos some JPG encoders may win. Compare per image." },
+            { q: "How is WebP compatibility in 2026?", a: "All major browsers (Chrome/Edge/Firefox/Safari) support it natively. Safe to use everywhere." },
+            { q: "Can WebP compress losslessly?", a: "Yes. Lossless WebP suits screenshots and icons, typically 15-25% smaller than PNG." },
+          ],
+        },
+        { type: "cta", text: "Compress Your WebP Free →", href: "/en" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
