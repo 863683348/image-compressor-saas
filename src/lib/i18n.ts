@@ -1,6 +1,9 @@
 // i18n dictionary — ported from index.html
 // NOTE: 这是纯数据模块（只导出 dict / Lang），刻意不加 "use client"，
 // 否则服务端组件（如 faq/page.tsx 的 JSON-LD 生成）导入 dict 会在服务端被解析成 undefined。
+import type { Lang } from "./lang";
+import { DICT } from "./translate";
+
 const zh = {
   title: "图片压缩 · 纯本地处理，隐私优先",
   brand: "图片压缩",
@@ -267,6 +270,21 @@ const en: typeof zh = {
   contactSuccess: "Message sent! We'll get back to you soon.",
 };
 
-export const dict = { zh, en };
+export const dict: Record<Lang, Record<string, any>> = {
+  zh: { ...DICT.zh, ...zh },
+  en: { ...DICT.en, ...en },
+  ar: DICT.ar,
+  es: DICT.es,
+  pt: DICT.pt,
+  id: DICT.id,
+  fr: DICT.fr,
+  tr: DICT.tr,
+  vi: DICT.vi,
+  hi: DICT.hi,
+  de: DICT.de,
+  ja: DICT.ja,
+  ko: DICT.ko,
+  ru: DICT.ru,
+};
 
-export type Lang = "zh" | "en";
+export type { Lang } from "./lang";

@@ -1,0 +1,19 @@
+{
+  "faqTitle": "Câu hỏi thường gặp",
+  "faq1Q": "Làm sao để nén ảnh mà không giảm chất lượng nhìn thấy được?",
+  "faq1A": "Hạ thanh trượt chất lượng (mặc định 75%); công cụ hiển thị kích thước và tỷ lệ nén theo thời gian thực. Ở chất lượng 80–85, WebP thường không phân biệt được với ảnh gốc trong khi giảm 60%–90% dung lượng.",
+  "faq2Q": "Làm sao nén ảnh đến một kích thước cụ thể (ví dụ 200KB)?",
+  "faq2A": "Bật 'Kích thước mục tiêu' và nhập KB mong muốn (ví dụ 200). Công cụ tự động chỉnh chất lượng bằng tìm kiếm nhị phân để đạt đúng kích thước đó. Lý tưởng cho ảnh hồ sơ hoặc đính kèm email.",
+  "faq3Q": "Nén hàng loạt hoạt động thế nào?",
+  "faq3A": "Kéo nhiều ảnh cùng lúc, hoặc dán ảnh chụp màn hình bằng Ctrl+V. Tất cả ảnh được nén song song. Tải từng ảnh hoặc xuất dưới dạng ZIP.",
+  "faq4Q": "Công cụ nén ảnh này có an toàn không? Ảnh của tôi có bị rò rỉ không?",
+  "faq4A": "Không. Toàn bộ quá trình nén diễn ra cục bộ và hoạt động ngoại tuyến. Ảnh không bao giờ rời khỏi trình duyệt — không có yêu cầu tải lên nào được gửi đi.",
+  "faq5Q": "Có hỗ trợ chuyển đổi định dạng WebP / AVIF không?",
+  "faq5A": "Có, chuyển đổi JPG/PNG sang WebP. Mã hóa AVIF có thể hạ xuống WebP trên một số trình duyệt (có thông báo).",
+  "faq6Q": "Ảnh nén xong có bị chèn hình mờ không?",
+  "faq6A": "Không. Đây là công cụ nén ảnh thuần phía máy khách — không hình mờ, không giới hạn, không bắt buộc đăng ký.",
+  "faq7Q": "Tôi có thể dùng ảnh đã nén cho email / Zalo / website không?",
+  "faq7A": "Có. Dùng chế độ 'Kích thước mục tiêu' để nén trong giới hạn (ví dụ 200KB/100KB) hoặc chuyển sang WebP để dung lượng nhỏ hơn.",
+  "faq8Q": "Nén ảnh có giúp SEO và tốc độ tải trang không?",
+  "faq8A": "Có. Ảnh nhỏ hơn cải thiện thời gian tải trang và Core Web Vitals (LCP). Vì xử lý cục bộ, ảnh gốc không bao giờ bị tải lên — cân bằng hiệu năng và quyền riêng tư."
+}

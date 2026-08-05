@@ -1,0 +1,19 @@
+{
+  "faqTitle": "Preguntas frecuentes",
+  "faq1Q": "¿Cómo comprimo imágenes sin perder calidad visible?",
+  "faq1A": "Baja el deslizador de calidad (por defecto 75%); la herramienta muestra el tamaño y la proporción en tiempo real. Con calidad 80–85, WebP suele ser indistinguible del original reduciendo el tamaño entre 60% y 90%.",
+  "faq2Q": "¿Cómo comprimo imágenes a un tamaño específico (por ejemplo, 200KB)?",
+  "faq2A": "Activa 'Tamaño objetivo' e introduce los KB deseados (por ejemplo, 200). La herramienta ajusta la calidad automáticamente mediante búsqueda binaria para alcanzar ese tamaño exacto. Ideal para fotos de solicitudes o adjuntos de correo.",
+  "faq3Q": "¿Cómo funciona la compresión por lotes?",
+  "faq3A": "Arrastra varias imágenes a la vez o pega capturas con Ctrl+V. Todas se comprimen en paralelo. Descarga individualmente o exporta como ZIP.",
+  "faq4Q": "¿Es seguro este compresor de imágenes? ¿Se filtrarán mis imágenes?",
+  "faq4A": "No. Toda la compresión ocurre localmente y funciona sin conexión. Las imágenes nunca salen de tu navegador: no se realiza ninguna solicitud de subida.",
+  "faq5Q": "¿Admite conversión a WebP / AVIF?",
+  "faq5A": "Sí, convierte JPG/PNG a WebP. La codificación AVIF puede degradar a WebP en algunos navegadores (con un aviso).",
+  "faq6Q": "¿Las imágenes comprimidas tendrán marcas de agua?",
+  "faq6A": "No. Esta herramienta es un compresor de imágenes 100% del lado del cliente: sin marcas de agua, sin límites, sin registro obligatorio.",
+  "faq7Q": "¿Puedo usar las imágenes comprimidas en correos / WhatsApp / sitios web?",
+  "faq7A": "Sí. Usa el modo 'Tamaño objetivo' para comprimir dentro de límites (por ejemplo, 200KB/100KB) o cambia a WebP para tamaños más pequeños.",
+  "faq8Q": "¿Comprimir imágenes ayuda al SEO y a la velocidad de carga?",
+  "faq8A": "Sí. Las imágenes más pequeñas mejoran el tiempo de carga y los Core Web Vitals (LCP). Como el procesamiento es local, los originales nunca se suben: equilibrio entre rendimiento y privacidad."
+}

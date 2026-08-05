@@ -1,0 +1,16 @@
+{
+  "termsUpdated": "Zuletzt aktualisiert: Juli 2026",
+  "termsP1": "Durch die Nutzung von Bildkompressor stimmen Sie den folgenden Bedingungen zu.",
+  "termsP2": "Leistungsbeschreibung: Dieses Tool bietet Online-Bildkomprimierung. Die gesamte Verarbeitung erfolgt clientseitig.",
+  "termsP3": "Kostenlose Nutzung: Der kostenlose Tarif bietet 10 Komprimierungen pro Tag. Das Überschreiten des Limits erfordert ein Upgrade auf Pro.",
+  "termsP4": "Bezahlter Dienst: Der Pro-Tarif ist ein Abonnement, das über PayPal abgerechnet wird. Jederzeit kündbar. Gezahlte Gebühren sind nicht erstattungsfähig.",
+  "termsP5": "Haftungsausschluss: Dieses Tool wird „wie besehen“ ohne ausdrückliche oder stillschweigende Gewährleistung bereitgestellt.",
+  "termsP6": "Haftungsbeschränkung: In keinem Fall haften wir für indirekte Schäden, die aus der Nutzung dieses Tools entstehen.",
+  "blogSub": "Praktische Anleitungen zu Bildkomprimierung, Web-Optimierung und Datenschutz",
+  "blog1Title": "Bilder auf 200 KB (oder jede Zielgröße) komprimieren",
+  "blog1Desc": "Ein hochauflösendes Foto kann 3-5 MB wiegen, aber Bewerbungen, E-Mail-Anhänge und Website-Uploads begrenzen oft auf 200 KB, 100 KB oder sogar 50 KB. Diese Anleitung zeigt, wie Sie auf jede Zielgröße komprimieren.",
+  "blog2Title": "WebP vs. AVIF vs. JPEG: Welches Format 2026?",
+  "blog2Desc": "Ein umfassender Vergleich der drei wichtigsten Bildformate – Komprimierungsrate, Browser-Kompatibilität und beste Anwendungsfälle.",
+  "blog3Title": "10 Bildoptimierungs-Tipps für schnellere Websites",
+  "blog3Desc": "Von Komprimierung bis Lazy Loading, Formatwahl bis CDN-Strategie – deckt alle Aspekte der Bildoptimierung ab."
+}

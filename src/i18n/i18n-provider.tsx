@@ -9,34 +9,11 @@ import {
   type ReactNode,
 } from "react";
 
-// 预载双语言全部 messages，实现 in-place 语言切换（不导航，即时生效）。
-import zhCommon from "./messages/zh.common.json";
-import zhTool from "./messages/zh.tool.json";
-import zhFaq from "./messages/zh.faq.json";
-import zhPricing from "./messages/zh.pricing.json";
-import zhAuth from "./messages/zh.auth.json";
-import zhLegal from "./messages/zh.legal.json";
-import zhContact from "./messages/zh.contact.json";
-import zhMisc from "./messages/zh.misc.json";
-import enCommon from "./messages/en.common.json";
-import enTool from "./messages/en.tool.json";
-import enFaq from "./messages/en.faq.json";
-import enPricing from "./messages/en.pricing.json";
-import enAuth from "./messages/en.auth.json";
-import enLegal from "./messages/en.legal.json";
-import enContact from "./messages/en.contact.json";
-import enMisc from "./messages/en.misc.json";
+// 预载全部 14 语种 messages，实现 in-place 语言切换（不导航，即时生效）。
+// 复用 lib/translate 的 DICT，避免重复 import 96 个 JSON。
+import { DICT } from "@/lib/translate";
 
-const ALL_MSGS: Record<string, Record<string, string>> = {
-  zh: {
-    ...zhCommon, ...zhTool, ...zhFaq, ...zhPricing,
-    ...zhAuth, ...zhLegal, ...zhContact, ...zhMisc,
-  },
-  en: {
-    ...enCommon, ...enTool, ...enFaq, ...enPricing,
-    ...enAuth, ...enLegal, ...enContact, ...enMisc,
-  },
-};
+const ALL_MSGS: Record<string, Record<string, string>> = DICT;
 
 /* ------------------------------------------------------------------ */
 /*  Context shape                                                     */

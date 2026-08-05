@@ -1,0 +1,19 @@
+{
+  "faqTitle": "Pertanyaan yang Sering Diajukan",
+  "faq1Q": "Bagaimana cara mengompres gambar tanpa kehilangan kualitas yang terlihat?",
+  "faq1A": "Turunkan slider kualitas (default 75%); alat ini menampilkan ukuran dan rasio terkompresi secara real-time. Pada kualitas 80–85, WebP biasanya tidak bisa dibedakan dari aslinya sambil mengurangi ukuran 60%–90%.",
+  "faq2Q": "Bagaimana cara mengompres gambar ke ukuran tertentu (mis. 200KB)?",
+  "faq2A": "Aktifkan 'Ukuran Target' dan masukkan KB yang diinginkan (mis. 200). Alat ini menyesuaikan kualitas secara otomatis dengan pencarian biner untuk mencapai ukuran tersebut. Ideal untuk foto aplikasi atau lampiran email.",
+  "faq3Q": "Bagaimana cara kerja kompresi batch?",
+  "faq3A": "Seret beberapa gambar sekaligus, atau tempel screenshot dengan Ctrl+V. Semua gambar dikompresi secara paralel. Unduh satu per satu atau ekspor sebagai ZIP.",
+  "faq4Q": "Apakah alat kompres gambar ini aman? Apakah gambar saya akan bocor?",
+  "faq4A": "Tidak. Semua kompresi berlangsung lokal dan bisa offline. Gambar tidak pernah meninggalkan browser Anda — tidak ada permintaan unggah yang dikirim.",
+  "faq5Q": "Apakah mendukung konversi format WebP / AVIF?",
+  "faq5A": "Ya, mengonversi JPG/PNG ke WebP. Encoding AVIF mungkin turun ke WebP di beberapa browser (dengan pemberitahuan).",
+  "faq6Q": "Apakah gambar yang dikompres akan memiliki watermark?",
+  "faq6A": "Tidak. Alat ini murni kompresor gambar sisi-klien — tanpa watermark, tanpa batas, tanpa wajib daftar.",
+  "faq7Q": "Bisakah saya menggunakan gambar terkompres untuk email / WhatsApp / website?",
+  "faq7A": "Ya. Gunakan mode 'Ukuran Target' untuk kompresi dalam batas (mis. 200KB/100KB) atau beralih ke WebP untuk ukuran lebih kecil.",
+  "faq8Q": "Apakah kompresi gambar membantu SEO dan kecepatan loading?",
+  "faq8A": "Ya. Gambar yang lebih kecil meningkatkan waktu muat halaman dan Core Web Vitals (LCP). Karena pemrosesan lokal, gambar asli tidak pernah diunggah — keseimbangan performa dan privasi."
+}

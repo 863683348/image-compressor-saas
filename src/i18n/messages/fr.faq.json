@@ -1,0 +1,19 @@
+{
+  "faqTitle": "Questions fréquentes",
+  "faq1Q": "Comment compresser des images sans perte de qualité visible ?",
+  "faq1A": "Baissez le curseur de qualité (défaut 75 %) ; l'outil affiche la taille et le ratio compressés en temps réel. À une qualité de 80–85, le WebP est généralement indistinguable de l'original tout en réduisant la taille de 60 à 90 %.",
+  "faq2Q": "Comment compresser une image à une taille précise (ex. 200 Ko) ?",
+  "faq2A": "Activez « Taille cible » et saisissez les Ko souhaités (ex. 200). L'outil ajuste la qualité automatiquement par recherche binaire pour atteindre exactement cette taille. Idéal pour les photos de candidature ou les pièces jointes.",
+  "faq3Q": "Comment fonctionne la compression par lots ?",
+  "faq3A": "Déposez plusieurs images à la fois, ou collez des captures avec Ctrl+V. Toutes les images sont compressées en parallèle. Téléchargez individuellement ou exportez en ZIP.",
+  "faq4Q": "Ce compresseur d'images est-il sûr ? Mes images vont-elles fuiter ?",
+  "faq4A": "Non. Toute la compression se fait localement et fonctionne hors ligne. Les images ne quittent jamais votre navigateur — aucune requête d'envoi n'est effectuée.",
+  "faq5Q": "Prend-il en charge la conversion WebP / AVIF ?",
+  "faq5A": "Oui, il convertit JPG/PNG en WebP. L'encodage AVIF peut revenir au WebP sur certains navigateurs (avec un avertissement).",
+  "faq6Q": "Les images compressées auront-elles un filigrane ?",
+  "faq6A": "Non. Cet outil est un compresseur d'images 100 % côté client — sans filigrane, sans limites, sans inscription obligatoire.",
+  "faq7Q": "Puis-je utiliser les images compressées pour e-mail / WhatsApp / sites web ?",
+  "faq7A": "Oui. Utilisez le mode « Taille cible » pour compresser dans les limites (ex. 200Ko/100Ko) ou passez au WebP pour des tailles plus petites.",
+  "faq8Q": "La compression d'images aide-t-elle au SEO et à la vitesse de chargement ?",
+  "faq8A": "Oui. Des images plus petites améliorent le temps de chargement et les Core Web Vitals (LCP). Comme le traitement est local, les originaux ne sont jamais envoyés — équilibre entre performance et confidentialité."
+}

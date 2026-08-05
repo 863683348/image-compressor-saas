@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { buildLanguageAlternates } from "./config";
+import type { Lang } from "@/lib/lang";
 
 const SITE_URL = "https://image-compressor-saas.shop";
 
@@ -14,7 +15,7 @@ const SITE_URL = "https://image-compressor-saas.shop";
  * }
  * ```
  *
- * @param lang  - The locale code from params (e.g. "zh", "en")
+ * @param lang  - The locale code from params (e.g. "zh", "en", "ar")
  * @param path  - The path WITHOUT locale prefix (e.g. "/pricing", "/faq")
  */
 export function generatePageMetadata(
@@ -23,9 +24,11 @@ export function generatePageMetadata(
 ): Metadata {
   return {
     alternates: {
-      canonical: lang === "zh" ? path : `/${lang}${path}`,
+      // Always-prefix: canonical points to the final URL the middleware
+      // would 301 to (e.g. /zh/pricing, /ar/pricing), never the bare path.
+      canonical: `/${lang}${path}`,
       languages: buildLanguageAlternates(
-        lang as "zh" | "en",
+        lang as Lang,
         path,
         SITE_URL,
       ),

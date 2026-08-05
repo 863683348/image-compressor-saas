@@ -2,17 +2,24 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getPost, getAllSlugs } from "@/content/blog";
 import { generatePageMetadata } from "@/i18n/metadata-helper";
+import { toHreflang } from "@/i18n/config";
 
 const SITE_URL = "https://image-compressor-saas.shop";
+
+// Blog content files currently only exist for zh + en.
+// Any other locale gets a 404 here so Google never sees an orphaned
+// /ar/blog/xxx URL claiming to be Arabic while rendering English content.
+const BLOG_LOCALES = ["zh", "en"] as const;
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
 export async function generateStaticParams() {
-  return getAllSlugs().flatMap((slug) => ["zh", "en"].map((lang) => ({ lang, slug })));
+  return getAllSlugs().flatMap((slug) => BLOG_LOCALES.map((lang) => ({ lang, slug })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params;
+  if (!BLOG_LOCALES.includes(lang as (typeof BLOG_LOCALES)[number])) return {};
   const post = getPost(slug);
   if (!post) return {};
   const postMeta = await post.getMeta(lang);
@@ -22,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { lang, slug } = await params;
+  if (!BLOG_LOCALES.includes(lang as (typeof BLOG_LOCALES)[number])) notFound();
   const post = getPost(slug);
   if (!post) notFound();
 
@@ -35,12 +43,11 @@ export default async function BlogPostPage({ params }: Props) {
     const postMeta = await import(`@/content/blog/${slug}/index`);
     articleTitle = postMeta.titles?.[lang] || postMeta.titles?.en || slug;
     articleDesc = postMeta.descriptions?.[lang] || postMeta.descriptions?.en || slug;
-    articleLang = lang === "zh" ? "zh-CN" : "en";
+    articleLang = toHreflang(lang as "zh" | "en");
   } catch {}
 
-  const articleUrl = lang === "zh"
-    ? `${SITE_URL}/blog/${slug}`
-    : `${SITE_URL}/${lang}/blog/${slug}`;
+
+  const articleUrl = `${SITE_URL}/${lang}/blog/${slug}`;
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -84,7 +91,7 @@ export default async function BlogPostPage({ params }: Props) {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [
-              { "@type": "ListItem", position: 1, name: lang === "zh" ? "首页" : "Home", item: lang === "zh" ? SITE_URL : `${SITE_URL}/${lang}` },
+              { "@type": "ListItem", position: 1, name: lang === "zh" ? "首页" : "Home", item: `${SITE_URL}/${lang}` },
               { "@type": "ListItem", position: 2, name: lang === "zh" ? "博客" : "Blog", item: `${SITE_URL}/${lang}/blog` },
               { "@type": "ListItem", position: 3, name: articleTitle, item: articleUrl },
             ],
@@ -93,7 +100,7 @@ export default async function BlogPostPage({ params }: Props) {
       />
       {/* Visible breadcrumb */}
       <nav style={{ fontSize: 12, color: "var(--muted, #6b7280)", marginBottom: 20 }}>
-        <a href={lang === "zh" ? "/" : `/${lang}`} style={{ color: "var(--muted, #6b7280)", textDecoration: "none" }}>
+        <a href={`/${lang}`} style={{ color: "var(--muted, #6b7280)", textDecoration: "none" }}>
           {lang === "zh" ? "首页" : "Home"}
         </a>
         <span style={{ margin: "0 6px" }}>›</span>

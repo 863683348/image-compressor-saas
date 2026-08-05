@@ -1,0 +1,17 @@
+{
+  "m": "Đã dùng ${n} lần nén hôm nay, còn ${m}",
+  "// Pricing\n  pricing": "Bảng giá",
+  "// Footer\n  footerPrivacy": "Chính sách bảo mật",
+  "// Privacy\n  privacyTitle": "Chính sách bảo mật",
+  "privacyUpdated": "Cập nhật lần cuối: tháng 7 năm 2026",
+  "privacyP1": "Chúng tôi coi trọng quyền riêng tư của bạn. Chính sách này giải thích cách Nén Ảnh xử lý dữ liệu của bạn.",
+  "privacyP2": "Thu thập dữ liệu: công cụ này là ứng dụng frontend thuần túy. Toàn bộ quá trình nén ảnh diễn ra cục bộ trong trình duyệt của bạn. Chúng tôi không thu thập, lưu trữ hay truyền tải ảnh gốc của bạn đến bất kỳ máy chủ nào.",
+  "privacyP3": "Cookie: chúng tôi dùng cookie cần thiết cho tùy chọn giao diện và ngôn ngữ. Các cookie này không chứa thông tin nhận dạng cá nhân.",
+  "privacyP4": "Dịch vụ bên thứ ba: trang web này dùng Google Analytics (GA4) để thu thập thống kê sử dụng ẩn danh. GA4 không truy cập nội dung ảnh của bạn.",
+  "privacyP5": "Thông tin tài khoản: nếu bạn đăng nhập, chúng tôi nhận thông tin cơ bản (tên, email, ảnh đại diện) qua Google, chỉ dùng để nhận dạng tài khoản và quản lý hạn mức.",
+  "privacyP6": "Lưu trữ dữ liệu: thống kê sử dụng được giữ trong 26 tháng. Thông tin tài khoản bị xóa trong 30 ngày sau khi xóa tài khoản.",
+  "privacyP7": "Liên hệ: với các câu hỏi về quyền riêng tư, vui lòng liên hệ qua trang liên hệ.",
+  "// Terms\n  termsTitle": "Điều khoản dịch vụ",
+  "// Blog\n  blogTitle": "Blog",
+  "// Contact\n  contactTitle": "Liên hệ"
+}

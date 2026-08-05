@@ -1,0 +1,17 @@
+{
+  "m": "${n} compressões usadas hoje, ${m} restantes",
+  "// Pricing\n  pricing": "Preços",
+  "// Footer\n  footerPrivacy": "Política de privacidade",
+  "// Privacy\n  privacyTitle": "Política de privacidade",
+  "privacyUpdated": "Última atualização: julho de 2026",
+  "privacyP1": "Levamos sua privacidade a sério. Esta política explica como o Compressor de imagens trata seus dados.",
+  "privacyP2": "Coleta de dados: esta é uma aplicação puramente frontend. Toda a compressão acontece localmente no seu navegador. Não coletamos, armazenamos ou transmitimos suas imagens originais a nenhum servidor.",
+  "privacyP3": "Cookies: usamos cookies necessários para preferências de tema e idioma. Eles não contêm informações de identificação pessoal.",
+  "privacyP4": "Serviços de terceiros: este site usa Google Analytics (GA4) para estatísticas anônimas de uso. O GA4 não acessa o conteúdo das suas imagens.",
+  "privacyP5": "Informações da conta: se você fizer login, obtemos informações básicas (nome, e-mail, avatar) via Google, usadas apenas para identificação da conta e gestão de cotas.",
+  "privacyP6": "Retenção de dados: estatísticas de uso são mantidas por 26 meses. Informações de conta são excluídas em 30 dias após a exclusão da conta.",
+  "privacyP7": "Contato: para dúvidas sobre privacidade, fale conosco pela página de contato.",
+  "// Terms\n  termsTitle": "Termos de serviço",
+  "// Blog\n  blogTitle": "Blog",
+  "// Contact\n  contactTitle": "Fale conosco"
+}

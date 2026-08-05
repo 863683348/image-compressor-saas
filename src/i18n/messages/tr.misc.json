@@ -1,0 +1,17 @@
+{
+  "m": "Bugün ${n} sıkıştırma kullanıldı, ${m} kaldı",
+  "// Pricing\n  pricing": "Fiyatlandırma",
+  "// Footer\n  footerPrivacy": "Gizlilik Politikası",
+  "// Privacy\n  privacyTitle": "Gizlilik Politikası",
+  "privacyUpdated": "Son güncelleme: Temmuz 2026",
+  "privacyP1": "Gizliliğinizi ciddiye alıyoruz. Bu politika, Görsel Sıkıştırıcı'nın verilerinizi nasıl işlediğini açıklar.",
+  "privacyP2": "Veri Toplama: Bu araç tamamen ön yüz bir uygulamadır. Tüm görsel sıkıştırma tarayıcınızda yerel olarak yapılır. Orijinal görsellerinizi hiçbir sunucuya toplamaz, saklamaz veya iletmeyiz.",
+  "privacyP3": "Çerezler: Tema ve dil tercihleri için gerekli çerezleri kullanıyoruz. Bu çerezler kişisel olarak tanımlanabilir bilgi içermez.",
+  "privacyP4": "Üçüncü Taraf Hizmetleri: Bu site, ürünü geliştirmemize yardımcı olması için anonim kullanım istatistikleri toplamak üzere Google Analytics (GA4) kullanır. GA4 görsel içeriğinize erişmez.",
+  "privacyP5": "Hesap Bilgileri: Giriş yaparsanız, Google üzerinden temel hesap bilgileri (ad, e-posta, avatar) alırız; yalnızca hesap tanımlama ve kota yönetimi için kullanılır.",
+  "privacyP6": "Veri Saklama: Kullanım istatistikleri 26 ay saklanır. Hesap bilgileri, hesap silindikten sonra 30 gün içinde silinir.",
+  "privacyP7": "İletişim: Gizlilikle ilgili sorular için lütfen iletişim sayfası üzerinden bize ulaşın.",
+  "// Terms\n  termsTitle": "Hizmet Şartları",
+  "// Blog\n  blogTitle": "Blog",
+  "// Contact\n  contactTitle": "Bize Ulaşın"
+}

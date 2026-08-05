@@ -11,5 +11,19 @@
   "footerBlog": "博客",
   "footerContact": "联系我们",
   "footerDesc": "Image Compressor — 隐私优先的在线图片压缩工具，所有处理在浏览器本地完成，不上传任何图片到服务器。",
-  "footerRights": "© 2026 Image Compressor. All rights reserved."
+  "footerRights": "© 2026 Image Compressor. All rights reserved.",
+  "seoH1": "免费在线图片压缩工具 — 100% 本地处理，隐私优先",
+  "seoDesc": "Image Compressor 是一款完全在浏览器中运行的免费图片压缩工具。无需上传任何文件到服务器，无需注册，无水印。支持 JPG、PNG、WebP 和 AVIF 格式的压缩与互转，可按目标文件大小（200KB/100KB/50KB）自动调整压缩质量，并支持批量处理与 ZIP 导出。",
+  "seoFeaturesTitle": "核心功能",
+  "seoUseCasesTitle": "适用场景",
+  "feature1": "100% 隐私安全 — 所有处理在浏览器本地完成，不上传服务器",
+  "feature2": "精准压缩 — 设定目标大小（如 200KB），自动调整质量达到精确值",
+  "feature3": "多格式支持 — JPG / PNG / WebP / AVIF 压缩与相互转换",
+  "feature4": "批量处理 — 一次上传多个文件，一键压缩并导出 ZIP 压缩包",
+  "feature5": "多语言界面 — 支持 14 种语言，自动检测",
+  "feature6": "无水印 — 输出文件完全纯净，无任何品牌标记",
+  "usecase1": "邮件附件 — 将照片压缩到 200KB 以内，确保邮件顺利送达",
+  "usecase2": "网站优化 — 压缩图片减少页面加载时间，提升 Core Web Vitals 评分",
+  "usecase3": "求职系统 — 证件照和简历图片压缩到系统要求的 200KB/100KB",
+  "usecase4": "电商平台 — 批量压缩产品图片，统一上传到淘宝/Shopify 等平台"
 }

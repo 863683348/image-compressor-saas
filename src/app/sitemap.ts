@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { locales, toHreflang } from "@/i18n/config";
+import { locales, toHreflang, defaultLocale } from "@/i18n/config";
 import { getAllSlugs } from "@/content/blog";
 
 const SITE_URL = "https://image-compressor-saas.shop";
@@ -26,18 +26,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   });
 
-  // 2. Locale-specific pages (zh + en)
+  // 2. Locale-specific pages — every locale gets its own prefixed URL
+  // (always-prefix strategy, matching the middleware 301 behavior).
   for (const page of staticPages) {
     const langMap: Record<string, string> = {};
     for (const l of locales) {
-      const url = l === "zh" ? `${SITE_URL}${page.path}` : `${SITE_URL}/${l}${page.path}`;
-      langMap[toHreflang(l)] = url;
+      langMap[toHreflang(l)] = `${SITE_URL}/${l}${page.path}`;
     }
-    langMap["x-default"] = `${SITE_URL}${page.path}`;
+    langMap["x-default"] = `${SITE_URL}/${defaultLocale}${page.path}`;
 
-    // Use zh version as the primary entry
+    // Use the default-locale version as the primary entry
     entries.push({
-      url: `${SITE_URL}${page.path}`,
+      url: `${SITE_URL}/${defaultLocale}${page.path}`,
       lastModified: new Date(),
       changeFrequency: page.changefreq,
       priority: page.priority,
@@ -45,20 +45,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // 3. Blog posts (zh + en)
+  // 3. Blog posts — currently zh + en only (content files only exist for
+  // these two locales). Other locales are 404'd at the page level, so they
+  // must NOT be listed here.
   const blogSlugs = getAllSlugs();
   for (const slug of blogSlugs) {
-    const blogLangMap: Record<string, string> = {};
-    for (const l of locales) {
-      const url = l === "zh"
-        ? `${SITE_URL}/blog/${slug}`
-        : `${SITE_URL}/${l}/blog/${slug}`;
-      blogLangMap[toHreflang(l)] = url;
-    }
-    blogLangMap["x-default"] = `${SITE_URL}/blog/${slug}`;
+    const blogLangMap: Record<string, string> = {
+      "zh-CN": `${SITE_URL}/zh/blog/${slug}`,
+      en: `${SITE_URL}/en/blog/${slug}`,
+      "x-default": `${SITE_URL}/en/blog/${slug}`,
+    };
 
     entries.push({
-      url: `${SITE_URL}/blog/${slug}`,
+      url: `${SITE_URL}/en/blog/${slug}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.6,

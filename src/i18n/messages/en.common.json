@@ -11,5 +11,19 @@
   "footerBlog": "Blog",
   "footerContact": "Contact Us",
   "footerDesc": "Image Compressor — a privacy-first online image compression tool. All processing happens locally in your browser. No images are uploaded to any server.",
-  "footerRights": "© 2026 Image Compressor. All rights reserved."
+  "footerRights": "© 2026 Image Compressor. All rights reserved.",
+  "seoH1": "Free Online Image Compressor — 100% Local, Privacy First",
+  "seoDesc": "Image Compressor is a free image compression tool that runs entirely in your browser. No files uploaded to any server, no sign-up required, no watermarks. Supports JPG, PNG, WebP, and AVIF compression and conversion, with automatic target-size compression (200KB/100KB/50KB), batch processing, and ZIP export.",
+  "seoFeaturesTitle": "Key Features",
+  "seoUseCasesTitle": "Use Cases",
+  "feature1": "100% Private — All processing happens locally in your browser",
+  "feature2": "Target Size — Set exact size (200KB/100KB/50KB), auto-adjusts quality",
+  "feature3": "Multi-format — JPG / PNG / WebP / AVIF compression & conversion",
+  "feature4": "Batch & ZIP — Upload multiple files, compress all, export as ZIP",
+  "feature5": "Multilingual — Interface in 14 languages, auto-detected",
+  "feature6": "No Watermark — Output is completely clean, no branding",
+  "usecase1": "Email Attachments — Compress photos under 200KB for reliable delivery",
+  "usecase2": "Web Optimization — Reduce image sizes to improve Core Web Vitals scores",
+  "usecase3": "Job Applications — Fit headshots and documents into 200KB/100KB limits",
+  "usecase4": "E-commerce — Batch compress product images for Shopify, Amazon, etc."
 }

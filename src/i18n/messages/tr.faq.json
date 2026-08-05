@@ -1,0 +1,19 @@
+{
+  "faqTitle": "Sık Sorulan Sorular",
+  "faq1Q": "Görünür kalite kaybı olmadan görselleri nasıl sıkıştırırım?",
+  "faq1A": "Kalite kaydırıcısını düşürün (varsayılan %75); araç sıkıştırılmış boyutu ve oranı gerçek zamanlı gösterir. 80–85 kalitesinde WebP genellikle orijinalden ayırt edilemezken boyutu %60–90 küçültür.",
+  "faq2Q": "Bir görseli belirli bir boyuta (örn. 200KB) nasıl sıkıştırırım?",
+  "faq2A": "'Hedef Boyut'u etkinleştirin ve istediğiniz KB'yi girin (örn. 200). Araç, ikili arama ile kaliteyi otomatik ayarlayarak tam o boyuta ulaşır. Başvuru fotoğrafları veya e-posta ekleri için idealdir.",
+  "faq3Q": "Toplu sıkıştırma nasıl çalışır?",
+  "faq3A": "Birden çok görseli aynı anda sürükleyin veya Ctrl+V ile ekran görüntüsü yapıştırın. Tüm görseller paralel sıkıştırılır. Tek tek indirin veya ZIP olarak dışa aktarın.",
+  "faq4Q": "Bu görsel sıkıştırıcı güvenli mi? Görsellerim sızdırılır mı?",
+  "faq4A": "Hayır. Tüm sıkıştırma yerel olarak gerçekleşir ve çevrimdışı çalışır. Görselleriniz tarayıcınızdan asla çıkmaz — hiçbir yükleme isteği gönderilmez.",
+  "faq5Q": "WebP / AVIF format dönüşümünü destekliyor mu?",
+  "faq5A": "Evet, JPG/PNG'yi WebP'ye dönüştürür. AVIF kodlaması bazı tarayıcılarda WebP'ye düşebilir (bildirimle).",
+  "faq6Q": "Sıkıştırılmış görsellerde filigran olur mu?",
+  "faq6A": "Hayır. Bu araç tamamen istemci tarafı bir görsel sıkıştırıcıdır — filigran yok, limit yok, zorunlu kayıt yok.",
+  "faq7Q": "Sıkıştırılmış görselleri e-posta / WhatsApp / web siteleri için kullanabilir miyim?",
+  "faq7A": "Evet. Limitler içinde sıkıştırmak için 'Hedef Boyut' modunu kullanın (örn. 200KB/100KB) veya daha küçük boyutlar için WebP'ye geçin.",
+  "faq8Q": "Görsel sıkıştırma SEO ve yükleme hızına yardımcı olur mu?",
+  "faq8A": "Evet. Daha küçük görseller sayfa yükleme süresini ve Core Web Vitals (LCP) puanını iyileştirir. İşlem yerel olduğundan orijinaller asla yüklenmez — performans ve gizlilik dengesi."
+}

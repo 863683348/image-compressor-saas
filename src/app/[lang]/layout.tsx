@@ -24,10 +24,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   if (!isValidLocale(lang)) notFound();
 
-  // Default path is "/"; individual pages can override via page-level metadata
+  // Default path is "/"; individual pages can override via page-level metadata.
+  // Always-prefix: canonical is the final prefixed URL (e.g. /en/, /ar/).
   return {
     alternates: {
-      canonical: lang === "zh" ? "/" : `/${lang}`,
+      canonical: `/${lang}`,
       languages: buildLanguageAlternates(lang, "/", SITE_URL),
     },
   };
@@ -86,8 +87,8 @@ export default async function LocaleLayout({
               {
                 "@type": "ListItem",
                 position: 1,
-                name: lang === "zh" ? "首页" : "Home",
-                item: lang === "zh" ? SITE_URL : `${SITE_URL}/${lang}`,
+                name: "Home",
+                item: `${SITE_URL}/${lang}`,
               },
             ],
           }),

@@ -1,0 +1,16 @@
+{
+  "termsUpdated": "Dernière mise à jour : juillet 2026",
+  "termsP1": "En utilisant Compresseur d'images, vous acceptez les conditions suivantes.",
+  "termsP2": "Description du service : cet outil propose la compression d'images en ligne. Tout le traitement est effectué côté client.",
+  "termsP3": "Utilisation gratuite : l'offre gratuite fournit 10 compressions par jour. Dépasser la limite nécessite un passage à Pro.",
+  "termsP4": "Service payant : l'offre Pro est un abonnement facturé via PayPal. Annulez à tout moment. Les frais payés ne sont pas remboursables.",
+  "termsP5": "Avertissement : cet outil est fourni « en l'état », sans garantie expresse ou implicite.",
+  "termsP6": "Limitation de responsabilité : nous ne pourrons en aucun cas être tenus responsables de dommages indirects découlant de l'utilisation de cet outil.",
+  "blogSub": "Guides pratiques sur la compression d'images, l'optimisation web et la protection de la vie privée",
+  "blog1Title": "Comment compresser des images à 200 Ko (ou toute taille cible)",
+  "blog1Desc": "Une photo haute résolution peut peser 3-5 Mo, mais les candidatures, pièces jointes et uploads web limitent souvent à 200 Ko, 100 Ko voire 50 Ko. Ce guide montre comment compresser à n'importe quelle taille cible.",
+  "blog2Title": "WebP vs AVIF vs JPEG : quel format en 2026 ?",
+  "blog2Desc": "Une comparaison complète des trois principaux formats d'image — taux de compression, compatibilité navigateurs et meilleurs cas d'usage.",
+  "blog3Title": "10 conseils d'optimisation d'images pour accélérer votre site",
+  "blog3Desc": "De la compression au lazy loading, du choix du format à la stratégie CDN — tous les aspects de l'optimisation d'images."
+}

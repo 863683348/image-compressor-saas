@@ -3,6 +3,7 @@ import { I18nProvider } from "@/i18n/i18n-provider";
 import HeaderClient from "@/components/HeaderClient";
 import FooterClient from "@/components/FooterClient";
 import { CompressorTool } from "@/components/CompressorTool";
+import { isValidLocale } from "@/i18n/config";
 
 // 根路径（/）渲染：Header + 内容 + Footer。
 // 包一层 I18nProvider（语言来自 NEXT_LOCALE cookie，默认英文），
@@ -12,7 +13,7 @@ import { CompressorTool } from "@/components/CompressorTool";
 export default async function HomePage() {
   const store = await cookies();
   const cookieLocale = store.get("NEXT_LOCALE")?.value;
-  const locale = cookieLocale === "zh" ? "zh" : "en"; // 默认英文
+  const locale = isValidLocale(cookieLocale ?? "") ? (cookieLocale as string) : "en"; // 默认英文
 
   return (
     <I18nProvider locale={locale}>

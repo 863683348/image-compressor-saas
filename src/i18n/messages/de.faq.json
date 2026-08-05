@@ -1,0 +1,19 @@
+{
+  "faqTitle": "Häufig gestellte Fragen",
+  "faq1Q": "Wie komprimiere ich Bilder ohne sichtbaren Qualitätsverlust?",
+  "faq1A": "Senken Sie den Qualitätsregler (Standard 75 %); das Tool zeigt Größe und Verhältnis in Echtzeit an. Bei Qualität 80–85 ist WebP meist vom Original nicht unterscheidbar und reduziert die Größe um 60–90 %.",
+  "faq2Q": "Wie komprimiere ich ein Bild auf eine bestimmte Größe (z. B. 200 KB)?",
+  "faq2A": "Aktivieren Sie „Zielgröße“ und geben Sie die gewünschten KB ein (z. B. 200). Das Tool passt die Qualität per Binärsuche automatisch an, um genau diese Größe zu erreichen. Ideal für Bewerbungsfotos oder E-Mail-Anhänge.",
+  "faq3Q": "Wie funktioniert die Stapelkomprimierung?",
+  "faq3A": "Ziehen Sie mehrere Bilder gleichzeitig hinein oder fügen Sie Screenshots mit Strg+V ein. Alle Bilder werden parallel komprimiert. Laden Sie einzeln herunter oder exportieren Sie als ZIP.",
+  "faq4Q": "Ist dieser Bildkompressor sicher? Werden meine Bilder durchsickern?",
+  "faq4A": "Nein. Die gesamte Komprimierung erfolgt lokal und funktioniert offline. Bilder verlassen nie Ihren Browser – es wird keine Upload-Anfrage gesendet.",
+  "faq5Q": "Unterstützt es die Konvertierung von WebP / AVIF?",
+  "faq5A": "Ja, es konvertiert JPG/PNG zu WebP. Die AVIF-Codierung kann in manchen Browsern auf WebP zurückfallen (mit Hinweis).",
+  "faq6Q": "Haben komprimierte Bilder Wasserzeichen?",
+  "faq6A": "Nein. Dieses Tool ist ein reiner Client-seitiger Bildkompressor – ohne Wasserzeichen, ohne Limits, ohne Pflichtregistrierung.",
+  "faq7Q": "Kann ich komprimierte Bilder für E-Mail / WhatsApp / Websites verwenden?",
+  "faq7A": "Ja. Nutzen Sie den Modus „Zielgröße“, um innerhalb von Limits zu komprimieren (z. B. 200KB/100KB), oder wechseln Sie zu WebP für kleinere Dateien.",
+  "faq8Q": "Hilft Bildkomprimierung bei SEO und Ladegeschwindigkeit?",
+  "faq8A": "Ja. Kleinere Bilder verbessern die Ladezeit und Core Web Vitals (LCP). Da die Verarbeitung lokal erfolgt, werden Originale nie hochgeladen – Balance aus Leistung und Datenschutz."
+}

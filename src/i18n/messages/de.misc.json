@@ -1,0 +1,17 @@
+{
+  "m": "Heute ${n} Komprimierungen genutzt, ${m} verbleibend",
+  "// Pricing\n  pricing": "Preise",
+  "// Footer\n  footerPrivacy": "Datenschutzerklärung",
+  "// Privacy\n  privacyTitle": "Datenschutzerklärung",
+  "privacyUpdated": "Zuletzt aktualisiert: Juli 2026",
+  "privacyP1": "Wir nehmen Ihren Datenschutz ernst. Diese Richtlinie erklärt, wie Bildkompressor Ihre Daten behandelt.",
+  "privacyP2": "Datenerhebung: Dieses Tool ist eine reine Frontend-Anwendung. Die gesamte Bildkomprimierung erfolgt lokal in Ihrem Browser. Wir erheben, speichern oder übertragen Ihre Originalbilder nicht an einen Server.",
+  "privacyP3": "Cookies: Wir verwenden notwendige Cookies für Design- und Spracheinstellungen. Diese enthalten keine personenbezogenen Daten.",
+  "privacyP4": "Drittanbieter: Diese Website nutzt Google Analytics (GA4) für anonyme Nutzungsstatistiken. GA4 hat keinen Zugriff auf Ihre Bildinhalte.",
+  "privacyP5": "Kontoinformationen: Wenn Sie sich anmelden, erhalten wir Grundinformationen (Name, E-Mail, Avatar) über Google, nur zur Kontoiddentifikation und Kontingentverwaltung.",
+  "privacyP6": "Datenaufbewahrung: Nutzungsstatistiken werden 26 Monate aufbewahrt. Kontoinformationen werden innerhalb von 30 Tagen nach Kontolöschung entfernt.",
+  "privacyP7": "Kontakt: Bei Fragen zum Datenschutz kontaktieren Sie uns bitte über die Kontaktseite.",
+  "// Terms\n  termsTitle": "Nutzungsbedingungen",
+  "// Blog\n  blogTitle": "Blog",
+  "// Contact\n  contactTitle": "Kontakt"
+}

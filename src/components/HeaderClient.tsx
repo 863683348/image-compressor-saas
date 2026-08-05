@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useLang } from "@/i18n/i18n-provider";
 import { useTheme } from "@/components/theme-context";
 import { SunIcon, MoonIcon, MenuIcon, CloseIcon } from "@/components/icons";
+import { LANGS, LANG_NAMES } from "@/lib/lang";
 
 type NavItem = { key: string; zh: string; en: string; getPath: (lang: string) => string };
 
@@ -66,6 +67,7 @@ export default function HeaderClient() {
   const pathname = usePathname();
   const [mobile, setMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px)");
@@ -79,6 +81,13 @@ export default function HeaderClient() {
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
+
+  // 当前路径去掉语言前缀后的剩余部分（用于语言切换保持在同一页面）
+  const restPath = (() => {
+    if (pathname === `/${lang}`) return "";
+    if (pathname.startsWith(`/${lang}/`)) return pathname.slice(lang.length + 1);
+    return pathname;
+  })();
 
   const isActive = (item: NavItem) => {
     const p = item.getPath(lang);
@@ -177,7 +186,7 @@ export default function HeaderClient() {
         )}
 
         {/* 右侧操作区 */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, position: "relative" }}>
               {status === "authenticated" ? (
             <>
               {/* 已登录：可点击跳个人中心 */}
@@ -260,15 +269,69 @@ export default function HeaderClient() {
             </button>
           )}
 
-          {/* 语言切换 */}
+          {/* 语言切换 — 14 语种下拉 */}
           <button
-            onClick={() => setLang(lang === "zh" ? "en" : "zh")}
+            onClick={() => setLangMenuOpen((v) => !v)}
             style={iconBtn()}
-            title={lang === "zh" ? "切换到英文" : "Switch to Chinese"}
-            aria-label={lang === "zh" ? "切换到英文" : "Switch to Chinese"}
+            title="Language"
+            aria-label="Switch language"
+            aria-expanded={langMenuOpen}
           >
-            <span style={{ fontSize: 13, fontWeight: 700 }}>{lang === "zh" ? "EN" : "中"}</span>
+            <span style={{ fontSize: 13, fontWeight: 700 }}>{lang.toUpperCase()}</span>
           </button>
+          {langMenuOpen && (
+            <>
+              {/* 点击外部关闭 */}
+              <div
+                onClick={() => setLangMenuOpen(false)}
+                style={{ position: "fixed", inset: 0, zIndex: 90 }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  top: 52,
+                  right: 0,
+                  zIndex: 91,
+                  minWidth: 180,
+                  background: "var(--bg)",
+                  border: "1px solid var(--border)",
+                  borderRadius: 12,
+                  boxShadow: "0 8px 24px rgba(0,0,0,.08)",
+                  padding: "6px",
+                  maxHeight: 320,
+                  overflowY: "auto",
+                }}
+              >
+                {LANGS.map((code) => (
+                  <a
+                    key={code}
+                    href={`/${code}${restPath}`}
+                    onClick={() => {
+                      setLangMenuOpen(false);
+                      setLang(code);
+                    }}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: 8,
+                      padding: "8px 10px",
+                      borderRadius: 8,
+                      fontSize: 13,
+                      fontWeight: code === lang ? 700 : 500,
+                      color: code === lang ? "var(--primary)" : "var(--text)",
+                      background: code === lang ? "var(--panel)" : "transparent",
+                      textDecoration: "none",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    <span>{LANG_NAMES[code]}</span>
+                    {code === lang && <span style={{ color: "var(--primary)" }}>✓</span>}
+                  </a>
+                ))}
+              </div>
+            </>
+          )}
 
           {/* 主题切换 —— 使用锁定 SVG 图标，不再用 emoji（P0-1） */}
           <button
@@ -325,6 +388,28 @@ export default function HeaderClient() {
               </a>
             );
           })}
+          {/* 移动端语言切换 */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 6, paddingTop: 10 }}>
+            {LANGS.map((code) => (
+              <a
+                key={code}
+                href={`/${code}${restPath}`}
+                onClick={() => setLang(code)}
+                style={{
+                  padding: "6px 10px",
+                  borderRadius: 8,
+                  fontSize: 12,
+                  fontWeight: code === lang ? 700 : 500,
+                  color: code === lang ? "var(--primary)" : "var(--text)",
+                  background: code === lang ? "var(--panel)" : "transparent",
+                  border: "1px solid var(--border)",
+                  textDecoration: "none",
+                }}
+              >
+                {LANG_NAMES[code]}
+              </a>
+            ))}
+          </div>
         </div>
       )}
     </header>

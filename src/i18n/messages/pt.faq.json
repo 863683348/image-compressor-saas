@@ -1,0 +1,19 @@
+{
+  "faqTitle": "Perguntas frequentes",
+  "faq1Q": "Como comprimo imagens sem perda visível de qualidade?",
+  "faq1A": "Baixe o controle de qualidade (padrão 75%); a ferramenta mostra o tamanho e a proporção em tempo real. Na qualidade 80–85, o WebP costuma ser indistinguível do original reduzindo o tamanho em 60%–90%.",
+  "faq2Q": "Como comprimo imagens para um tamanho específico (ex.: 200KB)?",
+  "faq2A": "Ative 'Tamanho alvo' e informe os KB desejados (ex.: 200). A ferramenta ajusta a qualidade automaticamente via busca binária para atingir exatamente esse tamanho. Ideal para fotos de inscrição ou anexos de e-mail.",
+  "faq3Q": "Como funciona a compressão em lote?",
+  "faq3A": "Arraste várias imagens de uma vez ou cole capturas com Ctrl+V. Todas são comprimidas em paralelo. Baixe individualmente ou exporte como ZIP.",
+  "faq4Q": "Este compressor de imagens é seguro? Minhas imagens vazarão?",
+  "faq4A": "Não. Toda a compressão acontece localmente e funciona offline. As imagens nunca saem do seu navegador — nenhuma solicitação de upload é feita.",
+  "faq5Q": "Suporta conversão para WebP / AVIF?",
+  "faq5A": "Sim, converte JPG/PNG para WebP. A codificação AVIF pode degradar para WebP em alguns navegadores (com aviso).",
+  "faq6Q": "As imagens comprimidas terão marcas d'água?",
+  "faq6A": "Não. Esta é uma ferramenta 100% client-side: sem marcas d'água, sem limites, sem cadastro obrigatório.",
+  "faq7Q": "Posso usar as imagens comprimidas em e-mail / WhatsApp / sites?",
+  "faq7A": "Sim. Use o modo 'Tamanho alvo' para comprimir dentro dos limites (ex.: 200KB/100KB) ou mude para WebP para tamanhos menores.",
+  "faq8Q": "Comprimir imagens ajuda no SEO e na velocidade de carregamento?",
+  "faq8A": "Sim. Imagens menores melhoram o tempo de carregamento e o Core Web Vitals (LCP). Como o processamento é local, os originais nunca são enviados — equilíbrio entre desempenho e privacidade."
+}
