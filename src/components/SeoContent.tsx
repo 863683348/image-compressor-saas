@@ -86,6 +86,89 @@ export function SeoContent({ lang }: { lang: Lang }) {
             </li>
           ))}
         </ul>
+
+        <h2 style={{ fontSize: 15, fontWeight: 700, margin: "20px 0 8px", color: "var(--text)" }}>
+          {lang === "zh" ? "三步完成压缩" : "How It Works in 3 Steps"}
+        </h2>
+        <ol style={{ fontSize: 13, color: "var(--text)", paddingLeft: 18, margin: 0 }}>
+          <li style={{ marginBottom: 6 }}>
+            {lang === "zh"
+              ? "选择或拖入图片（JPG/PNG/WebP/AVIF），可一次添加多个文件。"
+              : "Select or drag in images (JPG/PNG/WebP/AVIF); you can add multiple files at once."}
+          </li>
+          <li style={{ marginBottom: 6 }}>
+            {lang === "zh"
+              ? "设定目标：按比例压缩、固定质量，或精确目标大小（如 200KB / 100KB / 50KB）。"
+              : "Set the goal: compress by ratio, fix the quality, or hit an exact target size (e.g. 200KB / 100KB / 50KB)."}
+          </li>
+          <li style={{ marginBottom: 6 }}>
+            {lang === "zh"
+              ? "一键压缩并下载——处理 100% 在你的浏览器本地完成，文件从未离开你的设备。"
+              : "Compress and download — processing runs 100% locally in your browser; your files never leave your device."}
+          </li>
+        </ol>
+
+        <h2 style={{ fontSize: 15, fontWeight: 700, margin: "20px 0 8px", color: "var(--text)" }}>
+          {lang === "zh" ? "为什么需要压缩图片" : "Why Compress Images"}
+        </h2>
+        <p style={{ fontSize: 13, color: "var(--text)", margin: "0 0 10px" }}>
+          {lang === "zh"
+            ? "图片是网页体积的最大来源：一张未经处理的手机照片动辄 3-5MB，而 Google 的 Core Web Vitals 直接把图片大小计入 LCP（首屏加载）指标。把图片压缩到合理大小，能显著提升页面速度、降低带宽成本、改善移动端体验，这是对用户和搜索引擎都友好的投入。"
+            : "Images are the largest source of web page weight: an unprocessed phone photo is often 3-5MB, and Google's Core Web Vitals counts image size directly into LCP (largest contentful paint). Compressing images to a sensible size measurably improves page speed, cuts bandwidth costs, and improves the mobile experience — an investment that pays off for both users and search engines."}
+        </p>
+        <p style={{ fontSize: 13, color: "var(--text)", margin: 0 }}>
+          {lang === "zh"
+            ? "在另一个常见场景里，压缩是刚需：邮件服务器、政府表格、招聘系统普遍限制附件和照片在 100-200KB。把证件照或合同扫描件压到限制以内，才能顺利上传和发送——而高质量的本地压缩能让文件变小而不牺牲可见画质。"
+            : "In another common scenario, compression is a hard requirement: mail servers, government forms, and application portals routinely cap attachments and photos at 100-200KB. Fitting a headshot or a scanned contract under the limit is only possible with good compression — and high-quality local compression shrinks files without sacrificing visible quality."}
+        </p>
+
+        <h2 style={{ fontSize: 15, fontWeight: 700, margin: "20px 0 8px", color: "var(--text)" }}>
+          {lang === "zh" ? "JPG / PNG / WebP / AVIF 怎么选" : "Which Format: JPG / PNG / WebP / AVIF"}
+        </h2>
+        <p style={{ fontSize: 13, color: "var(--text)", margin: "0 0 10px" }}>
+          {lang === "zh"
+            ? "没有绝对最好的格式，只有最合适的场景：JPG 适合照片和色彩丰富的图像，压缩率好但会损失细节；PNG 无损、支持透明，适合截图、图标和插画，但体积偏大；WebP 在同等画质下通常比 JPG 再小 25-35%，并支持透明；AVIF 压缩率最高，但兼容性仍在普及中。"
+            : "There is no single best format, only the right one for the job: JPG suits photos and rich gradients (great compression, lossy); PNG is lossless and supports transparency — ideal for screenshots, icons, and illustrations, but heavier; WebP is typically 25-35% smaller than JPG at the same quality and supports transparency; AVIF offers the best compression today, though support is still spreading."}
+        </p>
+        <p style={{ fontSize: 13, color: "var(--text)", margin: 0 }}>
+          {lang === "zh"
+            ? "本工具不仅能压缩，还能在这些格式之间转换：把 HEIC 手机原图转成 JPG、把 PNG 截图转成 WebP，一步完成。"
+            : "This tool does more than compress — it converts between these formats too: turn HEIC phone originals into JPG, or PNG screenshots into WebP, in one step."}
+        </p>
+
+        <h2 style={{ fontSize: 15, fontWeight: 700, margin: "20px 0 8px", color: "var(--text)" }}>
+          {lang === "zh" ? "常见问题（FAQ）" : "FAQ"}
+        </h2>
+        <div style={{ fontSize: 13, color: "var(--text)" }}>
+          <p style={{ margin: "0 0 8px" }}>
+            <strong>{lang === "zh" ? "压缩会损画质吗？" : "Does compression hurt quality?"}</strong>
+            <br />
+            {lang === "zh"
+              ? "可以做到几乎无损。现代压缩算法（mozjpeg/WebP/AVIF）会在目标大小内自动平衡质量与体积；照片类内容在 80% 以上质量时，肉眼几乎察觉不到差异。"
+              : "Not necessarily. Modern codecs (mozjpeg/WebP/AVIF) balance quality and size automatically; for photos, quality above 80% is visually indistinguishable."}
+          </p>
+          <p style={{ margin: "0 0 8px" }}>
+            <strong>{lang === "zh" ? "我的文件会被上传到服务器吗？" : "Are my files uploaded to a server?"}</strong>
+            <br />
+            {lang === "zh"
+              ? "不会。所有处理都在你的浏览器本地完成，文件不上传、不落盘、不留存，断网也能继续使用。"
+              : "No. Everything runs locally in your browser — files are never uploaded, stored, or retained; the tool even keeps working offline."}
+          </p>
+          <p style={{ margin: "0 0 8px" }}>
+            <strong>{lang === "zh" ? "能压缩视频或 PDF 吗？" : "Can it compress video or PDF?"}</strong>
+            <br />
+            {lang === "zh"
+              ? "目前专注于图片（JPG/PNG/WebP/AVIF）。PDF 合并与视频压缩需要不同的处理管线，不在本工具范围内。"
+              : "Currently focused on images (JPG/PNG/WebP/AVIF). PDF merging and video compression need different pipelines and are out of scope."}
+          </p>
+          <p style={{ margin: 0 }}>
+            <strong>{lang === "zh" ? "免费吗？有次数限制吗？" : "Is it free? Any limits?"}</strong>
+            <br />
+            {lang === "zh"
+              ? "免费使用，无次数限制，无水印。Pro 提供更大批量与优先支持，但本地处理与隐私承诺对所有用户一致。"
+              : "Free to use with no limits and no watermark. Pro adds larger batches and priority support, but local processing and the privacy promise apply to everyone."}
+          </p>
+        </div>
       </div>
 
       <div
