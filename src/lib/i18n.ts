@@ -106,6 +106,7 @@ const zh = {
   privacyP5: "账户信息：如您选择登录，我们将通过 Google 登录获取您的基本账户信息（姓名、邮箱、头像），仅用于识别您的账户和配额管理。",
   privacyP6: "数据保留：使用统计数据保留 26 个月。账户信息在您注销后 30 天内删除。",
   privacyP7: "联系我们：如有隐私相关问题，请通过联系页面与我们取得联系。",
+  privacyP8: "广告：本网站展示由 Google AdSense（第三方广告服务商）投放的广告。Google 及其合作伙伴可能使用 Cookie（包括 DART Cookie）及类似技术，根据您对本站及其他网站的访问记录向您投放广告，并衡量广告效果。您可以通过 Google 广告设置（https://www.google.com/settings/ads）或 Your Online Choices（http://www.aboutads.info/choices）退出个性化广告。关于 Google 如何使用数据，请参阅其广告隐私政策（https://policies.google.com/technologies/ads）。",
   // Terms
   termsTitle: "服务条款",
   termsUpdated: "最后更新：2026 年 7 月",
@@ -239,6 +240,7 @@ const en: typeof zh = {
   privacyP5: "Account Info: If you choose to sign in, we receive basic account info (name, email, avatar) via Google, used only for account identification and quota management.",
   privacyP6: "Data Retention: Usage statistics are retained for 26 months. Account info is deleted within 30 days of account deletion.",
   privacyP7: "Contact: For privacy-related questions, please reach out via our contact page.",
+  privacyP8: "Advertising: This site displays advertisements served by Google AdSense, a third-party advertising vendor. Google and its partners may use cookies (including the DART cookie) and similar technologies to serve ads based on your prior visits to this site and other websites, and to measure ad performance. You can opt out of personalized advertising by visiting Google Ads Settings (https://www.google.com/settings/ads) or Your Online Choices (http://www.aboutads.info/choices). For more information on how Google uses data, see Google's advertising privacy policy (https://policies.google.com/technologies/ads).",
   // Terms
   termsTitle: "Terms of Service",
   termsUpdated: "Last updated: July 2026",

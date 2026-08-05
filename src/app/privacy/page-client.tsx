@@ -10,7 +10,7 @@ const s = (lang: string, key: string): string => {
 
 export default function PrivacyPage() {
   const { lang } = useLang();
-  const keys = ["privacyP1", "privacyP2", "privacyP3", "privacyP4", "privacyP5", "privacyP6", "privacyP7"];
+  const keys = ["privacyP1", "privacyP2", "privacyP3", "privacyP4", "privacyP5", "privacyP6", "privacyP7", "privacyP8"];
 
   return (
     <div style={{ maxWidth: 720, margin: "0 auto", padding: "40px 18px 20px" }}>

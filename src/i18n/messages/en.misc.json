@@ -11,6 +11,7 @@
   "privacyP5": "Account Information: If you choose to sign in, we obtain basic account information (name, email, avatar) via Google login, used only for account identification and quota management.",
   "privacyP6": "Data Retention: Usage statistics are retained for 26 months. Account information is deleted within 30 days after account deletion.",
   "privacyP7": "Contact Us: For privacy-related questions, please contact us via the contact page.",
+  "privacyP8": "Advertising: This site displays advertisements served by Google AdSense, a third-party advertising vendor. Google and its partners may use cookies (including the DART cookie) and similar technologies to serve ads based on your prior visits to this site and other websites, and to measure ad performance. You can opt out of personalized advertising by visiting Google Ads Settings (https://www.google.com/settings/ads) or Your Online Choices (http://www.aboutads.info/choices). For more information on how Google uses data, see Google's advertising privacy policy (https://policies.google.com/technologies/ads).",
   "// Terms\n  termsTitle": "Terms of Service",
   "// Blog\n  blogTitle": "Blog",
   "// Contact\n  contactTitle": "Contact Us"
