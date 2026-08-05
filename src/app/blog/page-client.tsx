@@ -16,7 +16,7 @@ const posts = [
     link: "/blog/compress-jpg-under-100kb",
     enLink: "/en/blog/compress-jpg-under-100kb",
   },
-  { title: "blog2Title", desc: "blog2Desc" },
+  { title: "blog2Title", desc: "blog2Desc", link: "/blog/compress-png-without-losing-quality", enLink: "/en/blog/compress-png-without-losing-quality" },
   { title: "blog3Title", desc: "blog3Desc" },
 ];
 

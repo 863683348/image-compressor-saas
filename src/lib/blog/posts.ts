@@ -127,6 +127,133 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "compress-png-without-losing-quality",
+    date: "2026-08-05",
+    title: {
+      zh: "如何无损压缩 PNG（不掉画质，在线免费）",
+      en: "How to Compress PNG Without Losing Quality (Free, Online)",
+    },
+    description: {
+      zh: "PNG 无损压缩的 3 个正确姿势：降色深、去元数据、重新编码。30 秒在浏览器本地搞定——不上传、不注册、画质不变。",
+      en: "The 3 right ways to compress PNG losslessly: reduce color depth, strip metadata, re-encode. Do it in 30 seconds in your browser — no upload, no sign-up, no quality loss.",
+    },
+    keywords: [
+      "compress png without losing quality",
+      "lossless png compression online",
+      "reduce png file size without losing quality",
+      "png optimizer",
+      "compress png free no quality loss",
+    ],
+    content: {
+      zh: [
+        "「压缩 PNG 会损画质吗？」这是最常被问错的问题。PNG 本身就是无损格式，真正毁掉画质的，是那些把 PNG 当 JPG 硬压的工具。而压缩 PNG 的正确做法，是优化它的「无用重量」：多余的元数据、过深的色深、低效的编码。这篇教你 3 个不掉画质的压缩姿势。",
+        { type: "h2", text: "为什么要压 PNG？（4 个高频场景）" },
+        {
+          type: "ul",
+          items: [
+            "网页性能：Google 把图片大小计入 LCP，一张 2MB 的截图就能拖垮移动端首屏",
+            "电商与设计交付：平台上传限制 1-2MB，高清 PNG 原图常常直接超限",
+            "开发打包：PNG 资源进 npm 包或容器镜像，体积直接决定构建和加载速度",
+            "邮件与文档：PNG 截图作为附件，大文件容易被邮件服务器拒收",
+          ],
+        },
+        { type: "h2", text: "先理解：PNG 无损压缩 = 减掉「看不见的重量」" },
+        "PNG 用无损算法（DEFLATE）存储像素，压缩永远不会让画质变差。文件大小主要由三部分决定，优化方向也随之而来：",
+        {
+          type: "ul",
+          items: [
+            "色深：24 位真彩色 vs 8 位调色板（256 色）。截图、图标、插画用 8 位，体积能少 50-70%，肉眼几乎无差别",
+            "元数据：EXIF、ICC、时间戳、软件信息。这些对显示毫无贡献，删掉即可瘦身",
+            "编码效率：同一张图，不同编码器（pngquant、zopfli）产出的体积差异可达 30% 以上",
+          ],
+        },
+        { type: "h2", text: "方法 1（推荐）：在线工具 — image-compressor-saas.shop" },
+        "100% 浏览器本地处理：拖入 PNG，自动做色深分析、元数据清理和重编码，输出更小的无损 PNG。不上传服务器、不注册、不存任何数据，文件永不离开你的设备。",
+        { type: "h2", text: "方法 2：pngquant / optipng（命令行）" },
+        "pngquant --quality=65-80 能自动降到 8 位并重新量化；optipng -o7 用最强压缩级别重编码。适合批量处理，但需要命令行基础。",
+        { type: "h2", text: "方法 3：设计工具导出设置" },
+        "Photoshop 导出时选「PNG-8」并去掉元数据；Figma 导出 PNG 时用「8-bit」并关闭不用的导出项。适合设计师顺手优化。",
+        { type: "h2", text: "分步教程：30 秒无损压缩 PNG" },
+        {
+          type: "ul",
+          items: [
+            "打开 https://image-compressor-saas.shop",
+            "拖入你的 PNG（或点击浏览）",
+            "选择「无损」或目标大小模式",
+            "点击压缩，实时预览与原图对比",
+            "画质一致、体积变小——下载结果",
+          ],
+        },
+        { type: "h2", text: "常见问题 FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "PNG 压缩真的完全不损画质吗？", a: "是。PNG 是无损格式，我们只移除元数据、优化色深和编码，不重采样像素，所以视觉质量完全不变。" },
+            { q: "哪些 PNG 压缩收益最大？", a: "截图、图表、插画（色块多、元数据多）通常能压掉 50-80%；照片类 PNG 建议转 JPG/WebP 更划算。" },
+            { q: "压缩后能再转回原大小吗？", a: "可以重新生成更大的文件，但元数据一旦移除就永久丢失。重要文件建议先保留一份原始副本。" },
+            { q: "工具会上传我的 PNG 吗？", a: "不会。所有处理都在你的浏览器本地完成，文件不上传服务器、不落盘存储。" },
+          ],
+        },
+        { type: "h2", text: "立即体验" },
+        "拖入你的第一张 PNG，30 秒拿到更小且画质不变的文件。",
+        { type: "cta", text: "免费无损压缩 PNG →", href: "/" },
+      ],
+      en: [
+        "\"Does compressing a PNG lose quality?\" — this is the question people get wrong. PNG is a lossless format by design; what actually destroys quality are tools that squeeze PNG like a JPG, lossily. The right way to compress a PNG is to remove its invisible weight: redundant metadata, unnecessary color depth, and inefficient encoding. Here are the 3 moves that shrink a PNG without touching its pixels.",
+        { type: "h2", text: "Why compress PNG at all? (4 high-frequency scenarios)" },
+        {
+          type: "ul",
+          items: [
+            "Web performance: Google counts image size into LCP — a single 2MB screenshot can tank mobile first paint",
+            "E-commerce & design delivery: platforms cap uploads at 1-2MB, and hi-res PNG originals often blow past the limit",
+            "Development & packaging: PNG assets in npm bundles or container images directly affect build and load time",
+            "Email & documents: PNG screenshots attached to emails get rejected by mail servers when too large",
+          ],
+        },
+        { type: "h2", text: "Understand first: lossless PNG compression removes invisible weight" },
+        "PNG stores pixels with a lossless algorithm (DEFLATE) — compressing it never degrades quality. File size comes from three parts, and each points to an optimization:",
+        {
+          type: "ul",
+          items: [
+            "Color depth: 24-bit true color vs 8-bit palette (256 colors). Screenshots, icons, and illustrations do fine at 8-bit — often 50-70% smaller with no visible difference",
+            "Metadata: EXIF, ICC, timestamps, software tags. They contribute nothing to display — strip them to slim down",
+            "Encoding efficiency: different encoders (pngquant, zopfli) can differ by 30%+ in output size for the same image",
+          ],
+        },
+        { type: "h2", text: "Method 1 (recommended): Online tool — image-compressor-saas.shop" },
+        "100% browser-local processing: drop in a PNG, and it analyzes color depth, cleans metadata, and re-encodes — outputting a smaller lossless PNG. No server upload, no sign-up, no stored data. Your file never leaves your device.",
+        { type: "h2", text: "Method 2: pngquant / optipng (command line)" },
+        "pngquant --quality=65-80 automatically drops to 8-bit and re-quantizes; optipng -o7 re-encodes at maximum compression. Great for batch jobs, but requires CLI comfort.",
+        { type: "h2", text: "Method 3: Export settings in design tools" },
+        "In Photoshop, export as PNG-8 with metadata stripped; in Figma, export at 8-bit and disable unused export options. Handy for designers optimizing as they go.",
+        { type: "h2", text: "Step-by-step: compress a PNG losslessly in 30 seconds" },
+        {
+          type: "ul",
+          items: [
+            "Open https://image-compressor-saas.shop",
+            "Drop in your PNG (or click to browse)",
+            "Pick Lossless mode or a target size",
+            "Click Compress — preview the result side-by-side with the original",
+            "Same quality, smaller file — download it",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Is PNG compression really 100% quality-preserving?", a: "Yes. PNG is lossless; we only strip metadata and optimize color depth and encoding — pixels are never resampled, so visual quality stays identical." },
+            { q: "Which PNGs benefit the most?", a: "Screenshots, charts, and illustrations (lots of flat color and metadata) often shrink 50-80%. For photographic PNGs, converting to JPG/WebP is usually more efficient." },
+            { q: "Can I restore the original size afterwards?", a: "You can re-generate a larger file, but stripped metadata is gone permanently. Keep an original copy of important files." },
+            { q: "Does the tool upload my PNG?", a: "No. Everything runs in your browser; files are never uploaded or stored on a server." },
+          ],
+        },
+        { type: "h2", text: "Try It Now" },
+        "Drop in your first PNG and get a smaller, quality-identical file in 30 seconds.",
+        { type: "cta", text: "Compress Your PNG Free →", href: "/en" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {

@@ -119,10 +119,10 @@ const zh = {
   // Blog
   blogTitle: "博客",
   blogSub: "关于图片压缩、网站优化和隐私保护的实用指南",
-  blog1Title: "如何将图片压缩到 200KB（或任意指定大小）",
-  blog1Desc: "一张高清照片动辄 3-5MB，而报名系统、邮件附件、网站上传通常限制在 200KB、100KB 甚至 50KB。本文教你如何用这个工具精确压缩到任意目标大小。",
-  blog2Title: "WebP vs AVIF vs JPEG：2026 年该选哪种格式？",
-  blog2Desc: "三种主流图片格式的全面对比——压缩率、浏览器兼容性、最佳使用场景。帮你做出最适合的选择。",
+  blog1Title: "如何把 JPG 压缩到 100KB 以下（在线免费，无需注册）",
+  blog1Desc: "邮件附件、求职简历、政府表格都卡 100KB？30 秒用浏览器本地压缩搞定——不上传、不注册、不损画质。",
+  blog2Title: "如何无损压缩 PNG（不掉画质，在线免费）",
+  blog2Desc: "PNG 无损压缩的 3 个正确姿势：降色深、去元数据、重新编码。30 秒在浏览器本地搞定——不上传、不注册、画质不变。",
   blog3Title: "10 个提升网站加载速度的图片优化技巧",
   blog3Desc: "从压缩到延迟加载，从格式选择到 CDN 策略，覆盖图片优化的每一个环节。",
   // Contact
@@ -253,10 +253,10 @@ const en: typeof zh = {
   // Blog
   blogTitle: "Blog",
   blogSub: "Practical guides on image compression, web optimization, and privacy protection",
-  blog1Title: "How to Compress Images to 200KB (or Any Target Size)",
-  blog1Desc: "A high-res photo can be 3-5MB, but application portals, email attachments, and websites often limit uploads to 200KB or 100KB. This guide shows you how to hit any target size precisely.",
-  blog2Title: "WebP vs AVIF vs JPEG: Which Format to Choose in 2026?",
-  blog2Desc: "A comprehensive comparison of the three major image formats — compression ratio, browser compatibility, and best use cases to help you decide.",
+  blog1Title: "How to Compress JPG to Under 100KB Online (Free, No Sign-Up)",
+  blog1Desc: "Email attachments, job applications, and forms all cap at 100KB? Compress JPG to under 100KB in 30 seconds — browser-local, no upload, no sign-up.",
+  blog2Title: "How to Compress PNG Without Losing Quality (Free, Online)",
+  blog2Desc: "The 3 right ways to compress PNG losslessly: reduce color depth, strip metadata, re-encode. Do it in 30 seconds in your browser — no upload, no sign-up, no quality loss.",
   blog3Title: "10 Image Optimization Tips for Faster Websites",
   blog3Desc: "From compression to lazy loading, format selection to CDN strategy — covering every aspect of image optimization.",
   // Contact
