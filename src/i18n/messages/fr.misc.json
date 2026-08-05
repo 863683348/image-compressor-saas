@@ -11,6 +11,7 @@
   "privacyP5": "Informations du compte : si vous vous connectez, nous obtenons des informations de base (nom, e-mail, avatar) via Google, utilisées uniquement pour l'identification du compte et la gestion des quotas.",
   "privacyP6": "Conservation des données : les statistiques d'utilisation sont conservées 26 mois. Les informations du compte sont supprimées dans les 30 jours suivant la suppression du compte.",
   "privacyP7": "Contact : pour toute question relative à la vie privée, contactez-nous via la page de contact.",
+  "privacyP8": "Advertising: We use Google AdSense to display advertisements on this site. Google, as a third-party vendor, uses cookies (including the DART cookie) to serve ads based on your visits to this and other websites. Google’s use of the DART cookie enables it to serve ads based on your browsing behavior. You can opt out of personalized advertising via Google Ads Settings (https://www.google.com/settings/ads) or Your Online Choices (http://www.aboutads.info/choices). For details, see Google’s advertising privacy policy (https://policies.google.com/technologies/ads).",
   "// Terms\n  termsTitle": "Conditions d'utilisation",
   "// Blog\n  blogTitle": "Blog",
   "// Contact\n  contactTitle": "Contactez-nous"

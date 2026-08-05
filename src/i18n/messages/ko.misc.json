@@ -11,6 +11,7 @@
   "privacyP5": "계정 정보: 로그인을 선택하면 Google을 통해 기본 정보(이름, 이메일, 아바타)를 받습니다. 계정 식별 및 할당량 관리에만 사용됩니다.",
   "privacyP6": "데이터 보존: 사용 통계는 26개월간 보관됩니다. 계정 정보는 계정 삭제 후 30일 이내에 삭제됩니다.",
   "privacyP7": "문의: 개인정보 관련 질문은 문의 페이지를 통해 연락해 주세요.",
+  "privacyP8": "Advertising: We use Google AdSense to display advertisements on this site. Google, as a third-party vendor, uses cookies (including the DART cookie) to serve ads based on your visits to this and other websites. Google’s use of the DART cookie enables it to serve ads based on your browsing behavior. You can opt out of personalized advertising via Google Ads Settings (https://www.google.com/settings/ads) or Your Online Choices (http://www.aboutads.info/choices). For details, see Google’s advertising privacy policy (https://policies.google.com/technologies/ads).",
   "// Terms\n  termsTitle": "서비스 약관",
   "// Blog\n  blogTitle": "블로그",
   "// Contact\n  contactTitle": "문의하기"
