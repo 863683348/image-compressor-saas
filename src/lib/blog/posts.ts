@@ -491,6 +491,142 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "avif-vs-webp-vs-jpeg-2026",
+    date: "2026-08-07",
+    title: {
+      zh: "AVIF vs WebP vs JPEG：2026 图片格式终极对比",
+      en: "AVIF vs WebP vs JPEG: The 2026 Comparison",
+    },
+    description: {
+      zh: "AVIF 比 JPEG 小一半、WebP 比 JPEG 小 1/3——2026 年到底该用哪个？从体积、画质、兼容性到适用场景，一张表讲清楚。",
+      en: "AVIF is ~50% smaller than JPEG, WebP ~30% smaller. Which should you use in 2026? Size, quality, browser support, and use cases — one comparison to settle it.",
+    },
+    keywords: [
+      "avif vs webp vs jpeg",
+      "avif vs webp",
+      "avif vs jpeg",
+      "webp vs jpeg",
+      "image format comparison 2026",
+      "best image format for web",
+      "avif 图片格式",
+      "webp 和 jpeg 区别",
+    ],
+    content: {
+      zh: [
+        "如果你在纠结图片该存成 JPEG、WebP 还是 AVIF，2026 年的答案其实很清晰：能上 AVIF 就上 AVIF，不能就 WebP，JPEG 只留给兼容性兜底。这篇把三种格式的体积、画质、兼容性和适用场景放在同一张表里比，顺便给出不同场景的选型建议。",
+        { type: "h2", text: "三种格式一句话概括" },
+        {
+          type: "ul",
+          items: [
+            "JPEG（1992）：老牌有损格式，全平台通用，压缩率最低",
+            "WebP（2010）：Google 推出，比 JPEG 平均小 25-35%，支持透明",
+            "AVIF（2019）：基于 AV1 视频编码，比 JPEG 平均小 50%，支持透明和 HDR",
+          ],
+        },
+        { type: "h2", text: "体积与画质对比（同画质下）" },
+        {
+          type: "ul",
+          items: [
+            "基准：同一张照片，JPEG 质量 80 = 100KB",
+            "WebP 质量 80 ≈ 70-75KB（省 25-35%）",
+            "AVIF 质量 50-60 ≈ 45-55KB（省 45-55%）",
+            "越是大图、细节越丰富的照片，AVIF 的优势越明显",
+          ],
+        },
+        { type: "h2", text: "2026 年浏览器兼容性" },
+        {
+          type: "ul",
+          items: [
+            "JPEG：所有设备、所有软件，无死角",
+            "WebP：Chrome/Edge/Firefox/Safari 全部支持，十年前的浏览器也基本兼容",
+            "AVIF：Chrome/Edge/Firefox/Safari 16.4+ 支持，2026 年主流浏览器覆盖率已超 95%",
+            "保险做法：<picture> 标签配 AVIF 主图 + WebP/JPEG 回退，浏览器自己选",
+          ],
+        },
+        { type: "h2", text: "按场景选格式" },
+        {
+          type: "ul",
+          items: [
+            "网页内容图/产品图 → AVIF（体积最小，LCP 最快）；老用户回退 WebP",
+            "社交媒体导出 → WebP 或 JPEG（第三方平台兼容性优先）",
+            "打印/专业修图 → JPEG 或 TIFF（AVIF/WebP 不适合专业流程）",
+            "透明背景图标 → WebP 或 PNG；追求更小用 AVIF",
+            "照片存档 → 保留原始文件，不要反复转码",
+          ],
+        },
+        { type: "h2", text: "压缩工具怎么选" },
+        "无论目标格式是什么，压缩逻辑都一样：尽量少损失地减小体积。在线工具推荐选浏览器本地处理的（不上传服务器，隐私更安全），批量处理时用命令行工具（cwebp、avifenc）效率更高。压完后用文件大小 + 肉眼双重验收，别只看数字。",
+        { type: "h2", text: "常见问题 FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "AVIF 一定比 WebP 小吗？", a: "通常小 20-30%，照片类素材优势最明显；纯色图标/截图两者差距不大，AVIF 编码有时更慢。" },
+            { q: "AVIF 兼容性够用了吗？", a: "2026 年主流浏览器覆盖率超过 95%，配合 <picture> 回退到 WebP/JPEG 可覆盖全部用户。" },
+            { q: "JPEG 会被淘汰吗？", a: "短期不会。相机、打印、老旧软件都依赖它；但在网页领域，JPEG 正在退居兼容性兜底的位置。" },
+            { q: "WebP 和 AVIF 能无损压缩吗？", a: "都能。无损 WebP 适合截图图标（比 PNG 小 15-25%）；无损 AVIF 也有，但编码慢，用得少。" },
+          ],
+        },
+        { type: "cta", text: "免费压缩你的图片 →", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "If you are wondering whether your images should be JPEG, WebP, or AVIF, the 2026 answer is refreshingly simple: use AVIF when you can, WebP when you cannot, and keep JPEG only as a compatibility fallback. This post puts size, quality, browser support, and use cases for all three on one table, then gives you a pick-by-scenario guide.",
+        { type: "h2", text: "The three formats in one line each" },
+        {
+          type: "ul",
+          items: [
+            "JPEG (1992): the old workhorse — universal support, worst compression",
+            "WebP (2010): Google's format — 25-35% smaller than JPEG on average, transparency included",
+            "AVIF (2019): built on the AV1 video codec — roughly 50% smaller than JPEG, with transparency and HDR",
+          ],
+        },
+        { type: "h2", text: "Size and quality at equal visual quality" },
+        {
+          type: "ul",
+          items: [
+            "Baseline: a photo at JPEG quality 80 = 100KB",
+            "WebP quality 80 ≈ 70-75KB (25-35% smaller)",
+            "AVIF quality 50-60 ≈ 45-55KB (45-55% smaller)",
+            "The bigger and more detailed the photo, the more AVIF wins",
+          ],
+        },
+        { type: "h2", text: "Browser support in 2026" },
+        {
+          type: "ul",
+          items: [
+            "JPEG: everything, everywhere — no gaps",
+            "WebP: full support in Chrome/Edge/Firefox/Safari, even older browsers mostly fine",
+            "AVIF: Chrome/Edge/Firefox/Safari 16.4+ — well over 95% coverage in 2026",
+            "Safe pattern: <picture> with AVIF primary and WebP/JPEG fallbacks; the browser picks",
+          ],
+        },
+        { type: "h2", text: "Pick by scenario" },
+        {
+          type: "ul",
+          items: [
+            "Web content/product images → AVIF (smallest, fastest LCP), WebP fallback for old users",
+            "Social media export → WebP or JPEG (third-party platforms care about compatibility)",
+            "Print/professional editing → JPEG or TIFF (AVIF/WebP do not fit pro workflows)",
+            "Transparent icons → WebP or PNG; AVIF if you want them even smaller",
+            "Photo archive → keep originals, never re-encode repeatedly",
+          ],
+        },
+        { type: "h2", text: "Choosing a compression tool" },
+        "Whatever the target format, compression works the same: shrink size with minimal visible loss. For online tools, prefer ones that process in the browser (no upload, privacy-safe). For batch jobs, command-line tools like cwebp and avifenc are far more efficient. Always verify with file size plus your own eyes, not just the numbers.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Is AVIF always smaller than WebP?", a: "Usually 20-30% smaller, with photos benefiting the most. For flat-color icons and screenshots the gap narrows, and AVIF encoding can be slower." },
+            { q: "Is AVIF support good enough now?", a: "Mainstream browser coverage passed 95% in 2026. Adding a <picture> fallback to WebP/JPEG covers everyone else." },
+            { q: "Will JPEG die?", a: "Not soon. Cameras, printing, and legacy software still depend on it. On the web, though, it is sliding into a compatibility-fallback role." },
+            { q: "Can WebP and AVIF compress losslessly?", a: "Both can. Lossless WebP is great for screenshots and icons (15-25% smaller than PNG); lossless AVIF exists but encodes slowly, so it is rarely used." },
+          ],
+        },
+        { type: "cta", text: "Compress your images for free →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
