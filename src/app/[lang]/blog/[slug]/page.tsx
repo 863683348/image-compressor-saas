@@ -149,7 +149,7 @@ export default async function Page({ params }: Props) {
         <p style={{ fontSize: 14, color: "var(--muted, #6b7280)" }}>
           {locale === "zh" ? "阅读更多：" : "More reads: "}
           {POSTS.filter((p) => p.slug !== post.slug)
-            .slice(0, 2)
+            .slice(0, 3)
             .map((p) => (
               <a key={p.slug} href={`${blogPath}/${p.slug}`} style={{ color: "var(--primary, #4f46e5)", marginRight: 12 }}>
                 {p.title[locale]}
