@@ -59,6 +59,7 @@ export default async function Page({ params }: Props) {
         mainEntityOfPage: `${SITE_URL}/${locale === "zh" ? "" : "en/"}blog/${post.slug}`,
         author: { "@type": "Organization", name: "Image Compressor", url: SITE_URL },
         publisher: { "@type": "Organization", name: "Image Compressor", url: SITE_URL },
+        image: SITE_URL + "/icon.svg",
       },
       ...(faqItems.length
         ? [
