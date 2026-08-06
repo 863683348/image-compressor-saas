@@ -55,6 +55,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         dateModified: post.date,
         url: `${SITE_URL}/blog/${post.slug}`,
         mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+        author: { "@type": "Organization", name: "Image Compressor", url: SITE_URL },
         publisher: { "@type": "Organization", name: "Image Compressor", url: SITE_URL },
       },
       ...(faqItems.length
