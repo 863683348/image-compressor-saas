@@ -790,6 +790,99 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "compress-image-for-email-attachments",
+    date: "2026-08-09",
+    title: {
+      zh: "压缩图片再发邮件：让附件不再被退回（2026 实操）",
+      en: "How to Compress Images for Email Attachments (2026, No Upload)",
+    },
+    description: {
+      zh: "邮件附件被退回？图片太大是最常见原因。这份 2026 实操指南教你用浏览器本地工具把图片压到 10MB（或对方要求的 100KB）以下，不发服务器、不注册。",
+      en: "Email attachment bounced? Oversized images are the usual cause. This 2026 guide shows how to reduce image size for email using a browser-local tool, no upload and no sign-up.",
+    },
+    keywords: ["reduce image size for email", "compress image for email", "email attachment size limit", "图片太大 发不出邮件", "压缩图片 邮件附件"],
+    content: {
+      zh: [
+        "邮件附件的尺寸上限是发件里最烦人的隐形规则：Gmail 25MB、Outlook 20MB、不少企业邮箱 10MB 甚至更小，而现在的手机照片一张就能到 8MB。这篇围绕「reduce image size for email」给出 2026 年最实用的做法：用浏览器本地压缩，不发服务器、不注册，30 秒搞定。",
+        { type: "h2", text: "先搞清楚对方卡多少：邮件附件大小上限速查" },
+        "压缩之前先确认目标值，不同服务商差异很大：Gmail 25MB（含附件）、Outlook/Office 365 20MB、Yahoo 25MB、企业 Exchange 常见 10MB、很多招聘系统只收 5MB 或 100KB 的单文件。被退回时邮件会有明确的「size limit exceeded」提示，按那个数字压，而不是按经验猜。",
+        {
+          type: "ul",
+          items: [
+            "Gmail：25MB（所有附件合计）",
+            "Outlook / Office 365：20MB",
+            "企业邮箱（Exchange 默认）：10MB 常见",
+            "招聘/表单系统：5MB 或 100KB/文件 很常见",
+          ],
+        },
+        { type: "h2", text: "三档压缩法：从 8MB 到能发出去" },
+        "一张 8MB 的手机照片要降到目标值，按档位处理最省事：第一档是浏览器本地压缩工具（把质量调到 80-85%，一张 8MB 的照片通常能到 1-2MB）；第二档是缩分辨率（长边压到 1920px，对屏幕查看完全够，照片能再降一半）；第三档才是换格式（WebP 在相同画质下体积约为 JPG 的 70%，但对方邮箱可能不支持预览，所以发正式附件时优先用 JPG）。",
+        { type: "h2", text: "批量场景：多图附件的统一处理" },
+        "一次发几十张图时，逐张压缩太累。浏览器本地工具支持多选自动排队，选完就自动压完，比逐张上传的在线工具省一半时间。压完检查一下总量是否低于对方上限，超了就再降一档质量。敏感图片（证件、合同）建议只走本地处理，别用需要上传的在线压缩器。",
+        { type: "h2", text: "发之前的一分钟检查清单" },
+        {
+          type: "ul",
+          items: [
+            "单张图片是否低于对方单文件上限（很多系统是 100KB/文件）",
+            "所有附件合计是否低于服务商总量上限",
+            "文件名是否保留扩展名（压缩工具偶尔会丢失）",
+            "关键图片发送前用预览工具确认画质可接受",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Gmail 附件上限是多少？", a: "25MB，包含所有附件合计。超过这个值邮件会被退回，提示 size limit exceeded。实际发送建议留余量，压到 20MB 以内更稳。" },
+            { q: "怎么把图片压到 100KB 以下？", a: "先降质量到 75-80%，再缩长边到 1280px。这样处理过的 JPG 通常能到 80-150KB；如果还超，继续降到 64KB 质量档或 1024px。浏览器本地工具可以实时看到压缩后体积。" },
+            { q: "WebP 适合当邮件附件吗？", a: "WebP 体积确实小，但对方邮箱可能不支持预览，部分系统还会拒绝接收。正式附件优先 JPG；WebP 适合网页使用，不适合作为对外发送的附件格式。" },
+            { q: "压缩会不会让图片看起来很糊？", a: "质量 80% + 长边 1920px 对屏幕查看几乎无感。会糊的是过度压缩（质量低于 60%）或把原图缩太小。压缩后先预览再发送。" },
+          ],
+        },
+        { type: "cta", text: "免费压缩图片（浏览器本地处理）→", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "Email attachment size limits are the most annoying invisible rule in sending: Gmail caps at 25MB, Outlook at 20MB, plenty of corporate mailboxes at 10MB or less, and a single phone photo can already be 8MB. This post covers the practical way to reduce image size for email in 2026: browser-local compression, no upload, no sign-up, done in 30 seconds.",
+        { type: "h2", text: "Know the target first: email attachment size limits" },
+        "Compress toward a number, not a guess. Limits vary a lot: Gmail 25MB total, Outlook/Office 365 20MB, Yahoo 25MB, corporate Exchange commonly 10MB, and many job-application or form systems accept 5MB or even 100KB per file. If an email bounces, it names the limit; use that number.",
+        {
+          type: "ul",
+          items: [
+            "Gmail: 25MB total for all attachments",
+            "Outlook / Office 365: 20MB",
+            "Corporate Exchange (default): often 10MB",
+            "Job applications / form systems: 5MB or 100KB per file is common",
+          ],
+        },
+        { type: "h2", text: "The three-level compression ladder" },
+        "To take an 8MB phone photo down to sendable, work in levels. Level one: a browser-local compressor at quality 80-85% usually lands 1-2MB. Level two: resize the long edge to 1920px, which is plenty for on-screen viewing and halves the file again. Level three: switch formats, WebP is about 70% of JPG at equal quality, but recipients' mail clients may not preview it, so stick with JPG for formal attachments.",
+        { type: "h2", text: "Batch jobs: many images in one email" },
+        "Compressing dozens of images one by one is a waste of an afternoon. Browser-local tools queue multiple files automatically, faster than upload-based compressors that force one round trip per image. Check the total against the limit, and if it is still over, drop one more quality notch. For sensitive files (IDs, contracts), only use local processing, never an upload-based tool.",
+        { type: "h2", text: "One-minute pre-send checklist" },
+        {
+          type: "ul",
+          items: [
+            "Each image under the per-file cap (many systems want 100KB or less)",
+            "All attachments combined under the provider total",
+            "File extension preserved (compressors sometimes drop it)",
+            "Critical images previewed to confirm acceptable quality",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "What is the Gmail attachment limit?", a: "25MB total across all attachments. Emails over that bounce with a size limit exceeded error. Sending under 20MB leaves comfortable margin." },
+            { q: "How do I compress an image to under 100KB?", a: "Drop quality to 75-80% and resize the long edge to 1280px. A JPG treated that way usually lands at 80-150KB; if still over, go to 64% quality or 1024px. Browser-local tools show the resulting size instantly." },
+            { q: "Is WebP fine as an email attachment?", a: "WebP is smaller, but recipient mail clients may not preview it and some systems reject it. Use JPG for formal attachments; WebP is for the web." },
+            { q: "Will compression make the image look blurry?", a: "Quality 80% with a 1920px long edge is practically indistinguishable on screen. Blur comes from over-compression (below 60%) or shrinking too far. Preview before sending." },
+          ],
+        },
+        { type: "cta", text: "Compress images for free (browser-local) →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
