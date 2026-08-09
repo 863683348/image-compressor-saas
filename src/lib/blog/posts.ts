@@ -883,6 +883,121 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "compress-images-for-web-seo",
+    date: "2026-08-10",
+    title: {
+      zh: "压缩图片提升 SEO：一张图影响排名的三个环节",
+      en: "Compress Images for Web SEO: How One Image Affects Rankings",
+    },
+    description: {
+      zh: "图片是页面性能的最大杀手，而 image optimization seo 是少数做了立刻见效的优化：LCP 达标、抓取提速、图片进 Google 图片搜索。附一套直接能用的压缩标准。",
+      en: "Images are the biggest performance killer on the web, and image optimization seo pays off immediately: passing LCP, faster crawling, images in Google Images. Plus a compression standard you can copy.",
+    },
+    keywords: ["image optimization seo", "compress images for web seo", "image seo compression", "web performance image size", "图片压缩 SEO"],
+    content: {
+      zh: [
+        "图片是网页里最容易被忽略的性能杀手，而 image optimization seo 是少数“做了立刻见效”的优化项：压缩得当，页面加载变快、LCP 达标、图片还能进 Google 图片搜索。这篇讲压缩图片和 SEO 之间的关系，以及一套直接能用的压缩标准。",
+        { type: "h2", text: "为什么图片压缩影响排名" },
+        "Google 的排名逻辑里，页面速度是真实信号，而图片通常是页面体量的大头：一张未压缩的照片能占 2-5MB，三张图就能拖垮整个首屏。影响链路有三个环节：",
+        {
+          type: "ul",
+          items: [
+            "Core Web Vitals：图片延迟加载直接影响 LCP（最大内容绘制），LCP 超过 2.5 秒会被标记为差",
+            "抓取预算：页面越重，Googlebot 抓取越慢，内容更新后的收录周期变长",
+            "图片搜索：压缩不是“缩小文件”那么简单，配合 alt 文本和文件名，图片本身也能带来搜索流量",
+          ],
+        },
+        "这也是为什么 compress images for web seo 是独立站和内容站的必修课：它同时影响三个环节。",
+        { type: "h2", text: "一套直接能用的压缩标准" },
+        "不需要懂图像编码，按这套标准执行即可：",
+        {
+          type: "ul",
+          items: [
+            "照片（博客配图）：WebP（兼容 JPEG），100-200KB，质量 80% 视觉无损",
+            "装饰性图标：SVG，10-50KB，矢量任意缩放",
+            "封面/OG 图：WebP 或 JPEG，200-400KB，1200×630 起",
+            "背景大图：WebP，150-300KB，分辨率降级到实际显示尺寸",
+          ],
+        },
+        "关键动作：先缩放再压缩。一张 4000×3000 的照片压到质量 20% 不如缩到 1200px 再压质量 80%，后者文件更小、观感更好。压缩顺序永远是“先缩尺寸，再降质量”。",
+        { type: "h2", text: "压缩工具怎么选：本地 vs 在线" },
+        "在线工具方便，但要把图片上传到服务器；本地工具（浏览器本地处理）不离开设备，适合敏感图片，速度也更快。选工具看三点：是否支持批量、是否输出 WebP、是否显示压缩前后对比。顺便说一句，批量压缩时浏览器本地工具的队列处理比逐个上传快得多。",
+        { type: "h2", text: "图片 SEO 的另外两个动作" },
+        "压缩只是第一步，图片要带来流量还差两个动作：",
+        {
+          type: "ul",
+          items: [
+            "文件名用描述性英文：dog-running-park.jpg 好过 IMG_2048.jpg，Google 图片搜索读文件名",
+            "alt 文本写人话：描述图片内容 + 自然带关键词，但别堆砌；纯装饰图 alt 留空即可",
+            "懒加载 + 尺寸声明：loading=\"lazy\" 加 width/height，避免布局偏移（CLS）",
+          ],
+        },
+        "这三件事和压缩配合，图片才算真正为 SEO 服务。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "压缩图片会降低 SEO 吗？", a: "不会，压缩只删冗余数据，视觉质量可保持。反而会提升：页面变快、LCP 达标、抓取效率提高。真正伤 SEO 的是过度压缩导致图片模糊。" },
+            { q: "WebP 会影响图片搜索吗？", a: "不会。Google 图片搜索完全支持 WebP，而且 WebP 比 JPEG 小 25-35%，加载更快，排名逻辑里是加分项。" },
+            { q: "一张图压到多小合适？", a: "博客正文图 100-200KB、封面 200-400KB 是常见区间。压缩到肉眼无差别为止，别追求极限体积。" },
+            { q: "需要给每张图都做 alt 吗？", a: "承载信息的图需要，纯装饰图可以留空（避免屏幕阅读器重复播报）。alt 文本写清楚图片内容即可，关键词顺其自然。" },
+          ],
+        },
+        { type: "cta", text: "压缩图片，立竿见影 →", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "Images are the most ignored performance killer on the web, and image optimization seo is one of the few fixes that pays off immediately: compress properly and pages load faster, LCP passes, and images can even show up in Google Images. This post covers how image compression connects to rankings, plus a compression standard you can use as-is.",
+        { type: "h2", text: "Why image compression affects rankings" },
+        "Page speed is a real ranking signal, and images are usually the biggest chunk of a page's weight: one uncompressed photo can take 2-5MB, and three of them sink the entire above-the-fold. The impact chain runs through three links:",
+        {
+          type: "ul",
+          items: [
+            "Core Web Vitals: images are the usual LCP (largest contentful paint) offender; over 2.5 seconds gets flagged as poor",
+            "Crawl budget: heavier pages crawl slower, and fresh content takes longer to get indexed",
+            "Image search: compression plus alt text and filenames means the image itself can drive search traffic",
+          ],
+        },
+        "That is why compress images for web seo is a must for independent sites and content sites: it touches all three links at once.",
+        { type: "h2", text: "A compression standard you can copy" },
+        "You do not need to understand image encoding. Follow this standard:",
+        {
+          type: "ul",
+          items: [
+            "Photos (blog images): WebP with JPEG fallback, 100-200KB, quality 80% is visually lossless",
+            "Decorative icons: SVG, 10-50KB, vector and scales at any size",
+            "Cover / OG images: WebP or JPEG, 200-400KB, start at 1200x630",
+            "Large backgrounds: WebP, 150-300KB, downscale to actual display size",
+          ],
+        },
+        "Key move: resize first, compress second. A 4000x3000 photo at quality 20% loses to the same photo at 1200px and quality 80%, which is smaller and looks better. The order is always \"shrink dimensions, then lower quality\".",
+        { type: "h2", text: "Local vs online compressors" },
+        "Online tools are convenient but upload your image to a server. Local tools process in the browser and never leave the device, which suits sensitive images and is also faster. Judge a tool on three things: batch support, WebP output, and before-after comparison. For batch jobs, browser-local queued processing beats one-upload-per-image online tools by a wide margin.",
+        { type: "h2", text: "Two more moves for image SEO" },
+        "Compression is step one; images only drive traffic with two more actions:",
+        {
+          type: "ul",
+          items: [
+            "Descriptive English filenames: dog-running-park.jpg beats IMG_2048.jpg in Google Images",
+            "Alt text that reads like a human: describe the image content with natural keywords, no stuffing; leave alt empty for decorative images",
+            "Lazy loading plus declared dimensions: loading=\"lazy\" with width/height prevents layout shift (CLS)",
+          ],
+        },
+        "These three, combined with compression, make images actually work for SEO.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Does compressing images hurt SEO?", a: "No. Compression only removes redundant data while keeping visual quality, and it helps: faster pages, passing LCP, better crawl efficiency. What hurts is over-compression that leaves images blurry." },
+            { q: "Does WebP affect image search?", a: "No. Google Images fully supports WebP, and WebP is 25-35% smaller than JPEG, so it loads faster, which is a plus in the ranking logic." },
+            { q: "How small should a single image be?", a: "100-200KB for body images and 200-400KB for covers is a common range. Compress until there is no visible difference; do not chase the absolute minimum." },
+            { q: "Does every image need alt text?", a: "Informative images do; decorative ones can leave alt empty so screen readers skip them. Write alt that describes the image, and let keywords come naturally." },
+          ],
+        },
+        { type: "cta", text: "Compress images for free (browser-local) →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
