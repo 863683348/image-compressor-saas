@@ -13,6 +13,7 @@ const s = (lang: string, key: string): string => {
 const posts = [...POSTS]
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   .map((p) => ({
+    date: p.date,
     title: p.title,
     desc: p.description,
     link: `/blog/${p.slug}`,
@@ -41,6 +42,12 @@ export default function BlogPage() {
             }}
             onClick={() => href && (window.location.href = href)}
           >
+            <p style={{ fontSize: 12, color: "var(--muted, #6b7280)", margin: "0 0 6px" }}>
+              {new Date(post.date).toLocaleDateString(
+                lang === "zh" ? "zh-CN" : "en-US",
+                { year: "numeric", month: "long", day: "numeric" }
+              )}
+            </p>
             <h2 style={{ fontSize: 16, margin: "0 0 6px", color: "var(--text, #1f2430)" }}>
               {href ? (
                 <a href={href} style={{ color: "var(--primary, #4f46e5)", textDecoration: "none" }}>
