@@ -998,6 +998,112 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "png-vs-jpg-differences",
+    date: "2026-08-11",
+    title: {
+      zh: "PNG vs JPG：别再选错了，这篇把区别一次讲透",
+      en: "PNG vs JPG: Stop Guessing, Here Is the Difference",
+    },
+    description: {
+      zh: "PNG 适合文字和截图、JPG 适合照片，选错了要么体积离谱要么画质糊掉。从压缩原理讲起，什么时候用哪个、质量损失看不看得出来，以及 2026 年的第三个选项。",
+      en: "PNG suits text and screenshots, JPG suits photos; pick wrong and you get a huge file or a mushy image. Compression principles, when to use which, whether the quality loss is visible, and the third option in 2026.",
+    },
+    keywords: [
+      "png vs jpg",
+      "png vs jpg difference",
+      "jpg vs png quality",
+      "when to use png vs jpg",
+      "png vs jpg for web",
+      "png jpg comparison",
+    ],
+    content: {
+      zh: [
+        "png vs jpg 是图片压缩领域最经典的二选一。选错了，要么图片体积大得离谱，要么画质糊成一团。这篇从原理讲起：为什么 PNG 适合文字和截图、JPG 适合照片，什么场景必须用哪个，以及 2026 年还有没有第三个选项。",
+        { type: "h2", text: "先搞清楚原理：为什么两者差这么多" },
+        "JPG 用的是有损压缩：它丢掉人眼不敏感的细节来换体积，一张照片压到 1/10 大小，肉眼几乎看不出差别。PNG 用的是无损压缩：一个像素都不丢，代价是体积大，同样内容，PNG 通常比 JPG 大 5-10 倍。",
+        "但 PNG 有两个 JPG 做不到的事：完全透明的通道，和文字/线条的清晰边缘。JPG 没有透明通道，处理文字和图形边缘时还会产生难看的压缩噪点。这就是 png vs jpg difference 的核心：一个为照片而生，一个为图形而生。",
+        { type: "h2", text: "什么时候用 PNG" },
+        {
+          type: "ul",
+          items: [
+            "截图、UI 界面、图表：文字和线条边缘需要干净",
+            "需要透明背景的 logo、贴纸、素材",
+            "需要无损编辑的中间文件（还要继续处理的原图）",
+            "尺寸小、内容平的图形（图标、色块），PNG 反而可能比 JPG 更小",
+          ],
+        },
+        { type: "h2", text: "什么时候用 JPG" },
+        {
+          type: "ul",
+          items: [
+            "照片、实拍图、渐变丰富的图像",
+            "网页/邮件/社交媒体的展示图（体积小、加载快）",
+            "摄影作品存档（高质量 JPG 对普通用途已经足够）",
+          ],
+        },
+        "判断口诀：有文字或透明需求 → PNG；是照片或追求小体积 → JPG。",
+        { type: "h2", text: "jpg vs png quality：质量损失真的看得出来吗" },
+        "对照片来说，JPG 质量 80-85 的压缩，和原始 PNG 对比，大多数人在普通屏幕上分不出差别，但体积能小 80% 以上。对文字截图，JPG 质量 80 的蚊子噪声（文字边缘的颗粒感）就非常明显，必须用 PNG。",
+        "一个实用结论：照片用 JPG 几乎无损地换体积，截图用 PNG 保证清晰。when to use png vs jpg 的答案，一半取决于内容类型，一半取决于你愿意为体积付多少代价。",
+        { type: "h2", text: "2026 年：还有更优解" },
+        "PNG 和 JPG 都老了。WebP 和 AVIF 同时在压缩率和画质上超过两者：WebP 比 JPG 小 25-35%，AVIF 比 JPG 小 50%。浏览器对它们的支持在 2026 年已经很成熟。建议：新项目优先 WebP/AVIF，PNG/JPG 留给需要兼容的老系统和特殊场景。想深入对比，看我们之前写的 WebP vs AVIF vs JPEG 那篇。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "PNG 和 JPG 哪个画质更好？", a: "单纯比画质 PNG 无损一定更好，但区别在是否看得出来。照片用高质量 JPG，肉眼无差别且体积小得多；文字截图必须 PNG。" },
+            { q: "PNG 能转成 JPG 吗？", a: "能，但透明背景会变成白色或黑色，需要先处理。转换会引入有损压缩，介意画质的话先备份原图。" },
+            { q: "为什么我的 PNG 截图这么大？", a: "PNG 对高分辨率、色彩复杂的截图体积增长很快。可以换 WebP，通常能压到 1/3 以下，或者用压缩工具处理。" },
+            { q: "网页图片该用哪个？", a: "照片用 WebP 或高质量 JPG，图形和截图用 WebP 或 PNG。记住：体积越小，页面越快，SEO 越好。" },
+          ],
+        },
+        { type: "cta", text: "在浏览器本地压缩图片（免费）→", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "The png vs jpg debate is the classic either/or of image compression. Pick wrong and you either get a file that is absurdly large or an image that turns to mush. This guide starts with the why: why PNG suits text and screenshots, why JPG suits photos, when you have no real choice, and whether 2026 offers a third option.",
+        { type: "h2", text: "The principle first: why they differ this much" },
+        "JPG uses lossy compression: it discards details the eye barely notices to shrink the file, and a photo compressed to a tenth of its size still looks about the same. PNG uses lossless compression: not a single pixel is dropped, and the price is size, usually 5-10x a JPG for the same content.",
+        "But PNG does two things JPG cannot: true alpha transparency, and clean edges on text and lines. JPG has no transparency channel, and it smears text and graphics edges with ugly compression noise. That is the core of the png vs jpg difference: one was built for photos, the other for graphics.",
+        { type: "h2", text: "When to use PNG" },
+        {
+          type: "ul",
+          items: [
+            "Screenshots, UI, charts: text and line edges need to stay clean",
+            "Logos, stickers, assets that need transparent backgrounds",
+            "Lossless intermediate files (originals you will keep editing)",
+            "Small, flat graphics (icons, color blocks), where PNG can actually beat JPG in size",
+          ],
+        },
+        { type: "h2", text: "When to use JPG" },
+        {
+          type: "ul",
+          items: [
+            "Photos, real-world shots, images with smooth gradients",
+            "Display images on web, email, social (small size, fast loading)",
+            "Photography archives (a high-quality JPG is enough for everyday use)",
+          ],
+        },
+        "The rule of thumb: text or transparency needs, use PNG; photos or small size, use JPG.",
+        { type: "h2", text: "JPG vs PNG quality: can you actually see the loss?" },
+        "For photos, JPG at quality 80-85 versus the original PNG: on a normal screen, most people cannot tell the difference, while the file shrinks by over 80%. For text screenshots, JPG at quality 80 shows obvious mosquito noise around letter edges, so PNG is the only sensible choice.",
+        "Practical takeaway: photos trade almost invisibly for JPG's small size; screenshots stay crisp in PNG. The answer to when to use png vs jpg is half about content type, half about how much size you are willing to pay for.",
+        { type: "h2", text: "2026: there is a better option now" },
+        "PNG and JPG are both old. WebP and AVIF beat both on compression and quality: WebP runs 25-35% smaller than JPG, AVIF about 50% smaller. Browser support in 2026 is mature. The advice: prefer WebP/AVIF for new projects, keep PNG/JPG for legacy compatibility and special cases. For the deep comparison, see our WebP vs AVIF vs JPEG post.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Which has better quality, PNG or JPG?", a: "Pure quality, lossless PNG always wins, but what matters is whether you can see it. Photos with high-quality JPG look identical to most eyes at a fraction of the size; text screenshots need PNG." },
+            { q: "Can I convert PNG to JPG?", a: "Yes, but transparent backgrounds become white or black, so handle that first. Conversion introduces lossy compression; back up the original if quality matters." },
+            { q: "Why is my PNG screenshot so large?", a: "PNG grows fast with high resolution and complex colors. Try WebP (often a third of the size) or run it through a compressor." },
+            { q: "Which should I use for web images?", a: "Photos: WebP or high-quality JPG. Graphics and screenshots: WebP or PNG. Smaller files mean faster pages and better SEO." },
+          ],
+        },
+        { type: "cta", text: "Compress images for free (browser-local) →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
