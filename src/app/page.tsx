@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import type { Metadata } from "next";
 import { I18nProvider } from "@/i18n/i18n-provider";
 import { buildLanguageAlternates } from "@/i18n/config";
@@ -7,8 +6,8 @@ import FooterClient from "@/components/FooterClient";
 import { CompressorTool } from "@/components/CompressorTool";
 
 // 根路径（/）渲染：Header + 内容 + Footer。
-// 包一层 I18nProvider（语言来自 NEXT_LOCALE cookie，默认英文），
-// 让根路径的语言切换按钮也能工作（in-place 切换，不导航）。
+// 语言设为静态默认 "en"（defaultLocale），不再读 cookies() —— 避免整站被拖成动态渲染。
+// 带 NEXT_LOCALE=zh cookie 的用户由 I18nProvider 的 setLang 在客户端即时切换为中文。
 // [lang]/* 路由不要复用此 page —— 它们直接 render <CompressorTool />，
 // Header/Footer 由 [lang]/layout.tsx 提供，避免重复渲染。
 //
@@ -24,10 +23,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function HomePage() {
-  const store = await cookies();
-  const cookieLocale = store.get("NEXT_LOCALE")?.value;
-  const locale = cookieLocale === "zh" ? "zh" : "en"; // 默认英文
+export default function HomePage() {
+  const locale = "en"; // 静态默认（defaultLocale），SSR 不再依赖 cookie
 
   const webAppLd = {
     "@context": "https://schema.org",
@@ -60,7 +57,7 @@ export default async function HomePage() {
       {
         "@type": "ListItem",
         position: 1,
-        name: locale === "zh" ? "首页" : "Home",
+        name: "Home",
         item: SITE_URL,
       },
     ],
