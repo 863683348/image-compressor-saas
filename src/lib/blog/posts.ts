@@ -1103,6 +1103,132 @@ export const POSTS: BlogPost[] = [
         { type: "cta", text: "Compress images for free (browser-local) →", href: "https://image-compressor-saas.shop" },
       ],
     },
+  },  {
+    slug: "webp-vs-png-comparison",
+    date: "2026-08-12",
+    title: {
+      zh: "WebP vs PNG：2026 年网页图片到底该用哪个",
+      en: "WebP vs PNG: Which Should You Use for Web Images in 2026?",
+    },
+    description: {
+      zh: "WebP 和 PNG 的核心区别是压缩方式：一个有损、一个无损。网页图片选哪个，取决于内容是照片还是图形。这篇对比透明度、体积、画质和兼容性，并给出实际场景的建议。",
+      en: "The core difference between WebP and PNG is compression: one lossy, one lossless. Which you use for web images depends on whether your content is photos or graphics. This guide compares transparency, size, quality and compatibility, with scenario-based advice.",
+    },
+    keywords: [
+      "webp vs png",
+      "webp or png which is better",
+      "webp vs png size",
+      "png to webp",
+      "webp transparency",
+      "webp 与 png 区别",
+      "网页图片格式选择",
+    ],
+    content: {
+      zh: [
+        "webp vs png 是网页图片优化的经典选择题。选错要么文件大得离谱，要么画质肉眼可见地变差。这篇从压缩原理讲起：为什么 PNG 适合图形和截图、WebP 为什么在体积上全面占优、透明通道怎么处理，以及 2026 年实际该怎么做。",
+        { type: "h2", text: "先看原理：无损和有损的区别" },
+        "PNG 是无损压缩：一个像素都不丢，代价是文件大，同样的内容通常是 JPG 的 5-10 倍。WebP 两者都做：有损 WebP 用更聪明的算法，比同画质 JPG 小 25-35%；无损 WebP 又比 PNG 小 20-30%。也就是说，WebP 在两头都赢，只是赢多赢少的问题。",
+        "关键差异在透明通道：PNG 的 alpha 透明是行业标准，所有工具都支持；WebP 也支持透明，而且带透明的 WebP 比带透明的 PNG 小得多。这是 WebP 最容易被忽略的优势。",
+        { type: "h2", text: "什么时候用 PNG" },
+        {
+          type: "ul",
+          items: [
+            "需要最大兼容性的场合（老旧浏览器、某些内容管理系统、打印流程）",
+            "图形、图标、色块：无损保证边缘干净",
+            "需要反复编辑的中间文件",
+            "你确定访问者会用不支持 WebP 的老环境",
+          ],
+        },
+        { type: "h2", text: "什么时候用 WebP" },
+        {
+          type: "ul",
+          items: [
+            "网页照片、商品图、背景图：有损 WebP 画质几乎不可感知，体积省 25-35%",
+            "带透明的 UI 素材：透明 WebP 比透明 PNG 小得多",
+            "需要兼顾画质和加载速度的任何网页场景",
+            "Lighthouse 和 Core Web Vitals 优化：更小的图片直接提升 LCP",
+          ],
+        },
+        "一句话原则：新项目默认 WebP，只有在明确需要老环境兼容时才回退 PNG。",
+        { type: "h2", text: "画质对比：肉眼能看出差别吗" },
+        "无损 WebP 和 PNG 画质完全一样，只是体积小 20-30%。有损 WebP 在质量 80-90 时，照片上和原图几乎无法区分，但体积已经比 PNG 小一半以上。真正需要担心的不是画质，而是你的转换工具：质量参数设置太低才会出问题。",
+        "对截图和文字类图形，用有损 WebP 也要小心，文字边缘会出现压缩噪点。这类内容要么用无损 WebP，要么直接保留 PNG。",
+        { type: "h2", text: "2026 年的实际建议" },
+        {
+          type: "ul",
+          items: [
+            "网页照片和展示图：有损 WebP（质量 80-85），兼容性用 <picture> 标签回退 JPG",
+            "图形、图标、截图：无损 WebP，需要极致兼容时 PNG",
+            "透明素材：WebP 优先，PNG 兜底",
+            "老系统内部流转（邮件、老旧 CMS、打印）：继续 PNG 或 JPG",
+          ],
+        },
+        "2026 年所有主流浏览器都支持 WebP，Safari 也早已原生支持。<picture> 标签可以让你同时提供 WebP 和回退格式，兼顾性能和兼容性。如果你还在犹豫，把 WebP 作为默认、PNG 作为兜底，基本不会错。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "WebP 和 PNG 哪个画质好？", a: "无损 WebP 和 PNG 画质完全相同，但 WebP 体积小 20-30%。有损 WebP 画质取决于质量参数，设置 80-90 时肉眼几乎无差别。" },
+            { q: "WebP 支持透明背景吗？", a: "支持。而且带透明的 WebP 比带透明的 PNG 小得多，这是 WebP 最容易忽略的优势。" },
+            { q: "PNG 能转成 WebP 吗？", a: "能。几乎所有的图片工具都支持转换，转换后体积通常能减少 20-50%。转之前备份原图，避免有损参数设置太低。" },
+            { q: "2026 年网页图片默认该用哪个？", a: "默认 WebP。所有主流浏览器都支持，配合 <picture> 标签给老浏览器回退 JPG 或 PNG 即可。只有明确需要最大兼容性时才用 PNG。" },
+          ],
+        },
+        { type: "cta", text: "在浏览器本地压缩图片（免费）→", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "The webp vs png choice is a classic image optimization puzzle. Pick wrong and you get a file that is absurdly large or visible quality loss. This guide starts with the compression principle: why PNG suits graphics and screenshots, why WebP wins on size across the board, how transparency works in both, and what to actually do in 2026.",
+        { type: "h2", text: "The principle first: lossless vs lossy" },
+        "PNG is lossless: not a single pixel is dropped, and the price is size, usually 5-10x a JPG for the same content. WebP does both: lossy WebP uses a smarter algorithm and runs 25-35% smaller than JPG at the same quality; lossless WebP beats PNG by 20-30%. In other words, WebP wins on both sides of the fence, the only question is by how much.",
+        "The key difference is transparency: PNG's alpha channel is the industry standard and every tool supports it. WebP supports transparency too, and a transparent WebP is much smaller than a transparent PNG. That is the most overlooked advantage of WebP.",
+        { type: "h2", text: "When to use PNG" },
+        {
+          type: "ul",
+          items: [
+            "Maximum compatibility (legacy browsers, certain CMS, print workflows)",
+            "Graphics, icons, color blocks: lossless keeps edges clean",
+            "Intermediate files you will keep editing",
+            "When you know your visitors run old environments without WebP",
+          ],
+        },
+        { type: "h2", text: "When to use WebP" },
+        {
+          type: "ul",
+          items: [
+            "Web photos, product shots, backgrounds: lossy WebP is visually indistinguishable and saves 25-35%",
+            "Transparent UI assets: transparent WebP is much smaller than transparent PNG",
+            "Any web page balancing quality against load speed",
+            "Core Web Vitals optimization: smaller images directly improve LCP",
+          ],
+        },
+        "One line: new projects default to WebP, fall back to PNG only when legacy compatibility is a real requirement.",
+        { type: "h2", text: "Quality: can you actually see the difference?" },
+        "Lossless WebP and PNG are pixel-identical in quality, only the file is 20-30% smaller. Lossy WebP at quality 80-90 is nearly indistinguishable from the original on photos, while being less than half the size of PNG. The real risk is not quality, it is your conversion tool: setting the quality parameter too low is what causes visible damage.",
+        "For screenshots and text-heavy graphics, be careful with lossy WebP too: compression noise shows around letter edges. Use lossless WebP for those, or keep PNG.",
+        { type: "h2", text: "The practical 2026 recommendation" },
+        {
+          type: "ul",
+          items: [
+            "Web photos and display images: lossy WebP (quality 80-85), with <picture> fallback to JPG",
+            "Graphics, icons, screenshots: lossless WebP, PNG only when maximum compatibility is required",
+            "Transparent assets: WebP first, PNG as fallback",
+            "Internal legacy flows (email, old CMS, print): keep PNG or JPG",
+          ],
+        },
+        "Every mainstream browser supports WebP in 2026, Safari included. The <picture> tag lets you serve WebP with a JPG or PNG fallback, covering both performance and compatibility. If you are still undecided, make WebP the default and PNG the fallback, and you will rarely be wrong.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Which has better quality, WebP or PNG?", a: "Lossless WebP and PNG are identical in quality, but WebP is 20-30% smaller. Lossy WebP quality depends on the quality setting; at 80-90 it is nearly indistinguishable from the original." },
+            { q: "Does WebP support transparency?", a: "Yes. And a transparent WebP is much smaller than a transparent PNG, which is the most overlooked advantage of WebP." },
+            { q: "Can I convert PNG to WebP?", a: "Yes. Almost every image tool supports it, and the file usually shrinks by 20-50%. Back up the original first to avoid a too-low quality setting." },
+            { q: "Which should be the web default in 2026?", a: "WebP. Every mainstream browser supports it, and the <picture> tag gives legacy browsers a JPG or PNG fallback. Use PNG only when maximum compatibility is a hard requirement." },
+          ],
+        },
+        { type: "cta", text: "Compress images for free (browser-local) →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
   },
 ];
 
