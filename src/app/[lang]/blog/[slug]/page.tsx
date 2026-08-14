@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
+import fs from "node:fs";
+import path from "node:path";
 import { notFound } from "next/navigation";
 import { getPost, getPostSlugs, POSTS, type PostBlock } from "@/lib/blog/posts";
-import { buildLanguageAlternates } from "@/i18n/config";
 
 const SITE_URL = "https://image-compressor-saas.shop";
+
+// 文章专属图（public/images/blog/{slug}.svg），缺图时回退到站点 icon
+function postImage(slug: string): string {
+  const file = path.join(process.cwd(), "public", "images", "blog", `${slug}.svg`);
+  return fs.existsSync(file)
+    ? `${SITE_URL}/images/blog/${slug}.svg`
+    : `${SITE_URL}/icon.svg`;
+}
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
@@ -16,21 +25,33 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = lang === "en" ? "en" : "zh";
   const post = getPost(slug);
   if (!post) return { title: "Not Found" };
+  const url = `${SITE_URL}/${locale}/blog/${post.slug}`;
+  const ogImage = postImage(post.slug);
   return {
     title: `${post.title[locale]} | Image Compressor`,
     description: post.description[locale],
     keywords: post.keywords,
     alternates: {
-      canonical:
-        locale === "zh" ? `${SITE_URL}/blog/${post.slug}` : `${SITE_URL}/en/blog/${post.slug}`,
-      languages: buildLanguageAlternates(locale, `/blog/${post.slug}`, SITE_URL),
+      canonical: url,
+      languages: {
+        "zh-CN": `${SITE_URL}/zh/blog/${post.slug}`,
+        en: `${SITE_URL}/en/blog/${post.slug}`,
+        "x-default": `${SITE_URL}/zh/blog/${post.slug}`,
+      },
     },
     openGraph: {
       title: post.title[locale],
       description: post.description[locale],
       type: "article",
       publishedTime: post.date,
-      url: `${SITE_URL}/${locale === "zh" ? "" : "en/"}blog/${post.slug}`,
+      url,
+      images: [{ url: ogImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title[locale],
+      description: post.description[locale],
+      images: [ogImage],
     },
   };
 }
@@ -46,6 +67,8 @@ export default async function Page({ params }: Props) {
     .filter((b): b is { type: "faq"; items: { q: string; a: string }[] } => typeof b !== "string" && b.type === "faq")
     .flatMap((b) => b.items);
 
+  const blogUrl = `${SITE_URL}/${locale}/blog/${post.slug}`;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -55,8 +78,8 @@ export default async function Page({ params }: Props) {
         description: post.description[locale],
         datePublished: post.date,
         dateModified: post.date,
-        url: `${SITE_URL}/${locale === "zh" ? "" : "en/"}blog/${post.slug}`,
-        mainEntityOfPage: `${SITE_URL}/${locale === "zh" ? "" : "en/"}blog/${post.slug}`,
+        url: blogUrl,
+        mainEntityOfPage: blogUrl,
         author: { "@type": "Organization", name: "Image Compressor", url: SITE_URL },
         publisher: { "@type": "Organization", name: "Image Compressor", url: SITE_URL },
         image: SITE_URL + "/icon.svg",
@@ -136,7 +159,7 @@ export default async function Page({ params }: Props) {
     return null;
   };
 
-  const blogPath = locale === "zh" ? "/blog" : "/en/blog";
+  const blogPath = `/${locale}/blog`;
 
   return (
     <div style={{ maxWidth: 720, margin: "0 auto", padding: "40px 18px 20px" }}>

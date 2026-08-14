@@ -2,23 +2,23 @@
 
 import { useLang } from "@/components/lang-context";
 import { dict } from "@/lib/i18n";
+import { POSTS } from "@/lib/blog/posts";
 
 const s = (lang: string, key: string): string => {
   const d = dict[lang as "zh" | "en"] as Record<string, any>;
   return d?.[key] ?? key;
 };
 
-// 真实文章列表（来自数据层；此处内联以保持 SSR/客户端兼容）
-const posts = [
-  {
-    title: "blog1Title",
-    desc: "blog1Desc",
-    link: "/blog/compress-jpg-under-100kb",
-    enLink: "/en/blog/compress-jpg-under-100kb",
-  },
-  { title: "blog2Title", desc: "blog2Desc", link: "/blog/compress-png-without-losing-quality", enLink: "/en/blog/compress-png-without-losing-quality" },
-  { title: "blog3Title", desc: "blog3Desc" },
-];
+// 数据层驱动：全部文章按日期倒序（最新在前）
+const posts = [...POSTS]
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  .map((p) => ({
+    date: p.date,
+    title: p.title,
+    desc: p.description,
+    link: `/zh/blog/${p.slug}`,
+    enLink: `/en/blog/${p.slug}`,
+  }));
 
 export default function BlogPage() {
   const { lang } = useLang();
@@ -42,17 +42,23 @@ export default function BlogPage() {
             }}
             onClick={() => href && (window.location.href = href)}
           >
+            <p style={{ fontSize: 12, color: "var(--muted, #6b7280)", margin: "0 0 6px" }}>
+              {new Date(post.date).toLocaleDateString(
+                lang === "zh" ? "zh-CN" : "en-US",
+                { year: "numeric", month: "long", day: "numeric" }
+              )}
+            </p>
             <h2 style={{ fontSize: 16, margin: "0 0 6px", color: "var(--text, #1f2430)" }}>
               {href ? (
                 <a href={href} style={{ color: "var(--primary, #4f46e5)", textDecoration: "none" }}>
-                  {s(lang, post.title)}
+                  {post.title[lang as "zh" | "en"]}
                 </a>
               ) : (
-                s(lang, post.title)
+                post.title[lang as "zh" | "en"]
               )}
             </h2>
             <p style={{ fontSize: 13, color: "var(--muted, #6b7280)", margin: 0, lineHeight: 1.6 }}>
-              {s(lang, post.desc)}
+              {post.desc[lang as "zh" | "en"]}
             </p>
           </div>
         );
