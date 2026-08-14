@@ -1340,6 +1340,112 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "avif-vs-webp-in-depth",
+    date: "2026-08-14",
+    title: {
+      zh: "AVIF vs WebP 深度对比",
+      en: "AVIF vs WebP: In-Depth Comparison",
+    },
+    description: {
+      zh: "AVIF 和 WebP 哪个更小、画质更好、浏览器支持更全？这篇深度对比把体积、画质和兼容性摆在一起，帮你选对格式。",
+      en: "Which is smaller, looks better, and works in more browsers: AVIF or WebP? This in-depth comparison puts size, quality, and support side by side.",
+    },
+    keywords: [
+      "avif vs webp",
+      "avif webp comparison",
+      "which image format smaller",
+      "webp vs avif quality",
+    ],
+    content: {
+      en: [
+        "Choosing the right image format can take megabytes off your pages without anyone spotting the difference. The real fight in 2026 isn't JPEG versus WebP anymore. It's AVIF vs WebP. Both compress circles around JPEG, both are free to use, and both run in current browsers. They are not the same format wearing a different hat, though. AVIF usually comes out smaller, while WebP is the steadier, more predictable pick for everyday work. I'll put the two side by side here so you can stop guessing and just ship the right file.",
+        { type: "h2", text: "AVIF WebP comparison: how the two actually compress" },
+        "AVIF and WebP both grew out of video codecs, AVIF from AV1 and WebP from VP8, which is why they leave JPEG in the dust. In a straight avif webp comparison at quality 80, AVIF tends to land about 30% smaller than WebP for the same sharpness, and WebP itself beats JPEG by another 30%. The wrinkle is the encoder. AVIF's best numbers come from slow, careful encoding. Point a fast encoder at a photo with default settings and you can get a file that's barely smaller than WebP and a bit noisier. The format wins on paper. The encoder decides in the real world.",
+        { type: "h2", text: "Which image format is smaller: AVIF or WebP?" },
+        "Short version: at equal quality, AVIF is the smaller file almost every time. On busy photos it often beats WebP by 20 to 50%. On flat graphics with text the gap shrinks, sometimes to almost nothing. So if which image format is smaller is your only question, AVIF wins it. Smaller isn't free, though. AVIF encoding is genuinely slow, seconds per image on a decent CPU, while WebP finishes in milliseconds. For one hero shot that's fine. For crunching 5,000 product photos on a budget box, WebP's speed starts to matter as much as its size.",
+        { type: "h2", text: "WebP vs AVIF quality: will anyone notice?" },
+        "In a webp vs avif quality test at matched file sizes, AVIF holds onto fine detail and smooth gradients better. Skies, skin, and hair survive. WebP softens a little sooner and shows blocky edges earlier. Drop below quality 60 and the gap is obvious. Up in the 75 to 85 range most people won't catch it on a phone. Where AVIF pulls clearly ahead is high-contrast edges and heavily textured photos. If your site is mostly screenshots and logos, that quality edge mostly vanishes and you're back to picking on speed and support.",
+        { type: "h2", text: "Browser support, and the catch nobody mentions" },
+        "WebP works everywhere that counts. Every mainstream browser since around 2020, including Safari 14. AVIF showed up later, Chrome and Firefox first, Safari only from version 16 in 2023. Coverage is broad now but not quite total, and a few older in-app browsers still trip over it. The fix is the same one we use for WebP: serve AVIF with a WebP or JPEG fallback through the picture element. Modern devices get the savings, everything else gets a file it can actually open.",
+        { type: "h2", text: "AVIF vs WebP at a glance" },
+        {
+          type: "ul",
+          items: [
+            "Size at equal quality: AVIF roughly 20 to 50% smaller than WebP; WebP about 30% smaller than JPEG",
+            "Quality at equal size: AVIF keeps detail and gradients cleaner; WebP softens a bit sooner",
+            "Browser support: WebP universal since around 2020; AVIF in Chrome, Firefox, Edge, and Safari 16 (2023)",
+            "Encoding speed: WebP is fast, milliseconds per image; AVIF is slow, often seconds per image",
+            "Extras: both handle transparency; AVIF adds 10-bit color and HDR that WebP doesn't",
+          ],
+        },
+        { type: "h2", text: "When to reach for AVIF, and when to keep WebP" },
+        {
+          type: "ul",
+          items: [
+            "Use AVIF for hero images and photography where every kilobyte is worth fighting for",
+            "Use WebP for big catalogs, thumbnails, and batch jobs where encode time adds up",
+            "Serve AVIF first with a WebP or JPEG fallback so old browsers don't break",
+            "Keep PNG for logos and UI with sharp text, but compress it instead of converting blind",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Is AVIF always smaller than WebP?", a: "Almost always at matched quality, often 20 to 50% smaller on photos. The gap narrows on simple graphics, and a badly tuned fast AVIF encoder can wipe out the win completely." },
+            { q: "Does AVIF work in all browsers?", a: "Not yet everywhere. Chrome, Firefox, and Edge support it, and Safari joined with version 16 in 2023. For full coverage, serve AVIF with a WebP or JPEG fallback using the picture tag." },
+            { q: "Should my site use AVIF or WebP?", a: "Use AVIF for large, detailed photos where size matters most, and WebP for bulk or batch compression where speed matters. The safest setup sends AVIF first with a WebP or JPEG fallback." },
+            { q: "Can I convert WebP to AVIF?", a: "Yes. Most modern tools handle it, and you'll usually drop another 20 to 40% in size. Use a slow, high-quality AVIF preset instead of the fast default to keep the detail." },
+          ],
+        },
+        { type: "cta", text: "Compress and convert images free at image-compressor-saas.shop →", href: "https://image-compressor-saas.shop" },
+      ],
+      zh: [
+        "选对图片格式，往往能在没人察觉的情况下，把页面体积砍掉几兆。到 2026 年，真正的较量早就不是 JPEG 对 WebP 了，而是 AVIF vs WebP。这两个格式都比 JPEG 强一大截，都免费、都能在现代浏览器里跑。但它们并不是换了个马甲的同一种东西。AVIF 通常压得更小，WebP 则是日常使用里更稳、更可预期的那一个。下面我把两者摆在一起对比，帮你别再靠猜。",
+        { type: "h2", text: "AVIF WebP 对比：两种格式到底怎么压" },
+        "AVIF 和 WebP 都脱胎于视频编码——AVIF 来自 AV1，WebP 来自 VP8——这正是它们能甩开 JPEG 的原因。在质量 80 的 avif webp 对比里，AVIF 通常比同清晰度的 WebP 还小约 30%，而 WebP 本身又比 JPEG 小约 30%。真正的变数在编码器。AVIF 最好的成绩来自又慢又细的编码；要是拿快速编码器配默认参数去压，出来的文件可能只比 WebP 小一点点，还多了些噪点。格式在纸面上赢了，编码器才决定实际结果。",
+        { type: "h2", text: "哪种格式更小：AVIF 还是 WebP？" },
+        "短答案：在同等质量下，AVIF 几乎总是更小。细节多的照片，它常常能比 WebP 小 20% 到 50%；碰到带文字的扁平图形，差距会收窄，有时几乎可以忽略。所以如果你只问“which image format smaller”（哪个格式更小），AVIF 赢。但小不是白来的。AVIF 编码是真的慢，好一点的 CPU 也要按秒算一张；WebP 则是毫秒级。一张主图无所谓，要是拿廉价服务器压五千张商品图，WebP 的速度就和体积一样重要了。",
+        { type: "h2", text: "WebP vs AVIF 画质：肉眼看得出来吗？" },
+        "在体积相同的 webp vs avif 画质测试里，AVIF 能留住更多细节和平滑的渐变，天空、皮肤和头发都更耐看；WebP 会更早发软、更早出现块状噪点。低于质量 60，差距一眼可见；在 75 到 85 这个甜区里，手机上大多数人根本分不出来。AVIF 真正拉开身位的地方，是高反差边缘和纹理密集的照片。要是你的站点基本是截图和 Logo，那点画质优势基本消失，又回到比速度和兼容性。",
+        { type: "h2", text: "浏览器兼容，以及没人提的那个坑" },
+        "WebP 在要紧的地方都能用：2020 年前后起的主流浏览器全都支持，包括 Safari 14。AVIF 来得晚，Chrome 和 Firefox 先上，Safari 到 2023 年的 16 版才跟上。如今覆盖面很广，但还没到彻底无死角，少数老旧的 App 内浏览器照样会翻车。解决办法和 WebP 时代一样：用 picture 标签，AVIF 优先，后面跟 WebP 或 JPEG 兜底。新设备吃到体积红利，旧设备拿到能打开的文件。",
+        { type: "h2", text: "AVIF 与 WebP 一览" },
+        {
+          type: "ul",
+          items: [
+            "同等质量体积：AVIF 比 WebP 约小 20% 到 50%，WebP 又比 JPEG 小约 30%",
+            "同等体积画质：AVIF 细节和渐变更干净，WebP 稍早发软",
+            "浏览器支持：WebP 自 2020 年前后全面支持；AVIF 在 Chrome、Firefox、Edge 及 Safari 16（2023）",
+            "编码速度：WebP 快，毫秒级；AVIF 慢，常按秒算",
+            "附加项：两者都支持透明；AVIF 多了 10bit 色深和 HDR，WebP 没有",
+          ],
+        },
+        { type: "h2", text: "什么时候用 AVIF，什么时候留 WebP" },
+        {
+          type: "ul",
+          items: [
+            "主图、摄影类大图，每一 KB 都值得争，用 AVIF",
+            "大批量商品图、缩略图、批量任务，编码耗时是重点，用 WebP",
+            "AVIF 优先，后面跟 WebP 或 JPEG 兜底，老浏览器才不崩",
+            "Logo 和带锐利文字的 UI 继续用 PNG，但压一压，别盲目转格式",
+          ],
+        },
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            { q: "AVIF 一定比 WebP 小吗？", a: "在同等质量下几乎总是更小，照片常常小 20% 到 50%。简单图形差距会收窄，而调得不细致的快速 AVIF 编码，可能把这点优势全赔进去。" },
+            { q: "AVIF 所有浏览器都能用吗？", a: "还没到全覆盖。Chrome、Firefox、Edge 都支持，Safari 从 2023 年的 16 版才跟上。要稳，就用 picture 标签让 AVIF 优先、WebP 或 JPEG 兜底。" },
+            { q: "我的网站该用 AVIF 还是 WebP？", a: "体积最要紧的大图、细节多的照片用 AVIF；批量、讲究编码速度的用 WebP。最稳的做法是 AVIF 优先，配 WebP 或 JPEG 兜底。" },
+            { q: "能把 WebP 转成 AVIF 吗？", a: "可以。多数现代工具都支持，通常还能再小 20% 到 40%。别用快速默认，选慢一点的高质量 AVIF 预设，细节才保得住。" },
+          ],
+        },
+        { type: "cta", text: "免费压缩与格式转换，上 image-compressor-saas.shop →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
