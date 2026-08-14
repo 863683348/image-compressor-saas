@@ -11,7 +11,6 @@ const s = (lang: string, key: string): string => {
 export const allLinks = [
   { href: "/", key: "brand" },
   { href: "/pricing", key: "pricing" },
-  { href: "/blog", key: "footerBlog" },
   { href: "/privacy", key: "footerPrivacy" },
   { href: "/terms", key: "footerTerms" },
   { href: "/faq", key: "footerFaq" },
