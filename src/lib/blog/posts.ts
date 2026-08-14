@@ -1446,7 +1446,125 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "heic-vs-jpg-iphone-photos",
+    date: "2026-08-15",
+    title: {
+      zh: "HEIC 还是 JPG？iPhone 照片格式选型指南",
+      en: "HEIC vs JPG: Which Format Should Your iPhone Photos Use?",
+    },
+    description: {
+      zh: "HEIC 还是 JPG？iPhone 默认的 HEIC 格式能省一半空间，但兼容性差。这篇从体积、画质、兼容性三个维度对比，告诉你什么时候该转 JPG、怎么转最省事。",
+      en: "HEIC or JPG? iPhone's default HEIC format saves up to half the space but has weak compatibility. This guide compares size, quality, and compatibility, and tells you when to convert to JPG and how to do it.",
+    },
+    keywords: [
+      "heic vs jpg",
+      "heic vs jpg iphone photos",
+      "heic to jpg converter",
+      "iphone photo format",
+    ],
+    content: {
+      en: [
+        "Last year I imported about 3,000 photos from my phone to a Windows PC. A third of them wouldn't open. At the time I figured the computer was broken. Turns out the problem was the format—HEIC, the default photo format on iPhones, which Windows doesn't natively recognize.",
+        "This isn't a niche complaint. The **HEIC vs JPG** dilemma hits almost every iPhone user eventually. I'm not here to pick a side. I want to lay out what each format is good for, and when you really have no choice but to convert to JPG.",
+        "HEIC (High Efficiency Image Coding) is what Apple has used by default since iOS 11, built on the HEIF standard. Its goal is simple: same quality, smaller size. JPG is a 30-year-old format with unbeatable compatibility and a bit of a legacy problem.",
+        "In one sentence: HEIC is the space-saving new format, JPG is the old format that works everywhere.",
+        "The numbers tell the story. For the same 12-megapixel photo, HEIC lands around 2-3MB where JPG takes 4-6MB. Over 10,000 photos a year, that's tens of gigabytes of difference. That's HEIC's biggest value, and honestly its whole reason to exist.",
+        "If you only handle photos on your iPhone, HEIC never gives you trouble. But photos are meant to move. The real friction in **HEIC vs JPG for iPhone photos** shows up the second a file leaves the Apple ecosystem.",
+        {
+                "type": "ul",
+                "items": [
+                        "Windows Explorer won't open HEIC without a plugin",
+                        "Some online forms, job sites, and banking apps reject HEIC uploads",
+                        "Older printer drivers and photo lab systems don't recognize it",
+                        "Send it to an Android user and they may see a gray block or a garbled filename"
+                ]
+        },
+        "You don't need to hit all of these. One is enough to stop you cold. In practice, a lot of people meet HEIC for the first time when submitting a resume or uploading an ID photo.",
+        "In rough order of urgency, convert in these situations:",
+        "1. **Website uploads**: job portals, visa applications, e-commerce platforms—most accept only JPG or PNG",
+        "2. **Sending to non-Apple users**: original photos over WeChat or email, where the receiver is on Android or Windows",
+        "3. **Printing**: many online labs and self-serve printers have spotty HEIC support",
+        "4. **Archiving**: if you're unsure what software will open a file in ten years, JPG is the safer bet",
+        "5. **Professional delivery**: don't make clients, editors, or partners deal with codecs",
+        "On the flip side, if your photos stay on your own devices and back up to iCloud, HEIC is fine as-is. No need to convert. Conversion has a cost—an extra step, an extra compression pass. Skip it when you can.",
+        "The good news: converting to JPG isn't a technical feat. In iCloud settings you can switch downloads to \"Most Compatible,\" but more often you just need to convert a few files on the spot—with built-in tools, Shortcuts, or an online converter.",
+        "My own routine: keep the originals in HEIC on iCloud, batch-convert a JPG copy whenever something needs to go out. A **HEIC to JPG converter** exists exactly for this. A decent one reuses the original decode data instead of re-encoding from a compressed image, so nothing gets blurrier.",
+        "And if this all sounds familiar, you're right. We've written about",
+        {
+                "type": "cta",
+                "text": "WebP vs JPEG",
+                "href": "https://image-compressor-saas.shop/blog/webp-vs-jpeg-comparison"
+        },
+        "**HEIC vs JPG** has no absolute winner. On pure storage efficiency, HEIC wins easily. On universality, JPG is still the \"can't go wrong\" option. The smart move isn't choosing one. It's switching by scenario: keep HEIC on your device, convert to JPG when it goes out.",
+        "If a HEIC file is blocking you somewhere, use our",
+        {
+                "type": "cta",
+                "text": "online image tool",
+                "href": "https://image-compressor-saas.shop/"
+        },
+        "**Q: Which has better quality, HEIC or JPG?**",
+        "A: At equal quality, HEIC is about half the size. At equal size, HEIC keeps more detail. But at normal phone viewing distances, the difference is usually invisible. JPG loses on file size, not on quality your eyes can notice.",
+        "**Q: Is HEIC the default format on iPhone?**",
+        "A: Yes, since iOS 11. You can switch to \"Most Compatible\" under Settings → Camera → Formats, which makes the iPhone save JPG directly—at the cost of larger files.",
+        "**Q: Why can't my friend open the HEIC photo I sent?**",
+        "A: Their device or app doesn't support the format. Android phones, Windows, and many web apps have no native HEIC support. If you need them to see it, convert to JPG first.",
+        "**Q: Does converting damage image quality?**",
+        "A: A proper tool decodes the HEIC and re-encodes as JPG—one compression pass with theoretically slight loss, usually invisible to the eye. The real risk is double compression, compressing the JPG again after conversion. That's when things get mushy."
+],
+      zh: [
+        "去年我把手机里 3000 张照片导到 Windows 电脑上，结果三分之一打不开。当时我还没意识到问题出在格式上，只当是电脑坏了。后来才知道，那是 HEIC——iPhone 默认的照片格式，Windows 原生不认。",
+        "这个问题不是少数人的烦恼。**heic vs jpg** 的纠结，几乎每个用 iPhone 的人都遇到过。这篇不劝你站队，就讲清楚两种格式各自的处境，以及什么时候必须转 JPG。",
+        "HEIC（High Efficiency Image Coding）是苹果从 iOS 11 开始默认使用的格式，基于 HEIF 标准。它的设计目标很明确：同等画质下体积更小。JPG 呢，30 年前的老格式，兼容性无敌，但也确实有点老了。",
+        "用一句话概括：HEIC 是\"省空间的新格式\"，JPG 是\"哪都能用的老格式\"。",
+        "数字能说明问题。同样一张 1200 万像素照片，HEIC 大概 2-3MB，JPG 要 4-6MB。一年攒一万张照片，差别就是几十个 GB 的存储空间。这是 HEIC 最大的价值，也是它存在的全部理由。",
+        "如果你只在 iPhone 上处理照片，HEIC 没有任何问题。可照片这东西总要流动：**heic vs jpg iphone photos** 的真正矛盾，出现在文件离开苹果生态的那一刻。",
+        {
+                "type": "ul",
+                "items": [
+                        "Windows 资源管理器原生打不开 HEIC，要看图得装插件",
+                        "部分在线表单、招聘网站、银行 App 不接受 HEIC 上传",
+                        "老一点的打印机驱动和照片冲印店不认",
+                        "发给安卓用户，对方可能只看到一片灰色或乱码文件名"
+                ]
+        },
+        "这些场景不需要 100% 兼容，只要撞上一个，你就得停下来处理格式问题。现实里，很多人就是在\"发简历\"或\"上传证件照\"时第一次被 HEIC 卡住的。",
+        "按需求排序，下面这些情况建议直接转：",
+        "1. **上传网站**：招聘系统、签证申请、电商平台，大部分只收 JPG 或 PNG",
+        "2. **发给非苹果用户**：微信、邮件里发原图，对方用安卓或 Windows",
+        "3. **打印**：很多线上冲印和自助打印机对 HEIC 支持不完整",
+        "4. **存档兼容性**：不确定十年后什么软件能打开，选 JPG 更稳妥",
+        "5. **专业交付**：给客户、编辑、合作方发图，别让对方折腾解码器",
+        "反过来，如果照片只在自己设备上管理、备份走 iCloud，那 HEIC 完全够用，没必要转。转换也有成本——多一步操作，多一次压缩，能省则省。",
+        "好消息是，转 JPG 不是什么高技术活。iCloud 设置里可以把下载改成\"最兼容\"，但更常见的是你需要临时转几张：用系统自带功能、快捷指令、或者在线工具都行。",
+        "我自己的习惯是：日常照片留 HEIC 存 iCloud，要发出去的时候用工具批量转一份 JPG。**heic to jpg converter** 这类工具就是为了这种场景存在的——转换质量直接复用原图的解码数据，不会二次压糊。",
+        "顺便说一句，你可能会觉得这场景似曾相识。我们之前写过",
+        {
+                "type": "cta",
+                "text": "WebP 和 JPEG 的对比",
+                "href": "https://image-compressor-saas.shop/blog/webp-vs-jpeg-comparison"
+        },
+        "**heic vs jpg** 没有绝对赢家。纯看存储效率，HEIC 赢得很轻松；看通用性，JPG 还是那个\"不会错\"的选择。聪明做法不是二选一，而是按场景切换：设备内留 HEIC，向外输出转 JPG。",
+        "如果你正被 HEIC 卡在某一步，可以用我们的",
+        {
+                "type": "cta",
+                "text": "在线图片压缩工具",
+                "href": "https://image-compressor-saas.shop/"
+        },
+        "**Q: HEIC 和 JPG 到底哪个画质好？**",
+        "A: 同样画质下 HEIC 体积小一半左右；同样体积下 HEIC 细节保留更多。但人眼在正常手机观看距离下，两者差异通常不明显。JPG 输的是文件大小，不是\"肉眼可感知的画质\"。",
+        "**Q: iPhone 照片默认就是 HEIC 吗？**",
+        "A: 是，iOS 11 及之后默认开启。你可以去\"设置 → 相机 → 格式\"里改成\"兼容性最好\"，那样 iPhone 会直接存 JPG，但照片体积会变大。",
+        "**Q: 为什么我发的 HEIC 照片朋友打不开？**",
+        "A: 因为对方设备或软件不支持这个格式。安卓手机、Windows 系统、部分网页端都没有原生 HEIC 支持。需要对方能看，就转成 JPG 再发。",
+        "**Q: 转换会损伤画质吗？**",
+        "A: 正规工具只是把 HEIC 解码后重新编码成 JPG，相当于一次压缩，会有理论上的轻微损耗，但通常肉眼不可见。风险在\"二次压缩\"——转出来的 JPG 又压一次，那才会糊。"
+],
+    },
+  },
+
 ];
+
 
 export function getPost(slug: string): BlogPost | undefined {
   return POSTS.find((p) => p.slug === slug);
