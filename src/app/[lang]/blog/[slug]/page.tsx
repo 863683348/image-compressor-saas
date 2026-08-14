@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const url = `${SITE_URL}/${locale}/blog/${post.slug}`;
   const ogImage = postImage(post.slug);
   return {
-    title: `${post.title[locale]} | Image Compressor`,
+    title: post.title[locale], // 根布局 title.template 会自动追加 " · Image Compressor"
     description: post.description[locale],
     keywords: post.keywords,
     alternates: {

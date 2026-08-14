@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   const locale = lang === "en" ? "en" : "zh";
   return {
-    title: "Blog · Image Compressor",
+    title: "Blog", // 根布局 title.template 自动追加 " · Image Compressor"
     description:
       "Practical guides on image compression, web optimization, and privacy protection. WebP vs AVIF comparison, target size compression tips, and more.",
     alternates: {
