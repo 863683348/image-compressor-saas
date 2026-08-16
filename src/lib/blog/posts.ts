@@ -1563,6 +1563,84 @@ export const POSTS: BlogPost[] = [
     },
   },
 
+  {
+    slug: "convert-heic-to-jpg-free",
+    date: "2026-08-16",
+    title: {
+      zh: "免费把 HEIC 转成 JPG：手机电脑全方案",
+      en: "Convert HEIC to JPG Free: Phone and Desktop Methods",
+    },
+    description: {
+      zh: "HEIC 转 JPG 免费怎么做？这篇覆盖 iPhone 设置直转、Mac 自带预览、Windows 在线工具三种路径，并告诉你批量转换怎么选、转换会不会损伤画质。",
+      en: "How to convert HEIC to JPG for free? This guide covers iPhone settings, Mac Preview, and Windows online tools, plus batch conversion choices and whether quality suffers.",
+    },
+    keywords: [
+      "heic to jpg converter",
+      "convert heic to jpg",
+      "heic to jpg free",
+      "heic to jpg windows",
+      "heic to jpg mac",
+      "批量 heic 转 jpg",
+    ],
+    content: {
+      en: [
+        "Every iPhone user hits the wall sooner or later: a photo that won't open on a Windows laptop, an attachment a client can't see, a forum upload that silently fails. The file is HEIC, and you need it as JPG. Good news: converting HEIC to JPG is free on every platform, and you probably already own the tools.",
+        "Before picking a method, know what conversion actually does. HEIC (HEIF) and JPG are both compressed formats. Converting decodes the HEIC and re-encodes it as JPG. You lose a little quality in theory and nothing you can see in practice, as long as you don't convert twice.",
+        "The fastest free method is inside iPhone Settings: Settings → Photos → Transfer to Mac or PC → Automatic. With this on, your iPhone hands out JPG when a device asks and keeps HEIC in storage. Zero effort, and the originals stay untouched.",
+        "On a Mac, Preview does the whole job. Open the HEIC, go to File → Export, choose JPEG, adjust quality, save. Batch work is just selecting multiple files and exporting them together. No install, no signup.",
+        "Windows has no native HEIC support, which is the most common reason people search for a heic to jpg converter at all. The honest answer for Windows: a decent online converter that processes locally, or the official HEIF codec from the Microsoft Store. Free options work fine for a handful of photos.",
+        "What about bulk conversion? Say you imported a year of iPhone photos and a third of them are HEIC. Use an online batch tool or a desktop converter, set the output quality to around 90%, and let it run. The catch is the same everywhere: pick a tool that processes on your device, not one that demands your photo library on a server.",
+        {
+                "type": "ul",
+                "items": [
+                        "iPhone: Settings → Photos → Transfer to Mac or PC → Automatic, free and invisible",
+                        "Mac: Preview → File → Export → JPEG, batch supported, no install",
+                        "Windows: HEIF codec from the Store or a local-processing online converter",
+                        "Batch: desktop converter with quality set near 90%, avoid double compression",
+                        "Rule of thumb: never convert the same photo twice, that is where quality actually dies"
+                ]
+        },
+        "**Does converting HEIC to JPG lose quality?** In theory yes, a slight loss from re-encoding. In practice invisible at normal viewing. The real killer is converting twice, so export once at good quality and keep that file.",
+        "**Is there a free HEIC to JPG converter for Windows?** Yes. The official HEIF Image Extensions codec in the Microsoft Store is free, and several online converters handle a few photos free. For large batches, a local desktop tool is the safer pick.",
+        "**Can I stop my iPhone from making HEIC at all?** Yes. Settings → Camera → Formats → Most Compatible makes the iPhone save JPG directly. The tradeoff is bigger files, roughly double the storage for the same photos.",
+        "**Why won't my HEIC open in Gmail or on Windows?** Because neither recognizes the format natively. Converting to JPG before sending is the reliable fix, and the methods above take under a minute.",
+        "Need to shrink the result too? Convert first, then run the JPG through the compressor at image-compressor-saas.shop — everything stays in your browser. Start from the",
+        {
+                "type": "cta",
+                "text": "free image compressor",
+                "href": "https://image-compressor-saas.shop/"
+        }
+      ],
+      zh: [
+        "每个 iPhone 用户迟早都会撞上这堵墙：一张照片在 Windows 笔记本上打不开，一个附件对方客户看不到，论坛上传静默失败。文件是 HEIC，而你需要 JPG。好消息：把 HEIC 转成 JPG 在每个平台上都免费，而且工具你多半已经有了。",
+        "动手前先搞清楚转换是什么。HEIC（HEIF）和 JPG 都是压缩格式。转换就是把 HEIC 解码再重新编码成 JPG。理论上会损失一点画质，实际上肉眼完全看不出来——前提是你别转两遍。",
+        "最快的免费方法藏在 iPhone 设置里：设置 → 照片 → 传输到 Mac 或 PC → 自动。打开后，iPhone 在对方请求时直接给 JPG，自己存储时保留 HEIC。零成本，原图不动。",
+        "Mac 上用预览（Preview）就能全搞定。打开 HEIC，文件 → 导出，选 JPEG，调一下质量，保存。批量操作就是多选文件一起导出。不用装软件，不用注册。",
+        "Windows 原生不支持 HEIC，这也是大家搜 heic to jpg converter 的主要原因。Windows 的诚实答案是：一个在本地处理的在线转换器，或者微软商店里的官方 HEIF 编解码器。免费方案处理几张照片完全够用。",
+        "批量转换怎么办？比如你导入了一年的 iPhone 照片，三分之一是 HEIC。用在线批量工具或桌面转换器，输出质量设在 90% 左右，让它跑完。注意点到处都一样：选在你自己设备上处理的工具，别选那种要把整个相册上传到服务器的。",
+        {
+                "type": "ul",
+                "items": [
+                        "iPhone：设置 → 照片 → 传输到 Mac 或 PC → 自动，免费且无感",
+                        "Mac：预览 → 文件 → 导出 → JPEG，支持批量，无需安装",
+                        "Windows：商店里的 HEIF 编解码器，或本地处理的在线转换器",
+                        "批量：桌面转换器，质量设在 90% 左右，避免二次压缩",
+                        "经验法则：同一张照片别转两遍，画质就是在这里死掉的"
+                ]
+        },
+        "**HEIC 转 JPG 会损失画质吗？** 理论上会，重新编码有轻微损耗；实际上正常观看完全看不出。真正的杀手是转两遍，所以一次导出到好质量，把那个文件存好。",
+        "**Windows 有免费的 HEIC 转 JPG 工具吗？** 有。微软商店的 HEIF Image Extensions 官方编解码器免费，几个在线转换器也能免费处理少量照片。大批量的话，本地桌面工具更稳妥。",
+        "**能让 iPhone 干脆别生成 HEIC 吗？** 能。设置 → 相机 → 格式 → 兼容性最好，iPhone 就直接存 JPG。代价是文件变大，同样照片存储占用大约翻倍。",
+        "**为什么 HEIC 在 Gmail 或 Windows 里打不开？** 因为两边都不原生支持这个格式。发送前转成 JPG 是可靠解法，上面这些方法一分钟内搞定。",
+        "转换完还想再压小一点？先转，再把 JPG 丢进 image-compressor-saas.shop 的压缩器，全程在浏览器里完成。从",
+        {
+                "type": "cta",
+                "text": "免费图片压缩工具",
+                "href": "https://image-compressor-saas.shop/"
+        }
+      ],
+    },
+  },
 ];
 
 
