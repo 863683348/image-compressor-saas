@@ -1641,6 +1641,161 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+
+  {
+    slug: "lossy-vs-lossless-compression",
+    date: "2026-08-17",
+    title: {
+      zh: "有损 vs 无损压缩：一张图该用哪种",
+      en: "Lossy vs Lossless Compression: Which One for Your Image",
+    },
+    description: {
+      zh: "有损和无损压缩到底差在哪？这篇讲清 lossy vs lossless 的原理、适用场景、文件大小差异，以及 webp/jpg/png 各格式该选哪种压缩。",
+      en: "What is the real difference between lossy and lossless compression? This guide explains the principles, when to use each, file size trade-offs, and which format to pick for your image.",
+    },
+    keywords: [
+      "lossy vs lossless",
+      "lossy vs lossless compression",
+      "lossless compression",
+      "lossy compression",
+      "webp vs jpeg",
+      "jpg vs png compression",
+    ],
+    content: {
+      en: [
+        "The first time someone told me lossy compression works by throwing away data, I assumed it was the bad option. Then I shipped a website with 40 full-size PNGs and watched the load time crawl. The truth is more practical than the name suggests: lossy and lossless are not good and bad. They are different tools for different jobs.",
+        "Here is the one-sentence version: lossless compression keeps every pixel exactly as it was, lossy compression keeps what your eyes can see and drops the rest. Everything else is trade-offs.",
+        {
+                "type": "h2",
+                "text": "What lossless actually does"
+        },
+        "Lossless compression finds patterns and shortens them, like replacing 'aaaa' with '4a'. Decode it and you get back the identical file. PNG and GIF are the famous lossless formats; WebP and AVIF support lossless modes too.",
+        "The cost is size. Lossless keeps everything, so it cannot shrink as far. A photo that compresses to 100KB with lossy might stay at 800KB lossless.",
+        {
+                "type": "h2",
+                "text": "What lossy actually does"
+        },
+        "Lossy compression makes a judgment call: it removes detail that humans barely notice and records the rest more efficiently. JPG is the classic example. A photo saved as JPG quality 85 looks nearly identical to the original but takes a fraction of the space.",
+        "The catch is that every lossy save adds up. Compress a JPG, re-open it, compress again, and each pass degrades it a little. One lossy export from the original is fine. Chained lossy exports are how images get that mushy, blocky look.",
+        {
+                "type": "h2",
+                "text": "When to use which"
+        },
+        "The rule of thumb that has never let me down:",
+        {
+                "type": "ul",
+                "items": [
+                        "Photos and gradients: lossy. JPG or WebP at quality 80-90%, visually identical, file size drops 5-10x",
+                        "Logos, icons, screenshots, text: lossless. PNG or lossless WebP, sharp edges and text stay crisp",
+                        "Web images that are photos: lossy WebP, best of both worlds for browsers",
+                        "Anything that will be edited later: lossless. Edit first, export lossy last"
+                ]
+        },
+        "Screenshots and UI mockups deserve special attention. They look like images but contain text and flat colors. Lossy compression smears the text. Always use PNG or lossless WebP for anything with words in it.",
+        {
+                "type": "h2",
+                "text": "The same photo, three sizes"
+        },
+        "A real example from a 4000x3000 photo:",
+        {
+                "type": "ul",
+                "items": [
+                        "Original PNG: about 18MB",
+                        "Lossless WebP: about 6MB, pixel-identical",
+                        "Lossy JPG quality 85: about 900KB, visually identical at normal viewing sizes"
+                ]
+        },
+        "Same photo, 20x difference. That is the whole argument in one line. If the image lives on a website, the 900KB version looks the same to visitors and loads 20x faster.",
+        {
+                "type": "h2",
+                "text": "How to pick the right tool",
+        },
+        "You rarely need to think about lossy vs lossless manually, because good compressors ask for a quality setting and handle the rest. A slider at 80-90% gives you lossy for photos, and a dedicated PNG or lossless mode covers the rest.",
+        "Run your image through a compressor that processes locally, keep the original, and only export the compressed version you actually ship. That is the whole workflow, no jargon required.",
+        {
+                "type": "h2",
+                "text": "FAQ"
+        },
+        "**Is lossy compression bad for image quality?** Not if you use it once at a sensible quality. JPG at 85-90% is visually indistinguishable from the original for photos. The problems start when you chain multiple lossy exports.",
+        "**Is PNG lossless?** Yes. PNG uses lossless compression, which is why it is the right format for logos, screenshots, and anything with text. It is the wrong format for photos, where it wastes space.",
+        "**What is better, lossy or lossless WebP?** WebP supports both. Use lossy WebP for photos and lossless WebP for graphics. The format itself is not the answer; the mode is.",
+        "**Does compression affect page speed?** Directly. A 5MB image vs a 300KB image of the same photo is the difference between a slow page and a fast one, especially on mobile.",
+        "Ready to compress? Head to the",
+        {
+                "type": "cta",
+                "text": "image compressor homepage",
+                "href": "/"
+        },
+        "and run your files locally, no upload needed."
+      ],
+      zh: [
+        "第一次听说有损压缩要丢数据时，我以为那肯定是差的那个选项。然后我上线了一个塞满 40 张 PNG 的网站，看着加载时间爬行。真相比名字更实用：有损和无损不是好坏之分，是不同场景的两种工具。",
+        "一句话版本：无损压缩保留每一个像素，有损压缩保留你眼睛看得见的部分、丢掉其余的。剩下的全是取舍。",
+        {
+                "type": "h2",
+                "text": "无损压缩到底做了什么"
+        },
+        "无损压缩是找规律然后缩短它，就像把“aaaa”替换成“4a”。解压后你拿回完全相同的文件。PNG 和 GIF 是著名的无损格式，WebP 和 AVIF 也支持无损模式。",
+        "代价是体积。无损保留一切，所以压不下去。一张照片有损压到 100KB，无损可能还有 800KB。",
+        {
+                "type": "h2",
+                "text": "有损压缩到底做了什么"
+        },
+        "有损压缩做判断：去掉人类几乎注意不到的细节，把其余部分记录得更高效。JPG 是经典例子。照片存成 JPG 质量 85，看起来和原图几乎一样，体积却只剩零头。",
+        "坑在于：每存一次有损就累积一次。压缩 JPG、重新打开、再压缩，每次都会劣化一点。从原图做一次有损导出没问题，链式反复导出才是图片变糊、变块的元凶。",
+        {
+                "type": "h2",
+                "text": "什么时候用哪种"
+        },
+        "一条从没让我失望过的经验法则：",
+        {
+                "type": "ul",
+                "items": [
+                        "照片和渐变：有损。JPG 或 WebP 质量 80-90%，肉眼一致，体积小 5-10 倍",
+                        "Logo、图标、截图、文字：无损。PNG 或无损 WebP，边缘和文字保持锐利",
+                        "网页里的照片：有损 WebP，浏览器上两全其美",
+                        "之后还要编辑的图：无损。先编辑，最后一步再导出有损"
+                ]
+        },
+        "截图和 UI 稿要特别小心。它们看起来像图，里面却是文字和纯色块。有损压缩会把文字抹糊。凡是带字的图，一律 PNG 或无损 WebP。",
+        {
+                "type": "h2",
+                "text": "同一张照片的三种大小"
+        },
+        "一张 4000x3000 照片的真实例子：",
+        {
+                "type": "ul",
+                "items": [
+                        "原图 PNG：约 18MB",
+                        "无损 WebP：约 6MB，像素级一致",
+                        "有损 JPG 质量 85：约 900KB，正常观看尺寸下视觉一致"
+                ]
+        },
+        "同一张照片，20 倍差距。这就是全部论证。如果图要放网站，900KB 版本对访客看起来一样，加载却快 20 倍。",
+        {
+                "type": "h2",
+                "text": "怎么选工具"
+        },
+        "你很少需要手动纠结有损 vs 无损，因为好的压缩器会问你要质量参数然后自己处理。80-90% 的滑杆给你照片用有损，专门的 PNG 或无损模式覆盖其余场景。",
+        "用本地处理的压缩器跑一遍，保留原图，只导出你要发布的那份压缩版。整个流程就这些，不需要术语。",
+        {
+                "type": "h2",
+                "text": "FAQ"
+        },
+        "**有损压缩会损害画质吗？** 只要在合理质量下只压一次就不会。照片 JPG 85-90% 与原图肉眼无差。问题出在多次链式有损导出。",
+        "**PNG 是无损的吗？** 是的。PNG 用无损压缩，所以它是 Logo、截图和带文字图片的正确格式。对照片则是浪费空间的错误格式。",
+        "**有损 WebP 和无损 WebP 哪个好？** WebP 两种都支持。照片用有损 WebP，图形用无损 WebP。关键不在格式，在模式。",
+        "**压缩影响网页速度吗？** 直接影响。同一张照片 5MB 和 300KB 的差别，就是慢页面和快页面的差别，移动端尤其明显。",
+        "准备好压缩了吗？去",
+        {
+                "type": "cta",
+                "text": "图片压缩器首页",
+                "href": "/"
+        },
+        "本地处理你的文件，无需上传。"
+      ]
+    },
+  }
 ];
 
 
