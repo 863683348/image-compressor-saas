@@ -1795,7 +1795,167 @@ export const POSTS: BlogPost[] = [
         "本地处理你的文件，无需上传。"
       ]
     },
-  }
+  },
+  {
+    slug: "shopify-product-photo-size-guide",
+    date: "2026-08-19",
+    title: {
+      zh: "Shopify 商品图尺寸完全指南（像素、格式与压缩）",
+      en: "Shopify Product Photo Size Guide (Pixels, Format & Compression)",
+    },
+    description: {
+      zh: "Shopify 图片尺寸看数据说话：真正好用的 2048x2048 px 主图、为什么越大越糟、以及如何缩放商品图而不损画质。",
+      en: "Shopify image size decided by the numbers: the 2048x2048 px master that works, why bigger hurts, and how to resize product photos without losing quality.",
+    },
+    keywords: [
+      "shopify image size",
+      "shopify product image size",
+      "shopify image size px",
+      "shopify photo dimensions",
+      "shopify product photo size guide",
+      "resize shopify images",
+    ],
+    content: {
+      zh: [
+        "Shopify 图片尺寸是那种悄悄决定店铺显得专业还是业余的细节。做对了，商品图加载快、在各块屏幕上清晰、也能通过 Google 的页面速度检测；做错了，你发出的是 5MB 的 JPEG，让手机用户干等、跳出、转去别家买。这篇讲清楚真正好用的尺寸、为什么“越大越好”是错的，以及如何在不损画质的前提下达到正确的 shopify 图片大小。",
+        { type: "h2", text: "推荐的 Shopify 商品图尺寸" },
+        "Shopify 允许上传最大 4472 x 4472 px 的图片，但你几乎不该用满。日常商品图，方形的 2048 x 2048 px 主图是甜点区：够大能缩放，又够小加载快。Shopify 随后会自动生成更小版本（如 1000 px、600 px）给缩略图和手机用。",
+        {
+          type: "ul",
+          items: [
+            "主图：2048 x 2048 px（方形，sRGB）",
+            "缩略图：1000 x 1000 px 或更小（Shopify 自动生成）",
+            "缩放视图：需要 2048 px 主图，别指望 1000 px",
+            "文件格式：照片用 JPG，带文字的图形用 PNG",
+          ],
+        },
+        { type: "h2", text: "Shopify 图片尺寸（像素）：速查" },
+        "下面是多数店铺实际在用的拆分：",
+        {
+          type: "ul",
+          items: [
+            "主图/场景图：2048 x 2048 px 方形",
+            "画廊缩略图：1000 x 1000 px",
+            "分类卡片：600 x 600 px（裁成方形）",
+            "Banner：1800 x 600 px 或按主题更宽",
+          ],
+        },
+        { type: "h2", text: "为什么超大图反而有害" },
+        "一张 5MB 的照片不会让店铺更好看，只会更慢。Shopify 仍要把这个文件推给每个访客，在移动网络下可能要等好几秒。慢页面会拉低转化率和搜索排名。解法不是“传最大的文件”，而是“传仍然好看的最小文件”。",
+        {
+          type: "ul",
+          items: [
+            "首屏更慢，跳出更高",
+            "弱网下的手机用户直接离开",
+            "Google 把页面速度当作排名信号",
+          ],
+        },
+        { type: "h2", text: "如何缩放又不损画质" },
+        "你不需要 Photoshop。浏览器本地工具几秒就能压缩并调整尺寸，而且因为在本机运行，文件从不离开你的设备。",
+        {
+          type: "ul",
+          items: [
+            "从编辑器导出 2048 px 方形主图",
+            "照片 JPG 压到 80-85% 质量",
+            "只有 Logo 和文字图形才保留 PNG",
+            "下载前先预览结果",
+          ],
+        },
+        {
+          type: "cta",
+          text: "在浏览器本地压缩图片（免费）→",
+          href: "https://image-compressor-saas.shop",
+        },
+        { type: "h2", text: "延伸阅读" },
+        "如果你用 WordPress，我们这篇“无插件压缩 WordPress 图片”是顺理成章的下一步：https://image-compressor-saas.shop/blog/compress-images-wordpress-without-plugin。选格式可看 PNG vs JPG：https://image-compressor-saas.shop/blog/png-vs-jpg-differences。",
+        { type: "h2", text: "常见问题 FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Shopify 商品图最佳尺寸是多少？", a: "2048 x 2048 px 的方形主图既能缩放又处处清晰；Shopify 会自动生成更小的变体。" },
+            { q: "Shopify 图片会太大吗？", a: "会。几 MB 以上的文件拖慢页面、损害排名。缩到 2048 px 并压到 80-85% 质量即可。" },
+            { q: "商品图一定要方形吗？", a: "方形（1:1）是最稳妥的默认，因为 Shopify 按方形网格裁切；非方形图在列表中会被裁。" },
+            { q: "Shopify 商品图用 JPG 还是 PNG？", a: "照片用 JPG，只有带文字或透明的图形才用 PNG。PNG 照片纯属浪费空间。" },
+          ],
+        },
+        { type: "h2", text: "开始压缩" },
+        {
+          type: "cta",
+          text: "免费压缩你的商品图 →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+      en: [
+        "Shopify image size is one of those details that quietly decides whether a store looks professional or amateur. Get it right and your product photos load fast, stay sharp on every screen, and survive Google's page-speed checks. Get it wrong and you ship 5MB JPEGs that make mobile shoppers wait, bounce, and buy elsewhere. This guide covers the dimensions that actually work, why bigger is not better, and how to hit the right shopify product image size without losing quality.",
+        { type: "h2", text: "The recommended Shopify product image size" },
+        "Shopify lets you upload images up to 4472 x 4472 px, but you almost never should. For day-to-day product shots, a square 2048 x 2048 px master is the sweet spot: large enough for zoom, small enough to load quickly. Shopify then auto-generates smaller variants (like 1000 px and 600 px) for thumbnails and mobile.",
+        {
+          type: "ul",
+          items: [
+            "Master image: 2048 x 2048 px (square, sRGB)",
+            "Thumbnail: 1000 x 1000 px or smaller (Shopify builds this automatically)",
+            "Zoom view: needs the 2048 px master; don't rely on 1000 px",
+            "File format: JPG for photos, PNG for graphics with text",
+          ],
+        },
+        { type: "h2", text: "Shopify image size in pixels: a quick table" },
+        "Here is the practical breakdown most stores actually use:",
+        {
+          type: "ul",
+          items: [
+            "Hero / lifestyle: 2048 x 2048 px square",
+            "Gallery thumbnails: 1000 x 1000 px",
+            "Collection cards: 600 x 600 px (cropped to square)",
+            "Banner: 1800 x 600 px or wider, depending on theme",
+          ],
+        },
+        { type: "h2", text: "Why huge images hurt more than they help" },
+        "A 5MB photo does not make your store look better; it makes it slower. Shopify still has to push that file to every visitor, and on mobile data it can take several seconds. Slow pages drop your conversion rate and your search ranking. The fix is not 'upload the biggest file' but 'upload the smallest file that still looks great.'",
+        {
+          type: "ul",
+          items: [
+            "Slower first paint means higher bounce",
+            "Mobile shoppers on weak networks leave",
+            "Google treats page speed as a ranking signal",
+          ],
+        },
+        { type: "h2", text: "How to resize without losing quality" },
+        "You don't need Photoshop. A browser-local tool compresses and resizes in seconds, and because it runs on your device the files never leave your machine.",
+        {
+          type: "ul",
+          items: [
+            "Export a 2048 px square master from your editor",
+            "Compress JPG to 80-85% quality for photos",
+            "Keep PNG only for logos and text-heavy graphics",
+            "Preview the result before downloading",
+          ],
+        },
+        {
+          type: "cta",
+          text: "Compress images for free (browser-local) →",
+          href: "https://image-compressor-saas.shop",
+        },
+        { type: "h2", text: "Related reading" },
+        "If you run WordPress, our guide on compressing images for WordPress without a plugin is a natural next step: https://image-compressor-saas.shop/blog/compress-images-wordpress-without-plugin. For choosing formats, see PNG vs JPG: https://image-compressor-saas.shop/blog/png-vs-jpg-differences.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "What is the best Shopify product image size?", a: "A 2048 x 2048 px square master covers zoom and looks sharp everywhere; Shopify auto-creates smaller variants." },
+            { q: "Can Shopify images be too big?", a: "Yes. Files over a few MB slow your pages and hurt rankings. Resize to 2048 px and compress to 80-85%." },
+            { q: "Should product photos be square?", a: "Square (1:1) is the safe default because Shopify crops to a square grid; non-square images get cropped in listings." },
+            { q: "JPG or PNG for Shopify products?", a: "JPG for photos, PNG only for graphics with text or transparency. PNG photos waste space." },
+          ],
+        },
+        { type: "h2", text: "Start compressing" },
+        {
+          type: "cta",
+          text: "Compress your product images for free →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+    },
+  },
 ];
 
 
@@ -1806,3 +1966,101 @@ export function getPost(slug: string): BlogPost | undefined {
 export function getPostSlugs(): string[] {
   return POSTS.map((p) => p.slug);
 }
+  ,
+  {
+    slug: "optimize-images-ghost-blog",
+    date: "2026-08-20",
+    title: {
+      en: "How to Optimize Images for Ghost Blog (2026 Guide)",
+      zh: "Ghost 博客图片优化指南（2026）",
+    },
+    excerpt: {
+      en: "Ghost is fast by default, but unoptimized images can kill your Core Web Vitals. Here is the complete guide to optimizing images for Ghost blog performance.",
+      zh: "Ghost 默认很快，但未优化的图片会毁掉你的 Core Web Vitals。本文是 Ghost 博客图片优化的完整指南。",
+    },
+    body: [
+      {
+        type: "p",
+        text: "Ghost is one of the fastest static-site generators out of the box. But speed means nothing if your blog posts are weighed down by 5MB hero images and uncompressed PNGs. This guide covers everything you need to optimize images for Ghost — from format selection to lazy loading, from WebP conversion to CDN configuration.",
+      },
+      { type: "h2", text: "Why image optimization matters for Ghost" },
+      {
+        type: "p",
+        text: "Ghost uses a modern tech stack (Node.js, React, Tailwind) and serves fast HTML. But browsers still need to download every image before rendering the page. Unoptimized images are the #1 cause of slow LCP (Largest Contentful Paint) on Ghost blogs, and LCP is one of Google's Core Web Vitals — directly affecting your search ranking.",
+      },
+      { type: "h2", text: "Choose the right format" },
+      {
+        type: "p",
+        text: "Ghost supports WebP, AVIF, JPEG, PNG, and GIF natively. For blog images, the hierarchy is:",
+      },
+      {
+        type: "ul",
+        items: [
+          "AVIF: Best compression, 30-50% smaller than WebP. Use for hero images and photos.",
+          "WebP: Excellent compression, broad browser support. Use for most blog images.",
+          "JPEG: Good for photos where AVIF/WebP is not available.",
+          "PNG: Only for images with transparency or simple graphics.",
+          "GIF: Avoid. Use WebP or MP4 for animations.",
+        ],
+      },
+      { type: "h2", text: "Compression settings for Ghost" },
+      {
+        type: "p",
+        text: "Ghost's built-in image optimization is good, but you can do better. Use these settings:",
+      },
+      {
+        type: "table",
+        data: {
+          headers: ["Image Type", "Max Width", "Quality", "Format"],
+          rows: [
+            ["Hero/Featured", "1920px", "80%", "WebP or AVIF"],
+            ["In-article photos", "1200px", "85%", "WebP"],
+            ["Thumbnails", "400px", "80%", "WebP"],
+            ["Icons/logos", "200px", "90%", "SVG or PNG"],
+          ],
+        },
+      },
+      { type: "h2", text: "Lazy loading in Ghost" },
+      {
+        type: "p",
+        text: "Ghost enables lazy loading by default for images inserted via the editor. However, custom images or images added via HTML may need manual lazy loading. Add the loading attribute:",
+      },
+      {
+        type: "p",
+        text: '<img src="image.jpg" loading="lazy" alt="Description">',
+      },
+      {
+        type: "p",
+        text: "For above-the-fold images (like hero images), use loading='eager' or omit the attribute — lazy loading above the fold actually hurts LCP.",
+      },
+      { type: "h2", text: "CDN and caching" },
+      {
+        type: "p",
+        text: "Use a CDN like Cloudflare or Imgix to serve optimized images. These services automatically convert to WebP/AVIF based on browser support, resize on the fly, and cache globally. Ghost integrates seamlessly with most CDNs.",
+      },
+      { type: "h2", text: "FAQ" },
+      {
+        type: "faq",
+        items: [
+          {
+            q: "Does Ghost optimize images automatically?",
+            a: "Ghost has basic image optimization built in, but it is not as aggressive as dedicated image CDNs. For best results, combine Ghost with a CDN like Cloudflare or Imgix.",
+          },
+          {
+            q: "Should I use WebP or AVIF for Ghost blog images?",
+            a: "Use AVIF for hero and featured images (best compression). Use WebP for in-article photos (better browser compatibility). AVIF support is now >95% in modern browsers.",
+          },
+          {
+            q: "How do I check if my Ghost blog images are optimized?",
+            a: "Use Google PageSpeed Insights or Lighthouse. Check the 'Eliminate render-blocking resources' and 'Serve images in next-gen formats' recommendations. Also check your Largest Contentful Paint (LCP) score.",
+          },
+        ],
+      },
+      {
+        type: "cta",
+        text: "Compress your Ghost blog images for free →",
+        href: "https://image-compressor-saas.shop",
+      },
+    ],
+  },
+];
