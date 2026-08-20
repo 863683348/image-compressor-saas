@@ -2063,4 +2063,32 @@ export function getPostSlugs(): string[] {
       },
     ],
   },
+
+  {
+    slug: "linkedin-post-image-size-2026",
+    date: "2026-08-21",
+    title: {
+      en: "LinkedIn Post Image Size: The Complete 2026 Guide",
+      zh: "LinkedIn 帖子图片尺寸：2026 完整指南",
+    },
+    excerpt: {
+      en: "LinkedIn post image sizes change in 2026. Here is the complete guide to optimal dimensions for single images, carousels, and video thumbnails.",
+      zh: "LinkedIn 帖子图片尺寸在 2026 年有所变化。本文是单图、轮播和缩略图最佳尺寸的完整指南。",
+    },
+    body: [
+      { type: "p", text: "LinkedIn is one of the few platforms where image optimization still matters for reach. In 2026, the algorithm favors properly sized images that load quickly and look sharp on high-DPI displays." },
+      { type: "h2", text: "Single Image Posts" },
+      { type: "p", text: "The recommended size for single image posts is 1200 x 627 pixels (1.91:1 ratio). This is the same ratio used for link previews and ensures your image displays fully without cropping." },
+      { type: "h2", text: "Carousel Posts" },
+      { type: "p", text: "For carousel posts (PDF documents), use 1080 x 1350 pixels (4:5 ratio) or 1080 x 1080 pixels (1:1 square). Carousels get 2-3x more engagement than single images." },
+      { type: "h2", text: "Video Thumbnails" },
+      { type: "p", text: "LinkedIn video thumbnails should be 1280 x 720 pixels (16:9 ratio) for the best appearance in feeds and on video pages." },
+      { type: "h2", text: "FAQ" },
+      { type: "faq", items: [
+        { q: "What is the best LinkedIn post image size in 2026?", a: "1200 x 627 pixels for single images, 1080 x 1350 for carousels." },
+        { q: "Does LinkedIn compress my images?", a: "Yes. Upload at 80-90% quality to avoid double compression artifacts." },
+      ] },
+      { type: "cta", text: "Optimize your LinkedIn images for free →", href: "https://image-compressor-saas.shop" },
+    ],
+  }
 ];
