@@ -795,7 +795,7 @@ export const POSTS: BlogPost[] = [
     date: "2026-08-09",
     title: {
       zh: "压缩图片再发邮件：让附件不再被退回（2026 实操）",
-      en: "How to Compress Images for Email Attachments (2026, No Upload)",
+      en: "How to Compress Photos for Email Attachments (Free, No Upload)",
     },
     description: {
       zh: "邮件附件被退回？图片太大是最常见原因。这份 2026 实操指南教你用浏览器本地工具把图片压到 10MB（或对方要求的 100KB）以下，不发服务器、不注册。",
@@ -1956,6 +1956,214 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "optimize-images-ghost-blog",
+    date: "2026-08-20",
+    title: {
+      en: "How to Optimize Images for Ghost Blog (2026 Guide)",
+      zh: "Ghost 博客图片优化指南（2026）",
+    },
+    description: {
+      en: "Ghost is fast by default, but unoptimized images can kill your Core Web Vitals. Here is the complete guide to optimizing images for Ghost blog performance.",
+      zh: "Ghost 默认很快，但未优化的图片会毁掉你的 Core Web Vitals。本文是 Ghost 博客图片优化的完整指南。",
+    },
+    keywords: [
+      "optimize images for ghost blog",
+      "ghost blog image optimization",
+      "ghost webp avif",
+      "ghost blog lazy loading images",
+      "ghost blog cdn images",
+    ],
+    content: {
+      en: [
+        "Ghost is one of the fastest static-site generators out of the box. But speed means nothing if your blog posts are weighed down by 5MB hero images and uncompressed PNGs. This guide covers everything you need to optimize images for Ghost — from format selection to lazy loading, from WebP conversion to CDN configuration.",
+        { type: "h2", text: "Why image optimization matters for Ghost" },
+        "Ghost uses a modern tech stack (Node.js, React, Tailwind) and serves fast HTML. But browsers still need to download every image before rendering the page. Unoptimized images are the #1 cause of slow LCP (Largest Contentful Paint) on Ghost blogs, and LCP is one of Google's Core Web Vitals — directly affecting your search ranking.",
+        { type: "h2", text: "Choose the right format" },
+        "Ghost supports WebP, AVIF, JPEG, PNG, and GIF natively. For blog images, the hierarchy is:",
+        {
+          type: "ul",
+          items: [
+            "AVIF: Best compression, 30-50% smaller than WebP. Use for hero images and photos.",
+            "WebP: Excellent compression, broad browser support. Use for most blog images.",
+            "JPEG: Good for photos where AVIF/WebP is not available.",
+            "PNG: Only for images with transparency or simple graphics.",
+            "GIF: Avoid. Use WebP or MP4 for animations.",
+          ],
+        },
+        { type: "h2", text: "Compression settings for Ghost" },
+        "Ghost's built-in image optimization is good, but you can do better. Recommended settings:",
+        {
+          type: "ul",
+          items: [
+            "Hero/Featured: 1920px max width, 80% quality, WebP or AVIF",
+            "In-article photos: 1200px, 85% quality, WebP",
+            "Thumbnails: 400px, 80% quality, WebP",
+            "Icons/logos: 200px, 90% quality, SVG or PNG",
+          ],
+        },
+        { type: "h2", text: "Lazy loading in Ghost" },
+        "Ghost enables lazy loading by default for images inserted via the editor. However, custom images or images added via HTML may need manual lazy loading. Add the loading attribute:",
+        '<img src="image.jpg" loading="lazy" alt="Description">',
+        "For above-the-fold images (like hero images), use loading='eager' or omit the attribute — lazy loading above the fold actually hurts LCP.",
+        { type: "h2", text: "CDN and caching" },
+        "Use a CDN like Cloudflare or Imgix to serve optimized images. These services automatically convert to WebP/AVIF based on browser support, resize on the fly, and cache globally. Ghost integrates seamlessly with most CDNs.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Does Ghost optimize images automatically?",
+              a: "Ghost has basic image optimization built in, but it is not as aggressive as dedicated image CDNs. For best results, combine Ghost with a CDN like Cloudflare or Imgix.",
+            },
+            {
+              q: "Should I use WebP or AVIF for Ghost blog images?",
+              a: "Use AVIF for hero and featured images (best compression). Use WebP for in-article photos (better browser compatibility). AVIF support is now >95% in modern browsers.",
+            },
+            {
+              q: "How do I check if my Ghost blog images are optimized?",
+              a: "Use Google PageSpeed Insights or Lighthouse. Check the 'Eliminate render-blocking resources' and 'Serve images in next-gen formats' recommendations. Also check your Largest Contentful Paint (LCP) score.",
+            },
+          ],
+        },
+        {
+          type: "cta",
+          text: "Compress your Ghost blog images for free →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+      zh: [
+        "Ghost 是开箱即最快的静态站生成器之一。但如果你的文章被 5MB 的封面图和未压缩的 PNG 拖累，速度将毫无意义。本指南覆盖 Ghost 图片优化的全部要点——从格式选择到懒加载，从 WebP 转换到 CDN 配置。",
+        { type: "h2", text: "为什么 Ghost 博客需要图片优化" },
+        "Ghost 技术栈现代（Node.js、React、Tailwind），HTML 加载很快。但浏览器渲染页面前仍要下载每张图片。未优化的图片是 Ghost 博客 LCP（最大内容绘制）变慢的头号原因，而 LCP 是 Google Core Web Vitals 之一，直接影响搜索排名。",
+        { type: "h2", text: "选择正确的格式" },
+        "Ghost 原生支持 WebP、AVIF、JPEG、PNG 和 GIF。博客图片的优先级：",
+        {
+          type: "ul",
+          items: [
+            "AVIF：压缩率最高，比 WebP 小 30-50%，用于封面图和照片",
+            "WebP：压缩优秀、浏览器支持广，用于大多数博客图片",
+            "JPEG：不支持 AVIF/WebP 时用于照片",
+            "PNG：仅用于带透明或简单图形的图片",
+            "GIF：避免使用，动图改用 WebP 或 MP4",
+          ],
+        },
+        { type: "h2", text: "Ghost 的压缩设置" },
+        "Ghost 内置的图片优化不错，但可以做得更好。推荐设置：",
+        {
+          type: "ul",
+          items: [
+            "封面/头图：1920px 宽、80% 质量、WebP 或 AVIF",
+            "文内照片：1200px、85% 质量、WebP",
+            "缩略图：400px、80% 质量、WebP",
+            "图标/Logo：200px、90% 质量、SVG 或 PNG",
+          ],
+        },
+        { type: "h2", text: "Ghost 中的懒加载" },
+        "Ghost 默认对编辑器插入的图片启用懒加载。但自定义图片或通过 HTML 添加的图片可能需要手动设置。加上 loading 属性：",
+        '<img src="image.jpg" loading="lazy" alt="Description">',
+        "首屏图片（如封面图）请用 loading='eager' 或省略该属性——首屏懒加载反而会拖慢 LCP。",
+        { type: "h2", text: "CDN 与缓存" },
+        "使用 Cloudflare 或 Imgix 等 CDN 提供优化后的图片。这些服务会自动按浏览器支持转换为 WebP/AVIF、按需缩放并全局缓存。Ghost 与大多数 CDN 无缝集成。",
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Ghost 会自动优化图片吗？",
+              a: "Ghost 内置基础图片优化，但不如专用图片 CDN 激进。最佳实践是 Ghost + CDN（如 Cloudflare 或 Imgix）组合。",
+            },
+            {
+              q: "Ghost 博客图片应该用 WebP 还是 AVIF？",
+              a: "封面/头图用 AVIF（压缩最好）；文内照片用 WebP（兼容性更好）。现代浏览器 AVIF 支持已超过 95%。",
+            },
+          ],
+        },
+        {
+          type: "cta",
+          text: "免费压缩你的 Ghost 博客图片 →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+    },
+  },
+  {
+    slug: "linkedin-post-image-size-2026",
+    date: "2026-08-21",
+    title: {
+      en: "LinkedIn Post Image Size: The Complete 2026 Guide",
+      zh: "LinkedIn 帖子图片尺寸：2026 完整指南",
+    },
+    description: {
+      en: "LinkedIn post image sizes change in 2026. Here is the complete guide to optimal dimensions for single images, carousels, and video thumbnails.",
+      zh: "LinkedIn 帖子图片尺寸在 2026 年有所变化。本文是单图、轮播和缩略图最佳尺寸的完整指南。",
+    },
+    keywords: [
+      "linkedin post image size",
+      "linkedin image size 2026",
+      "linkedin carousel image size",
+      "linkedin video thumbnail size",
+      "linkedin post dimensions",
+    ],
+    content: {
+      en: [
+        "LinkedIn is one of the few platforms where image optimization still matters for reach. In 2026, the algorithm favors properly sized images that load quickly and look sharp on high-DPI displays.",
+        { type: "h2", text: "Single Image Posts" },
+        "The recommended size for single image posts is 1200 x 627 pixels (1.91:1 ratio). This is the same ratio used for link previews and ensures your image displays fully without cropping.",
+        { type: "h2", text: "Carousel Posts" },
+        "For carousel posts (PDF documents), use 1080 x 1350 pixels (4:5 ratio) or 1080 x 1080 pixels (1:1 square). Carousels get 2-3x more engagement than single images.",
+        { type: "h2", text: "Video Thumbnails" },
+        "LinkedIn video thumbnails should be 1280 x 720 pixels (16:9 ratio) for the best appearance in feeds and on video pages.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "What is the best LinkedIn post image size in 2026?",
+              a: "1200 x 627 pixels for single images, 1080 x 1350 for carousels.",
+            },
+            {
+              q: "Does LinkedIn compress my images?",
+              a: "Yes. Upload at 80-90% quality to avoid double compression artifacts.",
+            },
+          ],
+        },
+        {
+          type: "cta",
+          text: "Optimize your LinkedIn images for free →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+      zh: [
+        "LinkedIn 是为数不多、图片优化仍直接影响触达率的平台。2026 年，算法更青睐尺寸合适、加载快、在高分屏上清晰锐利的图片。",
+        { type: "h2", text: "单图帖子" },
+        "单图帖子推荐尺寸为 1200 x 627 像素（1.91:1 比例）。这与链接预览同比例，确保图片完整显示不被裁剪。",
+        { type: "h2", text: "轮播帖子" },
+        "轮播帖子（PDF 文档）使用 1080 x 1350 像素（4:5 比例）或 1080 x 1080 像素（1:1 方形）。轮播的互动率是单图的 2-3 倍。",
+        { type: "h2", text: "视频缩略图" },
+        "LinkedIn 视频缩略图建议 1280 x 720 像素（16:9 比例），在信息流和视频页都有最佳效果。",
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "2026 年 LinkedIn 帖子图片最佳尺寸是多少？",
+              a: "单图 1200 x 627 像素，轮播 1080 x 1350 像素。",
+            },
+            {
+              q: "LinkedIn 会压缩我的图片吗？",
+              a: "会。建议以 80-90% 质量上传，避免二次压缩产生噪点。",
+            },
+          ],
+        },
+        {
+          type: "cta",
+          text: "免费优化你的 LinkedIn 图片 →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+    },
+  },
 ];
 
 
@@ -1966,129 +2174,3 @@ export function getPost(slug: string): BlogPost | undefined {
 export function getPostSlugs(): string[] {
   return POSTS.map((p) => p.slug);
 }
-  ,
-  {
-    slug: "optimize-images-ghost-blog",
-    date: "2026-08-20",
-    title: {
-      en: "How to Optimize Images for Ghost Blog (2026 Guide)",
-      zh: "Ghost 博客图片优化指南（2026）",
-    },
-    excerpt: {
-      en: "Ghost is fast by default, but unoptimized images can kill your Core Web Vitals. Here is the complete guide to optimizing images for Ghost blog performance.",
-      zh: "Ghost 默认很快，但未优化的图片会毁掉你的 Core Web Vitals。本文是 Ghost 博客图片优化的完整指南。",
-    },
-    body: [
-      {
-        type: "p",
-        text: "Ghost is one of the fastest static-site generators out of the box. But speed means nothing if your blog posts are weighed down by 5MB hero images and uncompressed PNGs. This guide covers everything you need to optimize images for Ghost — from format selection to lazy loading, from WebP conversion to CDN configuration.",
-      },
-      { type: "h2", text: "Why image optimization matters for Ghost" },
-      {
-        type: "p",
-        text: "Ghost uses a modern tech stack (Node.js, React, Tailwind) and serves fast HTML. But browsers still need to download every image before rendering the page. Unoptimized images are the #1 cause of slow LCP (Largest Contentful Paint) on Ghost blogs, and LCP is one of Google's Core Web Vitals — directly affecting your search ranking.",
-      },
-      { type: "h2", text: "Choose the right format" },
-      {
-        type: "p",
-        text: "Ghost supports WebP, AVIF, JPEG, PNG, and GIF natively. For blog images, the hierarchy is:",
-      },
-      {
-        type: "ul",
-        items: [
-          "AVIF: Best compression, 30-50% smaller than WebP. Use for hero images and photos.",
-          "WebP: Excellent compression, broad browser support. Use for most blog images.",
-          "JPEG: Good for photos where AVIF/WebP is not available.",
-          "PNG: Only for images with transparency or simple graphics.",
-          "GIF: Avoid. Use WebP or MP4 for animations.",
-        ],
-      },
-      { type: "h2", text: "Compression settings for Ghost" },
-      {
-        type: "p",
-        text: "Ghost's built-in image optimization is good, but you can do better. Use these settings:",
-      },
-      {
-        type: "table",
-        data: {
-          headers: ["Image Type", "Max Width", "Quality", "Format"],
-          rows: [
-            ["Hero/Featured", "1920px", "80%", "WebP or AVIF"],
-            ["In-article photos", "1200px", "85%", "WebP"],
-            ["Thumbnails", "400px", "80%", "WebP"],
-            ["Icons/logos", "200px", "90%", "SVG or PNG"],
-          ],
-        },
-      },
-      { type: "h2", text: "Lazy loading in Ghost" },
-      {
-        type: "p",
-        text: "Ghost enables lazy loading by default for images inserted via the editor. However, custom images or images added via HTML may need manual lazy loading. Add the loading attribute:",
-      },
-      {
-        type: "p",
-        text: '<img src="image.jpg" loading="lazy" alt="Description">',
-      },
-      {
-        type: "p",
-        text: "For above-the-fold images (like hero images), use loading='eager' or omit the attribute — lazy loading above the fold actually hurts LCP.",
-      },
-      { type: "h2", text: "CDN and caching" },
-      {
-        type: "p",
-        text: "Use a CDN like Cloudflare or Imgix to serve optimized images. These services automatically convert to WebP/AVIF based on browser support, resize on the fly, and cache globally. Ghost integrates seamlessly with most CDNs.",
-      },
-      { type: "h2", text: "FAQ" },
-      {
-        type: "faq",
-        items: [
-          {
-            q: "Does Ghost optimize images automatically?",
-            a: "Ghost has basic image optimization built in, but it is not as aggressive as dedicated image CDNs. For best results, combine Ghost with a CDN like Cloudflare or Imgix.",
-          },
-          {
-            q: "Should I use WebP or AVIF for Ghost blog images?",
-            a: "Use AVIF for hero and featured images (best compression). Use WebP for in-article photos (better browser compatibility). AVIF support is now >95% in modern browsers.",
-          },
-          {
-            q: "How do I check if my Ghost blog images are optimized?",
-            a: "Use Google PageSpeed Insights or Lighthouse. Check the 'Eliminate render-blocking resources' and 'Serve images in next-gen formats' recommendations. Also check your Largest Contentful Paint (LCP) score.",
-          },
-        ],
-      },
-      {
-        type: "cta",
-        text: "Compress your Ghost blog images for free →",
-        href: "https://image-compressor-saas.shop",
-      },
-    ],
-  },
-
-  {
-    slug: "linkedin-post-image-size-2026",
-    date: "2026-08-21",
-    title: {
-      en: "LinkedIn Post Image Size: The Complete 2026 Guide",
-      zh: "LinkedIn 帖子图片尺寸：2026 完整指南",
-    },
-    excerpt: {
-      en: "LinkedIn post image sizes change in 2026. Here is the complete guide to optimal dimensions for single images, carousels, and video thumbnails.",
-      zh: "LinkedIn 帖子图片尺寸在 2026 年有所变化。本文是单图、轮播和缩略图最佳尺寸的完整指南。",
-    },
-    body: [
-      { type: "p", text: "LinkedIn is one of the few platforms where image optimization still matters for reach. In 2026, the algorithm favors properly sized images that load quickly and look sharp on high-DPI displays." },
-      { type: "h2", text: "Single Image Posts" },
-      { type: "p", text: "The recommended size for single image posts is 1200 x 627 pixels (1.91:1 ratio). This is the same ratio used for link previews and ensures your image displays fully without cropping." },
-      { type: "h2", text: "Carousel Posts" },
-      { type: "p", text: "For carousel posts (PDF documents), use 1080 x 1350 pixels (4:5 ratio) or 1080 x 1080 pixels (1:1 square). Carousels get 2-3x more engagement than single images." },
-      { type: "h2", text: "Video Thumbnails" },
-      { type: "p", text: "LinkedIn video thumbnails should be 1280 x 720 pixels (16:9 ratio) for the best appearance in feeds and on video pages." },
-      { type: "h2", text: "FAQ" },
-      { type: "faq", items: [
-        { q: "What is the best LinkedIn post image size in 2026?", a: "1200 x 627 pixels for single images, 1080 x 1350 for carousels." },
-        { q: "Does LinkedIn compress my images?", a: "Yes. Upload at 80-90% quality to avoid double compression artifacts." },
-      ] },
-      { type: "cta", text: "Optimize your LinkedIn images for free →", href: "https://image-compressor-saas.shop" },
-    ],
-  }
-];

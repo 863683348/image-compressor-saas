@@ -6,6 +6,31 @@ import { getPost, getPostSlugs, POSTS, type PostBlock } from "@/lib/blog/posts";
 
 const SITE_URL = "https://image-compressor-saas.shop";
 
+// 主题簇内链：按格式对比族 / 压缩方法族 / 通用族互链（SEO 权重集中 + 相关阅读）
+const RELATED_GROUPS: Record<string, string[]> = {
+  // format comparison cluster
+  "webp-vs-jpeg-comparison": ["png-vs-jpg-differences", "webp-vs-png-comparison", "avif-vs-webp-vs-jpeg-2026"],
+  "png-vs-jpg-differences": ["webp-vs-jpeg-comparison", "webp-vs-png-comparison"],
+  "webp-vs-png-comparison": ["webp-vs-jpeg-comparison", "png-vs-jpg-differences"],
+  "avif-vs-webp-vs-jpeg-2026": ["webp-vs-jpeg-comparison", "avif-vs-webp-in-depth"],
+  "avif-vs-webp-in-depth": ["avif-vs-webp-vs-jpeg-2026", "webp-vs-jpeg-comparison"],
+  // how-to / method cluster
+  "compress-jpg-under-100kb": ["compress-png-without-losing-quality", "compress-webp-images-guide", "compress-image-for-email-attachments"],
+  "compress-png-without-losing-quality": ["compress-jpg-under-100kb", "compress-webp-images-guide"],
+  "compress-webp-images-guide": ["compress-jpg-under-100kb", "compress-png-without-losing-quality"],
+  "compress-image-for-email-attachments": ["compress-jpg-under-100kb", "image-compression-web-performance-guide"],
+  // general cluster
+  "image-compression-web-performance-guide": ["compress-images-for-web-seo", "best-free-image-compressor-2026"],
+  "compress-images-for-web-seo": ["image-compression-web-performance-guide", "best-free-image-compressor-2026"],
+  "best-free-image-compressor-2026": ["image-compression-web-performance-guide", "compress-webp-images-guide"],
+};
+
+function relatedSlugs(slug: string, count = 3): string[] {
+  const mapped = RELATED_GROUPS[slug] || [];
+  const rest = POSTS.filter((p) => p.slug !== slug).map((p) => p.slug);
+  return mapped.length ? mapped.slice(0, count) : rest.slice(0, count);
+}
+
 // 文章专属图（public/images/blog/{slug}.svg），缺图时回退到站点 icon
 function postImage(slug: string): string {
   const file = path.join(process.cwd(), "public", "images", "blog", `${slug}.svg`);
@@ -173,13 +198,22 @@ export default async function Page({ params }: Props) {
       <div style={{ marginTop: 32, paddingTop: 20, borderTop: "1px solid var(--border, #e5e7eb)" }}>
         <p style={{ fontSize: 14, color: "var(--muted, #6b7280)" }}>
           {locale === "zh" ? "阅读更多：" : "More reads: "}
-          {POSTS.filter((p) => p.slug !== post.slug)
-            .slice(0, 3)
-            .map((p) => (
+          {relatedSlugs(post.slug).map((s) => {
+            const p = POSTS.find((x) => x.slug === s);
+            return p ? (
               <a key={p.slug} href={`${blogPath}/${p.slug}`} style={{ color: "var(--primary, #4f46e5)", marginRight: 12 }}>
                 {p.title[locale]}
               </a>
-            ))}
+            ) : null;
+          })}
+        </p>
+        <p style={{ fontSize: 14, margin: "10px 0 0" }}>
+          <a
+            href={`${SITE_URL}/guide.html`}
+            style={{ color: "var(--primary, #4f46e5)", textDecoration: "none", fontWeight: 600 }}
+          >
+            {locale === "zh" ? "免费指南：把图片压缩到指定大小（200KB / 100KB / 50KB）→" : "Free guide: compress images to an exact size (200KB / 100KB / 50KB) →"}
+          </a>
         </p>
       </div>
     </div>
