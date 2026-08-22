@@ -2258,14 +2258,47 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
-];
 
-
-
-export function getPost(slug: string): BlogPost | undefined {
-  return POSTS.find((p) => p.slug === slug);
-}
-
-export function getPostSlugs(): string[] {
-  return POSTS.map((p) => p.slug);
-}
+  {
+    slug: "compress-photos-real-estate-listings",
+    date: "2026-08-23",
+    title: {
+      zh: "房地产照片压缩指南： listings 图片优化技巧",
+      en: "Real Estate Photo Compression: Optimize Listing Images for Speed and Quality",
+    },
+    description: {
+      zh: "房产网站每张照片都影响加载速度和用户体验。本文教你如何在保持画质的同时大幅压缩房地产照片。",
+      en: "Every photo on a real estate site affects load speed and user experience. Learn how to compress property photos significantly while maintaining quality.",
+    },
+    keywords: ["compress real estate photos", "real estate image optimization", "property listing photos", "zillow photo compression"],
+    content: {
+      zh: [
+        "房地产网站的照片质量直接影响买家的决策。但高清照片也意味着慢速加载——买家等不及就关掉了。",
+        { type: "h2", text: "为什么房地产照片需要专门压缩" },
+        { type: "p", text: "房产照片通常分辨率很高（专业相机拍摄），文件大小容易超过 5MB。Zillow 和 Realtor.com 等平台的最佳实践是将照片压缩到 500KB 以下，同时保持视觉质量。" },
+        { type: "h2", text: "压缩技巧" },
+        { type: "ul", items: ["使用 WebP 格式替代 JPEG，文件小 30% 质量相同", "将长边限制在 2000px 以内", "压缩质量设为 80-85%（肉眼难以区分）", "批量处理：使用 Photoshop 动作或在线批量工具"] },
+        { type: "h2", text: "常见问题" },
+        { type: "faq", items: [
+          { q: "压缩后照片质量会下降吗？", a: "使用 80-85% 质量的 WebP，肉眼几乎看不出区别。" },
+          { q: "房产平台有文件大小限制吗？", a: "Zillow 建议每张照片 500KB 以下，Realtor.com 建议 1MB 以下。" },
+          { q: "如何批量压缩多张照片？", a: "使用我们的在线压缩工具，或 Photoshop 批量处理动作。" },
+        ] },
+        { type: "cta", text: "免费压缩你的房地产照片 →", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "Photo quality on real estate sites directly impacts buyer decisions. But high-res photos mean slow loading — buyers close the tab before they wait. Here's how to compress property photos without losing the details that sell homes.",
+        { type: "h2", text: "Why Real Estate Photos Need Special Compression" },
+        { type: "p", text: "Property photos are often high resolution (professional camera shots), with file sizes easily exceeding 5MB. Best practices on Zillow and Realtor.com recommend compressing photos to under 500KB while maintaining visual quality." },
+        { type: "h2", text: "Compression Techniques" },
+        { type: "ul", items: ["Use WebP format instead of JPEG — 30% smaller at same quality", "Limit long edge to 2000px or less", "Set compression quality to 80-85% (indistinguishable to the eye)", "Batch process: use Photoshop actions or online batch tools"] },
+        { type: "h2", text: "FAQ" },
+        { type: "faq", items: [
+          { q: "Will compression reduce photo quality?", a: "At 80-85% quality WebP, the difference is virtually indistinguishable to the human eye." },
+          { q: "Do real estate platforms have file size limits?", a: "Zillow recommends under 500KB per photo. Realtor.com recommends under 1MB." },
+          { q: "How do I batch compress multiple photos?", a: "Use our online compressor or Photoshop batch actions." },
+        ] },
+        { type: "cta", text: "Compress your real estate photos for free →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
