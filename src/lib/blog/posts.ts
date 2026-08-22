@@ -2087,6 +2087,7 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+
   {
     slug: "linkedin-post-image-size-2026",
     date: "2026-08-21",
@@ -2164,7 +2165,101 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "instagram-image-sizes-2026",
+    date: "2026-08-22",
+    title: {
+      en: "Instagram Image Sizes 2026: The Complete Guide",
+      zh: "2026 年 Instagram 图片尺寸：完整指南",
+    },
+    description: {
+      en: "Instagram changed its image specifications in 2026. Here is the complete guide to optimal dimensions for single images, carousels, stories, and reels.",
+      zh: "Instagram 在 2026 年更改了图片规格。本文是单图、轮播、故事和 Reels 最佳尺寸的完整指南。",
+    },
+    keywords: [
+      "instagram image size",
+      "instagram post size 2026",
+      "instagram story size",
+      "instagram carousel size",
+      "instagram reel size",
+    ],
+    content: {
+      en: [
+        "Instagram changed its image specifications multiple times in 2025 and 2026. If you're optimizing for the platform, here's what actually works right now.",
+        { type: "h2", text: "Single Image Posts" },
+        "The sweet spot is 1080 x 1350 pixels (4:5 ratio). This fills more screen space than the old 1:1 square, which means more visibility in feeds. Width should always be 1080px — Instagram compresses larger uploads.",
+        { type: "h2", text: "Carousel Posts" },
+        "Each slide in a carousel follows the same ratios as single posts. The key insight: keep all slides on the same ratio. Mixing 1:1 with 4:5 in one carousel looks unprofessional and can cause cropping issues.",
+        { type: "h2", text: "Stories and Reels" },
+        "Stories: 1080 x 1920 (9:16). This is full-screen on mobile. Reels: Same 1080 x 1920 ratio. Both should account for UI elements — keep important content within the center 1080 x 1280 area to avoid being covered by captions and buttons.",
+        { type: "h2", text: "Profile Pictures" },
+        "110 x 110 pixels displayed, but upload at 110 x 110 or larger. Instagram crops to a circle, so center your subject.",
+        { type: "h2", text: "File Size and Format" },
+        "- JPEG for photos, PNG for graphics with text\n- Keep files under 30MB for posts, under 4GB for Reels\n- sRGB color profile — not all platforms handle wide color well",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Does Instagram compress my images?",
+              a: "Yes. Upload at 1080px width and 80-90% quality to minimize double compression.",
+            },
+            {
+              q: "Can I post 4:5 and 1:1 in the same carousel?",
+              a: "Technically yes, but it looks inconsistent. Stick to one ratio.",
+            },
+            {
+              q: "What's the best format for Instagram?",
+              a: "JPEG for photos, PNG for graphics with text or transparency.",
+            },
+          ],
+        },
+        {
+          type: "cta",
+          text: "Optimize your Instagram images for free →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+      zh: [
+        "Instagram 在 2025 和 2026 年多次更改了图片规格。如果你在为该平台优化，以下是目前实际有效的方法。",
+        { type: "h2", text: "单图帖子" },
+        "最佳尺寸是 1080 x 1350 像素（4:5 比例）。这比旧的 1:1 方形填充更多屏幕空间，意味着在信息流中更有可见性。宽度应始终为 1080px——Instagram 会压缩更大的上传。",
+        { type: "h2", text: "轮播帖子" },
+        "轮播中的每个幻灯片遵循与单图相同的比例。关键见解：保持所有幻灯片在同一比例。在一个轮播中混合 1:1 和 4:5 看起来不专业，并可能导致裁剪问题。",
+        { type: "h2", text: "故事和 Reels" },
+        "故事：1080 x 1920（9:16）。这是在移动设备上的全屏。Reels：相同的 1080 x 1920 比例。两者都应该考虑 UI 元素——将重要内容保持在中心 1080 x 1280 区域内，避免被标题和按钮覆盖。",
+        { type: "h2", text: "个人资料图片" },
+        "显示 110 x 110 像素，但上传 110 x 110 或更大。Instagram 裁剪为圆形，所以将主体居中。",
+        { type: "h2", text: "文件大小和格式" },
+        "- 照片用 JPEG，带文字的图形用 PNG\n- 帖子文件保持 30MB 以下，Reels 保持 4GB 以下\n- sRGB 色彩配置文件——并非所有平台都能很好地处理广色域",
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Instagram 会压缩我的图片吗？",
+              a: "会。以 1080px 宽度和 80-90% 质量上传，以最小化二次压缩。",
+            },
+            {
+              q: "我可以在同一个轮播中发布 4:5 和 1:1 吗？",
+              a: "技术上可以，但看起来不一致。坚持一种比例。",
+            },
+            {
+              q: "Instagram 的最佳格式是什么？",
+              a: "照片用 JPEG，带文字或透明度的图形用 PNG。",
+            },
+          ],
+        },
+        {
+          type: "cta",
+          text: "免费优化你的 Instagram 图片 →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+    },
+  },
 ];
+
 
 
 export function getPost(slug: string): BlogPost | undefined {
