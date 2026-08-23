@@ -2275,7 +2275,7 @@ export const POSTS: BlogPost[] = [
       zh: [
         "房地产网站的照片质量直接影响买家的决策。但高清照片也意味着慢速加载——买家等不及就关掉了。",
         { type: "h2", text: "为什么房地产照片需要专门压缩" },
-        { type: "p", text: "房产照片通常分辨率很高（专业相机拍摄），文件大小容易超过 5MB。Zillow 和 Realtor.com 等平台的最佳实践是将照片压缩到 500KB 以下，同时保持视觉质量。" },
+        "房产照片通常分辨率很高（专业相机拍摄），文件大小容易超过 5MB。Zillow 和 Realtor.com 等平台的最佳实践是将照片压缩到 500KB 以下，同时保持视觉质量。",
         { type: "h2", text: "压缩技巧" },
         { type: "ul", items: ["使用 WebP 格式替代 JPEG，文件小 30% 质量相同", "将长边限制在 2000px 以内", "压缩质量设为 80-85%（肉眼难以区分）", "批量处理：使用 Photoshop 动作或在线批量工具"] },
         { type: "h2", text: "常见问题" },
@@ -2289,7 +2289,7 @@ export const POSTS: BlogPost[] = [
       en: [
         "Photo quality on real estate sites directly impacts buyer decisions. But high-res photos mean slow loading — buyers close the tab before they wait. Here's how to compress property photos without losing the details that sell homes.",
         { type: "h2", text: "Why Real Estate Photos Need Special Compression" },
-        { type: "p", text: "Property photos are often high resolution (professional camera shots), with file sizes easily exceeding 5MB. Best practices on Zillow and Realtor.com recommend compressing photos to under 500KB while maintaining visual quality." },
+        "Property photos are often high resolution (professional camera shots), with file sizes easily exceeding 5MB. Best practices on Zillow and Realtor.com recommend compressing photos to under 500KB while maintaining visual quality.",
         { type: "h2", text: "Compression Techniques" },
         { type: "ul", items: ["Use WebP format instead of JPEG — 30% smaller at same quality", "Limit long edge to 2000px or less", "Set compression quality to 80-85% (indistinguishable to the eye)", "Batch process: use Photoshop actions or online batch tools"] },
         { type: "h2", text: "FAQ" },
@@ -2302,3 +2302,13 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+];
+
+
+export function getPost(slug: string): BlogPost | undefined {
+  return POSTS.find((p) => p.slug === slug);
+}
+
+export function getPostSlugs(): string[] {
+  return POSTS.map((p) => p.slug);
+}
