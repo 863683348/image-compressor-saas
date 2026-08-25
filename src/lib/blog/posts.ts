@@ -2302,6 +2302,73 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+
+  {
+    slug: "image-compression-affects-page-speed",
+    date: "2026-08-25",
+    title: {
+      zh: "图片压缩如何影响页面速度：数据驱动的证据",
+      en: "Image Compression Affects Page Speed: The Data-Driven Proof",
+    },
+    description: {
+      zh: "每兆字节未优化的图像都会减慢网站速度。数据清楚地表明：图片压缩与更快的加载时间、更好的 Core Web Vitals 评分和更高的转化率直接相关。",
+      en: "Every megabyte of unoptimized imagery slows your website down. The data is clear: image compression directly correlates with faster load times, better Core Web Vitals scores, and higher conversion rates.",
+    },
+    keywords: [
+      "image compression page speed",
+      "image optimization core web vitals",
+      "compress images faster website",
+      "image file size website performance",
+    ],
+    content: {
+      zh: [
+        "图片通常是网页上最大的资源。根据 HTTP Archive，图片平均占页面总重量的 40-50%。每一兆未优化的图像都会直接拖慢 LCP（最大内容绘制），而 LCP 是 Core Web Vitals 的核心指标。",
+        { type: "h2", text: "数据怎么说" },
+        "Google 的数据显示，页面加载时间从 1 秒增加到 3 秒，跳出率提高 32%。而一张 2MB 的未压缩图片，在 4G 网络下可能就需要 2-3 秒才能加载完——这足以毁掉你的 LCP 评分。",
+        {
+          type: "ul",
+          items: [
+            "图片占平均页面重量的 40-50%",
+            "未优化图片是 LCP 超时（>2.5s）的头号原因",
+            "WebP 相比 JPEG 平均可节省 25-35% 体积",
+            "压缩后图片加载快 → 转化率提升（每慢 1 秒转化下降 7%）",
+          ],
+        },
+        { type: "h2", text: "最佳实践" },
+        "使用 WebP 或 AVIF 格式、按需压缩到 80-85% 质量、为响应式布局提供多尺寸图片。这些做法能让你的 LCP 从红区进入绿区。",
+        { type: "h2", text: "FAQ" },
+        { type: "faq", items: [
+          { q: "How much can I compress images before quality suffers?", a: "For JPEG, 80-85% quality usually provides the best balance." },
+          { q: "What is the best format for web images?", a: "WebP or AVIF. WebP saves 25-35% vs JPEG at the same quality." },
+          { q: "Does image compression affect SEO?", a: "Yes. Page speed is a ranking factor, and faster images improve Core Web Vitals." },
+        ] },
+        { type: "cta", text: "Compress your images for free →", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "Images are usually the largest resource on a web page. According to HTTP Archive, images account for 40-50% of average page weight. Every unoptimized megabyte drags down your LCP (Largest Contentful Paint) — the core Core Web Vitals metric.",
+        { type: "h2", text: "What the Data Says" },
+        "Google's data shows that when page load time goes from 1 second to 3 seconds, bounce rate increases by 32%. A single 2MB unoptimized image can take 2-3 seconds to load on 4G — enough to destroy your LCP score.",
+        {
+          type: "ul",
+          items: [
+            "Images account for 40-50% of average page weight",
+            "Unoptimized images are the #1 cause of LCP failures (>2.5s)",
+            "WebP saves 25-35% vs JPEG at the same visual quality",
+            "Faster images → higher conversions (every 1s slower costs ~7% conversions)",
+          ],
+        },
+        { type: "h2", text: "Best Practices" },
+        "Use WebP or AVIF, compress to 80-85% quality, and serve multiple sizes for responsive layouts. These moves take your LCP from red to green.",
+        { type: "h2", text: "FAQ" },
+        { type: "faq", items: [
+          { q: "How much can I compress images before quality suffers?", a: "For JPEG, 80-85% quality usually provides the best balance." },
+          { q: "What is the best format for web images?", a: "WebP or AVIF. WebP saves 25-35% vs JPEG at the same quality." },
+          { q: "Does image compression affect SEO?", a: "Yes. Page speed is a ranking factor, and faster images improve Core Web Vitals." },
+        ] },
+        { type: "cta", text: "Compress your images for free →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
 ];
 
 
