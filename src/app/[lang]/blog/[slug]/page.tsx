@@ -1,9 +1,43 @@
 import type { Metadata } from "next";
+import fs from "node:fs";
+import path from "node:path";
 import { notFound } from "next/navigation";
 import { getPost, getPostSlugs, POSTS, type PostBlock } from "@/lib/blog/posts";
-import { buildLanguageAlternates } from "@/i18n/config";
 
 const SITE_URL = "https://image-compressor-saas.shop";
+
+// 主题簇内链：按格式对比族 / 压缩方法族 / 通用族互链（SEO 权重集中 + 相关阅读）
+const RELATED_GROUPS: Record<string, string[]> = {
+  // format comparison cluster
+  "webp-vs-jpeg-comparison": ["png-vs-jpg-differences", "webp-vs-png-comparison", "avif-vs-webp-vs-jpeg-2026"],
+  "png-vs-jpg-differences": ["webp-vs-jpeg-comparison", "webp-vs-png-comparison"],
+  "webp-vs-png-comparison": ["webp-vs-jpeg-comparison", "png-vs-jpg-differences"],
+  "avif-vs-webp-vs-jpeg-2026": ["webp-vs-jpeg-comparison", "avif-vs-webp-in-depth"],
+  "avif-vs-webp-in-depth": ["avif-vs-webp-vs-jpeg-2026", "webp-vs-jpeg-comparison"],
+  // how-to / method cluster
+  "compress-jpg-under-100kb": ["compress-png-without-losing-quality", "compress-webp-images-guide", "compress-image-for-email-attachments"],
+  "compress-png-without-losing-quality": ["compress-jpg-under-100kb", "compress-webp-images-guide"],
+  "compress-webp-images-guide": ["compress-jpg-under-100kb", "compress-png-without-losing-quality"],
+  "compress-image-for-email-attachments": ["compress-jpg-under-100kb", "image-compression-web-performance-guide"],
+  // general cluster
+  "image-compression-web-performance-guide": ["compress-images-for-web-seo", "best-free-image-compressor-2026"],
+  "compress-images-for-web-seo": ["image-compression-web-performance-guide", "best-free-image-compressor-2026"],
+  "best-free-image-compressor-2026": ["image-compression-web-performance-guide", "compress-webp-images-guide"],
+};
+
+function relatedSlugs(slug: string, count = 3): string[] {
+  const mapped = RELATED_GROUPS[slug] || [];
+  const rest = POSTS.filter((p) => p.slug !== slug).map((p) => p.slug);
+  return mapped.length ? mapped.slice(0, count) : rest.slice(0, count);
+}
+
+// 文章专属图（public/images/blog/{slug}.svg），缺图时回退到站点 icon
+function postImage(slug: string): string {
+  const file = path.join(process.cwd(), "public", "images", "blog", `${slug}.svg`);
+  return fs.existsSync(file)
+    ? `${SITE_URL}/images/blog/${slug}.svg`
+    : `${SITE_URL}/icon.svg`;
+}
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
@@ -16,21 +50,33 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = lang === "en" ? "en" : "zh";
   const post = getPost(slug);
   if (!post) return { title: "Not Found" };
+  const url = `${SITE_URL}/${locale}/blog/${post.slug}`;
+  const ogImage = postImage(post.slug);
   return {
-    title: `${post.title[locale]} | Image Compressor`,
+    title: post.title[locale], // 根布局 title.template 会自动追加 " · Image Compressor"
     description: post.description[locale],
     keywords: post.keywords,
     alternates: {
-      canonical:
-        locale === "zh" ? `${SITE_URL}/blog/${post.slug}` : `${SITE_URL}/en/blog/${post.slug}`,
-      languages: buildLanguageAlternates(locale, `/blog/${post.slug}`, SITE_URL),
+      canonical: url,
+      languages: {
+        "zh-CN": `${SITE_URL}/zh/blog/${post.slug}`,
+        en: `${SITE_URL}/en/blog/${post.slug}`,
+        "x-default": `${SITE_URL}/zh/blog/${post.slug}`,
+      },
     },
     openGraph: {
       title: post.title[locale],
       description: post.description[locale],
       type: "article",
       publishedTime: post.date,
-      url: `${SITE_URL}/${locale === "zh" ? "" : "en/"}blog/${post.slug}`,
+      url,
+      images: [{ url: ogImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title[locale],
+      description: post.description[locale],
+      images: [ogImage],
     },
   };
 }
@@ -46,6 +92,8 @@ export default async function Page({ params }: Props) {
     .filter((b): b is { type: "faq"; items: { q: string; a: string }[] } => typeof b !== "string" && b.type === "faq")
     .flatMap((b) => b.items);
 
+  const blogUrl = `${SITE_URL}/${locale}/blog/${post.slug}`;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -55,8 +103,8 @@ export default async function Page({ params }: Props) {
         description: post.description[locale],
         datePublished: post.date,
         dateModified: post.date,
-        url: `${SITE_URL}/${locale === "zh" ? "" : "en/"}blog/${post.slug}`,
-        mainEntityOfPage: `${SITE_URL}/${locale === "zh" ? "" : "en/"}blog/${post.slug}`,
+        url: blogUrl,
+        mainEntityOfPage: blogUrl,
         author: { "@type": "Organization", name: "Image Compressor", url: SITE_URL },
         publisher: { "@type": "Organization", name: "Image Compressor", url: SITE_URL },
         image: SITE_URL + "/icon.svg",
@@ -136,7 +184,7 @@ export default async function Page({ params }: Props) {
     return null;
   };
 
-  const blogPath = locale === "zh" ? "/blog" : "/en/blog";
+  const blogPath = `/${locale}/blog`;
 
   return (
     <div style={{ maxWidth: 720, margin: "0 auto", padding: "40px 18px 20px" }}>
@@ -150,13 +198,22 @@ export default async function Page({ params }: Props) {
       <div style={{ marginTop: 32, paddingTop: 20, borderTop: "1px solid var(--border, #e5e7eb)" }}>
         <p style={{ fontSize: 14, color: "var(--muted, #6b7280)" }}>
           {locale === "zh" ? "阅读更多：" : "More reads: "}
-          {POSTS.filter((p) => p.slug !== post.slug)
-            .slice(0, 3)
-            .map((p) => (
+          {relatedSlugs(post.slug).map((s) => {
+            const p = POSTS.find((x) => x.slug === s);
+            return p ? (
               <a key={p.slug} href={`${blogPath}/${p.slug}`} style={{ color: "var(--primary, #4f46e5)", marginRight: 12 }}>
                 {p.title[locale]}
               </a>
-            ))}
+            ) : null;
+          })}
+        </p>
+        <p style={{ fontSize: 14, margin: "10px 0 0" }}>
+          <a
+            href={`${SITE_URL}/guide.html`}
+            style={{ color: "var(--primary, #4f46e5)", textDecoration: "none", fontWeight: 600 }}
+          >
+            {locale === "zh" ? "免费指南：把图片压缩到指定大小（200KB / 100KB / 50KB）→" : "Free guide: compress images to an exact size (200KB / 100KB / 50KB) →"}
+          </a>
         </p>
       </div>
     </div>

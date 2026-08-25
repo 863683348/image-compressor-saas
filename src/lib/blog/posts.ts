@@ -795,7 +795,7 @@ export const POSTS: BlogPost[] = [
     date: "2026-08-09",
     title: {
       zh: "压缩图片再发邮件：让附件不再被退回（2026 实操）",
-      en: "How to Compress Images for Email Attachments (2026, No Upload)",
+      en: "How to Compress Photos for Email Attachments (Free, No Upload)",
     },
     description: {
       zh: "邮件附件被退回？图片太大是最常见原因。这份 2026 实操指南教你用浏览器本地工具把图片压到 10MB（或对方要求的 100KB）以下，不发服务器、不注册。",
@@ -1103,6 +1103,1271 @@ export const POSTS: BlogPost[] = [
         { type: "cta", text: "Compress images for free (browser-local) →", href: "https://image-compressor-saas.shop" },
       ],
     },
+  },  {
+    slug: "webp-vs-png-comparison",
+    date: "2026-08-12",
+    title: {
+      zh: "WebP vs PNG：2026 年网页图片到底该用哪个",
+      en: "WebP vs PNG: Which Should You Use for Web Images in 2026?",
+    },
+    description: {
+      zh: "WebP 和 PNG 的核心区别是压缩方式：一个有损、一个无损。网页图片选哪个，取决于内容是照片还是图形。这篇对比透明度、体积、画质和兼容性，并给出实际场景的建议。",
+      en: "The core difference between WebP and PNG is compression: one lossy, one lossless. Which you use for web images depends on whether your content is photos or graphics. This guide compares transparency, size, quality and compatibility, with scenario-based advice.",
+    },
+    keywords: [
+      "webp vs png",
+      "webp or png which is better",
+      "webp vs png size",
+      "png to webp",
+      "webp transparency",
+      "webp 与 png 区别",
+      "网页图片格式选择",
+    ],
+    content: {
+      zh: [
+        "webp vs png 是网页图片优化的经典选择题。选错要么文件大得离谱，要么画质肉眼可见地变差。这篇从压缩原理讲起：为什么 PNG 适合图形和截图、WebP 为什么在体积上全面占优、透明通道怎么处理，以及 2026 年实际该怎么做。",
+        { type: "h2", text: "先看原理：无损和有损的区别" },
+        "PNG 是无损压缩：一个像素都不丢，代价是文件大，同样的内容通常是 JPG 的 5-10 倍。WebP 两者都做：有损 WebP 用更聪明的算法，比同画质 JPG 小 25-35%；无损 WebP 又比 PNG 小 20-30%。也就是说，WebP 在两头都赢，只是赢多赢少的问题。",
+        "关键差异在透明通道：PNG 的 alpha 透明是行业标准，所有工具都支持；WebP 也支持透明，而且带透明的 WebP 比带透明的 PNG 小得多。这是 WebP 最容易被忽略的优势。",
+        { type: "h2", text: "什么时候用 PNG" },
+        {
+          type: "ul",
+          items: [
+            "需要最大兼容性的场合（老旧浏览器、某些内容管理系统、打印流程）",
+            "图形、图标、色块：无损保证边缘干净",
+            "需要反复编辑的中间文件",
+            "你确定访问者会用不支持 WebP 的老环境",
+          ],
+        },
+        { type: "h2", text: "什么时候用 WebP" },
+        {
+          type: "ul",
+          items: [
+            "网页照片、商品图、背景图：有损 WebP 画质几乎不可感知，体积省 25-35%",
+            "带透明的 UI 素材：透明 WebP 比透明 PNG 小得多",
+            "需要兼顾画质和加载速度的任何网页场景",
+            "Lighthouse 和 Core Web Vitals 优化：更小的图片直接提升 LCP",
+          ],
+        },
+        "一句话原则：新项目默认 WebP，只有在明确需要老环境兼容时才回退 PNG。",
+        { type: "h2", text: "画质对比：肉眼能看出差别吗" },
+        "无损 WebP 和 PNG 画质完全一样，只是体积小 20-30%。有损 WebP 在质量 80-90 时，照片上和原图几乎无法区分，但体积已经比 PNG 小一半以上。真正需要担心的不是画质，而是你的转换工具：质量参数设置太低才会出问题。",
+        "对截图和文字类图形，用有损 WebP 也要小心，文字边缘会出现压缩噪点。这类内容要么用无损 WebP，要么直接保留 PNG。",
+        { type: "h2", text: "2026 年的实际建议" },
+        {
+          type: "ul",
+          items: [
+            "网页照片和展示图：有损 WebP（质量 80-85），兼容性用 <picture> 标签回退 JPG",
+            "图形、图标、截图：无损 WebP，需要极致兼容时 PNG",
+            "透明素材：WebP 优先，PNG 兜底",
+            "老系统内部流转（邮件、老旧 CMS、打印）：继续 PNG 或 JPG",
+          ],
+        },
+        "2026 年所有主流浏览器都支持 WebP，Safari 也早已原生支持。<picture> 标签可以让你同时提供 WebP 和回退格式，兼顾性能和兼容性。如果你还在犹豫，把 WebP 作为默认、PNG 作为兜底，基本不会错。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "WebP 和 PNG 哪个画质好？", a: "无损 WebP 和 PNG 画质完全相同，但 WebP 体积小 20-30%。有损 WebP 画质取决于质量参数，设置 80-90 时肉眼几乎无差别。" },
+            { q: "WebP 支持透明背景吗？", a: "支持。而且带透明的 WebP 比带透明的 PNG 小得多，这是 WebP 最容易忽略的优势。" },
+            { q: "PNG 能转成 WebP 吗？", a: "能。几乎所有的图片工具都支持转换，转换后体积通常能减少 20-50%。转之前备份原图，避免有损参数设置太低。" },
+            { q: "2026 年网页图片默认该用哪个？", a: "默认 WebP。所有主流浏览器都支持，配合 <picture> 标签给老浏览器回退 JPG 或 PNG 即可。只有明确需要最大兼容性时才用 PNG。" },
+          ],
+        },
+        { type: "cta", text: "在浏览器本地压缩图片（免费）→", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "The webp vs png choice is a classic image optimization puzzle. Pick wrong and you get a file that is absurdly large or visible quality loss. This guide starts with the compression principle: why PNG suits graphics and screenshots, why WebP wins on size across the board, how transparency works in both, and what to actually do in 2026.",
+        { type: "h2", text: "The principle first: lossless vs lossy" },
+        "PNG is lossless: not a single pixel is dropped, and the price is size, usually 5-10x a JPG for the same content. WebP does both: lossy WebP uses a smarter algorithm and runs 25-35% smaller than JPG at the same quality; lossless WebP beats PNG by 20-30%. In other words, WebP wins on both sides of the fence, the only question is by how much.",
+        "The key difference is transparency: PNG's alpha channel is the industry standard and every tool supports it. WebP supports transparency too, and a transparent WebP is much smaller than a transparent PNG. That is the most overlooked advantage of WebP.",
+        { type: "h2", text: "When to use PNG" },
+        {
+          type: "ul",
+          items: [
+            "Maximum compatibility (legacy browsers, certain CMS, print workflows)",
+            "Graphics, icons, color blocks: lossless keeps edges clean",
+            "Intermediate files you will keep editing",
+            "When you know your visitors run old environments without WebP",
+          ],
+        },
+        { type: "h2", text: "When to use WebP" },
+        {
+          type: "ul",
+          items: [
+            "Web photos, product shots, backgrounds: lossy WebP is visually indistinguishable and saves 25-35%",
+            "Transparent UI assets: transparent WebP is much smaller than transparent PNG",
+            "Any web page balancing quality against load speed",
+            "Core Web Vitals optimization: smaller images directly improve LCP",
+          ],
+        },
+        "One line: new projects default to WebP, fall back to PNG only when legacy compatibility is a real requirement.",
+        { type: "h2", text: "Quality: can you actually see the difference?" },
+        "Lossless WebP and PNG are pixel-identical in quality, only the file is 20-30% smaller. Lossy WebP at quality 80-90 is nearly indistinguishable from the original on photos, while being less than half the size of PNG. The real risk is not quality, it is your conversion tool: setting the quality parameter too low is what causes visible damage.",
+        "For screenshots and text-heavy graphics, be careful with lossy WebP too: compression noise shows around letter edges. Use lossless WebP for those, or keep PNG.",
+        { type: "h2", text: "The practical 2026 recommendation" },
+        {
+          type: "ul",
+          items: [
+            "Web photos and display images: lossy WebP (quality 80-85), with <picture> fallback to JPG",
+            "Graphics, icons, screenshots: lossless WebP, PNG only when maximum compatibility is required",
+            "Transparent assets: WebP first, PNG as fallback",
+            "Internal legacy flows (email, old CMS, print): keep PNG or JPG",
+          ],
+        },
+        "Every mainstream browser supports WebP in 2026, Safari included. The <picture> tag lets you serve WebP with a JPG or PNG fallback, covering both performance and compatibility. If you are still undecided, make WebP the default and PNG the fallback, and you will rarely be wrong.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Which has better quality, WebP or PNG?", a: "Lossless WebP and PNG are identical in quality, but WebP is 20-30% smaller. Lossy WebP quality depends on the quality setting; at 80-90 it is nearly indistinguishable from the original." },
+            { q: "Does WebP support transparency?", a: "Yes. And a transparent WebP is much smaller than a transparent PNG, which is the most overlooked advantage of WebP." },
+            { q: "Can I convert PNG to WebP?", a: "Yes. Almost every image tool supports it, and the file usually shrinks by 20-50%. Back up the original first to avoid a too-low quality setting." },
+            { q: "Which should be the web default in 2026?", a: "WebP. Every mainstream browser supports it, and the <picture> tag gives legacy browsers a JPG or PNG fallback. Use PNG only when maximum compatibility is a hard requirement." },
+          ],
+        },
+        { type: "cta", text: "Compress images for free (browser-local) →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },  {
+    slug: "webp-vs-jpeg-comparison",
+    date: "2026-08-13",
+    title: {
+      zh: "WebP vs JPEG：照片网页到底选哪个",
+      en: "WebP vs JPEG: Which Format for Photos on the Web?",
+    },
+    description: {
+      zh: "WebP 和 JPEG 都是照片格式，但压缩思路不一样：JPEG 是老标准、兼容性最好；WebP 同样是有损但体积小 25-35%。这篇对比画质、体积、兼容性和实际场景，给出 2026 年的明确建议。",
+      en: "WebP and JPEG are both photo formats with different compression ideas: JPEG is the old standard with the best compatibility, WebP is lossy too but 25-35% smaller. This guide compares quality, size, compatibility and real scenarios, with a clear 2026 recommendation.",
+    },
+    keywords: [
+      "webp vs jpeg",
+      "webp or jpeg which is better",
+      "webp vs jpg size",
+      "jpeg to webp",
+      "webp vs jpeg quality",
+      "webp 与 jpeg 区别",
+      "网页照片格式选择",
+    ],
+    content: {
+      zh: [
+        "webp vs jpeg 是网页照片优化的选择题。JPEG 统治了照片三十年，WebP 是后起之秀：同样的画质，体积小 25-35%。这篇从压缩原理讲起，对比画质、兼容性和体积，最后给出 2026 年的明确建议。",
+        { type: "h2", text: "原理：两种有损压缩的差别" },
+        "JPEG 和 WebP 都是基于人眼感知的有损压缩，但算法不同。JPEG 用离散余弦变换，把图像切成 8x8 的块分别压缩，质量参数低时会出现明显的块状噪点。WebP 用更现代的预测编码，在同样的质量下保留更多细节，或者同样的细节占用更少体积。",
+        "实际数字：质量 80 时，WebP 通常比 JPEG 小 25-35%。质量越高差距越小，质量越低差距越大。对照片来说，WebP 在体积上基本没有输的时候。",
+        { type: "h2", text: "画质：肉眼能看出差别吗" },
+        "同体积对比，WebP 画质更好；同画质对比，WebP 体积更小。这是核心结论。但实际使用中有个隐藏因素：JPEG 经历了三十年的编码器优化，MozJPEG 这类编码器输出的 JPEG 质量很高。WebP 的默认编码器也很成熟，但如果你用的是老工具转换，质量参数没调好，WebP 反而可能更差。",
+        "关键建议：别拿默认参数直接转。WebP 质量设 80-85 是照片的安全区间，低于 70 会出现可见噪点，JPEG 同理。转换前备份原图。",
+        { type: "h2", text: "兼容性：JPEG 的最后堡垒" },
+        {
+          type: "ul",
+          items: [
+            "JPEG：所有浏览器、所有系统、所有年代，永远能打开",
+            "WebP：2020 年后所有主流浏览器原生支持，Safari 14+ 支持",
+            "老旧系统（Windows 7 默认图片查看器、某些企业内网、老相机/扫描仪）不认 WebP",
+            "打印流程和某些 CMS 插件仍以 JPEG 为默认",
+          ],
+        },
+        "2026 年的现实：Web 访问者几乎都支持 WebP，但内部流程（邮件附件、打印、老旧 CMS）仍是 JPEG 的天下。这也是为什么 <picture> 标签是标准做法：给现代浏览器 WebP，给老环境回退 JPEG。",
+        { type: "h2", text: "实际场景建议" },
+        {
+          type: "ul",
+          items: [
+            "网页照片、商品图、博客配图：WebP（质量 80-85），<picture> 回退 JPEG",
+            "需要最大兼容性的外发文件：JPEG",
+            "摄影作品展示：WebP 质量 90+ 或 JPEG 质量 95，看平台支持",
+            "批量压缩整站图片：WebP 优先，Lighthouse 会告诉你省了多少体积",
+          ],
+        },
+        "一句话：新项目照片默认 WebP，外发和打印走 JPEG，用 <picture> 兼顾两头。",
+        { type: "h2", text: "关于质量参数的实话" },
+        "网上流传的对比图大多是极端参数下的产物：JPEG 质量 30 vs WebP 质量 80，结论当然一边倒。公平的对比是同一质量水平。质量 80-85 区间，两者的差别普通用户几乎看不出来，但体积差距稳定在 25-35%。与其纠结选哪个，不如把质量参数调对，那才是真正的优化空间。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "WebP 和 JPEG 哪个画质好？", a: "同体积下 WebP 画质更好，同画质下 WebP 体积小 25-35%。质量 80-85 区间两者差别肉眼几乎不可见。" },
+            { q: "WebP 支持透明背景吗？", a: "支持，但照片场景通常用不到。JPEG 不支持透明，这也是 WebP 的额外优势。" },
+            { q: "JPEG 能转成 WebP 吗？", a: "能，几乎所有图片工具都支持。转换后体积通常减少 25-35%，但建议用质量 80 以上，别用默认的激进压缩。" },
+            { q: "2026 年网页照片默认该用哪个？", a: "默认 WebP。所有主流浏览器都支持，配合 <picture> 标签给老环境回退 JPEG 即可。只有外发、打印等明确需要最大兼容性的场景才用 JPEG。" },
+          ],
+        },
+        { type: "cta", text: "在浏览器本地压缩图片（免费）→", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "The webp vs jpeg choice is the classic photo optimization question. JPEG has ruled photos for three decades, WebP is the newcomer: same quality, 25-35% smaller files. This guide starts with the compression principle, compares quality, compatibility and size, and ends with a clear 2026 recommendation.",
+        { type: "h2", text: "The principle: two kinds of lossy compression" },
+        "JPEG and WebP are both perceptual lossy compression, but the algorithms differ. JPEG uses a discrete cosine transform, cutting the image into 8x8 blocks compressed separately, and low quality settings show visible block noise. WebP uses more modern predictive coding, keeping more detail at the same quality, or using less space for the same detail.",
+        "The numbers: at quality 80, WebP is typically 25-35% smaller than JPEG. The higher the quality, the smaller the gap; the lower, the bigger. For photos, WebP basically never loses on size.",
+        { type: "h2", text: "Quality: can you see the difference?" },
+        "Same size, WebP looks better. Same quality, WebP is smaller. That is the core conclusion. But there is a hidden factor: JPEG has had three decades of encoder optimization, and modern encoders like MozJPEG produce very clean output. WebP's default encoder is mature too, but if you convert with an old tool and bad settings, WebP can actually come out worse.",
+        "Key advice: do not convert with default parameters. Quality 80-85 is the safe band for photos in WebP, below 70 shows visible noise, same as JPEG. Back up the original before converting.",
+        { type: "h2", text: "Compatibility: JPEG's last fortress" },
+        {
+          type: "ul",
+          items: [
+            "JPEG: every browser, every system, every era, always opens",
+            "WebP: native support in all major browsers since 2020, Safari 14+",
+            "Legacy environments (Windows 7 default viewer, some intranets, old cameras/scanners) do not read WebP",
+            "Print workflows and some CMS plugins still default to JPEG",
+          ],
+        },
+        "The 2026 reality: web visitors almost all support WebP, but internal flows (email attachments, printing, legacy CMS) are still JPEG territory. That is why the <picture> tag is the standard approach: WebP for modern browsers, JPEG fallback for old ones.",
+        { type: "h2", text: "Scenario recommendations" },
+        {
+          type: "ul",
+          items: [
+            "Web photos, product shots, blog images: WebP (quality 80-85) with <picture> JPEG fallback",
+            "Files sent outside, where compatibility matters most: JPEG",
+            "Photography showcase: WebP quality 90+ or JPEG quality 95, depending on platform support",
+            "Batch compressing a whole site: WebP first, Lighthouse will show you the savings",
+          ],
+        },
+        "One line: photos on new projects default to WebP, external files and print stay JPEG, use <picture> to cover both.",
+        { type: "h2", text: "The honest take on quality settings" },
+        "Most comparison charts online are built on extreme settings: JPEG quality 30 vs WebP quality 80, so of course the verdict is one-sided. A fair comparison uses the same quality level. In the 80-85 band, ordinary users cannot tell the two apart, but the size gap is a steady 25-35%. Instead of agonizing over the format, get the quality parameter right, that is the real optimization.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Which has better quality, WebP or JPEG?", a: "At the same size, WebP looks better. At the same quality, WebP is 25-35% smaller. In the 80-85 quality band the difference is invisible to most people." },
+            { q: "Does WebP support transparency?", a: "Yes, though photos rarely need it. JPEG does not support transparency, which is an extra edge for WebP." },
+            { q: "Can I convert JPEG to WebP?", a: "Yes, nearly every image tool does it. Expect a 25-35% size reduction, but use quality 80 or above instead of aggressive default compression." },
+            { q: "What should web photos use by default in 2026?", a: "WebP. Every major browser supports it, and the <picture> tag handles JPEG fallback for old environments. Only external files and print workflows need plain JPEG." },
+          ],
+        },
+        { type: "cta", text: "Compress images locally in your browser (free) →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
+  {
+    slug: "avif-vs-webp-in-depth",
+    date: "2026-08-14",
+    title: {
+      zh: "AVIF vs WebP 深度对比",
+      en: "AVIF vs WebP: In-Depth Comparison",
+    },
+    description: {
+      zh: "AVIF 和 WebP 哪个更小、画质更好、浏览器支持更全？这篇深度对比把体积、画质和兼容性摆在一起，帮你选对格式。",
+      en: "Which is smaller, looks better, and works in more browsers: AVIF or WebP? This in-depth comparison puts size, quality, and support side by side.",
+    },
+    keywords: [
+      "avif vs webp",
+      "avif webp comparison",
+      "which image format smaller",
+      "webp vs avif quality",
+    ],
+    content: {
+      en: [
+        "Choosing the right image format can take megabytes off your pages without anyone spotting the difference. The real fight in 2026 isn't JPEG versus WebP anymore. It's AVIF vs WebP. Both compress circles around JPEG, both are free to use, and both run in current browsers. They are not the same format wearing a different hat, though. AVIF usually comes out smaller, while WebP is the steadier, more predictable pick for everyday work. I'll put the two side by side here so you can stop guessing and just ship the right file.",
+        { type: "h2", text: "AVIF WebP comparison: how the two actually compress" },
+        "AVIF and WebP both grew out of video codecs, AVIF from AV1 and WebP from VP8, which is why they leave JPEG in the dust. In a straight avif webp comparison at quality 80, AVIF tends to land about 30% smaller than WebP for the same sharpness, and WebP itself beats JPEG by another 30%. The wrinkle is the encoder. AVIF's best numbers come from slow, careful encoding. Point a fast encoder at a photo with default settings and you can get a file that's barely smaller than WebP and a bit noisier. The format wins on paper. The encoder decides in the real world.",
+        { type: "h2", text: "Which image format is smaller: AVIF or WebP?" },
+        "Short version: at equal quality, AVIF is the smaller file almost every time. On busy photos it often beats WebP by 20 to 50%. On flat graphics with text the gap shrinks, sometimes to almost nothing. So if which image format is smaller is your only question, AVIF wins it. Smaller isn't free, though. AVIF encoding is genuinely slow, seconds per image on a decent CPU, while WebP finishes in milliseconds. For one hero shot that's fine. For crunching 5,000 product photos on a budget box, WebP's speed starts to matter as much as its size.",
+        { type: "h2", text: "WebP vs AVIF quality: will anyone notice?" },
+        "In a webp vs avif quality test at matched file sizes, AVIF holds onto fine detail and smooth gradients better. Skies, skin, and hair survive. WebP softens a little sooner and shows blocky edges earlier. Drop below quality 60 and the gap is obvious. Up in the 75 to 85 range most people won't catch it on a phone. Where AVIF pulls clearly ahead is high-contrast edges and heavily textured photos. If your site is mostly screenshots and logos, that quality edge mostly vanishes and you're back to picking on speed and support.",
+        { type: "h2", text: "Browser support, and the catch nobody mentions" },
+        "WebP works everywhere that counts. Every mainstream browser since around 2020, including Safari 14. AVIF showed up later, Chrome and Firefox first, Safari only from version 16 in 2023. Coverage is broad now but not quite total, and a few older in-app browsers still trip over it. The fix is the same one we use for WebP: serve AVIF with a WebP or JPEG fallback through the picture element. Modern devices get the savings, everything else gets a file it can actually open.",
+        { type: "h2", text: "AVIF vs WebP at a glance" },
+        {
+          type: "ul",
+          items: [
+            "Size at equal quality: AVIF roughly 20 to 50% smaller than WebP; WebP about 30% smaller than JPEG",
+            "Quality at equal size: AVIF keeps detail and gradients cleaner; WebP softens a bit sooner",
+            "Browser support: WebP universal since around 2020; AVIF in Chrome, Firefox, Edge, and Safari 16 (2023)",
+            "Encoding speed: WebP is fast, milliseconds per image; AVIF is slow, often seconds per image",
+            "Extras: both handle transparency; AVIF adds 10-bit color and HDR that WebP doesn't",
+          ],
+        },
+        { type: "h2", text: "When to reach for AVIF, and when to keep WebP" },
+        {
+          type: "ul",
+          items: [
+            "Use AVIF for hero images and photography where every kilobyte is worth fighting for",
+            "Use WebP for big catalogs, thumbnails, and batch jobs where encode time adds up",
+            "Serve AVIF first with a WebP or JPEG fallback so old browsers don't break",
+            "Keep PNG for logos and UI with sharp text, but compress it instead of converting blind",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Is AVIF always smaller than WebP?", a: "Almost always at matched quality, often 20 to 50% smaller on photos. The gap narrows on simple graphics, and a badly tuned fast AVIF encoder can wipe out the win completely." },
+            { q: "Does AVIF work in all browsers?", a: "Not yet everywhere. Chrome, Firefox, and Edge support it, and Safari joined with version 16 in 2023. For full coverage, serve AVIF with a WebP or JPEG fallback using the picture tag." },
+            { q: "Should my site use AVIF or WebP?", a: "Use AVIF for large, detailed photos where size matters most, and WebP for bulk or batch compression where speed matters. The safest setup sends AVIF first with a WebP or JPEG fallback." },
+            { q: "Can I convert WebP to AVIF?", a: "Yes. Most modern tools handle it, and you'll usually drop another 20 to 40% in size. Use a slow, high-quality AVIF preset instead of the fast default to keep the detail." },
+          ],
+        },
+        { type: "cta", text: "Compress and convert images free at image-compressor-saas.shop →", href: "https://image-compressor-saas.shop" },
+      ],
+      zh: [
+        "选对图片格式，往往能在没人察觉的情况下，把页面体积砍掉几兆。到 2026 年，真正的较量早就不是 JPEG 对 WebP 了，而是 AVIF vs WebP。这两个格式都比 JPEG 强一大截，都免费、都能在现代浏览器里跑。但它们并不是换了个马甲的同一种东西。AVIF 通常压得更小，WebP 则是日常使用里更稳、更可预期的那一个。下面我把两者摆在一起对比，帮你别再靠猜。",
+        { type: "h2", text: "AVIF WebP 对比：两种格式到底怎么压" },
+        "AVIF 和 WebP 都脱胎于视频编码——AVIF 来自 AV1，WebP 来自 VP8——这正是它们能甩开 JPEG 的原因。在质量 80 的 avif webp 对比里，AVIF 通常比同清晰度的 WebP 还小约 30%，而 WebP 本身又比 JPEG 小约 30%。真正的变数在编码器。AVIF 最好的成绩来自又慢又细的编码；要是拿快速编码器配默认参数去压，出来的文件可能只比 WebP 小一点点，还多了些噪点。格式在纸面上赢了，编码器才决定实际结果。",
+        { type: "h2", text: "哪种格式更小：AVIF 还是 WebP？" },
+        "短答案：在同等质量下，AVIF 几乎总是更小。细节多的照片，它常常能比 WebP 小 20% 到 50%；碰到带文字的扁平图形，差距会收窄，有时几乎可以忽略。所以如果你只问“which image format smaller”（哪个格式更小），AVIF 赢。但小不是白来的。AVIF 编码是真的慢，好一点的 CPU 也要按秒算一张；WebP 则是毫秒级。一张主图无所谓，要是拿廉价服务器压五千张商品图，WebP 的速度就和体积一样重要了。",
+        { type: "h2", text: "WebP vs AVIF 画质：肉眼看得出来吗？" },
+        "在体积相同的 webp vs avif 画质测试里，AVIF 能留住更多细节和平滑的渐变，天空、皮肤和头发都更耐看；WebP 会更早发软、更早出现块状噪点。低于质量 60，差距一眼可见；在 75 到 85 这个甜区里，手机上大多数人根本分不出来。AVIF 真正拉开身位的地方，是高反差边缘和纹理密集的照片。要是你的站点基本是截图和 Logo，那点画质优势基本消失，又回到比速度和兼容性。",
+        { type: "h2", text: "浏览器兼容，以及没人提的那个坑" },
+        "WebP 在要紧的地方都能用：2020 年前后起的主流浏览器全都支持，包括 Safari 14。AVIF 来得晚，Chrome 和 Firefox 先上，Safari 到 2023 年的 16 版才跟上。如今覆盖面很广，但还没到彻底无死角，少数老旧的 App 内浏览器照样会翻车。解决办法和 WebP 时代一样：用 picture 标签，AVIF 优先，后面跟 WebP 或 JPEG 兜底。新设备吃到体积红利，旧设备拿到能打开的文件。",
+        { type: "h2", text: "AVIF 与 WebP 一览" },
+        {
+          type: "ul",
+          items: [
+            "同等质量体积：AVIF 比 WebP 约小 20% 到 50%，WebP 又比 JPEG 小约 30%",
+            "同等体积画质：AVIF 细节和渐变更干净，WebP 稍早发软",
+            "浏览器支持：WebP 自 2020 年前后全面支持；AVIF 在 Chrome、Firefox、Edge 及 Safari 16（2023）",
+            "编码速度：WebP 快，毫秒级；AVIF 慢，常按秒算",
+            "附加项：两者都支持透明；AVIF 多了 10bit 色深和 HDR，WebP 没有",
+          ],
+        },
+        { type: "h2", text: "什么时候用 AVIF，什么时候留 WebP" },
+        {
+          type: "ul",
+          items: [
+            "主图、摄影类大图，每一 KB 都值得争，用 AVIF",
+            "大批量商品图、缩略图、批量任务，编码耗时是重点，用 WebP",
+            "AVIF 优先，后面跟 WebP 或 JPEG 兜底，老浏览器才不崩",
+            "Logo 和带锐利文字的 UI 继续用 PNG，但压一压，别盲目转格式",
+          ],
+        },
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            { q: "AVIF 一定比 WebP 小吗？", a: "在同等质量下几乎总是更小，照片常常小 20% 到 50%。简单图形差距会收窄，而调得不细致的快速 AVIF 编码，可能把这点优势全赔进去。" },
+            { q: "AVIF 所有浏览器都能用吗？", a: "还没到全覆盖。Chrome、Firefox、Edge 都支持，Safari 从 2023 年的 16 版才跟上。要稳，就用 picture 标签让 AVIF 优先、WebP 或 JPEG 兜底。" },
+            { q: "我的网站该用 AVIF 还是 WebP？", a: "体积最要紧的大图、细节多的照片用 AVIF；批量、讲究编码速度的用 WebP。最稳的做法是 AVIF 优先，配 WebP 或 JPEG 兜底。" },
+            { q: "能把 WebP 转成 AVIF 吗？", a: "可以。多数现代工具都支持，通常还能再小 20% 到 40%。别用快速默认，选慢一点的高质量 AVIF 预设，细节才保得住。" },
+          ],
+        },
+        { type: "cta", text: "免费压缩与格式转换，上 image-compressor-saas.shop →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
+  {
+    slug: "heic-vs-jpg-iphone-photos",
+    date: "2026-08-15",
+    title: {
+      zh: "HEIC 还是 JPG？iPhone 照片格式选型指南",
+      en: "HEIC vs JPG: Which Format Should Your iPhone Photos Use?",
+    },
+    description: {
+      zh: "HEIC 还是 JPG？iPhone 默认的 HEIC 格式能省一半空间，但兼容性差。这篇从体积、画质、兼容性三个维度对比，告诉你什么时候该转 JPG、怎么转最省事。",
+      en: "HEIC or JPG? iPhone's default HEIC format saves up to half the space but has weak compatibility. This guide compares size, quality, and compatibility, and tells you when to convert to JPG and how to do it.",
+    },
+    keywords: [
+      "heic vs jpg",
+      "heic vs jpg iphone photos",
+      "heic to jpg converter",
+      "iphone photo format",
+    ],
+    content: {
+      en: [
+        "Last year I imported about 3,000 photos from my phone to a Windows PC. A third of them wouldn't open. At the time I figured the computer was broken. Turns out the problem was the format—HEIC, the default photo format on iPhones, which Windows doesn't natively recognize.",
+        "This isn't a niche complaint. The **HEIC vs JPG** dilemma hits almost every iPhone user eventually. I'm not here to pick a side. I want to lay out what each format is good for, and when you really have no choice but to convert to JPG.",
+        "HEIC (High Efficiency Image Coding) is what Apple has used by default since iOS 11, built on the HEIF standard. Its goal is simple: same quality, smaller size. JPG is a 30-year-old format with unbeatable compatibility and a bit of a legacy problem.",
+        "In one sentence: HEIC is the space-saving new format, JPG is the old format that works everywhere.",
+        "The numbers tell the story. For the same 12-megapixel photo, HEIC lands around 2-3MB where JPG takes 4-6MB. Over 10,000 photos a year, that's tens of gigabytes of difference. That's HEIC's biggest value, and honestly its whole reason to exist.",
+        "If you only handle photos on your iPhone, HEIC never gives you trouble. But photos are meant to move. The real friction in **HEIC vs JPG for iPhone photos** shows up the second a file leaves the Apple ecosystem.",
+        {
+                "type": "ul",
+                "items": [
+                        "Windows Explorer won't open HEIC without a plugin",
+                        "Some online forms, job sites, and banking apps reject HEIC uploads",
+                        "Older printer drivers and photo lab systems don't recognize it",
+                        "Send it to an Android user and they may see a gray block or a garbled filename"
+                ]
+        },
+        "You don't need to hit all of these. One is enough to stop you cold. In practice, a lot of people meet HEIC for the first time when submitting a resume or uploading an ID photo.",
+        "In rough order of urgency, convert in these situations:",
+        "1. **Website uploads**: job portals, visa applications, e-commerce platforms—most accept only JPG or PNG",
+        "2. **Sending to non-Apple users**: original photos over WeChat or email, where the receiver is on Android or Windows",
+        "3. **Printing**: many online labs and self-serve printers have spotty HEIC support",
+        "4. **Archiving**: if you're unsure what software will open a file in ten years, JPG is the safer bet",
+        "5. **Professional delivery**: don't make clients, editors, or partners deal with codecs",
+        "On the flip side, if your photos stay on your own devices and back up to iCloud, HEIC is fine as-is. No need to convert. Conversion has a cost—an extra step, an extra compression pass. Skip it when you can.",
+        "The good news: converting to JPG isn't a technical feat. In iCloud settings you can switch downloads to \"Most Compatible,\" but more often you just need to convert a few files on the spot—with built-in tools, Shortcuts, or an online converter.",
+        "My own routine: keep the originals in HEIC on iCloud, batch-convert a JPG copy whenever something needs to go out. A **HEIC to JPG converter** exists exactly for this. A decent one reuses the original decode data instead of re-encoding from a compressed image, so nothing gets blurrier.",
+        "And if this all sounds familiar, you're right. We've written about",
+        {
+                "type": "cta",
+                "text": "WebP vs JPEG",
+                "href": "https://image-compressor-saas.shop/blog/webp-vs-jpeg-comparison"
+        },
+        "**HEIC vs JPG** has no absolute winner. On pure storage efficiency, HEIC wins easily. On universality, JPG is still the \"can't go wrong\" option. The smart move isn't choosing one. It's switching by scenario: keep HEIC on your device, convert to JPG when it goes out.",
+        "If a HEIC file is blocking you somewhere, use our",
+        {
+                "type": "cta",
+                "text": "online image tool",
+                "href": "https://image-compressor-saas.shop/"
+        },
+        "**Q: Which has better quality, HEIC or JPG?**",
+        "A: At equal quality, HEIC is about half the size. At equal size, HEIC keeps more detail. But at normal phone viewing distances, the difference is usually invisible. JPG loses on file size, not on quality your eyes can notice.",
+        "**Q: Is HEIC the default format on iPhone?**",
+        "A: Yes, since iOS 11. You can switch to \"Most Compatible\" under Settings → Camera → Formats, which makes the iPhone save JPG directly—at the cost of larger files.",
+        "**Q: Why can't my friend open the HEIC photo I sent?**",
+        "A: Their device or app doesn't support the format. Android phones, Windows, and many web apps have no native HEIC support. If you need them to see it, convert to JPG first.",
+        "**Q: Does converting damage image quality?**",
+        "A: A proper tool decodes the HEIC and re-encodes as JPG—one compression pass with theoretically slight loss, usually invisible to the eye. The real risk is double compression, compressing the JPG again after conversion. That's when things get mushy."
+],
+      zh: [
+        "去年我把手机里 3000 张照片导到 Windows 电脑上，结果三分之一打不开。当时我还没意识到问题出在格式上，只当是电脑坏了。后来才知道，那是 HEIC——iPhone 默认的照片格式，Windows 原生不认。",
+        "这个问题不是少数人的烦恼。**heic vs jpg** 的纠结，几乎每个用 iPhone 的人都遇到过。这篇不劝你站队，就讲清楚两种格式各自的处境，以及什么时候必须转 JPG。",
+        "HEIC（High Efficiency Image Coding）是苹果从 iOS 11 开始默认使用的格式，基于 HEIF 标准。它的设计目标很明确：同等画质下体积更小。JPG 呢，30 年前的老格式，兼容性无敌，但也确实有点老了。",
+        "用一句话概括：HEIC 是\"省空间的新格式\"，JPG 是\"哪都能用的老格式\"。",
+        "数字能说明问题。同样一张 1200 万像素照片，HEIC 大概 2-3MB，JPG 要 4-6MB。一年攒一万张照片，差别就是几十个 GB 的存储空间。这是 HEIC 最大的价值，也是它存在的全部理由。",
+        "如果你只在 iPhone 上处理照片，HEIC 没有任何问题。可照片这东西总要流动：**heic vs jpg iphone photos** 的真正矛盾，出现在文件离开苹果生态的那一刻。",
+        {
+                "type": "ul",
+                "items": [
+                        "Windows 资源管理器原生打不开 HEIC，要看图得装插件",
+                        "部分在线表单、招聘网站、银行 App 不接受 HEIC 上传",
+                        "老一点的打印机驱动和照片冲印店不认",
+                        "发给安卓用户，对方可能只看到一片灰色或乱码文件名"
+                ]
+        },
+        "这些场景不需要 100% 兼容，只要撞上一个，你就得停下来处理格式问题。现实里，很多人就是在\"发简历\"或\"上传证件照\"时第一次被 HEIC 卡住的。",
+        "按需求排序，下面这些情况建议直接转：",
+        "1. **上传网站**：招聘系统、签证申请、电商平台，大部分只收 JPG 或 PNG",
+        "2. **发给非苹果用户**：微信、邮件里发原图，对方用安卓或 Windows",
+        "3. **打印**：很多线上冲印和自助打印机对 HEIC 支持不完整",
+        "4. **存档兼容性**：不确定十年后什么软件能打开，选 JPG 更稳妥",
+        "5. **专业交付**：给客户、编辑、合作方发图，别让对方折腾解码器",
+        "反过来，如果照片只在自己设备上管理、备份走 iCloud，那 HEIC 完全够用，没必要转。转换也有成本——多一步操作，多一次压缩，能省则省。",
+        "好消息是，转 JPG 不是什么高技术活。iCloud 设置里可以把下载改成\"最兼容\"，但更常见的是你需要临时转几张：用系统自带功能、快捷指令、或者在线工具都行。",
+        "我自己的习惯是：日常照片留 HEIC 存 iCloud，要发出去的时候用工具批量转一份 JPG。**heic to jpg converter** 这类工具就是为了这种场景存在的——转换质量直接复用原图的解码数据，不会二次压糊。",
+        "顺便说一句，你可能会觉得这场景似曾相识。我们之前写过",
+        {
+                "type": "cta",
+                "text": "WebP 和 JPEG 的对比",
+                "href": "https://image-compressor-saas.shop/blog/webp-vs-jpeg-comparison"
+        },
+        "**heic vs jpg** 没有绝对赢家。纯看存储效率，HEIC 赢得很轻松；看通用性，JPG 还是那个\"不会错\"的选择。聪明做法不是二选一，而是按场景切换：设备内留 HEIC，向外输出转 JPG。",
+        "如果你正被 HEIC 卡在某一步，可以用我们的",
+        {
+                "type": "cta",
+                "text": "在线图片压缩工具",
+                "href": "https://image-compressor-saas.shop/"
+        },
+        "**Q: HEIC 和 JPG 到底哪个画质好？**",
+        "A: 同样画质下 HEIC 体积小一半左右；同样体积下 HEIC 细节保留更多。但人眼在正常手机观看距离下，两者差异通常不明显。JPG 输的是文件大小，不是\"肉眼可感知的画质\"。",
+        "**Q: iPhone 照片默认就是 HEIC 吗？**",
+        "A: 是，iOS 11 及之后默认开启。你可以去\"设置 → 相机 → 格式\"里改成\"兼容性最好\"，那样 iPhone 会直接存 JPG，但照片体积会变大。",
+        "**Q: 为什么我发的 HEIC 照片朋友打不开？**",
+        "A: 因为对方设备或软件不支持这个格式。安卓手机、Windows 系统、部分网页端都没有原生 HEIC 支持。需要对方能看，就转成 JPG 再发。",
+        "**Q: 转换会损伤画质吗？**",
+        "A: 正规工具只是把 HEIC 解码后重新编码成 JPG，相当于一次压缩，会有理论上的轻微损耗，但通常肉眼不可见。风险在\"二次压缩\"——转出来的 JPG 又压一次，那才会糊。"
+],
+    },
+  },
+
+  {
+    slug: "convert-heic-to-jpg-free",
+    date: "2026-08-16",
+    title: {
+      zh: "免费把 HEIC 转成 JPG：手机电脑全方案",
+      en: "Convert HEIC to JPG Free: Phone and Desktop Methods",
+    },
+    description: {
+      zh: "HEIC 转 JPG 免费怎么做？这篇覆盖 iPhone 设置直转、Mac 自带预览、Windows 在线工具三种路径，并告诉你批量转换怎么选、转换会不会损伤画质。",
+      en: "How to convert HEIC to JPG for free? This guide covers iPhone settings, Mac Preview, and Windows online tools, plus batch conversion choices and whether quality suffers.",
+    },
+    keywords: [
+      "heic to jpg converter",
+      "convert heic to jpg",
+      "heic to jpg free",
+      "heic to jpg windows",
+      "heic to jpg mac",
+      "批量 heic 转 jpg",
+    ],
+    content: {
+      en: [
+        "Every iPhone user hits the wall sooner or later: a photo that won't open on a Windows laptop, an attachment a client can't see, a forum upload that silently fails. The file is HEIC, and you need it as JPG. Good news: converting HEIC to JPG is free on every platform, and you probably already own the tools.",
+        "Before picking a method, know what conversion actually does. HEIC (HEIF) and JPG are both compressed formats. Converting decodes the HEIC and re-encodes it as JPG. You lose a little quality in theory and nothing you can see in practice, as long as you don't convert twice.",
+        "The fastest free method is inside iPhone Settings: Settings → Photos → Transfer to Mac or PC → Automatic. With this on, your iPhone hands out JPG when a device asks and keeps HEIC in storage. Zero effort, and the originals stay untouched.",
+        "On a Mac, Preview does the whole job. Open the HEIC, go to File → Export, choose JPEG, adjust quality, save. Batch work is just selecting multiple files and exporting them together. No install, no signup.",
+        "Windows has no native HEIC support, which is the most common reason people search for a heic to jpg converter at all. The honest answer for Windows: a decent online converter that processes locally, or the official HEIF codec from the Microsoft Store. Free options work fine for a handful of photos.",
+        "What about bulk conversion? Say you imported a year of iPhone photos and a third of them are HEIC. Use an online batch tool or a desktop converter, set the output quality to around 90%, and let it run. The catch is the same everywhere: pick a tool that processes on your device, not one that demands your photo library on a server.",
+        {
+                "type": "ul",
+                "items": [
+                        "iPhone: Settings → Photos → Transfer to Mac or PC → Automatic, free and invisible",
+                        "Mac: Preview → File → Export → JPEG, batch supported, no install",
+                        "Windows: HEIF codec from the Store or a local-processing online converter",
+                        "Batch: desktop converter with quality set near 90%, avoid double compression",
+                        "Rule of thumb: never convert the same photo twice, that is where quality actually dies"
+                ]
+        },
+        "**Does converting HEIC to JPG lose quality?** In theory yes, a slight loss from re-encoding. In practice invisible at normal viewing. The real killer is converting twice, so export once at good quality and keep that file.",
+        "**Is there a free HEIC to JPG converter for Windows?** Yes. The official HEIF Image Extensions codec in the Microsoft Store is free, and several online converters handle a few photos free. For large batches, a local desktop tool is the safer pick.",
+        "**Can I stop my iPhone from making HEIC at all?** Yes. Settings → Camera → Formats → Most Compatible makes the iPhone save JPG directly. The tradeoff is bigger files, roughly double the storage for the same photos.",
+        "**Why won't my HEIC open in Gmail or on Windows?** Because neither recognizes the format natively. Converting to JPG before sending is the reliable fix, and the methods above take under a minute.",
+        "Need to shrink the result too? Convert first, then run the JPG through the compressor at image-compressor-saas.shop — everything stays in your browser. Start from the",
+        {
+                "type": "cta",
+                "text": "free image compressor",
+                "href": "https://image-compressor-saas.shop/"
+        }
+      ],
+      zh: [
+        "每个 iPhone 用户迟早都会撞上这堵墙：一张照片在 Windows 笔记本上打不开，一个附件对方客户看不到，论坛上传静默失败。文件是 HEIC，而你需要 JPG。好消息：把 HEIC 转成 JPG 在每个平台上都免费，而且工具你多半已经有了。",
+        "动手前先搞清楚转换是什么。HEIC（HEIF）和 JPG 都是压缩格式。转换就是把 HEIC 解码再重新编码成 JPG。理论上会损失一点画质，实际上肉眼完全看不出来——前提是你别转两遍。",
+        "最快的免费方法藏在 iPhone 设置里：设置 → 照片 → 传输到 Mac 或 PC → 自动。打开后，iPhone 在对方请求时直接给 JPG，自己存储时保留 HEIC。零成本，原图不动。",
+        "Mac 上用预览（Preview）就能全搞定。打开 HEIC，文件 → 导出，选 JPEG，调一下质量，保存。批量操作就是多选文件一起导出。不用装软件，不用注册。",
+        "Windows 原生不支持 HEIC，这也是大家搜 heic to jpg converter 的主要原因。Windows 的诚实答案是：一个在本地处理的在线转换器，或者微软商店里的官方 HEIF 编解码器。免费方案处理几张照片完全够用。",
+        "批量转换怎么办？比如你导入了一年的 iPhone 照片，三分之一是 HEIC。用在线批量工具或桌面转换器，输出质量设在 90% 左右，让它跑完。注意点到处都一样：选在你自己设备上处理的工具，别选那种要把整个相册上传到服务器的。",
+        {
+                "type": "ul",
+                "items": [
+                        "iPhone：设置 → 照片 → 传输到 Mac 或 PC → 自动，免费且无感",
+                        "Mac：预览 → 文件 → 导出 → JPEG，支持批量，无需安装",
+                        "Windows：商店里的 HEIF 编解码器，或本地处理的在线转换器",
+                        "批量：桌面转换器，质量设在 90% 左右，避免二次压缩",
+                        "经验法则：同一张照片别转两遍，画质就是在这里死掉的"
+                ]
+        },
+        "**HEIC 转 JPG 会损失画质吗？** 理论上会，重新编码有轻微损耗；实际上正常观看完全看不出。真正的杀手是转两遍，所以一次导出到好质量，把那个文件存好。",
+        "**Windows 有免费的 HEIC 转 JPG 工具吗？** 有。微软商店的 HEIF Image Extensions 官方编解码器免费，几个在线转换器也能免费处理少量照片。大批量的话，本地桌面工具更稳妥。",
+        "**能让 iPhone 干脆别生成 HEIC 吗？** 能。设置 → 相机 → 格式 → 兼容性最好，iPhone 就直接存 JPG。代价是文件变大，同样照片存储占用大约翻倍。",
+        "**为什么 HEIC 在 Gmail 或 Windows 里打不开？** 因为两边都不原生支持这个格式。发送前转成 JPG 是可靠解法，上面这些方法一分钟内搞定。",
+        "转换完还想再压小一点？先转，再把 JPG 丢进 image-compressor-saas.shop 的压缩器，全程在浏览器里完成。从",
+        {
+                "type": "cta",
+                "text": "免费图片压缩工具",
+                "href": "https://image-compressor-saas.shop/"
+        }
+      ],
+    },
+  },
+
+  {
+    slug: "lossy-vs-lossless-compression",
+    date: "2026-08-17",
+    title: {
+      zh: "有损 vs 无损压缩：一张图该用哪种",
+      en: "Lossy vs Lossless Compression: Which One for Your Image",
+    },
+    description: {
+      zh: "有损和无损压缩到底差在哪？这篇讲清 lossy vs lossless 的原理、适用场景、文件大小差异，以及 webp/jpg/png 各格式该选哪种压缩。",
+      en: "What is the real difference between lossy and lossless compression? This guide explains the principles, when to use each, file size trade-offs, and which format to pick for your image.",
+    },
+    keywords: [
+      "lossy vs lossless",
+      "lossy vs lossless compression",
+      "lossless compression",
+      "lossy compression",
+      "webp vs jpeg",
+      "jpg vs png compression",
+    ],
+    content: {
+      en: [
+        "The first time someone told me lossy compression works by throwing away data, I assumed it was the bad option. Then I shipped a website with 40 full-size PNGs and watched the load time crawl. The truth is more practical than the name suggests: lossy and lossless are not good and bad. They are different tools for different jobs.",
+        "Here is the one-sentence version: lossless compression keeps every pixel exactly as it was, lossy compression keeps what your eyes can see and drops the rest. Everything else is trade-offs.",
+        {
+                "type": "h2",
+                "text": "What lossless actually does"
+        },
+        "Lossless compression finds patterns and shortens them, like replacing 'aaaa' with '4a'. Decode it and you get back the identical file. PNG and GIF are the famous lossless formats; WebP and AVIF support lossless modes too.",
+        "The cost is size. Lossless keeps everything, so it cannot shrink as far. A photo that compresses to 100KB with lossy might stay at 800KB lossless.",
+        {
+                "type": "h2",
+                "text": "What lossy actually does"
+        },
+        "Lossy compression makes a judgment call: it removes detail that humans barely notice and records the rest more efficiently. JPG is the classic example. A photo saved as JPG quality 85 looks nearly identical to the original but takes a fraction of the space.",
+        "The catch is that every lossy save adds up. Compress a JPG, re-open it, compress again, and each pass degrades it a little. One lossy export from the original is fine. Chained lossy exports are how images get that mushy, blocky look.",
+        {
+                "type": "h2",
+                "text": "When to use which"
+        },
+        "The rule of thumb that has never let me down:",
+        {
+                "type": "ul",
+                "items": [
+                        "Photos and gradients: lossy. JPG or WebP at quality 80-90%, visually identical, file size drops 5-10x",
+                        "Logos, icons, screenshots, text: lossless. PNG or lossless WebP, sharp edges and text stay crisp",
+                        "Web images that are photos: lossy WebP, best of both worlds for browsers",
+                        "Anything that will be edited later: lossless. Edit first, export lossy last"
+                ]
+        },
+        "Screenshots and UI mockups deserve special attention. They look like images but contain text and flat colors. Lossy compression smears the text. Always use PNG or lossless WebP for anything with words in it.",
+        {
+                "type": "h2",
+                "text": "The same photo, three sizes"
+        },
+        "A real example from a 4000x3000 photo:",
+        {
+                "type": "ul",
+                "items": [
+                        "Original PNG: about 18MB",
+                        "Lossless WebP: about 6MB, pixel-identical",
+                        "Lossy JPG quality 85: about 900KB, visually identical at normal viewing sizes"
+                ]
+        },
+        "Same photo, 20x difference. That is the whole argument in one line. If the image lives on a website, the 900KB version looks the same to visitors and loads 20x faster.",
+        {
+                "type": "h2",
+                "text": "How to pick the right tool",
+        },
+        "You rarely need to think about lossy vs lossless manually, because good compressors ask for a quality setting and handle the rest. A slider at 80-90% gives you lossy for photos, and a dedicated PNG or lossless mode covers the rest.",
+        "Run your image through a compressor that processes locally, keep the original, and only export the compressed version you actually ship. That is the whole workflow, no jargon required.",
+        {
+                "type": "h2",
+                "text": "FAQ"
+        },
+        "**Is lossy compression bad for image quality?** Not if you use it once at a sensible quality. JPG at 85-90% is visually indistinguishable from the original for photos. The problems start when you chain multiple lossy exports.",
+        "**Is PNG lossless?** Yes. PNG uses lossless compression, which is why it is the right format for logos, screenshots, and anything with text. It is the wrong format for photos, where it wastes space.",
+        "**What is better, lossy or lossless WebP?** WebP supports both. Use lossy WebP for photos and lossless WebP for graphics. The format itself is not the answer; the mode is.",
+        "**Does compression affect page speed?** Directly. A 5MB image vs a 300KB image of the same photo is the difference between a slow page and a fast one, especially on mobile.",
+        "Ready to compress? Head to the",
+        {
+                "type": "cta",
+                "text": "image compressor homepage",
+                "href": "/"
+        },
+        "and run your files locally, no upload needed."
+      ],
+      zh: [
+        "第一次听说有损压缩要丢数据时，我以为那肯定是差的那个选项。然后我上线了一个塞满 40 张 PNG 的网站，看着加载时间爬行。真相比名字更实用：有损和无损不是好坏之分，是不同场景的两种工具。",
+        "一句话版本：无损压缩保留每一个像素，有损压缩保留你眼睛看得见的部分、丢掉其余的。剩下的全是取舍。",
+        {
+                "type": "h2",
+                "text": "无损压缩到底做了什么"
+        },
+        "无损压缩是找规律然后缩短它，就像把“aaaa”替换成“4a”。解压后你拿回完全相同的文件。PNG 和 GIF 是著名的无损格式，WebP 和 AVIF 也支持无损模式。",
+        "代价是体积。无损保留一切，所以压不下去。一张照片有损压到 100KB，无损可能还有 800KB。",
+        {
+                "type": "h2",
+                "text": "有损压缩到底做了什么"
+        },
+        "有损压缩做判断：去掉人类几乎注意不到的细节，把其余部分记录得更高效。JPG 是经典例子。照片存成 JPG 质量 85，看起来和原图几乎一样，体积却只剩零头。",
+        "坑在于：每存一次有损就累积一次。压缩 JPG、重新打开、再压缩，每次都会劣化一点。从原图做一次有损导出没问题，链式反复导出才是图片变糊、变块的元凶。",
+        {
+                "type": "h2",
+                "text": "什么时候用哪种"
+        },
+        "一条从没让我失望过的经验法则：",
+        {
+                "type": "ul",
+                "items": [
+                        "照片和渐变：有损。JPG 或 WebP 质量 80-90%，肉眼一致，体积小 5-10 倍",
+                        "Logo、图标、截图、文字：无损。PNG 或无损 WebP，边缘和文字保持锐利",
+                        "网页里的照片：有损 WebP，浏览器上两全其美",
+                        "之后还要编辑的图：无损。先编辑，最后一步再导出有损"
+                ]
+        },
+        "截图和 UI 稿要特别小心。它们看起来像图，里面却是文字和纯色块。有损压缩会把文字抹糊。凡是带字的图，一律 PNG 或无损 WebP。",
+        {
+                "type": "h2",
+                "text": "同一张照片的三种大小"
+        },
+        "一张 4000x3000 照片的真实例子：",
+        {
+                "type": "ul",
+                "items": [
+                        "原图 PNG：约 18MB",
+                        "无损 WebP：约 6MB，像素级一致",
+                        "有损 JPG 质量 85：约 900KB，正常观看尺寸下视觉一致"
+                ]
+        },
+        "同一张照片，20 倍差距。这就是全部论证。如果图要放网站，900KB 版本对访客看起来一样，加载却快 20 倍。",
+        {
+                "type": "h2",
+                "text": "怎么选工具"
+        },
+        "你很少需要手动纠结有损 vs 无损，因为好的压缩器会问你要质量参数然后自己处理。80-90% 的滑杆给你照片用有损，专门的 PNG 或无损模式覆盖其余场景。",
+        "用本地处理的压缩器跑一遍，保留原图，只导出你要发布的那份压缩版。整个流程就这些，不需要术语。",
+        {
+                "type": "h2",
+                "text": "FAQ"
+        },
+        "**有损压缩会损害画质吗？** 只要在合理质量下只压一次就不会。照片 JPG 85-90% 与原图肉眼无差。问题出在多次链式有损导出。",
+        "**PNG 是无损的吗？** 是的。PNG 用无损压缩，所以它是 Logo、截图和带文字图片的正确格式。对照片则是浪费空间的错误格式。",
+        "**有损 WebP 和无损 WebP 哪个好？** WebP 两种都支持。照片用有损 WebP，图形用无损 WebP。关键不在格式，在模式。",
+        "**压缩影响网页速度吗？** 直接影响。同一张照片 5MB 和 300KB 的差别，就是慢页面和快页面的差别，移动端尤其明显。",
+        "准备好压缩了吗？去",
+        {
+                "type": "cta",
+                "text": "图片压缩器首页",
+                "href": "/"
+        },
+        "本地处理你的文件，无需上传。"
+      ]
+    },
+  },
+  {
+    slug: "shopify-product-photo-size-guide",
+    date: "2026-08-19",
+    title: {
+      zh: "Shopify 商品图尺寸完全指南（像素、格式与压缩）",
+      en: "Shopify Product Photo Size Guide (Pixels, Format & Compression)",
+    },
+    description: {
+      zh: "Shopify 图片尺寸看数据说话：真正好用的 2048x2048 px 主图、为什么越大越糟、以及如何缩放商品图而不损画质。",
+      en: "Shopify image size decided by the numbers: the 2048x2048 px master that works, why bigger hurts, and how to resize product photos without losing quality.",
+    },
+    keywords: [
+      "shopify image size",
+      "shopify product image size",
+      "shopify image size px",
+      "shopify photo dimensions",
+      "shopify product photo size guide",
+      "resize shopify images",
+    ],
+    content: {
+      zh: [
+        "Shopify 图片尺寸是那种悄悄决定店铺显得专业还是业余的细节。做对了，商品图加载快、在各块屏幕上清晰、也能通过 Google 的页面速度检测；做错了，你发出的是 5MB 的 JPEG，让手机用户干等、跳出、转去别家买。这篇讲清楚真正好用的尺寸、为什么“越大越好”是错的，以及如何在不损画质的前提下达到正确的 shopify 图片大小。",
+        { type: "h2", text: "推荐的 Shopify 商品图尺寸" },
+        "Shopify 允许上传最大 4472 x 4472 px 的图片，但你几乎不该用满。日常商品图，方形的 2048 x 2048 px 主图是甜点区：够大能缩放，又够小加载快。Shopify 随后会自动生成更小版本（如 1000 px、600 px）给缩略图和手机用。",
+        {
+          type: "ul",
+          items: [
+            "主图：2048 x 2048 px（方形，sRGB）",
+            "缩略图：1000 x 1000 px 或更小（Shopify 自动生成）",
+            "缩放视图：需要 2048 px 主图，别指望 1000 px",
+            "文件格式：照片用 JPG，带文字的图形用 PNG",
+          ],
+        },
+        { type: "h2", text: "Shopify 图片尺寸（像素）：速查" },
+        "下面是多数店铺实际在用的拆分：",
+        {
+          type: "ul",
+          items: [
+            "主图/场景图：2048 x 2048 px 方形",
+            "画廊缩略图：1000 x 1000 px",
+            "分类卡片：600 x 600 px（裁成方形）",
+            "Banner：1800 x 600 px 或按主题更宽",
+          ],
+        },
+        { type: "h2", text: "为什么超大图反而有害" },
+        "一张 5MB 的照片不会让店铺更好看，只会更慢。Shopify 仍要把这个文件推给每个访客，在移动网络下可能要等好几秒。慢页面会拉低转化率和搜索排名。解法不是“传最大的文件”，而是“传仍然好看的最小文件”。",
+        {
+          type: "ul",
+          items: [
+            "首屏更慢，跳出更高",
+            "弱网下的手机用户直接离开",
+            "Google 把页面速度当作排名信号",
+          ],
+        },
+        { type: "h2", text: "如何缩放又不损画质" },
+        "你不需要 Photoshop。浏览器本地工具几秒就能压缩并调整尺寸，而且因为在本机运行，文件从不离开你的设备。",
+        {
+          type: "ul",
+          items: [
+            "从编辑器导出 2048 px 方形主图",
+            "照片 JPG 压到 80-85% 质量",
+            "只有 Logo 和文字图形才保留 PNG",
+            "下载前先预览结果",
+          ],
+        },
+        {
+          type: "cta",
+          text: "在浏览器本地压缩图片（免费）→",
+          href: "https://image-compressor-saas.shop",
+        },
+        { type: "h2", text: "延伸阅读" },
+        "如果你用 WordPress，我们这篇“无插件压缩 WordPress 图片”是顺理成章的下一步：https://image-compressor-saas.shop/blog/compress-images-wordpress-without-plugin。选格式可看 PNG vs JPG：https://image-compressor-saas.shop/blog/png-vs-jpg-differences。",
+        { type: "h2", text: "常见问题 FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Shopify 商品图最佳尺寸是多少？", a: "2048 x 2048 px 的方形主图既能缩放又处处清晰；Shopify 会自动生成更小的变体。" },
+            { q: "Shopify 图片会太大吗？", a: "会。几 MB 以上的文件拖慢页面、损害排名。缩到 2048 px 并压到 80-85% 质量即可。" },
+            { q: "商品图一定要方形吗？", a: "方形（1:1）是最稳妥的默认，因为 Shopify 按方形网格裁切；非方形图在列表中会被裁。" },
+            { q: "Shopify 商品图用 JPG 还是 PNG？", a: "照片用 JPG，只有带文字或透明的图形才用 PNG。PNG 照片纯属浪费空间。" },
+          ],
+        },
+        { type: "h2", text: "开始压缩" },
+        {
+          type: "cta",
+          text: "免费压缩你的商品图 →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+      en: [
+        "Shopify image size is one of those details that quietly decides whether a store looks professional or amateur. Get it right and your product photos load fast, stay sharp on every screen, and survive Google's page-speed checks. Get it wrong and you ship 5MB JPEGs that make mobile shoppers wait, bounce, and buy elsewhere. This guide covers the dimensions that actually work, why bigger is not better, and how to hit the right shopify product image size without losing quality.",
+        { type: "h2", text: "The recommended Shopify product image size" },
+        "Shopify lets you upload images up to 4472 x 4472 px, but you almost never should. For day-to-day product shots, a square 2048 x 2048 px master is the sweet spot: large enough for zoom, small enough to load quickly. Shopify then auto-generates smaller variants (like 1000 px and 600 px) for thumbnails and mobile.",
+        {
+          type: "ul",
+          items: [
+            "Master image: 2048 x 2048 px (square, sRGB)",
+            "Thumbnail: 1000 x 1000 px or smaller (Shopify builds this automatically)",
+            "Zoom view: needs the 2048 px master; don't rely on 1000 px",
+            "File format: JPG for photos, PNG for graphics with text",
+          ],
+        },
+        { type: "h2", text: "Shopify image size in pixels: a quick table" },
+        "Here is the practical breakdown most stores actually use:",
+        {
+          type: "ul",
+          items: [
+            "Hero / lifestyle: 2048 x 2048 px square",
+            "Gallery thumbnails: 1000 x 1000 px",
+            "Collection cards: 600 x 600 px (cropped to square)",
+            "Banner: 1800 x 600 px or wider, depending on theme",
+          ],
+        },
+        { type: "h2", text: "Why huge images hurt more than they help" },
+        "A 5MB photo does not make your store look better; it makes it slower. Shopify still has to push that file to every visitor, and on mobile data it can take several seconds. Slow pages drop your conversion rate and your search ranking. The fix is not 'upload the biggest file' but 'upload the smallest file that still looks great.'",
+        {
+          type: "ul",
+          items: [
+            "Slower first paint means higher bounce",
+            "Mobile shoppers on weak networks leave",
+            "Google treats page speed as a ranking signal",
+          ],
+        },
+        { type: "h2", text: "How to resize without losing quality" },
+        "You don't need Photoshop. A browser-local tool compresses and resizes in seconds, and because it runs on your device the files never leave your machine.",
+        {
+          type: "ul",
+          items: [
+            "Export a 2048 px square master from your editor",
+            "Compress JPG to 80-85% quality for photos",
+            "Keep PNG only for logos and text-heavy graphics",
+            "Preview the result before downloading",
+          ],
+        },
+        {
+          type: "cta",
+          text: "Compress images for free (browser-local) →",
+          href: "https://image-compressor-saas.shop",
+        },
+        { type: "h2", text: "Related reading" },
+        "If you run WordPress, our guide on compressing images for WordPress without a plugin is a natural next step: https://image-compressor-saas.shop/blog/compress-images-wordpress-without-plugin. For choosing formats, see PNG vs JPG: https://image-compressor-saas.shop/blog/png-vs-jpg-differences.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "What is the best Shopify product image size?", a: "A 2048 x 2048 px square master covers zoom and looks sharp everywhere; Shopify auto-creates smaller variants." },
+            { q: "Can Shopify images be too big?", a: "Yes. Files over a few MB slow your pages and hurt rankings. Resize to 2048 px and compress to 80-85%." },
+            { q: "Should product photos be square?", a: "Square (1:1) is the safe default because Shopify crops to a square grid; non-square images get cropped in listings." },
+            { q: "JPG or PNG for Shopify products?", a: "JPG for photos, PNG only for graphics with text or transparency. PNG photos waste space." },
+          ],
+        },
+        { type: "h2", text: "Start compressing" },
+        {
+          type: "cta",
+          text: "Compress your product images for free →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+    },
+  },
+  {
+    slug: "optimize-images-ghost-blog",
+    date: "2026-08-20",
+    title: {
+      en: "How to Optimize Images for Ghost Blog (2026 Guide)",
+      zh: "Ghost 博客图片优化指南（2026）",
+    },
+    description: {
+      en: "Ghost is fast by default, but unoptimized images can kill your Core Web Vitals. Here is the complete guide to optimizing images for Ghost blog performance.",
+      zh: "Ghost 默认很快，但未优化的图片会毁掉你的 Core Web Vitals。本文是 Ghost 博客图片优化的完整指南。",
+    },
+    keywords: [
+      "optimize images for ghost blog",
+      "ghost blog image optimization",
+      "ghost webp avif",
+      "ghost blog lazy loading images",
+      "ghost blog cdn images",
+    ],
+    content: {
+      en: [
+        "Ghost is one of the fastest static-site generators out of the box. But speed means nothing if your blog posts are weighed down by 5MB hero images and uncompressed PNGs. This guide covers everything you need to optimize images for Ghost — from format selection to lazy loading, from WebP conversion to CDN configuration.",
+        { type: "h2", text: "Why image optimization matters for Ghost" },
+        "Ghost uses a modern tech stack (Node.js, React, Tailwind) and serves fast HTML. But browsers still need to download every image before rendering the page. Unoptimized images are the #1 cause of slow LCP (Largest Contentful Paint) on Ghost blogs, and LCP is one of Google's Core Web Vitals — directly affecting your search ranking.",
+        { type: "h2", text: "Choose the right format" },
+        "Ghost supports WebP, AVIF, JPEG, PNG, and GIF natively. For blog images, the hierarchy is:",
+        {
+          type: "ul",
+          items: [
+            "AVIF: Best compression, 30-50% smaller than WebP. Use for hero images and photos.",
+            "WebP: Excellent compression, broad browser support. Use for most blog images.",
+            "JPEG: Good for photos where AVIF/WebP is not available.",
+            "PNG: Only for images with transparency or simple graphics.",
+            "GIF: Avoid. Use WebP or MP4 for animations.",
+          ],
+        },
+        { type: "h2", text: "Compression settings for Ghost" },
+        "Ghost's built-in image optimization is good, but you can do better. Recommended settings:",
+        {
+          type: "ul",
+          items: [
+            "Hero/Featured: 1920px max width, 80% quality, WebP or AVIF",
+            "In-article photos: 1200px, 85% quality, WebP",
+            "Thumbnails: 400px, 80% quality, WebP",
+            "Icons/logos: 200px, 90% quality, SVG or PNG",
+          ],
+        },
+        { type: "h2", text: "Lazy loading in Ghost" },
+        "Ghost enables lazy loading by default for images inserted via the editor. However, custom images or images added via HTML may need manual lazy loading. Add the loading attribute:",
+        '<img src="image.jpg" loading="lazy" alt="Description">',
+        "For above-the-fold images (like hero images), use loading='eager' or omit the attribute — lazy loading above the fold actually hurts LCP.",
+        { type: "h2", text: "CDN and caching" },
+        "Use a CDN like Cloudflare or Imgix to serve optimized images. These services automatically convert to WebP/AVIF based on browser support, resize on the fly, and cache globally. Ghost integrates seamlessly with most CDNs.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Does Ghost optimize images automatically?",
+              a: "Ghost has basic image optimization built in, but it is not as aggressive as dedicated image CDNs. For best results, combine Ghost with a CDN like Cloudflare or Imgix.",
+            },
+            {
+              q: "Should I use WebP or AVIF for Ghost blog images?",
+              a: "Use AVIF for hero and featured images (best compression). Use WebP for in-article photos (better browser compatibility). AVIF support is now >95% in modern browsers.",
+            },
+            {
+              q: "How do I check if my Ghost blog images are optimized?",
+              a: "Use Google PageSpeed Insights or Lighthouse. Check the 'Eliminate render-blocking resources' and 'Serve images in next-gen formats' recommendations. Also check your Largest Contentful Paint (LCP) score.",
+            },
+          ],
+        },
+        {
+          type: "cta",
+          text: "Compress your Ghost blog images for free →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+      zh: [
+        "Ghost 是开箱即最快的静态站生成器之一。但如果你的文章被 5MB 的封面图和未压缩的 PNG 拖累，速度将毫无意义。本指南覆盖 Ghost 图片优化的全部要点——从格式选择到懒加载，从 WebP 转换到 CDN 配置。",
+        { type: "h2", text: "为什么 Ghost 博客需要图片优化" },
+        "Ghost 技术栈现代（Node.js、React、Tailwind），HTML 加载很快。但浏览器渲染页面前仍要下载每张图片。未优化的图片是 Ghost 博客 LCP（最大内容绘制）变慢的头号原因，而 LCP 是 Google Core Web Vitals 之一，直接影响搜索排名。",
+        { type: "h2", text: "选择正确的格式" },
+        "Ghost 原生支持 WebP、AVIF、JPEG、PNG 和 GIF。博客图片的优先级：",
+        {
+          type: "ul",
+          items: [
+            "AVIF：压缩率最高，比 WebP 小 30-50%，用于封面图和照片",
+            "WebP：压缩优秀、浏览器支持广，用于大多数博客图片",
+            "JPEG：不支持 AVIF/WebP 时用于照片",
+            "PNG：仅用于带透明或简单图形的图片",
+            "GIF：避免使用，动图改用 WebP 或 MP4",
+          ],
+        },
+        { type: "h2", text: "Ghost 的压缩设置" },
+        "Ghost 内置的图片优化不错，但可以做得更好。推荐设置：",
+        {
+          type: "ul",
+          items: [
+            "封面/头图：1920px 宽、80% 质量、WebP 或 AVIF",
+            "文内照片：1200px、85% 质量、WebP",
+            "缩略图：400px、80% 质量、WebP",
+            "图标/Logo：200px、90% 质量、SVG 或 PNG",
+          ],
+        },
+        { type: "h2", text: "Ghost 中的懒加载" },
+        "Ghost 默认对编辑器插入的图片启用懒加载。但自定义图片或通过 HTML 添加的图片可能需要手动设置。加上 loading 属性：",
+        '<img src="image.jpg" loading="lazy" alt="Description">',
+        "首屏图片（如封面图）请用 loading='eager' 或省略该属性——首屏懒加载反而会拖慢 LCP。",
+        { type: "h2", text: "CDN 与缓存" },
+        "使用 Cloudflare 或 Imgix 等 CDN 提供优化后的图片。这些服务会自动按浏览器支持转换为 WebP/AVIF、按需缩放并全局缓存。Ghost 与大多数 CDN 无缝集成。",
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Ghost 会自动优化图片吗？",
+              a: "Ghost 内置基础图片优化，但不如专用图片 CDN 激进。最佳实践是 Ghost + CDN（如 Cloudflare 或 Imgix）组合。",
+            },
+            {
+              q: "Ghost 博客图片应该用 WebP 还是 AVIF？",
+              a: "封面/头图用 AVIF（压缩最好）；文内照片用 WebP（兼容性更好）。现代浏览器 AVIF 支持已超过 95%。",
+            },
+          ],
+        },
+        {
+          type: "cta",
+          text: "免费压缩你的 Ghost 博客图片 →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+    },
+  },
+
+  {
+    slug: "linkedin-post-image-size-2026",
+    date: "2026-08-21",
+    title: {
+      en: "LinkedIn Post Image Size: The Complete 2026 Guide",
+      zh: "LinkedIn 帖子图片尺寸：2026 完整指南",
+    },
+    description: {
+      en: "LinkedIn post image sizes change in 2026. Here is the complete guide to optimal dimensions for single images, carousels, and video thumbnails.",
+      zh: "LinkedIn 帖子图片尺寸在 2026 年有所变化。本文是单图、轮播和缩略图最佳尺寸的完整指南。",
+    },
+    keywords: [
+      "linkedin post image size",
+      "linkedin image size 2026",
+      "linkedin carousel image size",
+      "linkedin video thumbnail size",
+      "linkedin post dimensions",
+    ],
+    content: {
+      en: [
+        "LinkedIn is one of the few platforms where image optimization still matters for reach. In 2026, the algorithm favors properly sized images that load quickly and look sharp on high-DPI displays.",
+        { type: "h2", text: "Single Image Posts" },
+        "The recommended size for single image posts is 1200 x 627 pixels (1.91:1 ratio). This is the same ratio used for link previews and ensures your image displays fully without cropping.",
+        { type: "h2", text: "Carousel Posts" },
+        "For carousel posts (PDF documents), use 1080 x 1350 pixels (4:5 ratio) or 1080 x 1080 pixels (1:1 square). Carousels get 2-3x more engagement than single images.",
+        { type: "h2", text: "Video Thumbnails" },
+        "LinkedIn video thumbnails should be 1280 x 720 pixels (16:9 ratio) for the best appearance in feeds and on video pages.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "What is the best LinkedIn post image size in 2026?",
+              a: "1200 x 627 pixels for single images, 1080 x 1350 for carousels.",
+            },
+            {
+              q: "Does LinkedIn compress my images?",
+              a: "Yes. Upload at 80-90% quality to avoid double compression artifacts.",
+            },
+          ],
+        },
+        {
+          type: "cta",
+          text: "Optimize your LinkedIn images for free →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+      zh: [
+        "LinkedIn 是为数不多、图片优化仍直接影响触达率的平台。2026 年，算法更青睐尺寸合适、加载快、在高分屏上清晰锐利的图片。",
+        { type: "h2", text: "单图帖子" },
+        "单图帖子推荐尺寸为 1200 x 627 像素（1.91:1 比例）。这与链接预览同比例，确保图片完整显示不被裁剪。",
+        { type: "h2", text: "轮播帖子" },
+        "轮播帖子（PDF 文档）使用 1080 x 1350 像素（4:5 比例）或 1080 x 1080 像素（1:1 方形）。轮播的互动率是单图的 2-3 倍。",
+        { type: "h2", text: "视频缩略图" },
+        "LinkedIn 视频缩略图建议 1280 x 720 像素（16:9 比例），在信息流和视频页都有最佳效果。",
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "2026 年 LinkedIn 帖子图片最佳尺寸是多少？",
+              a: "单图 1200 x 627 像素，轮播 1080 x 1350 像素。",
+            },
+            {
+              q: "LinkedIn 会压缩我的图片吗？",
+              a: "会。建议以 80-90% 质量上传，避免二次压缩产生噪点。",
+            },
+          ],
+        },
+        {
+          type: "cta",
+          text: "免费优化你的 LinkedIn 图片 →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+    },
+  },
+  {
+    slug: "instagram-image-sizes-2026",
+    date: "2026-08-22",
+    title: {
+      en: "Instagram Image Sizes 2026: The Complete Guide",
+      zh: "2026 年 Instagram 图片尺寸：完整指南",
+    },
+    description: {
+      en: "Instagram changed its image specifications in 2026. Here is the complete guide to optimal dimensions for single images, carousels, stories, and reels.",
+      zh: "Instagram 在 2026 年更改了图片规格。本文是单图、轮播、故事和 Reels 最佳尺寸的完整指南。",
+    },
+    keywords: [
+      "instagram image size",
+      "instagram post size 2026",
+      "instagram story size",
+      "instagram carousel size",
+      "instagram reel size",
+    ],
+    content: {
+      en: [
+        "Instagram changed its image specifications multiple times in 2025 and 2026. If you're optimizing for the platform, here's what actually works right now.",
+        { type: "h2", text: "Single Image Posts" },
+        "The sweet spot is 1080 x 1350 pixels (4:5 ratio). This fills more screen space than the old 1:1 square, which means more visibility in feeds. Width should always be 1080px — Instagram compresses larger uploads.",
+        { type: "h2", text: "Carousel Posts" },
+        "Each slide in a carousel follows the same ratios as single posts. The key insight: keep all slides on the same ratio. Mixing 1:1 with 4:5 in one carousel looks unprofessional and can cause cropping issues.",
+        { type: "h2", text: "Stories and Reels" },
+        "Stories: 1080 x 1920 (9:16). This is full-screen on mobile. Reels: Same 1080 x 1920 ratio. Both should account for UI elements — keep important content within the center 1080 x 1280 area to avoid being covered by captions and buttons.",
+        { type: "h2", text: "Profile Pictures" },
+        "110 x 110 pixels displayed, but upload at 110 x 110 or larger. Instagram crops to a circle, so center your subject.",
+        { type: "h2", text: "File Size and Format" },
+        "- JPEG for photos, PNG for graphics with text\n- Keep files under 30MB for posts, under 4GB for Reels\n- sRGB color profile — not all platforms handle wide color well",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Does Instagram compress my images?",
+              a: "Yes. Upload at 1080px width and 80-90% quality to minimize double compression.",
+            },
+            {
+              q: "Can I post 4:5 and 1:1 in the same carousel?",
+              a: "Technically yes, but it looks inconsistent. Stick to one ratio.",
+            },
+            {
+              q: "What's the best format for Instagram?",
+              a: "JPEG for photos, PNG for graphics with text or transparency.",
+            },
+          ],
+        },
+        {
+          type: "cta",
+          text: "Optimize your Instagram images for free →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+      zh: [
+        "Instagram 在 2025 和 2026 年多次更改了图片规格。如果你在为该平台优化，以下是目前实际有效的方法。",
+        { type: "h2", text: "单图帖子" },
+        "最佳尺寸是 1080 x 1350 像素（4:5 比例）。这比旧的 1:1 方形填充更多屏幕空间，意味着在信息流中更有可见性。宽度应始终为 1080px——Instagram 会压缩更大的上传。",
+        { type: "h2", text: "轮播帖子" },
+        "轮播中的每个幻灯片遵循与单图相同的比例。关键见解：保持所有幻灯片在同一比例。在一个轮播中混合 1:1 和 4:5 看起来不专业，并可能导致裁剪问题。",
+        { type: "h2", text: "故事和 Reels" },
+        "故事：1080 x 1920（9:16）。这是在移动设备上的全屏。Reels：相同的 1080 x 1920 比例。两者都应该考虑 UI 元素——将重要内容保持在中心 1080 x 1280 区域内，避免被标题和按钮覆盖。",
+        { type: "h2", text: "个人资料图片" },
+        "显示 110 x 110 像素，但上传 110 x 110 或更大。Instagram 裁剪为圆形，所以将主体居中。",
+        { type: "h2", text: "文件大小和格式" },
+        "- 照片用 JPEG，带文字的图形用 PNG\n- 帖子文件保持 30MB 以下，Reels 保持 4GB 以下\n- sRGB 色彩配置文件——并非所有平台都能很好地处理广色域",
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Instagram 会压缩我的图片吗？",
+              a: "会。以 1080px 宽度和 80-90% 质量上传，以最小化二次压缩。",
+            },
+            {
+              q: "我可以在同一个轮播中发布 4:5 和 1:1 吗？",
+              a: "技术上可以，但看起来不一致。坚持一种比例。",
+            },
+            {
+              q: "Instagram 的最佳格式是什么？",
+              a: "照片用 JPEG，带文字或透明度的图形用 PNG。",
+            },
+          ],
+        },
+        {
+          type: "cta",
+          text: "免费优化你的 Instagram 图片 →",
+          href: "https://image-compressor-saas.shop",
+        },
+      ],
+    },
+  },
+
+  {
+    slug: "compress-photos-real-estate-listings",
+    date: "2026-08-23",
+    title: {
+      zh: "房地产照片压缩指南： listings 图片优化技巧",
+      en: "Real Estate Photo Compression: Optimize Listing Images for Speed and Quality",
+    },
+    description: {
+      zh: "房产网站每张照片都影响加载速度和用户体验。本文教你如何在保持画质的同时大幅压缩房地产照片。",
+      en: "Every photo on a real estate site affects load speed and user experience. Learn how to compress property photos significantly while maintaining quality.",
+    },
+    keywords: ["compress real estate photos", "real estate image optimization", "property listing photos", "zillow photo compression"],
+    content: {
+      zh: [
+        "房地产网站的照片质量直接影响买家的决策。但高清照片也意味着慢速加载——买家等不及就关掉了。",
+        { type: "h2", text: "为什么房地产照片需要专门压缩" },
+        "房产照片通常分辨率很高（专业相机拍摄），文件大小容易超过 5MB。Zillow 和 Realtor.com 等平台的最佳实践是将照片压缩到 500KB 以下，同时保持视觉质量。",
+        { type: "h2", text: "压缩技巧" },
+        { type: "ul", items: ["使用 WebP 格式替代 JPEG，文件小 30% 质量相同", "将长边限制在 2000px 以内", "压缩质量设为 80-85%（肉眼难以区分）", "批量处理：使用 Photoshop 动作或在线批量工具"] },
+        { type: "h2", text: "常见问题" },
+        { type: "faq", items: [
+          { q: "压缩后照片质量会下降吗？", a: "使用 80-85% 质量的 WebP，肉眼几乎看不出区别。" },
+          { q: "房产平台有文件大小限制吗？", a: "Zillow 建议每张照片 500KB 以下，Realtor.com 建议 1MB 以下。" },
+          { q: "如何批量压缩多张照片？", a: "使用我们的在线压缩工具，或 Photoshop 批量处理动作。" },
+        ] },
+        { type: "cta", text: "免费压缩你的房地产照片 →", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "Photo quality on real estate sites directly impacts buyer decisions. But high-res photos mean slow loading — buyers close the tab before they wait. Here's how to compress property photos without losing the details that sell homes.",
+        { type: "h2", text: "Why Real Estate Photos Need Special Compression" },
+        "Property photos are often high resolution (professional camera shots), with file sizes easily exceeding 5MB. Best practices on Zillow and Realtor.com recommend compressing photos to under 500KB while maintaining visual quality.",
+        { type: "h2", text: "Compression Techniques" },
+        { type: "ul", items: ["Use WebP format instead of JPEG — 30% smaller at same quality", "Limit long edge to 2000px or less", "Set compression quality to 80-85% (indistinguishable to the eye)", "Batch process: use Photoshop actions or online batch tools"] },
+        { type: "h2", text: "FAQ" },
+        { type: "faq", items: [
+          { q: "Will compression reduce photo quality?", a: "At 80-85% quality WebP, the difference is virtually indistinguishable to the human eye." },
+          { q: "Do real estate platforms have file size limits?", a: "Zillow recommends under 500KB per photo. Realtor.com recommends under 1MB." },
+          { q: "How do I batch compress multiple photos?", a: "Use our online compressor or Photoshop batch actions." },
+        ] },
+        { type: "cta", text: "Compress your real estate photos for free →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
+
+  {
+    slug: "image-compression-affects-page-speed",
+    date: "2026-08-25",
+    title: {
+      zh: "图片压缩如何影响页面速度：数据驱动的证据",
+      en: "Image Compression Affects Page Speed: The Data-Driven Proof",
+    },
+    description: {
+      zh: "每兆字节未优化的图像都会减慢网站速度。数据清楚地表明：图片压缩与更快的加载时间、更好的 Core Web Vitals 评分和更高的转化率直接相关。",
+      en: "Every megabyte of unoptimized imagery slows your website down. The data is clear: image compression directly correlates with faster load times, better Core Web Vitals scores, and higher conversion rates.",
+    },
+    keywords: [
+      "image compression page speed",
+      "image optimization core web vitals",
+      "compress images faster website",
+      "image file size website performance",
+    ],
+    content: {
+      zh: [
+        "图片通常是网页上最大的资源。根据 HTTP Archive，图片平均占页面总重量的 40-50%。每一兆未优化的图像都会直接拖慢 LCP（最大内容绘制），而 LCP 是 Core Web Vitals 的核心指标。",
+        { type: "h2", text: "数据怎么说" },
+        "Google 的数据显示，页面加载时间从 1 秒增加到 3 秒，跳出率提高 32%。而一张 2MB 的未压缩图片，在 4G 网络下可能就需要 2-3 秒才能加载完——这足以毁掉你的 LCP 评分。",
+        {
+          type: "ul",
+          items: [
+            "图片占平均页面重量的 40-50%",
+            "未优化图片是 LCP 超时（>2.5s）的头号原因",
+            "WebP 相比 JPEG 平均可节省 25-35% 体积",
+            "压缩后图片加载快 → 转化率提升（每慢 1 秒转化下降 7%）",
+          ],
+        },
+        { type: "h2", text: "最佳实践" },
+        "使用 WebP 或 AVIF 格式、按需压缩到 80-85% 质量、为响应式布局提供多尺寸图片。这些做法能让你的 LCP 从红区进入绿区。",
+        { type: "h2", text: "FAQ" },
+        { type: "faq", items: [
+          { q: "How much can I compress images before quality suffers?", a: "For JPEG, 80-85% quality usually provides the best balance." },
+          { q: "What is the best format for web images?", a: "WebP or AVIF. WebP saves 25-35% vs JPEG at the same quality." },
+          { q: "Does image compression affect SEO?", a: "Yes. Page speed is a ranking factor, and faster images improve Core Web Vitals." },
+        ] },
+        { type: "cta", text: "Compress your images for free →", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "Images are usually the largest resource on a web page. According to HTTP Archive, images account for 40-50% of average page weight. Every unoptimized megabyte drags down your LCP (Largest Contentful Paint) — the core Core Web Vitals metric.",
+        { type: "h2", text: "What the Data Says" },
+        "Google's data shows that when page load time goes from 1 second to 3 seconds, bounce rate increases by 32%. A single 2MB unoptimized image can take 2-3 seconds to load on 4G — enough to destroy your LCP score.",
+        {
+          type: "ul",
+          items: [
+            "Images account for 40-50% of average page weight",
+            "Unoptimized images are the #1 cause of LCP failures (>2.5s)",
+            "WebP saves 25-35% vs JPEG at the same visual quality",
+            "Faster images → higher conversions (every 1s slower costs ~7% conversions)",
+          ],
+        },
+        { type: "h2", text: "Best Practices" },
+        "Use WebP or AVIF, compress to 80-85% quality, and serve multiple sizes for responsive layouts. These moves take your LCP from red to green.",
+        { type: "h2", text: "FAQ" },
+        { type: "faq", items: [
+          { q: "How much can I compress images before quality suffers?", a: "For JPEG, 80-85% quality usually provides the best balance." },
+          { q: "What is the best format for web images?", a: "WebP or AVIF. WebP saves 25-35% vs JPEG at the same quality." },
+          { q: "Does image compression affect SEO?", a: "Yes. Page speed is a ranking factor, and faster images improve Core Web Vitals." },
+        ] },
+        { type: "cta", text: "Compress your images for free →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
   },
   {
     slug: "core-web-vitals-fix-lcp-images",
@@ -1150,6 +2415,7 @@ export const POSTS: BlogPost[] = [
     },
   },
 ];
+
 
 export function getPost(slug: string): BlogPost | undefined {
   return POSTS.find((p) => p.slug === slug);

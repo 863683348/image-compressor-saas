@@ -19,24 +19,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     { url: `${SITE}/pricing`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE}/faq`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${SITE}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE}/zh/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.5 },
     { url: `${SITE}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.5 },
     { url: `${SITE}/contact`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.5 },
     { url: `${SITE}/guide.html`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
   ];
 
-  // Blog posts: each article exists in zh (/blog/{slug}) and en (/en/blog/{slug}).
+  // Blog posts: each article exists in zh (/zh/blog/{slug}) and en (/en/blog/{slug}).
   // Driven by POSTS so newly added articles are indexed automatically.
   const blogRoutes: MetadataRoute.Sitemap = POSTS.flatMap((post) => {
     const languages = {
-      "zh-CN": `${SITE}/blog/${post.slug}`,
+      "zh-CN": `${SITE}/zh/blog/${post.slug}`,
       en: `${SITE}/en/blog/${post.slug}`,
-      "x-default": `${SITE}/blog/${post.slug}`,
+      "x-default": `${SITE}/zh/blog/${post.slug}`,
     };
     return [
       {
-        url: `${SITE}/blog/${post.slug}`,
+        url: `${SITE}/zh/blog/${post.slug}`,
         lastModified: new Date(post.date),
         changeFrequency: "monthly" as const,
         priority: 0.7,

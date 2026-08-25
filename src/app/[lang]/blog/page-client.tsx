@@ -16,7 +16,7 @@ const posts = [...POSTS]
     date: p.date,
     title: p.title,
     desc: p.description,
-    link: `/blog/${p.slug}`,
+    link: `/zh/blog/${p.slug}`,
     enLink: `/en/blog/${p.slug}`,
   }));
 

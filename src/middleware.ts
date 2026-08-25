@@ -35,7 +35,7 @@ export function middleware(request: NextRequest) {
 
   // ── 2. Skip static / API / special paths ──
   const isSpecialPath =
-    /^\/(?:api|_next|_static|_vercel|sitemap\.xml|robots\.txt|favicon\.ico|guide\.html|sw\.js|og-cover\.png)(?:\/|$)/.test(
+    /^\/(?:api|_next|_static|_vercel|sitemap\.xml|robots\.txt|favicon\.ico|guide\.html|sw\.js)(?:\/|$)/.test(
       pathname,
     );
   if (isSpecialPath) {
@@ -75,6 +75,6 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     // Match all paths except static assets, API routes and common files
-    "/((?!api|_next|_static|_vercel|favicon\\.ico|sitemap\\.xml|robots\\.txt|guide\\.html|sw\\.js|og-cover\\.png|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|avif)$).*)",
+    "/((?!api|_next|_static|_vercel|favicon\\.ico|sitemap\\.xml|robots\\.txt|guide\\.html|sw\\.js|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|avif)$).*)",
   ],
 };

@@ -187,7 +187,7 @@ export function SeoContent({ lang }: { lang: Lang }) {
           <a href="/pricing" style={{ color: "var(--muted)", textDecoration: "none", fontSize: 13, fontWeight: 500 }}>
             {t(lang, "pricing")}
           </a>
-          <a href="/blog" style={{ color: "var(--muted)", textDecoration: "none", fontSize: 13, fontWeight: 500 }}>
+          <a href={`/${lang}/blog`} style={{ color: "var(--muted)", textDecoration: "none", fontSize: 13, fontWeight: 500 }}>
             {t(lang, "footerBlog")}
           </a>
           <a href="/faq" style={{ color: "var(--muted)", textDecoration: "none", fontSize: 13, fontWeight: 500 }}>
