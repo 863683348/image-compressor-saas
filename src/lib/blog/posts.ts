@@ -1104,6 +1104,51 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "core-web-vitals-fix-lcp-images",
+    date: "2026-08-26",
+    title: {
+      zh: "图片导致 LCP 慢？3 个浏览器本地修复技巧",
+      en: "Images Slowing Down LCP? 3 Browser-Local Fixes",
+    },
+    description: {
+      zh: "图片是 LCP 慢的最大元凶。这篇讲三个不需要服务器配置的浏览器本地修复：正确格式、延迟加载、尺寸优化。",
+      en: "Images are the #1 cause of slow LCP. Three browser-local fixes that need zero server config: right format, lazy loading, and size optimization.",
+    },
+    keywords: ["core web vitals lcp", "image lcp fix", "lazy loading images", "webp vs jpg lcp"],
+    content: {
+      zh: [
+        "LCP（Largest Contentful Paint）是衡量页面加载体验的核心指标，而图片往往是最大的瓶颈。好消息是，有三个修复技巧完全在浏览器本地完成，不需要修改服务器配置。",
+        { type: "h2", text: "技巧 1：选择正确的图片格式" },
+        "WebP 和 AVIF 比 JPG/PNG 小 25-50%，同时保持相同质量。对于 LCP 图片，格式选择可以直接将加载时间减半。使用我们的在线压缩工具可以将 JPG 转换为 WebP，无需上传到服务器。",
+        { type: "h2", text: "技巧 2：正确实现延迟加载" },
+        "LCP 图片不应该延迟加载！但页面中非首屏的图片应该使用 loading='lazy' 属性。正确的做法是：LCP 图片预加载，其余图片延迟加载。这样可以避免错误的优化反而拖慢 LCP。",
+        { type: "h2", text: "技巧 3：设置正确的图片尺寸" },
+        "图片标签中缺少 width/height 属性会导致布局偏移（CLS），也会影响浏览器预加载决策。始终为图片设置明确的尺寸，让浏览器能正确计算布局。",
+        { type: "faq", items: [
+          { q: "LCP 图片应该延迟加载吗？", a: "不应该。LCP 元素应该在页面加载时立即获取，延迟加载会拖慢 LCP。" },
+          { q: "WebP 比 JPG 小多少？", a: "通常小 25-35%，质量相同。在 LCP 场景下，这个差距可以直接转化为更好的性能评分。" },
+          { q: "不需要服务器配置就能优化 LCP 吗？", a: "是的。正确的图片格式、尺寸和懒加载策略完全在浏览器侧实现。" },
+        ]},
+        { type: "cta", text: "免费压缩图片，优化 LCP →", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "LCP (Largest Contentful Paint) is the core metric for measuring page loading experience, and images are often the biggest bottleneck. The good news: three fixes that work entirely in the browser with zero server configuration needed.",
+        { type: "h2", text: "Fix 1: Pick the Right Image Format" },
+        "WebP and AVIF are 25-50% smaller than JPG/PNG at the same quality. For LCP images, format choice alone can halve load time. Use our browser-local compressor to convert JPG to WebP without uploading anything.",
+        { type: "h2", text: "Fix 2: Lazy Load Correctly" },
+        "LCP images should NOT be lazy-loaded! But non-LCP images below the fold should use loading='lazy'. The correct pattern: preload the LCP image, lazy-load everything else. Wrong lazy loading is a common LCP killer.",
+        { type: "h2", text: "Fix 3: Set Explicit Image Dimensions" },
+        "Missing width/height attributes cause layout shifts (CLS) and confuse the browser's preload decisions. Always set explicit dimensions so the browser can calculate layout correctly before the image loads.",
+        { type: "faq", items: [
+          { q: "Should LCP images be lazy-loaded?", a: "No. LCP elements should be fetched immediately. Lazy loading the LCP image is one of the most common LCP mistakes." },
+          { q: "How much smaller is WebP vs JPG?", a: "Usually 25-35% smaller at equal quality. On LCP images, that difference directly translates to better performance scores." },
+          { q: "Can I fix LCP without server changes?", a: "Yes. Right format, correct dimensions, and proper lazy loading are all browser-side fixes with zero server config." },
+        ]},
+        { type: "cta", text: "Compress images for free (browser-local) →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
