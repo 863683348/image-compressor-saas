@@ -2414,6 +2414,93 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "lazy-load-images-nextjs",
+    date: "2026-08-29",
+    title: {
+      zh: "Next.js 图片懒加载：LCP 优化指南",
+      en: "Lazy Load Images in Next.js: The LCP Guide",
+    },
+    description: {
+      zh: "Next.js 的 Image 组件默认懒加载，但 LCP 图片不能懒加载。这篇讲清楚什么时候该 lazy，什么时候该 preload，以及如何正确配置。",
+      en: "Next.js Image components lazy-load by default, but LCP images must not be lazy-loaded. This guide explains when to use lazy vs preload, and how to configure it correctly.",
+    },
+    keywords: ["next.js lazy loading images", "nextjs image lazy load lcp", "next.js image optimization", "lazy load vs preload nextjs", "nextjs lcp fix"],
+    content: {
+      zh: [
+        "Next.js 的 <Image> 组件默认启用懒加载——viewport 外的图片不会提前下载。这是好事，但有一个重要例外：LCP（Largest Contentful Paint）图片不应该被懒加载。LCP 是用户最先看到的内容，延迟加载它会直接损害性能评分和用户体验。",
+        { type: "h2", text: "什么时候应该懒加载，什么时候不应该" },
+        {
+          type: "ul",
+          items: [
+            "LCP 图片（首屏主图、hero 图）：必须立即加载，用 fetchpriority='high'",
+            "首屏内其他图片：应该立即加载，不需要懒加载",
+            "首屏外的图片：懒加载完全没问题，用 loading='lazy'（Next.js Image 默认就是）",
+            "极低优先级图片（页脚缩略图）：用 placeholder='empty' + loading='lazy' 延迟到浏览器空闲时",
+          ],
+        },
+        { type: "h2", text: "Next.js Image 组件的懒加载配置" },
+        "默认行为：Next.js Image 对所有 viewport 外图片自动应用 loading='lazy'。你不需要手动添加。但 LCP 图片需要特殊处理——手动设置 fetchpriority='high' 和 priority 属性。",
+        { type: "h2", text: "LCP 图片的正确写法" },
+        {
+          type: "ul",
+          items: [
+            "添加 priority 属性：Next.js 会预加载这张图片，优先级高于页面其余资源",
+            "添加 fetchpriority='high'：浏览器知道这张图片对 LCP 至关重要",
+            "确保图片尺寸正确，避免 CLS 布局偏移",
+          ],
+        },
+        { type: "h2", text: "常见问题 FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Next.js Image 默认会懒加载所有图片吗？", a: "是的，所有 viewport 外的图片默认 lazy loading。viewport 内的图片不懒加载。" },
+            { q: "LCP 图片可以懒加载吗？", a: "绝对不能。LCP 图片延迟加载会直接损害 Core Web Vitals 评分。" },
+            { q: "priority 和 fetchpriority 有什么区别？", a: "priority 让 Next.js 提前预加载，fetchpriority='high' 告诉浏览器这个资源对 LCP 至关重要。两者配合使用效果最佳。" },
+          ],
+        },
+        { type: "h2", text: "立即优化你的图片加载" },
+        "检查你的 Next.js 项目中哪些图片是 LCP 候选，给它们加上 priority 和 fetchpriority='high'，其余图片保持默认懒加载。",
+        { type: "cta", text: "压缩图片优化 LCP →", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "Next.js's <Image> component enables lazy loading by default — images outside the viewport won't download until needed. This is good, but there's one critical exception: LCP (Largest Contentful Paint) images must NOT be lazy-loaded. The LCP image is the first thing users see, and delaying it directly hurts performance scores and user experience.",
+        { type: "h2", text: "When to lazy load, when not to" },
+        {
+          type: "ul",
+          items: [
+            "LCP image (hero image, main first-screen image): must load immediately — use fetchpriority='high'",
+            "Other images above the fold: should load immediately, no lazy loading needed",
+            "Images below the fold: lazy loading is perfectly fine — Next.js Image does this by default",
+            "Very low priority images (footer thumbnails): use placeholder='empty' + loading='lazy' to defer until browser is idle",
+          ],
+        },
+        { type: "h2", text: "Lazy loading config for Next.js Image" },
+        "Default behavior: Next.js Image automatically applies loading='lazy' to all out-of-viewport images. You don't need to add it manually. But LCP images need special treatment — set the fetchpriority='high' and priority props explicitly.",
+        { type: "h2", text: "Correct写法 for LCP images" },
+        {
+          type: "ul",
+          items: [
+            "Add the priority prop: Next.js will pre-fetch this image with higher priority than other page resources",
+            "Add fetchpriority='high': tells the browser this image is critical for LCP",
+            "Ensure correct image dimensions to avoid CLS layout shifts",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Does Next.js Image lazy load all images by default?", a: "Yes — all out-of-viewport images get lazy loading automatically. In-viewport images load immediately." },
+            { q: "Can LCP images be lazy-loaded?", a: "Absolutely not. Lazy loading the LCP image directly harms Core Web Vitals scores." },
+            { q: "What's the difference between priority and fetchpriority?", a: "priority tells Next.js to pre-fetch the image; fetchpriority='high' tells the browser this resource is critical for LCP. Use both together for best results." },
+          ],
+        },
+        { type: "h2", text: "Optimize your image loading now" },
+        "Audit your Next.js project for LCP candidates — add priority and fetchpriority='high' to those images, leave the rest on default lazy loading.",
+        { type: "cta", text: "Compress images to improve LCP →", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
 ];
 
 
