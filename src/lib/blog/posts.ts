@@ -436,7 +436,7 @@ export const POSTS: BlogPost[] = [
           { q: "WebP 所有浏览器都支持吗？", a: "现代浏览器都支持，旧版 Safari 需准备 JPEG 回退。" },
           { q: "批量怎么处理？", a: "用支持批量的工具一次拖入多张，统一设目标大小后导出。" },
         ] },
-        { type: "cta", text: "免费在线压缩图片", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "免费在线压缩图片", href: "/" },
       ],
       en: [
         "Images are the number one thing slowing down web pages, and also the easiest to optimize. This guide gives a ready-to-use image compression and performance workflow: right format, target size, batch processing, and LCP verification, so your pages go green on Core Web Vitals.",
@@ -487,7 +487,7 @@ export const POSTS: BlogPost[] = [
           { q: "Do all browsers support WebP?", a: "Modern browsers do; older Safari needs a JPEG fallback." },
           { q: "How do I batch process?", a: "Use a tool that supports batch: drag many images in, set a target size, and export." },
         ] },
-        { type: "cta", text: "Compress images online for free", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress images online for free", href: "/" },
       ],
     },
   },
@@ -567,7 +567,7 @@ export const POSTS: BlogPost[] = [
             { q: "WebP 和 AVIF 能无损压缩吗？", a: "都能。无损 WebP 适合截图图标（比 PNG 小 15-25%）；无损 AVIF 也有，但编码慢，用得少。" },
           ],
         },
-        { type: "cta", text: "免费压缩你的图片 →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "免费压缩你的图片 →", href: "/" },
       ],
       en: [
         "If you are wondering whether your images should be JPEG, WebP, or AVIF, the 2026 answer is refreshingly simple: use AVIF when you can, WebP when you cannot, and keep JPEG only as a compatibility fallback. This post puts size, quality, browser support, and use cases for all three on one table, then gives you a pick-by-scenario guide.",
@@ -623,7 +623,7 @@ export const POSTS: BlogPost[] = [
             { q: "Can WebP and AVIF compress losslessly?", a: "Both can. Lossless WebP is great for screenshots and icons (15-25% smaller than PNG); lossless AVIF exists but encodes slowly, so it is rarely used." },
           ],
         },
-        { type: "cta", text: "Compress your images for free →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress your images for free →", href: "/" },
       ],
     },
   },
@@ -716,7 +716,7 @@ export const POSTS: BlogPost[] = [
             { q: "哪款最适合日常使用？", a: "日常单张或少量图片，浏览器本地处理型最省心：无限免费、无注册、隐私安全。批量重度用户考虑桌面工具。" },
           ],
         },
-        { type: "cta", text: "免费压缩你的图片 →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "免费压缩你的图片 →", href: "/" },
       ],
       en: [
         "Free image compressors are everywhere, but \"free\" and \"good\" are often separated by a wall: 20-image limits, watermarks, forced signups, or uploading your files to someone's server. We tested 8 mainstream free tools on the same photo and put the results on one table: size, quality, batch support, privacy, and limits, then picked a winner per use case. Spoiler: browser-local tools win for privacy and unlimited free use.",
@@ -786,7 +786,7 @@ export const POSTS: BlogPost[] = [
             { q: "Which one is best for daily use?", a: "For everyday single images, a browser-local tool is the least hassle: unlimited free, no signup, private. Batch-heavy users should look at desktop tools." },
           ],
         },
-        { type: "cta", text: "Compress your images for free →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress your images for free →", href: "/" },
       ],
     },
   },
@@ -840,7 +840,7 @@ export const POSTS: BlogPost[] = [
             { q: "压缩会不会让图片看起来很糊？", a: "质量 80% + 长边 1920px 对屏幕查看几乎无感。会糊的是过度压缩（质量低于 60%）或把原图缩太小。压缩后先预览再发送。" },
           ],
         },
-        { type: "cta", text: "免费压缩图片（浏览器本地处理）→", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "免费压缩图片（浏览器本地处理）→", href: "/" },
       ],
       en: [
         "Email attachment size limits are the most annoying invisible rule in sending: Gmail caps at 25MB, Outlook at 20MB, plenty of corporate mailboxes at 10MB or less, and a single phone photo can already be 8MB. This post covers the practical way to reduce image size for email in 2026: browser-local compression, no upload, no sign-up, done in 30 seconds.",
@@ -879,7 +879,7 @@ export const POSTS: BlogPost[] = [
             { q: "Will compression make the image look blurry?", a: "Quality 80% with a 1920px long edge is practically indistinguishable on screen. Blur comes from over-compression (below 60%) or shrinking too far. Preview before sending." },
           ],
         },
-        { type: "cta", text: "Compress images for free (browser-local) →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress images for free (browser-local) →", href: "/" },
       ],
     },
   },
@@ -944,7 +944,7 @@ export const POSTS: BlogPost[] = [
             { q: "需要给每张图都做 alt 吗？", a: "承载信息的图需要，纯装饰图可以留空（避免屏幕阅读器重复播报）。alt 文本写清楚图片内容即可，关键词顺其自然。" },
           ],
         },
-        { type: "cta", text: "压缩图片，立竿见影 →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "压缩图片，立竿见影 →", href: "/" },
       ],
       en: [
         "Images are the most ignored performance killer on the web, and image optimization seo is one of the few fixes that pays off immediately: compress properly and pages load faster, LCP passes, and images can even show up in Google Images. This post covers how image compression connects to rankings, plus a compression standard you can use as-is.",
@@ -994,7 +994,7 @@ export const POSTS: BlogPost[] = [
             { q: "Does every image need alt text?", a: "Informative images do; decorative ones can leave alt empty so screen readers skip them. Write alt that describes the image, and let keywords come naturally." },
           ],
         },
-        { type: "cta", text: "Compress images for free (browser-local) →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress images for free (browser-local) →", href: "/" },
       ],
     },
   },
@@ -1058,7 +1058,7 @@ export const POSTS: BlogPost[] = [
             { q: "网页图片该用哪个？", a: "照片用 WebP 或高质量 JPG，图形和截图用 WebP 或 PNG。记住：体积越小，页面越快，SEO 越好。" },
           ],
         },
-        { type: "cta", text: "在浏览器本地压缩图片（免费）→", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "在浏览器本地压缩图片（免费）→", href: "/" },
       ],
       en: [
         "The png vs jpg debate is the classic either/or of image compression. Pick wrong and you either get a file that is absurdly large or an image that turns to mush. This guide starts with the why: why PNG suits text and screenshots, why JPG suits photos, when you have no real choice, and whether 2026 offers a third option.",
@@ -1100,7 +1100,7 @@ export const POSTS: BlogPost[] = [
             { q: "Which should I use for web images?", a: "Photos: WebP or high-quality JPG. Graphics and screenshots: WebP or PNG. Smaller files mean faster pages and better SEO." },
           ],
         },
-        { type: "cta", text: "Compress images for free (browser-local) →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress images for free (browser-local) →", href: "/" },
       ],
     },
   },  {
@@ -1174,7 +1174,7 @@ export const POSTS: BlogPost[] = [
             { q: "2026 年网页图片默认该用哪个？", a: "默认 WebP。所有主流浏览器都支持，配合 <picture> 标签给老浏览器回退 JPG 或 PNG 即可。只有明确需要最大兼容性时才用 PNG。" },
           ],
         },
-        { type: "cta", text: "在浏览器本地压缩图片（免费）→", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "在浏览器本地压缩图片（免费）→", href: "/" },
       ],
       en: [
         "The webp vs png choice is a classic image optimization puzzle. Pick wrong and you get a file that is absurdly large or visible quality loss. This guide starts with the compression principle: why PNG suits graphics and screenshots, why WebP wins on size across the board, how transparency works in both, and what to actually do in 2026.",
@@ -1226,7 +1226,7 @@ export const POSTS: BlogPost[] = [
             { q: "Which should be the web default in 2026?", a: "WebP. Every mainstream browser supports it, and the <picture> tag gives legacy browsers a JPG or PNG fallback. Use PNG only when maximum compatibility is a hard requirement." },
           ],
         },
-        { type: "cta", text: "Compress images for free (browser-local) →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress images for free (browser-local) →", href: "/" },
       ],
     },
   },  {
@@ -1292,7 +1292,7 @@ export const POSTS: BlogPost[] = [
             { q: "2026 年网页照片默认该用哪个？", a: "默认 WebP。所有主流浏览器都支持，配合 <picture> 标签给老环境回退 JPEG 即可。只有外发、打印等明确需要最大兼容性的场景才用 JPEG。" },
           ],
         },
-        { type: "cta", text: "在浏览器本地压缩图片（免费）→", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "在浏览器本地压缩图片（免费）→", href: "/" },
       ],
       en: [
         "The webp vs jpeg choice is the classic photo optimization question. JPEG has ruled photos for three decades, WebP is the newcomer: same quality, 25-35% smaller files. This guide starts with the compression principle, compares quality, compatibility and size, and ends with a clear 2026 recommendation.",
@@ -1336,7 +1336,7 @@ export const POSTS: BlogPost[] = [
             { q: "What should web photos use by default in 2026?", a: "WebP. Every major browser supports it, and the <picture> tag handles JPEG fallback for old environments. Only external files and print workflows need plain JPEG." },
           ],
         },
-        { type: "cta", text: "Compress images locally in your browser (free) →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress images locally in your browser (free) →", href: "/" },
       ],
     },
   },
@@ -1399,7 +1399,7 @@ export const POSTS: BlogPost[] = [
             { q: "Can I convert WebP to AVIF?", a: "Yes. Most modern tools handle it, and you'll usually drop another 20 to 40% in size. Use a slow, high-quality AVIF preset instead of the fast default to keep the detail." },
           ],
         },
-        { type: "cta", text: "Compress and convert images free at image-compressor-saas.shop →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress and convert images free at image-compressor-saas.shop →", href: "/" },
       ],
       zh: [
         "选对图片格式，往往能在没人察觉的情况下，把页面体积砍掉几兆。到 2026 年，真正的较量早就不是 JPEG 对 WebP 了，而是 AVIF vs WebP。这两个格式都比 JPEG 强一大截，都免费、都能在现代浏览器里跑。但它们并不是换了个马甲的同一种东西。AVIF 通常压得更小，WebP 则是日常使用里更稳、更可预期的那一个。下面我把两者摆在一起对比，帮你别再靠猜。",
@@ -1442,7 +1442,7 @@ export const POSTS: BlogPost[] = [
             { q: "能把 WebP 转成 AVIF 吗？", a: "可以。多数现代工具都支持，通常还能再小 20% 到 40%。别用快速默认，选慢一点的高质量 AVIF 预设，细节才保得住。" },
           ],
         },
-        { type: "cta", text: "免费压缩与格式转换，上 image-compressor-saas.shop →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "免费压缩与格式转换，上 image-compressor-saas.shop →", href: "/" },
       ],
     },
   },
@@ -1864,7 +1864,7 @@ export const POSTS: BlogPost[] = [
         {
           type: "cta",
           text: "在浏览器本地压缩图片（免费）→",
-          href: "https://image-compressor-saas.shop",
+          href: "/",
         },
         { type: "h2", text: "延伸阅读" },
         "如果你用 WordPress，我们这篇“无插件压缩 WordPress 图片”是顺理成章的下一步：https://image-compressor-saas.shop/blog/compress-images-wordpress-without-plugin。选格式可看 PNG vs JPG：https://image-compressor-saas.shop/blog/png-vs-jpg-differences。",
@@ -1882,7 +1882,7 @@ export const POSTS: BlogPost[] = [
         {
           type: "cta",
           text: "免费压缩你的商品图 →",
-          href: "https://image-compressor-saas.shop",
+          href: "/",
         },
       ],
       en: [
@@ -1933,7 +1933,7 @@ export const POSTS: BlogPost[] = [
         {
           type: "cta",
           text: "Compress images for free (browser-local) →",
-          href: "https://image-compressor-saas.shop",
+          href: "/",
         },
         { type: "h2", text: "Related reading" },
         "If you run WordPress, our guide on compressing images for WordPress without a plugin is a natural next step: https://image-compressor-saas.shop/blog/compress-images-wordpress-without-plugin. For choosing formats, see PNG vs JPG: https://image-compressor-saas.shop/blog/png-vs-jpg-differences.",
@@ -1951,7 +1951,7 @@ export const POSTS: BlogPost[] = [
         {
           type: "cta",
           text: "Compress your product images for free →",
-          href: "https://image-compressor-saas.shop",
+          href: "/",
         },
       ],
     },
@@ -2029,7 +2029,7 @@ export const POSTS: BlogPost[] = [
         {
           type: "cta",
           text: "Compress your Ghost blog images for free →",
-          href: "https://image-compressor-saas.shop",
+          href: "/",
         },
       ],
       zh: [
@@ -2082,7 +2082,7 @@ export const POSTS: BlogPost[] = [
         {
           type: "cta",
           text: "免费压缩你的 Ghost 博客图片 →",
-          href: "https://image-compressor-saas.shop",
+          href: "/",
         },
       ],
     },
@@ -2132,7 +2132,7 @@ export const POSTS: BlogPost[] = [
         {
           type: "cta",
           text: "Optimize your LinkedIn images for free →",
-          href: "https://image-compressor-saas.shop",
+          href: "/",
         },
       ],
       zh: [
@@ -2160,7 +2160,7 @@ export const POSTS: BlogPost[] = [
         {
           type: "cta",
           text: "免费优化你的 LinkedIn 图片 →",
-          href: "https://image-compressor-saas.shop",
+          href: "/",
         },
       ],
     },
@@ -2217,7 +2217,7 @@ export const POSTS: BlogPost[] = [
         {
           type: "cta",
           text: "Optimize your Instagram images for free →",
-          href: "https://image-compressor-saas.shop",
+          href: "/",
         },
       ],
       zh: [
@@ -2253,7 +2253,7 @@ export const POSTS: BlogPost[] = [
         {
           type: "cta",
           text: "免费优化你的 Instagram 图片 →",
-          href: "https://image-compressor-saas.shop",
+          href: "/",
         },
       ],
     },
@@ -2284,7 +2284,7 @@ export const POSTS: BlogPost[] = [
           { q: "房产平台有文件大小限制吗？", a: "Zillow 建议每张照片 500KB 以下，Realtor.com 建议 1MB 以下。" },
           { q: "如何批量压缩多张照片？", a: "使用我们的在线压缩工具，或 Photoshop 批量处理动作。" },
         ] },
-        { type: "cta", text: "免费压缩你的房地产照片 →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "免费压缩你的房地产照片 →", href: "/" },
       ],
       en: [
         "Photo quality on real estate sites directly impacts buyer decisions. But high-res photos mean slow loading — buyers close the tab before they wait. Here's how to compress property photos without losing the details that sell homes.",
@@ -2298,7 +2298,7 @@ export const POSTS: BlogPost[] = [
           { q: "Do real estate platforms have file size limits?", a: "Zillow recommends under 500KB per photo. Realtor.com recommends under 1MB." },
           { q: "How do I batch compress multiple photos?", a: "Use our online compressor or Photoshop batch actions." },
         ] },
-        { type: "cta", text: "Compress your real estate photos for free →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress your real estate photos for free →", href: "/" },
       ],
     },
   },
@@ -2342,7 +2342,7 @@ export const POSTS: BlogPost[] = [
           { q: "What is the best format for web images?", a: "WebP or AVIF. WebP saves 25-35% vs JPEG at the same quality." },
           { q: "Does image compression affect SEO?", a: "Yes. Page speed is a ranking factor, and faster images improve Core Web Vitals." },
         ] },
-        { type: "cta", text: "Compress your images for free →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress your images for free →", href: "/" },
       ],
       en: [
         "Images are usually the largest resource on a web page. According to HTTP Archive, images account for 40-50% of average page weight. Every unoptimized megabyte drags down your LCP (Largest Contentful Paint) — the core Core Web Vitals metric.",
@@ -2365,7 +2365,7 @@ export const POSTS: BlogPost[] = [
           { q: "What is the best format for web images?", a: "WebP or AVIF. WebP saves 25-35% vs JPEG at the same quality." },
           { q: "Does image compression affect SEO?", a: "Yes. Page speed is a ranking factor, and faster images improve Core Web Vitals." },
         ] },
-        { type: "cta", text: "Compress your images for free →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress your images for free →", href: "/" },
       ],
     },
   },
@@ -2395,7 +2395,7 @@ export const POSTS: BlogPost[] = [
           { q: "WebP 比 JPG 小多少？", a: "通常小 25-35%，质量相同。在 LCP 场景下，这个差距可以直接转化为更好的性能评分。" },
           { q: "不需要服务器配置就能优化 LCP 吗？", a: "是的。正确的图片格式、尺寸和懒加载策略完全在浏览器侧实现。" },
         ]},
-        { type: "cta", text: "免费压缩图片，优化 LCP →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "免费压缩图片，优化 LCP →", href: "/" },
       ],
       en: [
         "LCP (Largest Contentful Paint) is the core metric for measuring page loading experience, and images are often the biggest bottleneck. The good news: three fixes that work entirely in the browser with zero server configuration needed.",
@@ -2410,7 +2410,7 @@ export const POSTS: BlogPost[] = [
           { q: "How much smaller is WebP vs JPG?", a: "Usually 25-35% smaller at equal quality. On LCP images, that difference directly translates to better performance scores." },
           { q: "Can I fix LCP without server changes?", a: "Yes. Right format, correct dimensions, and proper lazy loading are all browser-side fixes with zero server config." },
         ]},
-        { type: "cta", text: "Compress images for free (browser-local) →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress images for free (browser-local) →", href: "/" },
       ],
     },
   },
@@ -2461,7 +2461,7 @@ export const POSTS: BlogPost[] = [
         },
         { type: "h2", text: "立即优化你的图片加载" },
         "检查你的 Next.js 项目中哪些图片是 LCP 候选，给它们加上 priority 和 fetchpriority='high'，其余图片保持默认懒加载。",
-        { type: "cta", text: "压缩图片优化 LCP →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "压缩图片优化 LCP →", href: "/" },
       ],
       en: [
         "Next.js's <Image> component enables lazy loading by default — images outside the viewport won't download until needed. This is good, but there's one critical exception: LCP (Largest Contentful Paint) images must NOT be lazy-loaded. The LCP image is the first thing users see, and delaying it directly hurts performance scores and user experience.",
@@ -2497,7 +2497,7 @@ export const POSTS: BlogPost[] = [
         },
         { type: "h2", text: "Optimize your image loading now" },
         "Audit your Next.js project for LCP candidates — add priority and fetchpriority='high' to those images, leave the rest on default lazy loading.",
-        { type: "cta", text: "Compress images to improve LCP →", href: "https://image-compressor-saas.shop" },
+        { type: "cta", text: "Compress images to improve LCP →", href: "/" },
       ],
     },
   },
