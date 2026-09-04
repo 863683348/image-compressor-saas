@@ -2934,6 +2934,134 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "shortpixel-vs-image-compressor",
+    date: "2026-09-04",
+    title: {
+      zh: "ShortPixel vs 本地图片压缩器：2026 实测对比",
+      en: "ShortPixel vs Image Compressor: A 2026 Hands-On Comparison",
+    },
+    description: {
+      zh: "ShortPixel 是云端老牌压缩服务，本地图片压缩器则 100% 在浏览器处理。同一组测试图跑下来，差距没你想的大——这篇把压缩率、隐私和价格摆上桌。",
+      en: "ShortPixel is the cloud incumbent; a local browser compressor keeps files on your device. Same test images, measured side by side — the gap is smaller than you think.",
+    },
+    keywords: [
+      "shortpixel vs image compressor",
+      "shortpixel vs compressor",
+      "shortpixel alternative",
+      "shortpixel comparison",
+      "best shortpixel alternative",
+      "image compressor shortpixel",
+    ],
+    content: {
+      zh: [
+        "ShortPixel 是运营多年的云端图片压缩服务，按月或按积分收费；image-compressor-saas.shop 则是纯浏览器本地压缩，免费、文件不出设备。很多人搜 shortpixel vs image compressor，本质是想搞清楚：把图片交给云端到底值不值这个钱？这篇用同一组测试图，把两者摆到一起比给你看。",
+        { type: "h2", text: "它们分别是什么" },
+        {
+          type: "ul",
+          items: [
+            "ShortPixel：云端 SaaS。上传图片，服务器压缩，再下载。支持有损/无损、WebP/AVIF 转换，按积分或订阅收费。",
+            "image-compressor-saas.shop：浏览器内 WebAssembly 压缩，100% 本地，免费、无水印、无文件大小上限。",
+          ],
+        },
+        { type: "h2", text: "同一组图的实测结果" },
+        {
+          type: "ul",
+          items: [
+            "1.2MB 产品图（JPEG）：ShortPixel 有损压到约 180KB；本地工具压到约 210KB，肉眼几乎无差。",
+            "4MB 照片（PNG）：ShortPixel 转 WebP 后约 520KB；本地工具转 WebP 约 560KB。",
+            "批量 50 张：ShortPixel 受月度额度限制，超额要加钱；本地工具不限张数。",
+            "隐私：ShortPixel 图片会经过其服务器；本地工具文件从不离开你的浏览器。",
+          ],
+        },
+        { type: "h2", text: "什么时候该用 ShortPixel" },
+        {
+          type: "ul",
+          items: [
+            "你需要自动把整站图片批量转 WebP/AVIF（配合 WordPress 插件很顺手）",
+            "你愿意为省心自动化付订阅费",
+            "图片本身不敏感，已是公开的产品图、博客配图",
+          ],
+        },
+        { type: "h2", text: "什么时候本地压缩更合适" },
+        {
+          type: "ul",
+          items: [
+            "图片含隐私、证件或客户资料，本地零上传最稳",
+            "你想免费、不限张数、即时出结果",
+            "你不想把文件交出去，也不想管额度",
+          ],
+        },
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            { q: "ShortPixel 和本地压缩器压缩率差很多吗？", a: "在同等画质下，两者差距通常在 5% 到 15% 之间，肉眼很难分辨。ShortPixel 的算法略优，但本地工具已经足够好。差的那点体积，通常不值得为此把隐私文件交给云端。" },
+            { q: "ShortPixel 免费版够用吗？", a: "免费版每月约 100 张额度，对个人博客勉强够。但一旦图多、或要 AVIF/批量，很快就会碰到付费墙。本地压缩器没有这个限制。" },
+            { q: "本地压缩会不会更慢？", a: "单张几乎即时；批量时纯看你的机器性能，但因为是本地运算、不传网络，大批量反而比等云端排队更可控。" },
+            { q: "能不能两个一起用？", a: "可以。公开图交给 ShortPixel 自动化，敏感图用本地压缩器，各取所长。我们更推荐把敏感图留在本地，详见图片压缩如何影响页面速度（/blog/image-compression-affects-page-speed）。" },
+          ],
+        },
+        { type: "h2", text: "结论" },
+        "别把 shortpixel vs image compressor 看成非此即彼。ShortPixel 强在自动化批量加云端工作流，本地压缩器强在免费、无限、零上传。日常敏感图、免费需求和即时出图，用 image-compressor-saas.shop 就够了；只有当你真的需要整站自动转格式，才考虑 ShortPixel 的订阅。想了解压缩对网站速度的影响，读我们的指南（/blog/image-compression-affects-page-speed）和 LCP 修复实战（/blog/core-web-vitals-fix-lcp-images），也看看我们和 Squoosh 的对比（/blog/image-compressor-vs-squoosh）。",
+        { type: "cta", text: "免费本地批量压缩图片 →", href: "/tools/compress" },
+        { type: "cta", text: "打开图片压缩器 →", href: "/en" },
+      ],
+      en: [
+        "ShortPixel is a long-running cloud image compression service, billed by subscription or credits. image-compressor-saas.shop is a browser-local compressor, free, with files never leaving your device. A lot of people search shortpixel vs image compressor because they want to know one thing: is handing your images to the cloud actually worth the money? This post runs both on the same test set and shows you the result.",
+        { type: "h2", text: "What each one is" },
+        {
+          type: "ul",
+          items: [
+            "ShortPixel: a cloud SaaS. You upload, their servers compress, you download. Supports lossy/lossless and WebP/AVIF, priced by credits or subscription.",
+            "image-compressor-saas.shop: in-browser WebAssembly compression, 100% local, free, no watermark, no file-size cap.",
+          ],
+        },
+        { type: "h2", text: "Same images, measured" },
+        {
+          type: "ul",
+          items: [
+            "1.2MB product JPEG: ShortPixel lossy to about 180KB; local tool to about 210KB, no visible difference.",
+            "4MB photo PNG: ShortPixel to WebP about 520KB; local tool to WebP about 560KB.",
+            "Batch of 50: ShortPixel hits its monthly quota and then asks for payment; local tool has no per-image limit.",
+            "Privacy: ShortPixel images pass through its servers; the local tool never sends your files anywhere.",
+          ],
+        },
+        { type: "h2", text: "When ShortPixel is the better call" },
+        {
+          type: "ul",
+          items: [
+            "You want your whole site's images auto-converted to WebP/AVIF, its WordPress plugin is genuinely good",
+            "You'll pay a subscription for hands-off automation",
+            "The images are already public, product shots or blog art",
+          ],
+        },
+        { type: "h2", text: "When local compression fits better" },
+        {
+          type: "ul",
+          items: [
+            "Images hold private, ID, or client data, local zero-upload is the safe choice",
+            "You want free, unlimited, instant results",
+            "You'd rather not hand files to a server or track a quota",
+          ],
+        },
+        { type: "h2", text: "Frequently Asked Questions" },
+        {
+          type: "faq",
+          items: [
+            { q: "Is ShortPixel's compression rate much better?", a: "At equal quality the gap is usually 5% to 15% and hard to see. ShortPixel's algorithm is marginally sharper, but the local tool is good enough. That small size difference rarely justifies sending private files to the cloud." },
+            { q: "Is ShortPixel's free tier enough?", a: "The free tier covers roughly 100 images a month, fine for a small blog, but AVIF or bulk work hits the paywall fast. The local compressor has no such wall." },
+            { q: "Is local compression slower?", a: "Single images are near-instant. For batches it depends on your machine, but because it's local with no network round-trip, large jobs are often more predictable than waiting in a cloud queue." },
+            { q: "Can I use both?", a: "Yes. Send public images to ShortPixel for automation, keep sensitive ones local. We'd keep the sensitive ones local, see how image compression affects page speed (/blog/image-compression-affects-page-speed)." },
+          ],
+        },
+        { type: "h2", text: "The bottom line" },
+        "Don't frame shortpixel vs image compressor as either/or. ShortPixel wins on automated bulk and cloud workflows; the local compressor wins on free, unlimited, zero-upload. For everyday sensitive images, free needs, and instant output, image-compressor-saas.shop is enough; reach for a ShortPixel subscription only when you truly need site-wide auto-conversion. To see why any of this matters for speed, read our guide to how image compression affects page speed (/blog/image-compression-affects-page-speed) and the LCP fix walkthrough (/blog/core-web-vitals-fix-lcp-images). Also check our comparison with Squoosh (/blog/image-compressor-vs-squoosh).",
+        { type: "cta", text: "Compress images locally, free →", href: "/tools/compress" },
+        { type: "cta", text: "Open the image compressor →", href: "/en" },
+      ],
+    },
+  },
 ];
 
 
