@@ -3499,6 +3499,241 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "compress-image-to-200kb",
+    date: "2026-09-09",
+    title: { zh: "如何把图片压缩到 200KB（速度与质量的取舍）", en: "Compress an Image to 200KB: Speed vs Quality" },
+    description: { zh: "网页、邮件、表单都爱卡 200KB 这条线。这篇讲清压到 200KB 时速度和画质怎么取舍，以及三种方法各自适合什么场景。", en: "Pages, email and forms all like to cap at 200KB. This guide covers how to balance speed and quality at a 200KB target, and which of the three methods fits which job." },
+    keywords: [
+      "compress to 200kb",
+      "compress image to 200kb",
+      "image compression 200kb",
+      "reduce file size",
+      "compress jpg png",
+    ],
+    content: {
+      zh: [
+        "把一张图片压到 200KB 以下，多半不是为了好看，而是为了能通过。网页要它、邮件要它、表单要它，200KB 是很多系统默认的那条线。剩下的问题只有一个：压掉的那些数据，会不会被眼睛看见。这篇讲清 200KB 这个目标下，速度和画质该怎么取舍。",
+        { type: "h2", text: "为什么偏偏是 200KB" },
+        {
+          type: "ul",
+          items: [
+            "网站加载速度：首屏大图是 LCP 的大头，200KB 以内的图基本不会拖慢页面",
+            "邮件附件：企业邮箱常限 10MB，几张原图就能逼近上限",
+            "社交媒体上传：部分平台对单张有体积限制，超了会被二次压缩",
+            "表单上传：政府、招聘、签证类系统常把 200KB 或 100KB 直接写死",
+          ],
+        },
+        { type: "h2", text: "两条路：快，还是可控" },
+        "只想尽快拿到结果，在线压缩器三十秒能出图。在意每一处细节，手动调质量滑块更可控，代价是几分钟时间。两条路都能把图片压到 200KB，差别在于你愿意为画质花多少时间。",
+        { type: "h2", text: "三种方法的速度与质量对比" },
+        {
+          type: "ul",
+          items: [
+            "在线压缩器：约 30 秒，质量损失低，适合快速出结果",
+            "Photoshop 导出：约 2 分钟，质量损失低到中，适合网页用图",
+            "手动精细优化：约 10 分钟，质量损失最小，适合打印和专业用途",
+          ],
+        },
+        { type: "h2", text: "压到 200KB 的四条建议" },
+        {
+          type: "ul",
+          items: [
+            "先选对格式：照片用 JPEG，要透明背景或画质干净的图形用 PNG",
+            "网页用图导出渐进式 JPEG，加载时先出模糊轮廓再逐渐清晰",
+            "不要一次压到底：从高质量往下降，刚好达标就停下",
+            "在目标平台上实测：同一个文件，在网页、邮件和表单里的表现可能不一样",
+          ],
+        },
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            { q: "不损画质能把图片压到 200KB 吗？", a: "可以很接近。照片质量设在 80% 左右，200KB 的体积看起来和原图几乎没有差别。" },
+            { q: "快速压缩用哪个工具好？", a: "网页端用 TinyPNG 或 Squoosh；要批量处理，ImageOptim 这类工具更省事。" },
+            { q: "压缩会影响打印质量吗？", a: "会。打印要留大一些的文件，至少 1MB，并使用无损或低压缩格式。" },
+          ],
+        },
+        { type: "cta", text: "免费把图片压到 200KB →", href: "/" },
+        { type: "cta", text: "更多图片压缩指南 →", href: "/blog" },
+      ],
+      en: [
+        "Getting an image under 200KB is rarely about looks. It is about getting the file through: a page, an email, a form. For a lot of systems, 200KB is the line. The only real question is whether the data you throw away is data the eye will miss. This guide covers how to balance speed and quality at a 200KB target.",
+        { type: "h2", text: "Why 200KB is the common target" },
+        {
+          type: "ul",
+          items: [
+            "Website speed: a hero image is the biggest part of LCP, and staying under 200KB keeps the page from dragging",
+            "Email attachments: corporate servers often cap at 10MB, and a few full-size photos get you there fast",
+            "Social uploads: some platforms limit a single image and re-compress anything over the cap",
+            "Form submissions: government, job and visa portals often hard-code 200KB or even 100KB",
+          ],
+        },
+        { type: "h2", text: "Two routes: fast, or controlled" },
+        "An online compressor returns a result in half a minute. Manual adjustment gives you control over every detail and costs a few minutes. Both routes reach 200KB. The difference is how much time you trade for quality.",
+        { type: "h2", text: "Speed and quality, method by method" },
+        {
+          type: "ul",
+          items: [
+            "Online compressor: about 30 seconds, low loss, best for a quick result",
+            "Photoshop export: about 2 minutes, low to medium loss, good for web images",
+            "Manual optimization: about 10 minutes, minimal loss, best for print and professional use",
+          ],
+        },
+        { type: "h2", text: "Four tips for hitting 200KB" },
+        {
+          type: "ul",
+          items: [
+            "Pick the right format first: JPEG for photos, PNG for graphics that need clean edges or transparency",
+            "Export progressive JPEG for web images, so the page shows a rough version before the full detail loads",
+            "Do not crush the file to the minimum. Step quality down from high and stop as soon as you hit the target",
+            "Test on the platform that will host the file, since the same image can behave differently on a page, in an email and in a form",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Can I compress to 200KB without losing quality?", a: "You can get close. A photo at around 80% quality looks nearly identical to the original at 200KB." },
+            { q: "Which tool is best for quick compression?", a: "TinyPNG or Squoosh in the browser. For batch work, a desktop tool such as ImageOptim is easier." },
+            { q: "Does compression affect print quality?", a: "Yes. For print, keep the file larger, at least 1MB, and use a lossless or lightly compressed format." },
+          ],
+        },
+        { type: "cta", text: "Compress an image to 200KB free →", href: "/" },
+        { type: "cta", text: "More image compression guides →", href: "/blog" },
+      ],
+    },
+  },
+  {
+    slug: "compress-photo-to-1mb-email",
+    date: "2026-09-10",
+    title: { zh: "如何把照片压缩到 1MB 以便邮件发送", en: "How to Compress a Photo to 1MB for Email" },
+    description: { zh: "邮件附件有大小限制，不少企业服务器只放行 10MB。这篇列出把照片压到 1MB 以下的三种方法，以及目标体积和质量如何对应。", en: "Email attachments have size limits, and many corporate servers stop at 10MB. Three ways to compress a photo to under 1MB, plus how target size maps to quality." },
+    keywords: [
+      "compress to 1mb",
+      "how to compress photo to 1mb email",
+      "reduce image size for email",
+      "compress image without losing quality",
+    ],
+    content: {
+      zh: [
+        "邮件附件的上限，各家写得不一样。Gmail 允许 25MB，Outlook 是 20MB，不少企业服务器只放行 10MB 甚至更小。要稳妥地把照片发出去，把文件压到 1MB 以内是最省事的做法。这篇给出三条路径，从最省事到最可控。",
+        { type: "h2", text: "为什么邮件要先压一下" },
+        {
+          type: "ul",
+          items: [
+            "Gmail 单封附件上限 25MB",
+            "Outlook 上限 20MB",
+            "很多企业服务器只放行 10MB 或更小",
+            "收件人一方可能还有更严的限制",
+            "体积小了，上传和下载都快",
+          ],
+        },
+        { type: "h2", text: "方法一：在线压缩器（最省事）" },
+        "不用装软件、不用注册，拖进去、选目标体积、下载。ILoveIMG 可以直接设定目标大小，TinyPNG 用智能有损压缩保住观感，Squoosh 在浏览器本地完成压缩，还能对比前后效果。",
+        { type: "h2", text: "方法二：系统自带工具" },
+        {
+          type: "ul",
+          items: [
+            "macOS 预览：打开图片，文件菜单里选导出，选 JPEG 并调质量滑块，导出前就能看到体积",
+            "Windows 照片：打开后点更多菜单里的调整大小，选预设或自定义尺寸，另存为新文件",
+            "手机相册：分享菜单里一般有压缩或调整尺寸，Google 相册也能按尺寸导出",
+          ],
+        },
+        { type: "h2", text: "方法三：桌面软件（最可控）" },
+        "Photoshop 用导出里的存储为 Web，质量设在 60% 到 80%，体积实时可见。GIMP 免费，导出为里的质量滑块同样能边调边看大小。一次要处理很多张时，这条路最省心。",
+        { type: "h2", text: "目标体积与质量对照" },
+        {
+          type: "ul",
+          items: [
+            "500KB：质量高（80-90%），适合网页展示",
+            "1MB：质量中高（60-80%），适合邮件附件",
+            "2MB：质量中（50-60%），适合社交平台上传",
+            "5MB：质量中低（30-50%），用于打印前的准备",
+          ],
+        },
+        { type: "h2", text: "四条实用建议" },
+        {
+          type: "ul",
+          items: [
+            "先调尺寸：8000px 宽的照片就算压到 1MB 也会显得像素化，先缩到 2000px 再压",
+            "能换格式就换：同样观感下 WebP 比 JPEG 小 25% 到 35%",
+            "批量处理：ILoveIMG 和 TinyPNG 都支持一次传多张",
+            "发之前核对：确认最终文件确实在限制之内",
+          ],
+        },
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            { q: "邮件附件到底能多大？", a: "取决于服务商。Gmail 是 25MB，Outlook 是 20MB，很多企业服务器只放行 10MB。压到 1MB 以下基本不会被拦。" },
+            { q: "压缩后照片会变模糊吗？", a: "1MB 对一张普通尺寸的照片通常够用，观感上的损失很小。真正伤画质的是把 8000px 的原图直接压到 1MB，应该先缩小尺寸。" },
+            { q: "不用装软件也能做到吗？", a: "可以。在线工具和系统自带的导出功能都能把照片压到 1MB 以内，不需要安装任何东西。" },
+          ],
+        },
+        { type: "cta", text: "免费把照片压到 1MB →", href: "/" },
+        { type: "cta", text: "更多图片压缩指南 →", href: "/blog" },
+      ],
+      en: [
+        "Email attachment limits vary by provider. Gmail allows 25MB, Outlook allows 20MB, and plenty of corporate servers stop at 10MB or less. Compressing a photo to under 1MB is the simplest way to make sure it goes through. This guide gives three routes, from the quickest to the most controlled.",
+        { type: "h2", text: "Why compress before you attach" },
+        {
+          type: "ul",
+          items: [
+            "Gmail caps a single attachment at 25MB",
+            "Outlook caps it at 20MB",
+            "Many corporate servers allow only 10MB or less",
+            "The recipient may have a stricter limit than you do",
+            "A smaller file uploads and downloads faster",
+          ],
+        },
+        { type: "h2", text: "Method 1: online compressors (easiest)" },
+        "No install and no account. Drop the file in, set a target size and download. ILoveIMG lets you set the target size directly, TinyPNG uses smart lossy compression that holds up visually, and Squoosh runs entirely in the browser with a before and after view.",
+        { type: "h2", text: "Method 2: built-in tools" },
+        {
+          type: "ul",
+          items: [
+            "macOS Preview: open the image, choose Export from the File menu, pick JPEG and move the quality slider. The file size shows before you save",
+            "Windows Photos: open the image, choose Resize from the More menu, then pick a preset or a custom size and save as a new file",
+            "Phone gallery: the share menu usually offers compress or resize, and Google Photos can export at a chosen size",
+          ],
+        },
+        { type: "h2", text: "Method 3: desktop software (most control)" },
+        "In Photoshop, use Save for Web from the export menu and set quality between 60% and 80%, with the file size visible as you adjust. GIMP is free, and its Export As dialog shows the size while you drag the quality slider. When you have many photos to send, this route saves the most time.",
+        { type: "h2", text: "Target size and quality, side by side" },
+        {
+          type: "ul",
+          items: [
+            "500KB: high quality (80-90%), good for web display",
+            "1MB: medium-high quality (60-80%), good for email attachments",
+            "2MB: medium quality (50-60%), good for social uploads",
+            "5MB: low-medium quality (30-50%), for print preparation",
+          ],
+        },
+        { type: "h2", text: "Four practical tips" },
+        {
+          type: "ul",
+          items: [
+            "Resize first: an 8000px photo compressed to 1MB still looks pixelated, so scale it to 2000px before compressing",
+            "Change format when you can: WebP is 25% to 35% smaller than JPEG at the same appearance",
+            "Batch the work: ILoveIMG and TinyPNG both accept several files at once",
+            "Check before sending: confirm the final file really is under the limit",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "How large can an email attachment be?", a: "It depends on the provider. Gmail allows 25MB, Outlook 20MB, and many corporate servers only 10MB. Under 1MB is almost never blocked." },
+            { q: "Will compressing make the photo blurry?", a: "1MB is usually plenty for a normal-size photo, and the visible loss is small. What hurts quality is compressing an 8000px original straight to 1MB, so resize first." },
+            { q: "Can I do this without installing anything?", a: "Yes. Online tools and the built-in export options both get a photo under 1MB with no install at all." },
+          ],
+        },
+        { type: "cta", text: "Compress a photo to 1MB free →", href: "/" },
+        { type: "cta", text: "More image compression guides →", href: "/blog" },
+      ],
+    },
+  },
 ];
 
 
