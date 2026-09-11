@@ -3259,6 +3259,143 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "batch-compress-images-multiple",
+    date: "2026-09-11",
+    title: { zh: "批量压缩图片：一次处理多张的完整流程", en: "Batch Compress Images: Processing Multiple Files at Once" },
+    description: { zh: "几十上百张图一次性压缩的正确流程，以及批量操作最容易踩的三个坑。", en: "The right workflow for compressing dozens of images at once, plus the three mistakes that bite most often." },
+    keywords: ["batch compress images", "compress multiple images", "批量压缩图片", "batch image compressor"],
+    content: {
+      zh: [
+          "一次性处理几十上百张图，是电商、摄影和运营的日常。手动一张张压是纯粹浪费时间，而且很容易压到一半忘了参数不一致。这篇讲怎么批量压缩，以及批量时最容易踩的三个坑。",
+          {
+                "type": "h2",
+                "text": "什么时候该批量，什么时候不该"
+          },
+          "如果所有图的目标用途相同（比如都是商品主图，要求 200KB 以内），批量就是对的。如果每张图的用途不同（有的是封面，有的是缩略图），先分文件夹，再分批处理，不要一锅端。",
+          {
+                "type": "h2",
+                "text": "批量压缩的三个坑"
+          },
+          {
+                "type": "ul",
+                "items": [
+                      "**参数一刀切**：人像和文字海报能承受的压缩率完全不同，一刀切会让海报上的文字发虚",
+                      "**尺寸没先调**：先缩到目标尺寸再压缩，比直接压大图效果好得多，也快得多",
+                      "**覆盖了原图**：批量操作最容易误覆盖，务必导出到新文件夹"
+                ]
+          },
+          {
+                "type": "h2",
+                "text": "浏览器内批量压缩的流程"
+          },
+          {
+                "type": "ul",
+                "items": [
+                      "把所有图拖进工具，确认数量",
+                      "先统一目标尺寸（比如长边 1600px）",
+                      "再统一质量档位，导出到新文件夹",
+                      "抽查 2-3 张放大看细节，确认没问题再全量交付"
+                ]
+          },
+          {
+                "type": "h2",
+                "text": "为什么推荐本地处理"
+          },
+          "批量上传意味着几十个文件要过网络。本地压缩不需要上传，速度取决于你的电脑，而且商品图、证件照这类敏感素材不会离开设备。",
+          {
+                "type": "h2",
+                "text": "常见问题"
+          },
+          {
+                "type": "faq",
+                "items": [
+                      {
+                            "q": "一次能压多少张？",
+                            "a": "取决于设备内存。普通笔记本一次 100-200 张问题不大，超过就分批。"
+                      },
+                      {
+                            "q": "批量压缩会降低画质吗？",
+                            "a": "会有轻微损失，但先调尺寸再压缩可以把损失控制到肉眼难辨。"
+                      },
+                      {
+                            "q": "支持哪些格式？",
+                            "a": "JPG、PNG、WebP 都支持，WebP 输出通常体积最小。"
+                      }
+                ]
+          },
+          {
+                "type": "cta",
+                "text": "去批量压缩图片 →",
+                "href": "/tools/compress"
+          }
+    ],
+      en: [
+          "Processing dozens or hundreds of images at once is daily life for e-commerce, photography, and ops work. Compressing them one by one is a waste of time, and it is easy to end up with inconsistent settings halfway through. This is how to batch compress, and the three mistakes that bite most often.",
+          {
+                "type": "h2",
+                "text": "When to batch, and when not to"
+          },
+          "If every image shares a destination (all product photos, all capped at 200KB), batching is right. If each image serves a different role (some covers, some thumbnails), sort into folders and process in batches — do not throw everything in at once.",
+          {
+                "type": "h2",
+                "text": "The three batch mistakes"
+          },
+          {
+                "type": "ul",
+                "items": [
+                      "**One setting for everything**: portraits and text-heavy posters tolerate compression very differently. A single pass fuzzes out the text.",
+                      "**Skipping the resize**: scaling down to target size first beats compressing a huge original — better results, much faster.",
+                      "**Overwriting originals**: batch operations are where accidental overwrites happen. Always export to a new folder."
+                ]
+          },
+          {
+                "type": "h2",
+                "text": "A batched, in-browser workflow"
+          },
+          {
+                "type": "ul",
+                "items": [
+                      "Drag all images in and confirm the count",
+                      "Set a unified target size first (e.g. 1600px on the long edge)",
+                      "Then set a unified quality level and export to a new folder",
+                      "Spot-check two or three at 100% zoom before delivering the whole set"
+                ]
+          },
+          {
+                "type": "h2",
+                "text": "Why process locally"
+          },
+          "Batch uploading means dozens of files crossing the network. Local compression skips the upload entirely, runs at your machine's speed, and keeps sensitive material like product shots or ID photos on your device.",
+          {
+                "type": "h2",
+                "text": "FAQ"
+          },
+          {
+                "type": "faq",
+                "items": [
+                      {
+                            "q": "How many images can I process at once?",
+                            "a": "It depends on device memory. 100-200 per batch is fine on a normal laptop; beyond that, split it."
+                      },
+                      {
+                            "q": "Does batch compression hurt quality?",
+                            "a": "Slightly. Resizing before compressing keeps the loss below what the eye can notice."
+                      },
+                      {
+                            "q": "Which formats are supported?",
+                            "a": "JPG, PNG and WebP. WebP output is usually the smallest."
+                      }
+                ]
+          },
+          {
+                "type": "cta",
+                "text": "Batch compress your images →",
+                "href": "/tools/compress"
+          }
+    ],
+    },
+  },
 ];
 
 
