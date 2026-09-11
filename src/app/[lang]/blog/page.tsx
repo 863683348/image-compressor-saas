@@ -1,26 +1,14 @@
 import type { Metadata } from "next";
+import { generatePageMetadata } from "@/i18n/metadata-helper";
 import BlogPage from "./page-client";
-
-const SITE_URL = "https://image-compressor-saas.shop";
 
 type Props = { params: Promise<{ lang: string }> };
 
+// 2026-09-11：改为走统一的 generatePageMetadata —— 原来 title 硬编码 "Blog"
+// 且中文版也是英文标题，x-default 还错指 /zh/blog（默认语言是 en）。
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
-  const locale = lang === "en" ? "en" : "zh";
-  return {
-    title: "Blog", // 根布局 title.template 自动追加 " · Image Compressor"
-    description:
-      "Practical guides on image compression, web optimization, and privacy protection. WebP vs AVIF comparison, target size compression tips, and more.",
-    alternates: {
-      canonical: `${SITE_URL}/${locale}/blog`,
-      languages: {
-        "zh-CN": `${SITE_URL}/zh/blog`,
-        en: `${SITE_URL}/en/blog`,
-        "x-default": `${SITE_URL}/zh/blog`,
-      },
-    },
-  };
+  return generatePageMetadata(lang, "/blog");
 }
 
 export default async function Page(_props: Props) {

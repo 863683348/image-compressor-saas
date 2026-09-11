@@ -25,9 +25,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!isValidLocale(lang)) notFound();
 
   // Default path is "/"; individual pages can override via page-level metadata
+  // 2026-09-11 修正：
+  //  - zh 原名 canonical="/"，但 /zh 是真实 200 页；自称 "/"（→ 301 到 /en）
+  //    等于中文首页不被索引。改为自指 /zh。
+  //  - 英文首页（en）沿用裸域名 "/"，避免 / 与 /en 双自指 canonical 互相竞争。
   return {
     alternates: {
-      canonical: lang === "zh" ? "/" : `/${lang}`,
+      canonical: lang === "en" ? "/" : `/${lang}`,
       languages: buildLanguageAlternates(lang, "/", SITE_URL),
     },
   };
