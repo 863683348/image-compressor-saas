@@ -3734,6 +3734,183 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+{
+  "slug": "compress-passport-photo-online",
+  "date": "2026-09-14",
+  "title": {
+    "zh": "在线压缩证件照：真正该做对的是什么",
+    "en": "Compress a Passport Photo Online: What You Actually Have to Get Right"
+  },
+  "description": {
+    "zh": "证件照被退回来，九成原因不在文件大小。讲清头部比例、眼睛水平、阴影这些真正卡人的点，以及缩放与压缩的正确顺序。",
+    "en": "Most passport photo rejections are not about file size. Here is what actually gets rejected, the real upload limits, and why you resize before you compress."
+  },
+  "keywords": [
+    "compress passport photo online",
+    "passport photo size",
+    "reduce passport photo size",
+    "passport photo requirements",
+    "compress photo without losing quality"
+  ],
+  "content": {
+    "zh": [
+      "证件照服务收你钱做的\"裁剪加背景检查\"，你自己两分钟就能做完。真正必须做对的其实比看起来窄得多，而且几乎都跟头的比例有关，跟文件大小无关。",
+      {
+        "type": "h2",
+        "text": "真正会被退回来的原因"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "头在画面里太小或太大。多数国家要求头部占画面高度的某个特定比例。",
+          "眼睛不水平，或者脸哪怕只是稍微转了一点。自拍角度是最常见的原因。",
+          "头后面有阴影，通常是因为站得离墙太近又开了闪光。",
+          "眼镜反光，或者刘海挡住了眉毛。"
+        ]
+      },
+      "这些都不是压缩问题。压得太狠是另一类失败，而且是更容易避免的那一类。",
+      {
+        "type": "h2",
+        "text": "文件要求到底有多大"
+      },
+      "大多数线上申请入口把上传上限卡在 240 KB 到 2 MB 之间。用手机翻拍一张实体照片大约 3 到 6 MB，所以通常至少要砍掉一半以上。这个幅度很平常。证件照有大片纯色区域，压缩效率高，压到 300 KB 时肉眼几乎看不出损失。",
+      {
+        "type": "h2",
+        "text": "一套可行的流程"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "站在一面素墙前一米左右，白天面对窗户，不要开闪光灯。",
+          "用后置摄像头在眼睛高度拍，手机竖着拿。",
+          "按目标国家要求的比例裁剪，头部按规定的比例填满画面。",
+          "先缩放到要求里的像素尺寸，再压缩。",
+          "压到限值以内，然后重新打开文件，放大到 100% 检查。"
+        ]
+      },
+      "顺序很重要。先压缩再缩放会丢两次细节，而第二次损失正是让脸看起来像上了蜡的原因。",
+      {
+        "type": "h2",
+        "text": "怎么诚实判断结果"
+      },
+      "把压缩后的文件按原始尺寸打开，看三个地方：下颌边缘、眼白、发际线。过度压缩最先在这三处露出来。如果下颌边缘还是一条干净的线，眼白还是白而不是灰，就可以交了。",
+      {
+        "type": "h2",
+        "text": "常见问题"
+      },
+      {
+        "type": "faq",
+        "items": [
+          {
+            "q": "压缩证件照会丢掉关键细节吗？",
+            "a": "不会。证件照有大片纯色区域，从 4 MB 压到 300 KB 通常看不出审核人员会在意的差别。放大到 100% 看下颌边缘和眼白就能确认。"
+          },
+          {
+            "q": "应该先缩放还是先压缩？",
+            "a": "先缩放，再压缩。反过来等于做两次有损压缩，是让脸看起来\"处理过\"最快的方式。"
+          },
+          {
+            "q": "压缩之后证件照还是被退回，为什么？",
+            "a": "通常原因不在文件。头部比例、眼睛水平、头后阴影、眼镜反光占了被退回原因的大部分。先把取景做对，再压缩。"
+          },
+          {
+            "q": "把证件照上传到在线压缩工具安全吗？",
+            "a": "选在浏览器本地处理、不上传的关具。身份证件照是最不该留在别人服务器上的文件。"
+          }
+        ]
+      },
+      "想拿一张成片对着常见限制检查，image-compressor-saas.shop 上的免费工具完全在你的浏览器里跑，文件不出设备。从压缩工具开始，更多尺寸指南可以在博客里读。",
+      {
+        "type": "cta",
+        "text": "免费压缩证件照 →",
+        "href": "/"
+      },
+      {
+        "type": "cta",
+        "text": "更多图片尺寸指南 →",
+        "href": "/blog"
+      }
+    ],
+    "en": [
+      "A passport photo service charges you for a crop and a background check that you can do yourself in about two minutes. What you actually have to get right is narrower than it looks, and almost all of it is about the head, not the file size.",
+      {
+        "type": "h2",
+        "text": "What actually gets rejected"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Head too small or too large in the frame. Most countries want the head to fill a specific share of the image height.",
+          "Eyes not level, or the face turned even slightly. A selfie angle is the single most common cause.",
+          "A shadow behind the head, usually from standing too close to a wall with the flash on.",
+          "Glasses glare, or a fringe covering the eyebrows."
+        ]
+      },
+      "None of these are compression problems. Compressing too hard is a separate failure, and it is the easier one to avoid.",
+      {
+        "type": "h2",
+        "text": "The file requirements, and how big they really are"
+      },
+      "Most online application portals cap uploads between 240 KB and 2 MB. A phone photo of a print comes out around 3 to 6 MB, so you usually need to cut it by more than half. That is a normal, safe amount. A passport photo has large areas of flat colour, which compresses well, so the visible quality loss at 300 KB is close to zero.",
+      {
+        "type": "h2",
+        "text": "A workflow that works"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Stand about a metre from a plain wall in daylight, facing a window. Do not use the flash.",
+          "Shoot with the rear camera at eye level, holding the phone vertically.",
+          "Crop to the ratio your country asks for, with the head filling the frame as specified.",
+          "Resize to the pixel dimensions in the requirement list before you compress.",
+          "Compress to a size under the limit, then reopen the file and check it at 100 percent."
+        ]
+      },
+      "The order matters. Compressing first and resizing later throws away detail twice, and the second pass is what makes faces look waxy.",
+      {
+        "type": "h2",
+        "text": "Judging the result honestly"
+      },
+      "Open the compressed file at full size and look at three things: the edge of the jaw, the whites of the eyes, and the hairline. Those are where over-compression shows up first. If the jaw edge still reads as a clean line and the whites are still white rather than grey, you are done.",
+      {
+        "type": "h2",
+        "text": "FAQ"
+      },
+      {
+        "type": "faq",
+        "items": [
+          {
+            "q": "Can I compress a passport photo without losing the detail that matters?",
+            "a": "Yes. Passport photos have large flat areas, so going from 4 MB to 300 KB rarely changes anything a reviewer would notice. Check the jaw edge and the whites of the eyes at 100 percent to confirm."
+          },
+          {
+            "q": "Should I resize or compress first?",
+            "a": "Resize first, then compress. Doing it the other way round applies lossy compression twice and is the fastest way to make a face look processed."
+          },
+          {
+            "q": "Why is my passport photo still rejected after compressing?",
+            "a": "Usually the reason is not the file. Head size, eye level, a shadow behind the head and glare on glasses account for most rejections. Compress only after the framing is right."
+          },
+          {
+            "q": "Is it safe to upload a passport photo to an online compressor?",
+            "a": "Use a tool that processes the image in your browser without uploading it. An identity document is the last file you want sitting on someone else's server."
+          }
+        ]
+      },
+      "If you want to check a finished photo against the common limits, the free tools on image-compressor-saas.shop run entirely in your browser, so the file never leaves your device. Start from the compressor, then read more sizing guides on the blog.",
+      {
+        "type": "cta",
+        "text": "Compress a passport photo free →",
+        "href": "/"
+      },
+      {
+        "type": "cta",
+        "text": "More image sizing guides →",
+        "href": "/blog"
+      }
+    ]
+  }
+},
 ];
 
 
