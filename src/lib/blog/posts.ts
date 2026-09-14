@@ -3911,6 +3911,162 @@ export const POSTS: BlogPost[] = [
     ]
   }
 },
+{
+    "slug": "compress-screenshot-png-jpg",
+    "date": "2026-09-13",
+    "title": {
+      "zh": "压缩截图 PNG JPG",
+      "en": "Compress Screenshot PNG JPG"
+    },
+    "description": {
+      "zh": "截图是最难压好的图片：纯色界面加 1px 文字边缘。本文讲清 PNG 与 JPG 怎么选、视网膜 2x 陷阱，以及在浏览器里免费压缩截图。",
+      "en": "Screenshots are the hardest image to compress: flat UI plus 1px text edges. Learn when PNG beats JPG, the retina 2x trap, and how to compress screenshots free."
+    },
+    "keywords": [
+      "compress screenshot",
+      "screenshot compression",
+      "PNG to JPG",
+      "compress png screenshot"
+    ],
+    "content": {
+      "en": [
+        {
+          "type": "h2",
+          "text": "Why screenshots break naive compression"
+        },
+        "Screenshots are the hardest image type to compress well, and most people do not expect that. A typical capture is a mix of huge flat areas (a white window, a gray toolbar) and razor-thin 1px text edges. Flat regions compress almost for free, but the crisp edges are high-frequency detail that lossy codecs hate. When you push a JPEG too far, the first visible artefact is ringing: a shimmering halo of color around letters and window borders. On a screenshot, that halo lands exactly where the eye looks first.",
+        {
+          "type": "h2",
+          "text": "PNG or JPG: pick the right container"
+        },
+        "PNG is lossless and keeps every 1px line perfect, which is why it is the right container for flat UI, menus, and code. JPG throws away data to shrink photos, and a screenshot full of solid color is a photo-like image where JPG performs badly: it smears flat panels and adds noise you can see on a plain background. The trap is that people reach for JPG by reflex because the file is a picture. For UI captures, PNG is usually smaller or close to it once you optimise the palette, and it never degrades.",
+        {
+          "type": "h2",
+          "text": "When converting PNG to JPG is safe"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Safe: a screenshot of a photograph, a gradient-heavy chart, or a video frame where the source is already continuous tone.",
+            "Safe: when you must hit a hard file-size limit and the capture has no small UI text, like a full-screen diagram with large labels.",
+            "Unsafe: any capture with thin fonts, 1px borders, or small icons (invoice lines, IDE text, terminal output). JPG will eat the edges.",
+            "Unsafe: when the file will be re-compressed later (Slack and email re-encode), because each pass adds more ringing."
+          ]
+        },
+        "If you do convert, keep the JPG quality above 90 and never convert a converted file a second time. The safe move is to keep a PNG master and only make a JPG copy when a recipient demands it. image-compressor-saas.shop runs the whole step in your browser, so the master never leaves your machine.",
+        {
+          "type": "h2",
+          "text": "Lossless optimisation beats lossy for UI"
+        },
+        "For flat UI, the win is palette reduction, not quality loss. A screenshot of a settings page may only use 40 distinct colors; packing them into a 256-color (or smaller PNG-8) palette can cut the file by half with no visible change, because the pixels were already a small set of exact colors. True lossless optimisers also rebuild the PNG compression tables, which shaves more without touching a single pixel. Reach for lossy JPG only when the capture is genuinely photo-like.",
+        {
+          "type": "h2",
+          "text": "The retina 2x trap"
+        },
+        "Retina and high-DPI displays capture at double resolution, and that quietly doubles file size. A 1440px-wide window on a 2x screen produces a 2880px-wide PNG. If the person viewing it has a 1440px display, you can halve the width to 1440px and lose almost nothing visible, because the screen cannot show the extra pixels anyway. Many people ship the 2x file out of habit. Downscaling first, then optimising, is the single biggest size win for screenshot sharing.",
+        {
+          "type": "h2",
+          "text": "How to judge at 100 percent and hit size targets"
+        },
+        "Always inspect the result at 100 percent zoom, not shrunk in a chat bubble. Look at three things: small text (does it stay sharp or does it blur), icon edges (do they stay crisp), and 1px borders (do they hold or fade). For size targets, a Slack or chat image should land under 1 MB and ideally under 500 KB; a doc embed under 300 KB keeps the page light; an email attachment under 1 MB avoids getting clipped by providers. The free browser-local tools on image-compressor-saas.shop let you check each of these without uploading the shot.",
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Should I always use PNG for screenshots?",
+              "a": "For UI and text captures, yes. PNG keeps 1px lines exact and usually ends up smaller than a JPG once the palette is optimised. Use JPG only for photo-like captures."
+            },
+            {
+              "q": "Why does text look fuzzy after compression?",
+              "a": "Lossy codecs add ringing around high-frequency edges. Thin fonts and 1px borders are exactly that kind of edge, so they blur first. Keep them as lossless PNG."
+            },
+            {
+              "q": "Is it safe to downscale a retina screenshot?",
+              "a": "Usually yes. If the viewer is on a 1440px display, a 2880px capture can be halved with almost no visible loss. Downscale before you optimise for the biggest size win."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "text": "Compress a screenshot free →",
+          "href": "/"
+        },
+        {
+          "type": "cta",
+          "text": "More image sizing guides →",
+          "href": "/blog"
+        }
+      ],
+      "zh": [
+        {
+          "type": "h2",
+          "text": "为什么截图最容易被压坏"
+        },
+        "截图是最难压好的图片。一张典型截图混着大片纯色（白窗、灰工具栏）和刀切般锐利的 1px 文字边缘。纯色区几乎免费压缩，但锐利边缘是高频细节，有损编码最怕它。JPEG 压狠了，最先出现的是振铃：字母和边框周围一圈彩色光晕，正好落在眼睛最先看的地方。",
+        {
+          "type": "h2",
+          "text": "PNG 还是 JPG：选对容器"
+        },
+        "PNG 无损，保住每一条 1px 线，所以是纯色界面、菜单和代码的合适容器。JPG 靠丢数据缩照片，而满屏纯色的截图对 JPG 是“类照片”图像，表现很差：抹花面板、留噪点。人们反射性选 JPG，因为文件叫“图片”。界面截图优化调色板后，PNG 往往更小，且永不劣化。",
+        {
+          "type": "h2",
+          "text": "什么时候把 PNG 转 JPG 是安全的"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "安全：截图内容是一张照片、含大量渐变的图表，或视频帧，且来源本就是连续色调。",
+            "安全：当你必须压到一个硬性体积上限，且截图没有小号界面文字，比如只有大标签的全屏示意图。",
+            "不安全：任何带细字体、1px 边框或小图标的截图（发票行、IDE 文字、终端输出），JPG 会吃掉边缘。",
+            "不安全：文件之后还会被再次压缩（Slack 和邮件会重编码），因为每过一遍振铃都更严重。"
+          ]
+        },
+        "真要转，JPG 质量保持 90 以上，且绝不对已转文件二次转换。留一张 PNG 母版，只在接收方要求时才做 JPG 副本。image-compressor-saas.shop 全流程在浏览器里完成，母版从不出机器。",
+        {
+          "type": "h2",
+          "text": "无损优化比有损更适合界面"
+        },
+        "对纯色界面，收益来自缩调色板而非损画质。设置页截图可能只 40 色；收进 256 色（或更小）PNG-8 调色板，几乎看不出变化，文件却砍半，因为像素本就是一小撮精确色。真正无损优化器还会重建压缩表，不碰任何像素再瘦一圈。只有截图真像照片才用有损 JPG。",
+        {
+          "type": "h2",
+          "text": "视网膜 2x 分辨率的陷阱"
+        },
+        "视网膜屏以两倍分辨率截图，悄悄把文件翻倍。2x 屏上 1440px 窗口生成 2880px 宽 PNG。若观看者是 1440px 屏，宽度减半到 1440px 几乎无损失，因为屏也显示不出多余像素。先缩小再优化，是分享截图最大的体积收益。",
+        {
+          "type": "h2",
+          "text": "如何在 100% 下判断，并定好体积目标"
+        },
+        "按 100% 缩放查看，别缩在聊天气泡里看。盯三处：小号文字（锐利还是发虚）、图标边缘（是否清晰）、1px 边框（保住还是变淡）。体积上，聊天或 Slack 图压到 1 MB 内、最好低于 500 KB；文档内嵌低于 300 KB 页面轻盈；邮件附件低于 1 MB 免被裁剪。image-compressor-saas.shop 的免费浏览器本地工具，让你无需上传就能逐项核对。",
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "截图是不是永远该用 PNG？",
+              "a": "对界面和文字截图，是的。PNG 保住 1px 线，且优化调色板后往往比 JPG 还小。只有类照片截图才用 JPG。"
+            },
+            {
+              "q": "为什么压缩后文字发虚？",
+              "a": "有损编码会在高频边缘产生振铃。细字体和 1px 边框正是这类边缘，所以它们最先变糊。把它们留作无损 PNG。"
+            },
+            {
+              "q": "缩小视网膜截图安全吗？",
+              "a": "通常安全。若观看者是 1440px 屏，2880px 截图减半几乎看不出损失。先缩小再优化，收益最大。"
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "text": "免费压缩一张截图 →",
+          "href": "/"
+        },
+        {
+          "type": "cta",
+          "text": "更多图片尺寸指南 →",
+          "href": "/blog"
+        }
+      ]
+    }
+  },
 ];
 
 
