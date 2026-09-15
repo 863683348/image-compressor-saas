@@ -4067,6 +4067,63 @@ export const POSTS: BlogPost[] = [
       ]
     }
   },
+  {
+    slug: 'how-jpeg-compression-works',
+    date: '2026-09-15',
+    title: { zh: 'JPEG 压缩原理详解', en: 'How JPEG Compression Works' },
+    description: { zh: 'JPEG 压缩到底做了什么？质量滑块控制的是什么、为什么边缘会出现块状伪影、以及网页用图该选哪个档位。', en: 'A practical explanation of JPEG compression: what the quality slider really controls, why artifacts appear around edges, and how to choose a setting that survives the web.' },
+    keywords: ['jpeg compression', 'jpeg quality settings', 'jpeg artifacts', 'image compression explained'],
+    content: {
+      zh: [
+        { type: 'h2', text: 'JPEG 要解决的问题' },
+        '未压缩的照片非常大。一张 1200 万像素的图像大约要 36 MB，在上世纪九十年代的网速下根本不可用，今天也依然浪费。',
+        'JPEG 建立在一个观察上：人眼对亮度远比对颜色敏感。所以它保留亮度细节，丢掉大部分颜色细节。这一条权衡就完成了大部分体积缩减，跟质量滑块还没关系。',
+        { type: 'h2', text: '实际的处理顺序' },
+        { type: 'ul', items: ['把图像切成 8x8 的像素块。', '每块从 RGB 转换成一路亮度加两路颜色。', '颜色通道被降采样，通常是每四个亮度样本只保留一个颜色样本。', '每块转换到频率域，把粗结构和高频细节分开。', '对频率做量化，高频细节被更激进地舍入。', '最后做熵编码，把剩下的数字紧凑打包。'] },
+        { type: 'h2', text: '质量滑块只控制其中一步' },
+        '和宣传的不同，质量设置不改变算法流程，它改变的是量化步长。质量高，高频细节保留得多；质量低，高频被舍入掉。',
+        '这也解释了为什么质量下调不是线性的。从 100 降到 90 几乎看不出差别，从 50 降到 40 才是可见损伤通常出现的位置。',
+        { type: 'h2', text: '为什么伪影集中在边缘' },
+        '锐利边缘包含大量高频能量。量化先删高频，所以高频最多的区域损失最大。熟悉的块状和振铃伪影就出现在这些地方。',
+        '这也解释了文字和线稿为什么压不动。它们几乎全是高频内容，正是 JPEG 最先丢掉的东西。',
+        { type: 'h2', text: '怎么选档位' },
+        { type: 'ul', items: ['照片存档：质量 90-95，因为体积不是限制，而且你可能还要再编辑', '网页主图：质量 75-85，多数照片在这个区间看不出可见损失', '网页缩略图：质量 60-70，显示尺寸小，损失被掩盖', '反复重存：尽量别做，每存一次损失叠加'] },
+        { type: 'h2', text: '最重要的一条规则' },
+        '不要反复编辑并重存 JPEG。每次保存都会对已经被量化过的数据再量化一次，损伤会累积。保留一份无损母版，只在最后导出一次 JPEG。',
+        { type: 'h2', text: '常见问题' },
+        { type: 'faq', items: [
+          { q: '质量 100 是无损吗？', a: '不是。JPEG 在所有档位都是有损的，包括 100。要真正无损请用 PNG 或其他无损格式。' },
+          { q: '重存两次会质量减半吗？', a: '不完全是，但损失确实叠加。第二次保存量化的是已经丢失细节的数据，可见的下降通常比第一次更大。' },
+          { q: '为什么我的 PNG 有时比 JPEG 还小？', a: '纯色图形和截图会出现这种情况。JPEG 在花码率去近似锐利边缘，而 PNG 直接精确存储。' },
+        ] },
+        { type: 'cta', text: '在浏览器里压缩，先看体积再决定', href: 'https://image-compressor-saas.shop' },
+      ],
+      en: [
+        { type: 'h2', text: 'The problem JPEG was designed to solve' },
+        'An uncompressed photo is enormous. A 12 megapixel image needs roughly 36 MB before you do anything to it, which was unusable on 1990s connections and is still wasteful today.',
+        'JPEG was built on one insight: human vision is far more sensitive to brightness than to colour. So it keeps brightness detail and throws most colour detail away. That single trade-off does most of the size reduction before any quality slider is involved.',
+        { type: 'h2', text: 'What actually happens, in order' },
+        { type: 'ul', items: ['The image is split into 8x8 blocks of pixels.', 'Each block is converted from RGB into a brightness channel plus two colour channels.', 'The colour channels are subsampled, usually keeping only one sample for every four brightness samples.', 'Each block is transformed into a set of frequencies, which separates coarse structure from fine detail.', 'The frequencies are quantised, meaning fine detail is rounded off more aggressively than coarse structure.', 'The result is entropy coded, which packs the remaining numbers tightly.'] },
+        { type: 'h2', text: 'The quality slider controls one step' },
+        'Contrary to how it is marketed, the quality setting does not change how the algorithm works. It changes the size of the quantisation step. Higher quality means finer frequency detail is preserved; lower quality rounds it away.',
+        'This is why quality reductions are not linear. Dropping from 100 to 90 costs almost nothing visually. Dropping from 50 to 40 is where visible damage usually appears.',
+        { type: 'h2', text: 'Why artifacts cluster around edges' },
+        'Sharp edges contain high-frequency energy. Quantisation removes high frequencies first, so the parts of the image with the most high-frequency content lose the most. That is exactly where the familiar blocky and ringing artefacts show up.',
+        'It also explains why text and line art compress badly. They are almost entirely high-frequency content, which is the first thing JPEG discards.',
+        { type: 'h2', text: 'Choosing a setting' },
+        { type: 'ul', items: ['Photo archive: quality 90-95, because size is not the constraint and you may re-edit', 'Web hero image: quality 75-85, which is where most photos stop showing visible loss', 'Web thumbnail: quality 60-70, because the small display size hides the loss', 'Repeated re-save: avoid entirely, since each save compounds the loss'] },
+        { type: 'h2', text: 'The rule that matters most' },
+        'Never edit and re-save a JPEG repeatedly. Every save applies quantisation again to already-quantised data, and the damage accumulates. Keep a lossless master and export a JPEG only at the end.',
+        { type: 'h2', text: 'FAQ' },
+        { type: 'faq', items: [
+          { q: 'Is quality 100 lossless?', a: 'No. JPEG is lossy at every setting, including 100. For truly lossless storage use PNG or a lossless format.' },
+          { q: 'Does re-saving a JPEG twice halve the quality?', a: 'Not exactly, but the loss does compound. The second save quantises data that already lost detail, so the visible decline is often larger than the first save.' },
+          { q: 'Why does my PNG sometimes compress smaller than JPEG?', a: 'For flat-colour graphics and screenshots, PNG can win, because JPEG is spending bits trying to represent sharp edges that PNG stores exactly.' },
+        ] },
+        { type: 'cta', text: 'Compress images in the browser and see the size before you commit', href: 'https://image-compressor-saas.shop' },
+      ],
+    },
+  },
 ];
 
 
