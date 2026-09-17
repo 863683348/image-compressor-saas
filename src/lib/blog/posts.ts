@@ -4124,6 +4124,99 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "progressive-jpeg-explained",
+    date: "2026-09-17",
+    title: {
+      zh: "渐进式 JPEG 详解：为什么图片会一点点加载出来",
+      en: "Progressive JPEG Explained: Why Some Images Load in Stages",
+    },
+    description: {
+      zh: "同一张照片，有的网页从上往下刷出来，有的先出模糊轮廓再变清晰。区别就在 JPEG 的两种编码方式：基线式与渐进式。这篇讲清原理、优缺点和什么时候该用哪种。",
+      en: "Two pages can show the same photo differently: one paints top to bottom, the other shows a blurry outline that sharpens. The difference is baseline vs progressive JPEG encoding. Here is how each works and when to pick which.",
+    },
+    keywords: [
+      "progressive jpeg explained",
+      "progressive vs baseline jpeg",
+      "jpeg optimization",
+      "interlaced jpeg",
+      "image loading performance",
+    ],
+    content: {
+      zh: [
+        "打开一个图片很多的网页，留意两种不同的加载方式：有的图片像窗帘一样从上往下展开，有的先出现一团模糊的马赛克，然后越来越清晰。后者就是渐进式 JPEG（progressive JPEG），前一种是基线式（baseline）。对做网站的人来说，这个区别直接影响感知速度与 Core Web Vitals 分数。",
+        { type: "h2", text: "基线式与渐进式的区别" },
+        "基线式 JPEG 按从上到下的顺序一次性编码和解码：文件读到哪，画面就画到哪。渐进式 JPEG 把数据分成多次扫描（scans），第一次扫描只记录低分辨率的整体轮廓，后面的扫描逐层补充细节。解码器先把模糊版本显示出来，再逐步变清晰。",
+        {
+          type: "ul",
+          items: [
+            "基线式（baseline）：从上往下逐行渲染，适合文件较小的简单图像",
+            "渐进式（progressive）：多遍扫描，先出轮廓再补细节，适合照片和长文配图",
+            "两者画质在同等文件大小下基本相同，区别只在解码与显示顺序",
+          ],
+        },
+        { type: "h2", text: "渐进式 JPEG 的三个好处" },
+        {
+          type: "ul",
+          items: [
+            "感知加载更快：用户先看到整体轮廓，而不是空白等待",
+            "减少布局跳动：图片区域提前占据空间，CLS 更稳",
+            "慢网速下体验更好：弱网也能尽早看到内容大致内容",
+          ],
+        },
+        { type: "h2", text: "什么时候用渐进式，什么时候用基线式" },
+        "照片、大图、文章头图，优先渐进式。小图标、纯色块、需要极快首帧的 UI 元素，基线式足够，渐进式反而增加解码开销。渐进式对旧版浏览器兼容性略差，但现代浏览器普遍支持。",
+        { type: "h2", text: "怎么把图片转成渐进式" },
+        "多数图像处理工具都提供这个选项：Photoshop 保存时勾选 Progressive；ImageMagick 用 -interlace Plane；在线工具如 Squoosh 也有渐进式开关。转换不会明显改变文件大小，只是调整了数据排列顺序。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "渐进式 JPEG 会更大吗？", a: "通常与基线式几乎一样大，差异一般在 1-3% 以内，有些情况下甚至更小。" },
+            { q: "渐进式 JPEG 影响 SEO 吗？", a: "间接影响。它改善感知性能与 CLS，这两个因素会反映到 Core Web Vitals 和用户体验信号上。" },
+            { q: "所有浏览器都支持渐进式 JPEG 吗？", a: "现代浏览器基本都支持。只有非常老的浏览器在解码上表现不佳，目前占比已很低。" },
+          ],
+        },
+        { type: "cta", text: "在浏览器里本地压缩图片并选择渐进式编码", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "Open a page full of images and watch how they load. Some paint top to bottom like a curtain; others appear as a blurry mass that sharpens into focus. The second kind is a progressive JPEG, the first is baseline. For anyone running a website, the choice affects perceived speed and Core Web Vitals.",
+        { type: "h2", text: "Baseline vs progressive" },
+        "A baseline JPEG encodes and decodes top to bottom in one pass: the image draws as the file streams in. A progressive JPEG splits the data into multiple scans. The first scan stores a low-resolution outline; later scans add detail. The decoder shows the blurry version first, then sharpens it.",
+        {
+          type: "ul",
+          items: [
+            "Baseline: renders row by row, fine for small, simple images",
+            "Progressive: multiple scans, outline first then detail, good for photos and article images",
+            "Quality at the same file size is essentially equal; only decode order differs",
+          ],
+        },
+        { type: "h2", text: "Three benefits of progressive JPEG" },
+        {
+          type: "ul",
+          items: [
+            "Faster perceived load: users see the overall shape instead of blank space",
+            "Less layout shift: the image claims its space early, which stabilizes CLS",
+            "Better on slow networks: content becomes visible sooner even at low bandwidth",
+          ],
+        },
+        { type: "h2", text: "When to choose each" },
+        "Photos, large images, and article heroes favor progressive. Small icons, flat color blocks, and UI elements that need the fastest first frame are fine as baseline, where progressive only adds decode overhead. Older browsers handle progressive slightly worse, but support is now near-universal.",
+        { type: "h2", text: "How to convert an image to progressive" },
+        "Most image tools expose the option: Photoshop has a Progressive checkbox on save; ImageMagick uses -interlace Plane; online tools like Squoosh include a progressive toggle. The conversion barely changes file size; it only reorders the data.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Is a progressive JPEG bigger?", a: "Usually about the same size as baseline, within 1-3%, and sometimes smaller." },
+            { q: "Does progressive JPEG affect SEO?", a: "Indirectly. It improves perceived performance and CLS, which feed into Core Web Vitals and user-experience signals." },
+            { q: "Do all browsers support progressive JPEG?", a: "Modern browsers do. Only very old ones decode it poorly, and their share is now small." },
+          ],
+        },
+        { type: "cta", text: "Compress images locally in the browser with progressive encoding", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
 ];
 
 
