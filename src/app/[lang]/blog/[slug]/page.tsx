@@ -23,6 +23,8 @@ const RELATED_GROUPS: Record<string, string[]> = {
   "image-compression-web-performance-guide": ["compress-images-for-web-seo", "best-free-image-compressor-2026"],
   "compress-images-for-web-seo": ["image-compression-web-performance-guide", "best-free-image-compressor-2026"],
   "best-free-image-compressor-2026": ["image-compression-web-performance-guide", "compress-webp-images-guide"],
+  // delivery architecture cluster
+  "image-cdn-vs-self-hosted": ["image-compression-web-performance-guide", "core-web-vitals-fix-lcp-images", "avif-vs-webp-in-depth"],
 };
 
 function relatedSlugs(slug: string, count = 3): string[] {

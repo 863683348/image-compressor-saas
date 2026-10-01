@@ -4391,7 +4391,198 @@ export const POSTS: BlogPost[] = [
         { type: "cta", text: "Compress images locally in your browser", href: "https://image-compressor-saas.shop" },
       ],
     },
-  },];
+  },
+  {
+    slug: "image-cdn-vs-self-hosted",
+    date: "2026-10-02",
+    title: {
+      zh: "图片 CDN 与自建托管：2026 年该怎么选",
+      en: "Image CDN vs Self-Hosted: Which One Actually Wins in 2026",
+    },
+    description: {
+      zh: "图片 CDN 与自建托管怎么选？这篇拆开对比账单结构、延迟表现和运维负担，给出一套能直接套用的判断标准和绕开取舍的混合方案。",
+      en: "A practical image CDN vs self-hosted comparison: billing structure, latency behavior and operational load, with a decision rule you can apply and a hybrid setup that avoids the tradeoff.",
+    },
+    keywords: [
+      "image cdn vs self-hosted",
+      "image cdn vs self hosting",
+      "self-hosted images vs cdn cost",
+      "image delivery comparison 2026",
+      "image cdn pricing requests bandwidth",
+      "should i use an image cdn",
+    ],
+    content: {
+      zh: [
+        "图片 CDN 与自建托管的选择，几乎每个做网站的人都会遇到一次。直觉答案是流量小就自己扛、流量大了上 CDN，但真正决定结果的不是流量，而是你的访问者分布在哪里、图片有多少种尺寸变体、以及你愿不愿意维护一套转码链路。这篇把两种方案的账单、延迟表现和运维负担拆开对比，给出一套能直接套用的判断标准，以及一个绕开取舍的混合做法。",
+        { type: "h2", text: "图片 CDN 到底替你做了什么" },
+        "很多人把图片 CDN 理解成缓存图片的服务器，这个理解偏窄。现代图片 CDN 至少替你处理四件事。",
+        {
+          type: "ul",
+          items: [
+            "就近分发：把图片副本放到离访问者更近的节点，减少往返时间",
+            "格式协商：根据请求头的 Accept 字段自动返回 AVIF、WebP 或 JPEG",
+            "尺寸变体：按 URL 参数实时裁剪和缩放，不需要预先生成几十个文件",
+            "压缩调优：在画质和体积之间按设备类型做不同的取舍",
+          ],
+        },
+        "这四件事里，最值钱的通常不是分发，而是格式协商和尺寸变体。手工做这两件事意味着你要为每张图维护多个版本，并在前端写正确的 srcset。",
+        { type: "h2", text: "自建托管的真实成本" },
+        "自建不是免费的，它只是把费用从账单转移到了人身上。需要自己承担的部分如下。",
+        {
+          type: "ul",
+          items: [
+            "转码链路：上传后生成多尺寸、多格式，通常用 sharp 或 libvips 写一套队列",
+            "存储管理：原图、变体、缩略图分开存放，还要处理清理策略",
+            "缓存层：浏览器缓存头、回源配置、失效刷新",
+            "故障处理：转码失败重试、磁盘写满告警、回源风暴",
+          ],
+        },
+        "一个中型站点把这些做完，通常是一次性的几天工作量，加上之后每次依赖升级都要回头检查一遍。",
+        { type: "h2", text: "延迟与 Core Web Vitals 的分歧点" },
+        "首屏大图直接影响 LCP。两种方案在延迟上的差异主要来自第一字节时间和连接复用。",
+        {
+          type: "ul",
+          items: [
+            "单地区访问者：自建配合合理的缓存头，LCP 表现可以和 CDN 打平",
+            "跨地区访问者：自建的跨洲往返通常在 200ms 以上，CDN 能把这一段压到 30ms 到 80ms",
+            "移动端弱网：CDN 的边缘节点减少了 TLS 握手和 DNS 的往返次数，收益比桌面端更明显",
+          ],
+        },
+        "如果你的访问者集中在同一个国家，且你已经把图片压到了合理体积，CDN 带来的 LCP 改善会比你预期的小。图片本身体积的影响往往大于分发方式，这一点在 /blog/image-compression-web-performance-guide 里有具体数据。",
+        { type: "h2", text: "账单怎么算才不会踩坑" },
+        "图片 CDN 的计费通常按三项叠加。",
+        {
+          type: "ul",
+          items: [
+            "流量：每 GB 的出站费用，这是大头",
+            "请求数：每一次图片请求单独计费，变体多的时候会翻倍",
+            "转码次数：实时生成的变体按次数收费，部分厂商对重复生成有缓存",
+          ],
+        },
+        "自建的账单则是带宽加存储加服务器，外加无法计入账单的人力。真正容易踩的坑是请求数：一个页面 30 张图、每张 3 个变体，在移动端和桌面端各请求一次，请求量会快速吃掉免费额度。估算方法是用日均 PV 乘以单页图片数，再乘以平均变体数，得到月请求数后对照厂商的阶梯价格，不要用月流量去估算，误差会差一个数量级。",
+        { type: "h2", text: "什么情况下自建更合适" },
+        {
+          type: "ul",
+          items: [
+            "访问者集中在一个地区，跨洲延迟不是问题",
+            "图片总量不大，变体可以在构建期一次性生成",
+            "有合规要求，图片不能经过第三方节点",
+            "团队已经有现成的对象存储和缓存层，边际成本接近零",
+            "预算敏感，且流量曲线平稳可预测",
+          ],
+        },
+        "这类站点上 CDN，多数时候买到的是省心，不是性能。",
+        { type: "h2", text: "混合做法：绕开取舍" },
+        "不必二选一。一个务实的组合如下。",
+        {
+          type: "ul",
+          items: [
+            "原图和变体仍然放在自己的对象存储里，保留完全控制权",
+            "前面挂一层缓存，只在命中失败时回源自建服务",
+            "变体在构建期或上传时生成，不依赖实时转码",
+            "对跨地区访问者比例高的路径，单独启用分发节点",
+          ],
+        },
+        "这样既避免了实时转码的请求计费，又不用自己维护全球节点。",
+        {
+          type: "faq",
+          items: [
+            { q: "小站点有必要上图片 CDN 吗？", a: "如果访问者集中在单一地区且图片已经压到合理体积，收益有限。先把图片体积降下来通常比换分发方式更有效。" },
+            { q: "CDN 能代替图片压缩吗？", a: "不能。CDN 负责分发和转码，不解决原图过大的问题。一张 3MB 的原图即使经过 CDN，弱网下的加载体验依然很差。" },
+            { q: "实时变体和预生成变体哪个更划算？", a: "变体数量少且访问集中时，预生成更省。变体组合多、长尾访问分散时，实时生成更省存储，但要留意请求计费。" },
+            { q: "已经有全站 CDN，还需要图片 CDN 吗？", a: "通常不需要再做一层。全站 CDN 已经解决了就近分发，缺的是格式协商和尺寸变体，这部分自建转码链路就能补齐。" },
+          ],
+        },
+        "先把体积降下来，再谈分发。image-compressor-saas.shop 在浏览器本地完成压缩，文件不上传服务器，你可以先把原图压到合理体积，再决定要不要上 CDN，多数站点在压缩之后会发现自建完全够用。相关阅读：/blog/image-compression-web-performance-guide、/blog/core-web-vitals-fix-lcp-images、/blog/avif-vs-webp-in-depth。",
+        { type: "cta", text: "在浏览器本地压缩图片", href: "https://image-compressor-saas.shop" },
+      ],
+      en: [
+        "Choosing between an image CDN and self-hosted delivery is a decision most sites hit once. The intuitive answer is to self-host while traffic is small and move to a CDN once it grows, but traffic volume is not what decides the outcome. What matters is where your visitors are, how many size variants your images need, and whether you want to maintain a transcoding pipeline. This comparison breaks out billing, latency behavior and operational load for both, then gives a decision rule you can apply plus a hybrid setup that avoids the tradeoff.",
+        { type: "h2", text: "What an image CDN actually does for you" },
+        "People tend to read image CDN as servers that cache your images, which is too narrow. A modern image CDN handles at least four jobs.",
+        {
+          type: "ul",
+          items: [
+            "Proximity: copies sit on nodes closer to the visitor, cutting round-trip time",
+            "Format negotiation: the Accept header decides whether AVIF, WebP or JPEG comes back",
+            "Size variants: URL parameters crop and resize on demand instead of pre-generating dozens of files",
+            "Compression tuning: quality and size tradeoffs differ by device class",
+          ],
+        },
+        "Of those four, the valuable ones are usually format negotiation and variants rather than distribution. Doing both by hand means maintaining multiple versions of every image and writing correct srcset markup on the front end.",
+        { type: "h2", text: "The real cost of self-hosting" },
+        "Self-hosting is not free. It moves cost off the invoice and onto a person. The parts you own are listed here.",
+        {
+          type: "ul",
+          items: [
+            "Transcoding pipeline: generate sizes and formats after upload, usually with sharp or libvips behind a queue",
+            "Storage management: keep originals, variants and thumbnails apart, plus a cleanup policy",
+            "Caching layer: browser cache headers, origin fetch rules, invalidation",
+            "Failure handling: retry failed transcodes, alert on full disks, handle origin fetch storms",
+          ],
+        },
+        "On a mid-sized site that is a few days of work once, then a recurring check every time a dependency is upgraded.",
+        { type: "h2", text: "Where latency and Core Web Vitals diverge" },
+        "The largest above-the-fold image drives LCP directly. Differences between the two approaches come down to time to first byte and connection reuse.",
+        {
+          type: "ul",
+          items: [
+            "Single-region visitors: self-hosting with sane cache headers can match a CDN on LCP",
+            "Cross-region visitors: intercontinental round trips usually exceed 200ms, while a CDN brings that down to roughly 30ms to 80ms",
+            "Mobile on weak networks: edge nodes remove TLS handshake and DNS round trips, so the gain is larger than on desktop",
+          ],
+        },
+        "If your visitors sit in one country and your images are already compressed, the LCP improvement from a CDN will be smaller than expected. Image byte size tends to matter more than delivery method, and the numbers behind that are in /blog/image-compression-web-performance-guide.",
+        { type: "h2", text: "How to read the bill without getting burned" },
+        "Image CDN pricing usually stacks three meters.",
+        {
+          type: "ul",
+          items: [
+            "Bandwidth: cost per GB egressed, normally the largest line",
+            "Requests: each image request is billed, so variants multiply the count",
+            "Transformations: on-demand variants are charged per generation, though many vendors cache repeats",
+          ],
+        },
+        "Self-hosting bills as bandwidth plus storage plus servers, plus labor that never shows up on an invoice. The meter that surprises people is requests. Thirty images per page, three variants each, requested once on mobile and once on desktop, and the free tier disappears fast. To estimate, multiply daily pageviews by images per page by average variants to get monthly requests, then check the vendor tiering rather than estimating from monthly bandwidth, which is off by an order of magnitude.",
+        { type: "h2", text: "When self-hosting is the better call" },
+        {
+          type: "ul",
+          items: [
+            "Visitors concentrate in one region, so cross-region latency is not a factor",
+            "Total image count is small and variants can be generated at build time",
+            "Compliance rules keep images off third-party nodes",
+            "The team already runs object storage and a cache layer, so marginal cost is near zero",
+            "Budget is tight and traffic is steady and predictable",
+          ],
+        },
+        "Sites like this buy convenience from a CDN more than performance.",
+        { type: "h2", text: "A hybrid setup that avoids the tradeoff" },
+        "It does not have to be either-or. A practical combination looks like this.",
+        {
+          type: "ul",
+          items: [
+            "Keep originals and variants in your own object storage so control stays with you",
+            "Put a cache layer in front that only fetches from your service on a miss",
+            "Generate variants at build time or on upload instead of relying on on-demand transforms",
+            "Enable distribution nodes only for paths with a high share of cross-region visitors",
+          ],
+        },
+        "This avoids per-request transform billing without making you run a global network.",
+        {
+          type: "faq",
+          items: [
+            { q: "Does a small site need an image CDN?", a: "If visitors are concentrated in one region and images are already compressed, the gain is limited. Reducing image size usually does more than switching delivery." },
+            { q: "Can a CDN replace image compression?", a: "No. A CDN handles distribution and transcoding, not an oversized original. A 3MB source image still loads badly on a weak network even behind a CDN." },
+            { q: "Are on-demand variants or pre-generated variants cheaper?", a: "Pre-generation wins when variant counts are low and access is concentrated. On-demand wins on storage when combinations are many and long-tail access is scattered, but watch request billing." },
+            { q: "If I already use a full-site CDN, do I need an image CDN?", a: "Usually not a second layer. A full-site CDN already solves proximity. What is missing is format negotiation and size variants, which a self-hosted transcoding pipeline can cover." },
+          ],
+        },
+        "Shrink the bytes first, then argue about delivery. image-compressor-saas.shop compresses inside your browser so files never reach a server. Bring the originals down to a sane size first, then decide whether a CDN is worth it, since most sites find that self-hosting is enough once compression is handled. More reads: /blog/image-compression-web-performance-guide, /blog/core-web-vitals-fix-lcp-images, /blog/avif-vs-webp-in-depth.",
+        { type: "cta", text: "Compress images locally in your browser", href: "https://image-compressor-saas.shop" },
+      ],
+    },
+  },
+];
 
 
 export function getPost(slug: string): BlogPost | undefined {
