@@ -4582,6 +4582,191 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "image-compression-roi-real-numbers",
+    date: "2026-10-03",
+    title: {
+      zh: "图片压缩 ROI：真实数据测算与可复用模板",
+      en: "Image Compression ROI: Real Numbers and a Template You Can Reuse",
+    },
+    description: {
+      zh: "图片压缩 ROI 很少被认真算过。这篇用可复算的数字拆开三栏收益：带宽、转化、人力存储，给出一套能直接套到你站点上的测算模板和三个常见误区。",
+      en: "Compression ROI is rarely calculated properly. This data study splits the return into three lines: bandwidth, conversion, and labour plus storage, then gives a template you can run on your own site and three mistakes to avoid.",
+    },
+    keywords: [
+      "compression roi",
+      "image compression roi",
+      "image compression cost savings",
+      "image compression bandwidth savings",
+      "image compression conversion rate impact",
+      "image compression roi calculator",
+      "图片压缩 ROI",
+    ],
+    content: {
+      zh: [
+        "图片压缩 ROI 很少被认真算过。多数团队的判断停在「压一下总是好的」，于是压缩永远排在新功能后面。这篇把这件事摊开成能复算的数字：带宽省多少、转化动多少、人力存储省多少，以及一个能直接套到你站点上的测算模板。下面用的是中型站点的常见量级和主流云厂商的出站价格区间，数量级可参考，具体数字请换成你自己的账单。",
+        { type: "h2", text: "ROI 的三个口径：别只算带宽" },
+        "只算带宽会把收益低估一大截。压缩的回报至少分布在三个口径上，量级差别很大。",
+        {
+          type: "ul",
+          items: [
+            "带宽：图片出流量直接减少，账单上最直观的一栏",
+            "转化：图片变小之后 LCP 提前，跳出率下降带来的收入变化",
+            "运维与存储：转码队列压力、对象存储占用、构建产物体积同步下降，省的是人力",
+          ],
+        },
+        "三个口径里，带宽最容易算，也最容易被当成全部。在客单价不低的站点上，转化那一栏经常比带宽高一个数量级。",
+        { type: "h2", text: "带宽这一栏怎么算才不虚" },
+        "先把口径定死：只算图片的出站流量，不要拿全站流量当基数。图片一般占页面总字节数的一半到七成，直接乘全站流量会把结果放大一倍。",
+        {
+          type: "ul",
+          items: [
+            "月图片出流量 = 日均 PV × 单页图片平均字节数 × 30",
+            "压缩率用你自己抽样实测的结果，不要用厂商宣传值",
+            "乘以你的出站单价，常见区间在每 GB 0.05 到 0.12 美元",
+            "走 CDN 的站点，请求数不会变，只会降流量那一栏",
+          ],
+        },
+        "举例：日均 5000 PV、单页图片 1.2MB，按实测压缩率 55% 折算，每天省下约 3.3GB，一个月约 99GB。按每 GB 0.08 美元算，约 8 美元一个月。这一栏单独看并不惊艳，但它是三项里唯一稳定、可预测的一项。",
+        { type: "h2", text: "转化这一栏：LCP 提前能换多少钱" },
+        "首屏大图通常是 LCP 元素，图片变小意味着 LCP 提前。LCP 与转化率的相关性在不同行业差异很大，方向却是一致的。",
+        {
+          type: "ul",
+          items: [
+            "电商详情页：LCP 每提前 1 秒，转化率变化通常落在 1% 到 3% 的相对区间",
+            "内容站点：影响主要体现在跳出率和翻页深度，不直接产生收入",
+            "B2B 表单页：影响落在表单完成率上，量级小于电商",
+            "弱网移动端：收益几乎都集中在这一端，桌面端常常测不出差异",
+          ],
+        },
+        "换成钱：月订单数 × 转化率相对提升 × 客单价。还是上面那个日均 5000 PV 的站点，按 2% 转化率、60 美元客单价算，每月 3000 笔订单；压缩带来的 LCP 改善通常只有 200 到 400 毫秒，按相对提升 0.5% 折算，每月多出约 15 笔订单，约 900 美元。这是带宽那一栏的一百倍，也是为什么只看带宽会得出错误结论。这个数字必须用 A/B 实测收敛，不要直接写进预算。",
+        { type: "h2", text: "人力与存储：容易被漏掉的一栏" },
+        "这一栏进不了 ROI 的分子，但它决定了压缩这件事的投入有多低。",
+        {
+          type: "ul",
+          items: [
+            "转码队列：原图变小之后，队列时长和失败重试次数同步下降",
+            "存储占用：原图加变体的总量下降，对象存储和备份成本跟着降",
+            "构建产物：发布包体积变小，CI 时长和部署传输时间都会缩短",
+            "回源流量：自建架构里回源那一跳的费用也会跟着降",
+          ],
+        },
+        "多数站点的压缩不需要新增任何服务。在浏览器本地完成压缩，文件不经过服务器，既没有额外的计算账单，也不引入新的运维对象。",
+        { type: "h2", text: "一个能直接套用的测算模板" },
+        {
+          type: "ul",
+          items: [
+            "第一步：统计日均 PV 和单页图片平均字节数，用真实采样而不是拍脑袋估算",
+            "第二步：抽 20 张有代表性的图片跑一遍压缩，得到属于你自己的实际压缩率",
+            "第三步：带宽收益 = 日均 PV × 单页字节数 × 压缩率 × 30 × 出站单价",
+            "第四步：转化收益 = 月订单数 × 实测转化率相对提升 × 客单价，用 A/B 而不是行业均值",
+            "第五步：把一次性接入成本和每千张的处理时间从收益里扣掉，再决定优先级",
+          ],
+        },
+        { type: "h2", text: "三个常见误区" },
+        {
+          type: "ul",
+          items: [
+            "用厂商宣传的压缩率：实测通常低 10 到 20 个百分点，尤其是已经压过的 JPEG",
+            "把全站流量当成图片流量：图片一般只占页面总字节数的五到七成",
+            "只测桌面端数据：收益集中在移动端弱网，桌面端样本会让结论失真",
+          ],
+        },
+        {
+          type: "faq",
+          items: [
+            { q: "压缩 ROI 一般多久能回本？", a: "带宽那一栏按月结算，通常当月就能看到；接入成本主要是一次性的人力，工作量小的站点一两天就能做完。转化那一栏要等 A/B 跑够样本，一般两到四周。" },
+            { q: "图片已经走 CDN 了，压缩还有 ROI 吗？", a: "有，但收益结构变了。CDN 解决的是分发距离，不解决原图过大。流量那一栏仍然会降，请求数不变，弱网下的加载体验改善也更明显。" },
+            { q: "压缩率多少算合理？", a: "照片类内容压到原体积的 40% 到 60% 通常看不出差别；已经压过的 JPEG 再压收益会明显变小。用你自己抽样的实测值，不要套用宣传数字。" },
+            { q: "小站点值不值得算这么细？", a: "流量很小的站点，带宽那一栏可以忽略，直接看转化和人力。模板里最省事的做法是只跑第一步和第二步，拿到实际压缩率就够了。" },
+          ],
+        },
+        "先把图片体积降下来，再去讨论分发方式。image-compressor-saas.shop 在浏览器本地完成压缩，文件不经过服务器，也不需要新增任何服务。更多读数见 /blog/image-compression-web-performance-guide、/blog/core-web-vitals-fix-lcp-images、/blog/image-cdn-vs-self-hosted。",
+        { type: "cta", text: "在浏览器里本地压缩，先测出你自己的压缩率", href: "/" },
+      ],
+      en: [
+        "Compression ROI is rarely calculated properly. Most teams stop at the intuition that compressing is generally good, which pushes it permanently behind every new feature. This data study turns the question into numbers you can recompute: what bandwidth saves, what conversion moves, what labour and storage give back, plus a template you can run on your own site. The figures below use typical mid-size site volumes and mainstream egress price ranges, so treat the order of magnitude as useful and swap in your own billing.",
+        { type: "h2", text: "Three places the return shows up" },
+        "Counting bandwidth alone understates the return by a wide margin. Compression pays out in at least three places, and they differ enormously in scale.",
+        {
+          type: "ul",
+          items: [
+            "Bandwidth: image egress drops directly, the most visible line on the invoice.",
+            "Conversion: smaller images pull LCP earlier, and the drop in bounce rate shows up as revenue.",
+            "Operations and storage: transcode queue pressure, object storage footprint and build artifact size all fall, and what you save is people time.",
+          ],
+        },
+        "Bandwidth is the easiest of the three to calculate, which is exactly why it gets mistaken for the whole story. On sites with a decent order value, the conversion line is often an order of magnitude larger.",
+        { type: "h2", text: "Calculating the bandwidth line honestly" },
+        "Fix the unit first: count image egress only, never total site traffic. Images typically carry between half and seventy percent of a page's bytes, so multiplying full-site traffic roughly doubles the result.",
+        {
+          type: "ul",
+          items: [
+            "Monthly image egress = average daily PV x average image bytes per page x 30.",
+            "Use the compression ratio you measured by sampling, not the vendor's marketing figure.",
+            "Multiply by your egress unit price, commonly between 0.05 and 0.12 USD per GB.",
+            "On a CDN, request count does not change; only the traffic line moves.",
+          ],
+        },
+        "Worked example: 5000 PV a day, 1.2MB of images per page, measured ratio of 55 percent. That is roughly 3.3GB saved per day, about 99GB a month. At 0.08 USD per GB, around 8 USD a month. On its own that number is underwhelming, but it is the one line that is stable and predictable.",
+        { type: "h2", text: "The conversion line: what an earlier LCP is worth" },
+        "The hero image is usually the LCP element, so a smaller image means an earlier LCP. The strength of the link between LCP and conversion varies a lot by industry, but the direction is consistent.",
+        {
+          type: "ul",
+          items: [
+            "E-commerce product pages: each second off LCP typically moves conversion by one to three percent, relative.",
+            "Content sites: the effect lands on bounce rate and scroll depth rather than direct revenue.",
+            "B2B form pages: the effect lands on form completion, and is smaller than in e-commerce.",
+            "Weak mobile networks: nearly all of the gain sits here, and desktop samples often show nothing.",
+          ],
+        },
+        "Turn it into money: monthly orders x relative conversion lift x average order value. On the same site with 5000 PV a day, a two percent conversion rate and a 60 USD order value, that is about 3000 orders a month. Compression realistically buys 200 to 400 milliseconds of LCP, so at a relative lift of half a percent you get roughly 15 extra orders, around 900 USD a month. That is a hundred times the bandwidth line, and it is why looking at bandwidth alone produces the wrong answer. Treat it as a ceiling and converge on it with a real A/B test before it goes anywhere near a budget.",
+        { type: "h2", text: "Labour and storage, the line people skip" },
+        "This one does not enter the numerator, but it decides how cheap the whole exercise is.",
+        {
+          type: "ul",
+          items: [
+            "Transcode queue: smaller originals shorten queue time and cut retry counts.",
+            "Storage footprint: originals plus variants shrink, and so do backups.",
+            "Build artifacts: smaller release bundles shorten CI time and deploy transfer.",
+            "Origin traffic: in self-hosted setups the origin hop gets cheaper too.",
+          ],
+        },
+        "Most sites need no new service at all. Compressing inside the browser means files never touch a server, so there is no extra compute bill and nothing new to operate.",
+        { type: "h2", text: "A template you can run this week" },
+        {
+          type: "ul",
+          items: [
+            "Step one: measure average daily PV and image bytes per page from real samples, not estimates.",
+            "Step two: sample twenty representative images, compress them, and take your own ratio.",
+            "Step three: bandwidth return = daily PV x bytes per page x ratio x 30 x egress price.",
+            "Step four: conversion return = monthly orders x measured relative lift x order value, from an A/B test rather than an industry average.",
+            "Step five: subtract the one-off integration cost and the handling time per thousand images, then set the priority.",
+          ],
+        },
+        { type: "h2", text: "Three mistakes that inflate the result" },
+        {
+          type: "ul",
+          items: [
+            "Using the vendor's advertised ratio: measured results usually land ten to twenty points lower, especially on JPEGs that were already compressed.",
+            "Using full-site traffic as image traffic: images are typically fifty to seventy percent of total page bytes.",
+            "Testing on desktop only: the gain sits on weak mobile networks, and desktop samples wash it out.",
+          ],
+        },
+        {
+          type: "faq",
+          items: [
+            { q: "How long does compression ROI take to pay back?", a: "The bandwidth line settles monthly and usually shows up in the first cycle. Integration cost is mostly one-off engineering, one or two days on a small site. The conversion line needs an A/B test with enough samples, typically two to four weeks." },
+            { q: "Is there still ROI if images already run through a CDN?", a: "Yes, but the shape changes. A CDN fixes distance, not oversized originals. The traffic line still drops, request count stays flat, and the weak-network improvement is more visible than the raw saving." },
+            { q: "What compression ratio counts as reasonable?", a: "For photographic content, landing between forty and sixty percent of the original size is usually invisible. JPEGs that were already compressed give much less. Use your own sampled measurement instead of a published figure." },
+            { q: "Is this worth calculating in detail on a small site?", a: "On low-traffic sites the bandwidth line can be ignored; look at conversion and labour instead. The cheapest version of the template is just steps one and two, which give you your real compression ratio." },
+          ],
+        },
+        "Bring the bytes down before arguing about delivery. image-compressor-saas.shop compresses inside your browser, so files never reach a server and nothing new needs deploying. More reads: /blog/image-compression-web-performance-guide, /blog/core-web-vitals-fix-lcp-images, /blog/image-cdn-vs-self-hosted.",
+        { type: "cta", text: "Compress in your browser and measure your own ratio", href: "/" },
+      ],
+    },
+  },
 ];
 
 
