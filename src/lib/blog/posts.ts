@@ -4767,10 +4767,250 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    "slug": "how-news-sites-optimize-images",
+    "date": "2026-10-04",
+    "title": {
+      "zh": "新闻网站如何优化图片：从编辑台到首屏的实战流程",
+      "en": "How News Sites Optimize Images: An Editorial-to-LCP Workflow"
+    },
+    "description": {
+      "zh": "新闻网站图片优化实战：从原图归档、响应式尺寸、格式分流到首页 LCP，建立兼顾发布速度、画质、SEO 与版权的编辑流程。",
+      "en": "A newsroom image workflow covering source archiving, responsive variants, format routing, homepage LCP, SEO, credits, and rights checks."
+    },
+    "keywords": [
+      "news site image optimization",
+      "how news sites compress images",
+      "breaking news photo compression",
+      "news CMS responsive images",
+      "news homepage LCP optimization",
+      "新闻网站图片优化"
+    ],
+    "content": {
+      "zh": [
+        "新闻网站图片优化面对的是一个很具体的矛盾：摄影记者交回来的原图可能有 15MB，读者却希望突发新闻页面在移动网络上立刻打开。编辑台不能只把质量滑块拉低，因为新闻照片还要经得住裁切、社交平台二次发布、首页焦点图放大和日后归档。真正有效的流程，是在原图入库时保留主文件，在发布链路中生成有限、可追踪的尺寸与格式，并把首屏那一张单独当成性能任务。",
+        {
+          "type": "h2",
+          "text": "突发新闻图片快速发布：先保原图，再做发布副本"
+        },
+        "突发事件发生后，速度压力最大，最容易出现的错误也是直接覆盖原图。摄影记者传回的 JPEG 可能已经经过相机压缩，重复保存会继续损失细节；手机照片还可能带有定位、设备和拍摄时间等元数据。编辑收到文件后，应先把原图写入只读归档，再从副本开始裁切、去敏与压缩。",
+        {
+          "type": "ul",
+          "items": [
+            "原图层：保留完整像素、拍摄时间、作者署名和版权记录，不直接对外提供。",
+            "编辑层：完成构图裁切、水平校正、必要的隐私遮挡与色彩调整。",
+            "发布层：生成网页尺寸、社交尺寸与低带宽版本，每个版本都能追溯到同一原图编号。",
+            "缩略图层：给列表页、相关推荐和推送卡片使用，不让浏览器下载文章页大图再缩小。",
+            "归档层：保存最终说明、人物姓名、地点与授权范围，避免几年后只剩一张无来源图片。"
+          ]
+        },
+        "突发新闻图片快速发布的重点不是一次生成十几个版本。先做首页焦点、文章正文和社交分享三个必要规格，其余尺寸按访问需求补。尺寸矩阵越大，编辑越难核对，也越容易让错误裁切在多个入口同时上线。",
+        {
+          "type": "h2",
+          "text": "新闻 CMS 响应式图片：尺寸由版位决定"
+        },
+        "新闻 CMS 响应式图片不该按设备名称划分。今天叫“手机”的窗口宽度，明天可能出现在折叠屏或分栏桌面上。更可靠的做法是按实际版位宽度生成候选图，并让 srcset 与 sizes 告诉浏览器该选哪一个。",
+        {
+          "type": "ul",
+          "items": [
+            "列表缩略图：320 至 480 像素宽，优先控制解码和请求数量。",
+            "正文内图：640、960、1280 像素三个候选通常足够覆盖主流正文栏。",
+            "首页焦点图：至少准备与最大渲染宽度接近的版本，同时保留移动端安全裁切区。",
+            "高密度屏：只给确实会放大的关键图片准备 2x，不要把每张缩略图都翻倍。",
+            "分享卡片：单独输出固定比例，避免社交平台从正文里随机抓图。"
+          ]
+        },
+        "浏览器选择候选图时，需要知道图片在布局中占多宽。只写 srcset 不写准确的 sizes，浏览器可能按整个视口估算，给 360 像素的卡片下载 1280 像素资源。发布模板一旦调整栏宽，也要同步检查 sizes，否则旧配置会悄悄增加流量。",
+        {
+          "type": "h2",
+          "text": "新闻图片压缩流程：格式和质量按内容分流"
+        },
+        "新闻图片压缩流程最好按内容类型分流，而不是全站固定一个质量值。人物、夜景、烟雾和体育场草地的纹理不同，同样的编码参数会产生不同的失真。编辑台需要的是少量清楚的预设，以及一眼能判断的退回条件。",
+        {
+          "type": "ul",
+          "items": [
+            "摄影照片优先 AVIF 或 WebP，保留 JPEG 作为兼容回退；先试中等质量，再看人脸、文字和高反差边缘。",
+            "截图与信息图含有细字和纯色块，优先 PNG 或无损 WebP，避免 JPEG 让文字周围出现噪点。",
+            "透明台标与图标保留透明通道，不要为了减小几 KB 换成带底色的 JPEG。",
+            "已经被通讯软件重压过的小图，不要再次猛烈压缩；先确认是否能取得原始文件。",
+            "连拍组图使用统一预设，但焦点图单独复查，因为它承担最大的视觉面积。"
+          ]
+        },
+        "质量检查不必追求像素级完全一致。把候选图放到真实版位，分别看普通桌面和中端手机：人物眼睛是否发糊，字幕边缘是否有振铃，暗部是否出现色块。三个位置都过关，再记录压缩前后体积。需要临时处理一批发布副本时，可在 / 本地压缩，不把尚未发布的新闻图片交给第三方服务器。",
+        {
+          "type": "h2",
+          "text": "新闻首页 LCP 优化：只给首屏主图特殊待遇"
+        },
+        "新闻首页 LCP 优化经常失败，不是图片没有压缩，而是主图发现得太晚。CSS 背景图、客户端脚本拼出的 URL、层层懒加载都会让浏览器在页面解析后很久才知道该下载什么。首屏焦点图应出现在服务端 HTML 中，带明确宽高，并根据真实优先级决定是否预加载。",
+        {
+          "type": "ul",
+          "items": [
+            "首屏唯一主图使用高优先级加载；第二屏及以下继续懒加载。",
+            "在 HTML 中写 width 和 height，或稳定的 aspect-ratio，避免图片到达后推开标题。",
+            "预加载地址必须与 srcset 最终选中的候选一致，否则会下载两份。",
+            "不要把首页所有卡片都设为高优先级，过多抢占会拖慢 CSS、字体和主图本身。",
+            "用真实新闻模板测试，不用只有一张图的空白演示页代替。"
+          ]
+        },
+        "一次可复算的检查可以这样做：记录主图原始体积、传输体积、开始下载时间和 LCP 时间；替换压缩版本后重复三次，取中位数。若体积下降而 LCP 几乎不动，瓶颈多半在发现时机、服务器响应或主线程，而不是继续牺牲画质。图片体积与页面速度的关系可继续查看 /blog/image-compression-affects-page-speed，分发架构见 /blog/image-cdn-vs-self-hosted。",
+        {
+          "type": "h2",
+          "text": "新闻图片 SEO 与编辑规范：说明文字不能在压缩时丢失"
+        },
+        "图片优化进入自动化后，最容易丢的是语义。文件名、替代文字、图注、作者与版权信息分别服务于不同目标，不能把一段关键词复制到所有字段。替代文字描述图中与报道相关的信息；图注补充人物、地点、时间与背景；署名说明来源；文件名只需简短可识别。",
+        {
+          "type": "ul",
+          "items": [
+            "替代文字写读者看不到图片时缺失的事实，不堆砌“新闻图片”“高清照片”等词。",
+            "图注回答谁、何时、何地以及画面为何与报道有关，可比替代文字更完整。",
+            "肖像、事故现场和未成年人图片先走隐私与授权检查，再进入自动转码。",
+            "去除公开文件中的 GPS 等敏感 EXIF 时，把必要的拍摄信息留在内部资产系统。",
+            "修图与生成式处理必须按编辑规范留痕，压缩不能成为掩盖内容改动的步骤。"
+          ]
+        },
+        "每周抽查十篇高流量报道就够发现多数问题：是否下载了过大的候选图，是否有空替代文字，焦点图是否被误设为懒加载，是否出现重复下载。修模板比逐篇补救更划算，因为一处改动会覆盖后续所有报道。",
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "新闻网站应该把每张图片都转换成 AVIF 吗？",
+              "a": "不必。AVIF 对摄影照片通常很省，但小图编码成本、透明素材和带细字截图未必占优。让流水线按内容类型生成 AVIF、WebP 与必要的回退格式，再由浏览器选择。"
+            },
+            {
+              "q": "突发新闻照片压到多大合适？",
+              "a": "不要只设一个 KB 上限。先按版位限制像素尺寸，再在真实模板里检查质量。正文 960 像素宽的照片常能控制在数百 KB 内，画面复杂度会让结果上下浮动。"
+            },
+            {
+              "q": "新闻首页的图片都应该预加载吗？",
+              "a": "不应该。通常只预加载当前页面唯一的 LCP 候选图。多个预加载会彼此争抢，还会挤占样式表与字体下载。"
+            },
+            {
+              "q": "删除 EXIF 会影响图片 SEO 吗？",
+              "a": "通常不会直接影响排名。公开图片应优先移除 GPS 和设备序列等敏感信息，同时在页面的图注、署名和结构化内容中保留有用语义。"
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "text": "在浏览器里压缩下一批新闻发布副本",
+          "href": "/"
+        }
+      ],
+      "en": [
+        "News site image optimization has a practical conflict at its center. A photographer may send a 15 MB original while readers expect a breaking-news page to appear immediately on a mobile connection. The desk cannot solve that by dragging one quality slider downward. The same photograph may need a tight homepage crop, a social card, a wide article version, and an archival master. A reliable workflow preserves the source, creates a small set of traceable derivatives, and treats the one above-the-fold image as a separate performance job.",
+        {
+          "type": "h2",
+          "text": "Fast breaking-news photo publishing starts with an untouched source"
+        },
+        "Under deadline pressure, the easiest mistake is overwriting the source. A camera JPEG may already be compressed, so every repeated save removes more information. A phone photograph may also carry location, device, and capture-time metadata that should not be published blindly. The first action at the desk is to place the source in read-only storage. Cropping, redaction, color adjustment, and compression happen on a derivative.",
+        {
+          "type": "ul",
+          "items": [
+            "The source layer keeps full pixels, capture time, photographer credit, and rights records; it is not served publicly.",
+            "The edit layer holds crops, horizon fixes, necessary privacy redactions, and restrained tonal work.",
+            "The delivery layer contains web, social, and low-bandwidth outputs that all point back to one source identifier.",
+            "The thumbnail layer supplies indexes, related-story cards, and notifications without downloading article-size assets.",
+            "The archive layer retains the final caption, names, place, and usage rights so the image still has a history years later."
+          ]
+        },
+        "Fast breaking-news photo publishing does not require ten derivatives before a story can go live. Start with the homepage lead, article body, and social share sizes. Add another size only when a real slot needs it. A huge variant matrix slows review and lets one bad crop spread into several products at once.",
+        {
+          "type": "h2",
+          "text": "Responsive images in a news CMS should follow slots, not devices"
+        },
+        "Responsive images in a news CMS should be based on rendered slot width rather than labels such as phone, tablet, and desktop. A width associated with a phone today may appear in a foldable display or a narrow desktop column tomorrow. Generate candidates around the widths the templates actually use, then let srcset and sizes tell the browser which file fits.",
+        {
+          "type": "ul",
+          "items": [
+            "List thumbnails generally need candidates between 320 and 480 pixels wide, with decode cost kept low.",
+            "Article-body images are often covered by 640, 960, and 1280 pixel candidates.",
+            "A homepage lead image needs a candidate near its maximum rendered width plus a crop that keeps the subject safe on narrow screens.",
+            "High-density 2x assets belong on images that genuinely display large, not on every tiny card.",
+            "Social cards need a fixed-ratio output rather than hoping a platform chooses the right image from the article."
+          ]
+        },
+        "The browser also needs an honest estimate of rendered width. If srcset is present but sizes implies a full viewport, a 360-pixel card can receive a 1280-pixel file. Any redesign that changes column width should trigger a check of the sizes rules. Otherwise a correct old setting becomes a quiet bandwidth leak.",
+        {
+          "type": "h2",
+          "text": "A news image compression workflow routes by content type"
+        },
+        "A useful news image compression workflow does not apply one quality value to the whole newsroom. Portraits, night scenes, smoke, stadium grass, charts, and screenshots expose different defects at the same setting. Editors need a few understandable presets and clear reasons to reject an output.",
+        {
+          "type": "ul",
+          "items": [
+            "For photographs, prefer AVIF or WebP with a JPEG fallback. Start at a moderate quality and inspect faces, text, and high-contrast edges.",
+            "For screenshots and graphics with fine lettering or flat colors, choose PNG or lossless WebP so JPEG ringing does not damage the text.",
+            "Keep the alpha channel on logos and overlays rather than saving a few kilobytes by adding a solid JPEG background.",
+            "Do not heavily recompress a small image that already came through a messaging app; ask for the source when the story allows it.",
+            "Apply one preset to gallery sequences, but review the lead image separately because it occupies the largest visual area."
+          ]
+        },
+        "Quality review should happen in the actual slot rather than at 400 percent zoom. Check a normal desktop and an ordinary mid-range phone. Look at eyes, caption text embedded in an image, hard edges, and blockiness in shadows. If those areas hold up, record source and output sizes. For a batch of temporary publishing copies, / can perform compression locally so unpublished newsroom images are not handed to another server.",
+        {
+          "type": "h2",
+          "text": "News homepage LCP optimization gives one image special treatment"
+        },
+        "News homepage LCP optimization often misses because the lead image is discovered too late, not because it is insufficiently compressed. A CSS background, a URL assembled by client-side JavaScript, or nested lazy-loading logic can hide the request until long after HTML parsing. The lead image should be present in server-rendered markup, have explicit dimensions, and receive priority based on what is actually visible.",
+        {
+          "type": "ul",
+          "items": [
+            "Give high fetch priority to the single likely LCP image; keep below-the-fold cards lazy.",
+            "Set width and height, or a stable aspect-ratio, so the headline is not pushed around when the image arrives.",
+            "Make a preload match the candidate ultimately selected from srcset, or the browser may download two files.",
+            "Do not mark every homepage card as high priority. They will compete with styles, fonts, and the lead image itself.",
+            "Test with a real news template and realistic card density, not an empty demonstration page containing one photograph."
+          ]
+        },
+        "A repeatable check needs four values: original bytes, transferred bytes, image request start, and LCP time. Replace the file, run three times, and compare medians. If bytes fall but LCP barely changes, the next bottleneck is probably discovery, server response, or main-thread work. Sacrificing more image quality will not repair that. Continue with /blog/image-compression-affects-page-speed for the byte-to-speed relationship and /blog/image-cdn-vs-self-hosted for delivery architecture.",
+        {
+          "type": "h2",
+          "text": "News image SEO rules preserve meaning through automation"
+        },
+        "Once image processing is automated, meaning is easier to lose than pixels. Filename, alternative text, caption, photographer credit, and rights information have different jobs. Copying one keyword-heavy sentence into every field helps nobody. Alternative text supplies reporting context when the image cannot be seen. A caption can add people, place, time, and relevance. Credit records the source. The filename only needs to be short and recognizable.",
+        {
+          "type": "ul",
+          "items": [
+            "Write alternative text around the fact a reader would otherwise miss, not phrases such as “news image” or “high-resolution photo.”",
+            "Let the caption answer who, when, where, and why the scene matters to the report.",
+            "Route portraits, accident scenes, and photographs of minors through privacy and rights review before automatic conversion.",
+            "When public derivatives lose GPS and other sensitive EXIF, preserve necessary capture information in the internal asset system.",
+            "Log material edits and generative processing under the editorial policy; compression must not hide a content change."
+          ]
+        },
+        "A weekly sample of ten high-traffic stories will reveal most systemic failures. Check whether the browser fetched an oversized candidate, whether alternative text is empty, whether the lead image was accidentally lazy-loaded, and whether the same asset downloaded twice. Fix the template rather than patching stories one by one, because that change protects every article published next.",
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Should a news site convert every image to AVIF?",
+              "a": "No. AVIF is often compact for photographs, but encoding cost, tiny graphics, transparency, and screenshots with fine text can favor another format. Generate AVIF and WebP where they help, keep necessary fallbacks, and let the browser choose."
+            },
+            {
+              "q": "What file size should a breaking-news photo target?",
+              "a": "Do not set one universal KB ceiling. Limit pixel dimensions to the slot first, then review quality in the real template. A 960-pixel article image can often stay within a few hundred kilobytes, but scene complexity changes the result."
+            },
+            {
+              "q": "Should every homepage image be preloaded?",
+              "a": "No. Preload the single likely LCP image. Several image preloads compete with one another and can delay stylesheets, fonts, and the actual lead image."
+            },
+            {
+              "q": "Does removing EXIF hurt image SEO?",
+              "a": "It usually does not directly harm rankings. Remove sensitive GPS and device identifiers from public files, while keeping useful meaning in captions, credits, and page content."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "text": "Compress the next batch of newsroom delivery copies in your browser",
+          "href": "/"
+        }
+      ]
+    }
+  },
 ];
 
 
-export function getPost(slug: string): BlogPost | undefined {
+export function getPost(slug: string) {
   return POSTS.find((p) => p.slug === slug);
 }
 
