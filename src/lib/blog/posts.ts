@@ -5007,13 +5007,218 @@ export const POSTS: BlogPost[] = [
       ]
     }
   },
+  {
+    "slug": "mobile-data-savings-image-compression",
+    "date": "2026-10-05",
+    "title": {
+      "zh": "图片压缩能省多少移动流量：实测口径与测算方法",
+      "en": "How Much Mobile Data Image Compression Actually Saves"
+    },
+    "description": {
+      "zh": "图片压缩能省多少移动流量？先测出图片在页面传输字节里占多少，再按格式、源文件和目标尺寸判断真实压缩率，最后把省下的 MB 换成能写进报告的数字。",
+      "en": "How much mobile data does image compression save? Measure the image share of transferred bytes, read realistic ratios by format and source, then turn saved megabytes into a figure you can report."
+    },
+    "keywords": [
+      "image compression mobile data",
+      "reduce mobile data usage images",
+      "how much data does image compression save",
+      "compress images to save mobile data",
+      "mobile data savings image compression",
+      "图片压缩 移动流量"
+    ],
+    "content": {
+      "zh": [
+        "图片压缩和移动流量的关系，比多数人想的更直接。一次典型的新闻浏览或电商浏览里，图片通常是传输字节里占比最大的一项，大致在页面总量的一半到四分之三之间。压缩图片是唯一一项不动排版、不动文案、不动功能，却能真的把流量账单压下来的改动。",
+        "不过大家最想要的那个数字，也就是到底能省多少，没有通用答案。它取决于你的图片内容、图片是怎么产出的，以及页面现在已经在做什么。这篇给的是测量方法和实践中常见的区间，让你算出自己的数字，而不是借别人的。",
+        {
+          "type": "h2",
+          "text": "移动流量到底花在哪"
+        },
+        "压缩之前，先搞清楚字节被谁用了。在这里靠猜，往往会让人去改错的对象。",
+        {
+          "type": "ul",
+          "items": [
+            "用 Chrome DevTools 打开页面，切到 Network 面板，按 Img 过滤。要看的是 transferred 那一列，不是 resource size。",
+            "连续刷新三次取中位数。单次采样会把缓存和懒加载的噪声一起带进来。",
+            "把首屏图片和其余图片分开统计。懒加载配置错误时，折叠线以下的字节照样会加载，这种情况很常见。",
+            "检查同一张图是否被以不同尺寸下载了两次。重复请求是纯浪费，在移动版模板里出现频率很高。",
+            "字体和视频单独看。如果这两项压过了图片，那压图片帮不上多少忙。"
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "一张图能省多少：按格式与场景分"
+        },
+        "以下是在合理尺寸下、用真实照片内容测出的粗略区间，用来建立量级感，不能直接当成你的结果。",
+        {
+          "type": "ul",
+          "items": [
+            "相机原始分辨率的 JPEG 照片：通常能减掉四到六成，原图直接来自手机时还会更多。",
+            "已经被压缩过一次的 JPEG：百分之五到二十。对压缩过的文件再压一次收益很小，还要付出可见的画质代价。",
+            "纯色为主的 PNG 截图：五到八成，而且换成 WebP 或 AVIF 往往比继续压 PNG 更划算。",
+            "PNG 存的照片：节省幅度非常大，因为 PNG 本来就不适合装照片类数据。",
+            "已经在用 WebP：换到 AVIF 还能再省一到三成，代价是编码时间变长。",
+            "先改尺寸再压缩，通常比只调质量更管用。把边长减半就能先砍掉约四分之三的字节，质量滑块这时还没开始发挥作用。"
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "为什么你的压缩率和别人的不一样"
+        },
+        "三个变量解释了公开数据和你实测结果之间的大部分差距。",
+        {
+          "type": "ul",
+          "items": [
+            "画面复杂度。街景包含的细节远多于靠墙的人像，在同样的质量设置下压缩率更差。",
+            "源文件历史。相机直出的 JPEG 已经压过一次，TIFF 扫描件没有，扫描件能省的多得多。",
+            "目标尺寸。先缩放再压缩的压缩率看起来很漂亮，其中一部分功劳其实是缩放的。两步要分开测。"
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "把省下的 MB 换成有人关心的数字"
+        },
+        "算法很简单：月访问次数乘以每次访问的平均图片字节数，再乘以压缩率。一个月 2 万次移动访问、每次 1.4MB 图片的站点，就是 28GB。压缩掉一半，每月省 14GB。",
+        "这算不算有意义，取决于读者的套餐。在 5GB 的限量套餐上，14GB 分摊到一批用户身上，是实实在在解掉了一个限制；在家庭无限宽带上它几乎看不见，那时诚实的理由是速度而不是费用。弱网下的加载速度，才是压缩无论套餐如何都能带来收益的地方。",
+        {
+          "type": "h2",
+          "text": "读者能做什么，站长能做什么"
+        },
+        "读者这边选项不多，但确实存在：打开浏览器的省流量模式；调低聊天应用里的图片质量设置，多数应用默认值远高于手机屏幕实际需要的水平；大图册尽量在 Wi-Fi 下下载。",
+        "站长这边可以动的空间大得多。",
+        {
+          "type": "ul",
+          "items": [
+            "先把像素尺寸限制到展示位的实际大小，再压缩。这一步要最先做。",
+            "用 WebP 或 AVIF 并提供回退，不要对所有设备都发同一张 JPEG。",
+            "折叠线以下的图片做懒加载，同时把最可能成为 LCP 的那张排除在懒加载之外。",
+            "在上传或构建阶段、于浏览器内完成压缩，既不用部署新服务，文件也不会经过服务器。"
+          ]
+        },
+        "顺序错了会白做。先缩放再压缩，先测 transferred 再决定要不要压，先确认图片确实是消耗大头再投入时间。这三步做完，剩下的就是按自己的实测数字写结论。延伸阅读：/blog/compress-jpg-under-100kb 讲的是目标大小模式怎么设，/blog/image-compression-affects-page-speed 讲的是字节和速度之间的关系。",
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "图片压缩到底能省多少移动流量？",
+              "a": "对于此前没压缩过的照片类内容，通常是图片字节的四到六成。如果这个 JPEG 已经压过一轮，能省的会少很多，有时不到一成。"
+            },
+            {
+              "q": "读者大多用 Wi-Fi，压缩还有意义吗？",
+              "a": "有，但收益从费用转到了速度。图片变小之后在弱网下更快加载完，这体现在加载时间和跳出率上，而不是流量账单上。"
+            },
+            {
+              "q": "改尺寸和压质量哪个更有效？",
+              "a": "改尺寸。边长减半就能在调质量之前先去掉约四分之三的字节。顺序是先缩放再压缩，不是二选一。"
+            },
+            {
+              "q": "压缩有可能让页面更费流量吗？",
+              "a": "只有做错了才会。没有正确协商就同时提供多种格式变体，或者预加载了根本不会显示的图片，都会增加字节。只生成浏览器真正需要的变体，之后再看 transferred 那一列核对。"
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "text": "在浏览器里压缩图片，省下移动流量",
+          "href": "/"
+        }
+      ],
+      "en": [
+        "Image compression and mobile data are tied together more closely than most people assume. On a typical news or shopping session, images carry the largest share of transferred bytes, usually somewhere between half and three quarters of the page total. Compressing them is the one change that moves a data bill without touching layout, copy, or function.",
+        "The number everyone wants, how much will I save, has no universal answer. It depends on what your images are, how they were produced, and what the page already does. This gives you the measurement method and the ranges seen in practice, so you can produce your own figure rather than borrowing someone else’s.",
+        {
+          "type": "h2",
+          "text": "Where mobile data actually goes"
+        },
+        "Before compressing anything, find out what is using the bytes. Guessing here tends to send people after the wrong asset.",
+        {
+          "type": "ul",
+          "items": [
+            "Open the page in Chrome DevTools, switch to the Network panel, and filter by Img. The transferred column is what the reader pays for, not the resource size column.",
+            "Reload three times and take the median. One sample catches cache and lazy-loading noise.",
+            "Separate above-the-fold images from the rest. Bytes below the fold still count when lazy loading is misconfigured, which is common.",
+            "Check whether the same asset downloads twice at different sizes. Duplicate requests are pure waste and show up often in mobile templates.",
+            "Look at fonts and video separately. If one of those beats images, compressing pictures will not help much."
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "How much one image saves, by format and scene"
+        },
+        "These are rough ranges measured on real photographic content at sensible dimensions. Use them for a sense of scale, not as your result.",
+        {
+          "type": "ul",
+          "items": [
+            "JPEG photo at full camera resolution: expect forty to sixty percent off, sometimes more when the original came straight out of a phone.",
+            "JPEG that was already compressed once: five to twenty percent. Re-compressing a re-compressed file gives very little and costs visible quality.",
+            "PNG screenshot with flat colors: fifty to eighty percent, and switching to WebP or AVIF usually beats squeezing the PNG further.",
+            "PNG photograph: very large savings, because PNG is the wrong container for photographic data in the first place.",
+            "WebP already in place: ten to thirty percent more by moving to AVIF, with encoding time as the trade-off.",
+            "Resizing before compressing usually beats quality reduction alone. Halving the pixel dimensions cuts roughly three quarters of the bytes before the quality slider does anything."
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "Why your compression ratio will differ"
+        },
+        "Three variables explain most of the gap between published figures and your own result.",
+        {
+          "type": "ul",
+          "items": [
+            "Scene complexity. A busy street scene holds far more detail than a portrait against a wall, and compresses worse at the same quality setting.",
+            "Source history. Camera JPEGs are already compressed; a TIFF scan is not. The scan has much more to give.",
+            "Target dimensions. Compression measured after resizing looks impressive partly because resizing did the work. Measure the two steps separately."
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "Turning saved megabytes into a number people care about"
+        },
+        "The arithmetic is simple: monthly sessions, multiplied by average image bytes per session, multiplied by your compression ratio. A site with 20,000 mobile sessions a month and 1.4MB of images per session sits at 28GB. A fifty percent reduction saves 14GB monthly.",
+        "Whether that matters depends on the reader’s plan. On a metered 5GB allowance, 14GB across a base of users is a real constraint removed. On unlimited home broadband it is invisible, and the honest argument there is speed rather than cost. Weak-network speed is where compression pays off regardless of the plan.",
+        {
+          "type": "h2",
+          "text": "What readers can do, and what site owners can do"
+        },
+        "Reader side, the options are limited but real: turn on data saver mode in the browser, lower the image quality setting in chat apps, and download large galleries over Wi-Fi. Most chat apps default to a quality far above what a phone screen needs.",
+        "Site owner side, the leverage is much larger.",
+        {
+          "type": "ul",
+          "items": [
+            "Cap pixel dimensions at the slot size, then compress. Do this first.",
+            "Serve WebP or AVIF with a fallback rather than one JPEG for every device.",
+            "Lazy-load anything below the fold, and exclude the likely LCP image from lazy loading.",
+            "Compress at upload or build time in the browser, so nothing new has to be deployed and files never reach a server."
+          ]
+        },
+        "Getting the order wrong wastes the effort. Resize before compressing, read the transferred column before deciding whether compression is worth it, and confirm images really are the largest share before spending time on them. After that, write the conclusion from your own measurement. More reads: /blog/compress-jpg-under-100kb covers setting a target size, /blog/image-compression-affects-page-speed covers how bytes relate to load speed.",
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "How much mobile data does image compression actually save?",
+              "a": "For photographic content that has not been compressed before, forty to sixty percent of image bytes is the usual range. If the JPEG already went through one compression pass, expect much less, sometimes under ten percent."
+            },
+            {
+              "q": "Does compressing images help if my readers are mostly on Wi-Fi?",
+              "a": "Yes, but the benefit shifts from cost to speed. Smaller images finish sooner on weak connections, and that shows up in load time and bounce rate rather than in a data bill."
+            },
+            {
+              "q": "Is resizing or compressing more effective?",
+              "a": "Resizing. Cutting linear dimensions in half removes about three quarters of the bytes before any quality setting is applied. Compress after resizing, not instead of it."
+            },
+            {
+              "q": "Can compression make a page use more data?",
+              "a": "Only when it is done badly. Serving several format variants without proper negotiation, or preloading images that are never displayed, can add bytes. Generate the variants a browser actually needs and check the transferred column afterwards."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "text": "Compress in your browser and cut mobile data usage",
+          "href": "/"
+        }
+      ]
+    }
+  },
 ];
-
-
-export function getPost(slug: string) {
-  return POSTS.find((p) => p.slug === slug);
-}
-
-export function getPostSlugs(): string[] {
-  return POSTS.map((p) => p.slug);
-}
