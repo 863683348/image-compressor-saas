@@ -5222,3 +5222,11 @@ export const POSTS: BlogPost[] = [
     }
   },
 ];
+
+export function getPost(slug: string) {
+  return POSTS.find((p) => p.slug === slug);
+}
+
+export function getPostSlugs(): string[] {
+  return POSTS.map((p) => p.slug);
+}
