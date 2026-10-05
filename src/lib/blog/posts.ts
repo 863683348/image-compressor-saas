@@ -5221,6 +5221,228 @@ export const POSTS: BlogPost[] = [
       ]
     }
   },
+  {
+    "slug": "what-is-image-compression-beginner",
+    "date": "2026-10-06",
+    "title": {
+      "zh": "图片压缩是什么：给完全新手讲透的一篇",
+      "en": "What Is Image Compression? A Beginner Explanation"
+    },
+    "description": {
+      "zh": "图片压缩做的事只有一件：用更少的字节描述同一张图。这篇给刚接触这个概念的人讲清压缩动了什么、有损和无损怎么选，以及新手最容易踩的坑。",
+      "en": "Image compression does one thing: describe the same picture with fewer bytes. A plain explanation of what changes, how to choose between lossy and lossless, and the mistakes beginners keep making."
+    },
+    "keywords": [
+      "what is image compression",
+      "image compression beginner",
+      "how does image compression work",
+      "lossy vs lossless image compression",
+      "image compression explained",
+      "图片压缩是什么",
+      "图片压缩原理",
+      "有损压缩和无损压缩区别"
+    ],
+    "content": {
+      "zh": [
+        "图片压缩做的事只有一件：用更少的字节描述同一张图。手机拍的一张 4000×3000 照片，原始像素数据要占三十几兆，压成 JPEG 之后常见两三兆，在手机屏幕上看不出差别。这篇写给刚接触这个概念的人，不谈公式，只讲清压缩到底动了什么、什么时候会真的伤到画质。",
+        {
+          "type": "h2",
+          "text": "图片压缩到底在动什么"
+        },
+        "一张位图本质是一张像素表格，每个格子里记三个数字：红、绿、蓝。压缩算法找的是这张表里的重复规律，把规律记成一段短描述，而不是一格一格抄数字。重复越多，能省下来的空间越大。",
+        {
+          "type": "ul",
+          "items": [
+            "空间冗余：大片同色的天空、墙面、虚化背景，一行描述就能覆盖一整片区域",
+            "编码冗余：同一串数值出现得越频繁，越能用更短的符号代替，思路和压缩包一样",
+            "视觉冗余：人眼对高频细节和细微色差不敏感，这部分数据可以记得更粗"
+          ]
+        },
+        "压缩不等于把图片缩小。尺寸不变、像素数量不变，变的是记录这些像素要花多少字节。把这两件事分开，后面大部分困惑都会消失。",
+        {
+          "type": "h2",
+          "text": "有损压缩和无损压缩的区别"
+        },
+        "两种方式的差别只有一个：解压之后能不能还原成原始字节。能还原的叫无损，不能还原的叫有损。",
+        {
+          "type": "ul",
+          "items": [
+            "无损：PNG、WebP 无损模式、TIFF 的 LZW。解压后逐字节相同，适合截图、图表和带文字的图",
+            "有损：JPEG、WebP 有损模式、AVIF。丢掉一部分人眼不易察觉的信息，换来体积大幅下降，适合照片",
+            "有损格式会累积损失：每次打开 JPEG 再另存一次，都会再丢一层细节",
+            "需要多次编辑时，中途用 PNG 或源文件保存，最后一步再输出 JPEG"
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "常见图片格式各自用哪种方式压缩"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "JPEG：有损，照片的默认选择，不支持透明",
+            "PNG：无损，支持透明，适合界面截图和线条图，拿它存照片体积会非常大",
+            "WebP：有损和无损都支持，同等画质下通常比 JPEG 小，主流浏览器已经覆盖",
+            "AVIF：以有损为主，压缩率更高但编码更慢，适合不常变动的图库",
+            "GIF：无损但只有 256 色，只适合简单动图，不适合照片"
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "什么时候该压缩，什么时候不该"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "该压缩：网页图片、邮件附件、有大小限制的上传表格和报名系统",
+            "该压缩：只在屏幕上看的照片，原始分辨率在手机上根本用不上",
+            "不该压缩：要印刷或大幅输出的图，先按输出尺寸重采样再决定",
+            "不该压缩：已经压过一次的 JPEG，再压一遍收益很小，画质损失却很明显",
+            "顺序是先改尺寸再压缩：长边砍掉一半，像素数量降到四分之一，这一步比调质量档位有效得多"
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "新手最容易踩的四个坑"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "只看文件大小不看画质：压到 100% 放大还看得下去就够了，别追最小体积",
+            "用截图代替导出：截图锁死分辨率，也会丢掉原图的色彩信息",
+            "压完覆盖原图：永远留一份未压缩的主文件，压缩只做副本",
+            "不看实际传输量：浏览器开发者工具网络面板的 transferred 一栏，才显示读者真正下载了多少"
+          ]
+        },
+        "想直接动手的话，image-compressor-saas.shop 在浏览器里完成压缩，图片不上传服务器。设定目标体积的做法见 /blog/compress-jpg-under-100kb，字节和加载速度的关系见 /blog/image-compression-affects-page-speed，先改尺寸再压缩的顺序见 /blog/resize-and-compress-image。",
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "压缩图片会降低画质吗？",
+              "a": "有损压缩一定会，无损压缩不会。JPEG 每次保存都会重新量化一次，反复保存会累积模糊和色块；PNG 解压后与原始字节完全一致。多数网页场景下把质量设在 75 到 85 之间，肉眼几乎分辨不出差别。"
+            },
+            {
+              "q": "压缩和改尺寸是一回事吗？",
+              "a": "不是。改尺寸减少像素数量，压缩减少描述这些像素所需的字节。想省体积就先改尺寸，这一步的收益比调质量档位大得多，两者还能叠加使用。"
+            },
+            {
+              "q": "压缩后的图片还能恢复原样吗？",
+              "a": "有损压缩之后不能。丢掉的信息没有备份，市面上号称能还原的工具只是补上看起来合理的细节，不是恢复。所以压缩之前一定留一份原图。"
+            },
+            {
+              "q": "一张图压到多大才算合适？",
+              "a": "看用途。网页正文配图长边 1200 到 1600 像素通常够用，社交媒体按平台给出的建议尺寸走，邮件附件按对方限制来。没有统一数字，从实际展示尺寸反推最稳。"
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "text": "到 image-compressor-saas.shop 在浏览器内压缩图片",
+          "href": "/"
+        }
+      ],
+      "en": [
+        "Image compression does exactly one thing: describe the same picture with fewer bytes. A 4000 by 3000 photo from a phone holds tens of megabytes of raw pixel data, and the JPEG you actually share usually lands around two or three. This is written for someone meeting the idea for the first time, so no formulas, just what compression changes and when it starts costing visible quality.",
+        {
+          "type": "h2",
+          "text": "What image compression actually changes"
+        },
+        "A bitmap is a grid of pixels, and each cell stores three numbers for red, green and blue. A compressor looks for repetition in that grid and writes a short description of the pattern instead of copying every cell. More repetition means more bytes saved.",
+        {
+          "type": "ul",
+          "items": [
+            "Spatial redundancy: a flat sky, a plain wall, a blurred background, where one line covers a whole region",
+            "Coding redundancy: values that repeat often get shorter symbols, the same idea behind a zip archive",
+            "Visual redundancy: eyes miss fine detail and small colour shifts, so those bytes can be recorded more coarsely"
+          ]
+        },
+        "Compression is not resizing. The display size and the pixel count stay the same, and what shrinks is the number of bytes needed to record those pixels. Once you separate the two ideas, most of the confusion goes away.",
+        {
+          "type": "h2",
+          "text": "Lossy and lossless compression compared"
+        },
+        "The two differ on a single question: does the decoded file match the original byte for byte. If yes, it is lossless. If not, it is lossy.",
+        {
+          "type": "ul",
+          "items": [
+            "Lossless: PNG, lossless WebP, LZW in TIFF. Decoding reproduces the original exactly, which suits screenshots, charts, and anything containing text",
+            "Lossy: JPEG, lossy WebP, AVIF. Information the eye barely registers is dropped in exchange for a much smaller file, which suits photographs",
+            "Lossy formats accumulate damage, since opening a JPEG and saving it again removes another layer of detail each time",
+            "Keep a lossless or original copy while you edit, and export to JPEG only as the final step"
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "What the common image formats do"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "JPEG: lossy, the default for photographs, no transparency",
+            "PNG: lossless, supports transparency, right for interface screenshots and line art, far too large for photos",
+            "WebP: both lossy and lossless, usually smaller than JPEG at matched quality, supported across current browsers",
+            "AVIF: mainly lossy, compresses further, slower to encode, worth it for libraries that rarely change",
+            "GIF: lossless but capped at 256 colours, fine for simple animation, wrong for photographs"
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "When to compress and when to leave it alone"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Compress: images for a web page, email attachments, forms and portals that cap upload size",
+            "Compress: photos you will only ever view on a screen, where the full resolution is never used",
+            "Leave alone: anything headed for print or a large output, resample to the output size first and decide after that",
+            "Leave alone: a JPEG that has already been compressed once, because a second pass saves little and costs visible quality",
+            "Resize before compressing, since halving the long edge removes about three quarters of the pixels and beats any quality slider"
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "Four mistakes beginners make"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Chasing the smallest file instead of checking the result at 100 percent zoom",
+            "Using a screenshot instead of an export, which locks the resolution and drops colour data",
+            "Overwriting the original, instead of keeping one untouched master and compressing a copy",
+            "Ignoring the transferred column in the network panel, the only place that shows what readers actually download"
+          ]
+        },
+        "To try it, image-compressor-saas.shop compresses inside the browser so images never reach a server. Target an exact size with /blog/compress-jpg-under-100kb, see how bytes relate to load time in /blog/image-compression-affects-page-speed, and get the resize-then-compress order right with /blog/resize-and-compress-image.",
+        {
+          "type": "faq",
+          "items": [
+            {
+              "q": "Does image compression reduce quality?",
+              "a": "Lossy compression always does, lossless does not. JPEG re-quantises on every save, so repeated saves build up blur and banding, while PNG decodes back to the original bytes. For most web use a quality setting between 75 and 85 is visually indistinguishable from the original."
+            },
+            {
+              "q": "Is compressing the same as resizing?",
+              "a": "No. Resizing reduces the number of pixels, and compression reduces the bytes used to describe them. Resize first when you want a smaller file, since that saves far more than any quality setting, then compress on top of it."
+            },
+            {
+              "q": "Can a compressed image be restored?",
+              "a": "Not after lossy compression. The discarded data has no backup, and tools that claim otherwise only invent plausible detail. Keep the original before compressing anything."
+            },
+            {
+              "q": "How small should one image be?",
+              "a": "It depends on where it goes. A body image on a page is usually fine at 1200 to 1600 pixels on the long edge, social platforms publish their own recommended sizes, and email follows whatever limit the recipient sets. Work backwards from the real display size."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "text": "Compress images in your browser on image-compressor-saas.shop",
+          "href": "/"
+        }
+      ]
+    }
+  },
 ];
 
 export function getPost(slug: string) {
