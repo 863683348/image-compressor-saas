@@ -5443,6 +5443,177 @@ export const POSTS: BlogPost[] = [
       ]
     }
   },
+  {
+    slug: "compressed-vs-resized-image",
+    date: "2026-10-07",
+    title: {
+      zh: "压缩过的图片和改过尺寸的图片，差在哪",
+      en: "Compressed vs Resized Image: What Actually Changes",
+    },
+    description: {
+      zh: "压缩和改尺寸都能让图片变小，但动的东西完全不同：改尺寸丢像素，压编码动存储方式。这篇用同一张照片的实测数字说明两者差别、什么时候先改尺寸再压缩，以及四个最常见误区。",
+      en: "Compress vs resize: both shrink a file, and that is where the similarity ends. Resizing discards pixels, compression keeps every pixel and changes how they are stored. Same-photo numbers, a decision order, and four mistakes.",
+    },
+    keywords: [
+      "compress vs resize",
+      "compressed vs resized image",
+      "difference between compressing and resizing an image",
+      "resize or compress image for web",
+      "does resizing reduce image quality",
+      "图片压缩和改尺寸的区别",
+      "先压缩还是先改尺寸",
+    ],
+    content: {
+      zh: [
+        "上传被拒之后，多数人会遇上同一个选择：压缩还是改尺寸。两者都能让文件变小，相似之处到此为止。改尺寸直接丢掉一部分像素，剩下那部分保持原样；压缩一个像素都不动，只把这些数据怎么存变得更省。选错了，要么文件还是超限，要么图糊了。这篇用同一张照片的实测数字把两件事分开讲清楚。",
+        { type: "h2", text: "改尺寸动了什么" },
+        "改尺寸改的是像素总数。4000×3000 变成 1200×900，等于从原来的网格里重新取样一次，留在格点之间的细节就此消失，没有任何工具能把它们找回来。剩下那部分像素的值没有被重新编码，所以边缘和文字依然锐利。",
+        {
+          type: "ul",
+          items: [
+          "4000×3000 的照片有 1200 万像素，缩到 1200×900 只剩约 108 万",
+          "体积大致随像素数同比例下降，常见是缩小 85% 到 95%",
+          "边缘和文字保持清晰，因为除了重采样之外没有第二步重编码",
+          "不可逆。原尺寸那份必须单独留着",
+          "尺寸小于实际展示区域时，放大看就是软的",
+          ],
+        },
+        { type: "h2", text: "压缩动了什么" },
+        "压缩不动像素网格，动的是这些像素的存储方式。JPEG、WebP 这类有损格式挑人眼不敏感的细节丢掉，PNG 这类无损格式只去掉统计上的冗余，解压后能还原到一模一样。质量参数往下压，压缩痕迹就开始显出来了。",
+        {
+          type: "ul",
+          items: [
+          "一个像素都不丢，也不重新采样",
+          "无损压缩可以还原到逐字节相同",
+          "有损压缩会在边缘和文字周围留下块状痕迹",
+          "照片通常能压到原体积的 60% 到 70% 之前都不明显",
+          "同一份有损文件反复压，每压一轮都掉一次细节",
+          ],
+        },
+        { type: "h2", text: "同一张照片，四种处理方式" },
+        "下面用一张手机直出的 4000×3000 照片举例，数字是这类文件的常见量级，不代表所有设备。",
+        {
+          type: "ul",
+          items: [
+          "相机直出 JPEG：4.2MB，4000×3000",
+          "只改尺寸到 1600×1200：约 480KB，正常观看尺寸下锐利度没变",
+          "只压缩到质量 75，不动尺寸：约 1.3MB，细节全在，树叶和头发周围开始发毛",
+          "先改到 1600×1200 再压到质量 75：约 190KB，也是多数网页真正发出去的形态",
+          "连续三次压到质量 60：约 900KB，画面明显比一次压到 1.3MB 的差",
+          ],
+        },
+        "最后两行的对比最能说明问题：先改尺寸再压一次，体积最小画质还行；连续压缩三次，体积反而更大，画质更差。",
+        { type: "h2", text: "先做哪一步" },
+        "从这张图最终用在哪倒推。页面上只占 800 像素宽的位置，那就没什么好讨论的：先改尺寸，再轻轻压一次。",
+        {
+          type: "ul",
+          items: [
+          "网页与社交：改到展示宽度的两倍左右，然后压缩一次",
+          "印刷排版：印刷尺寸下不要低于每英寸 300 像素",
+          "带文字的截图：保持像素尺寸，用 PNG，重新采样会把文字压糊",
+          "卡文件上传上限（比如 100KB）：先改尺寸，只靠压缩基本到不了",
+          "归档：只改尺寸和压缩派生出来的副本，原始那份别动",
+          ],
+        },
+        { type: "h2", text: "代价最大的四个习惯" },
+        "多数画质问题都来自下面这几条，而不是算法本身。相关做法可以接着看 /blog/lossy-vs-lossless-compression、/blog/resize-and-compress-image 和 /blog/compress-jpg-under-100kb。",
+        {
+          type: "ul",
+          items: [
+          "直接覆盖原文件来改尺寸。降过一次之后，印刷尺寸和大屏就再也回不去了",
+          "同一份 JPEG 反复压。每一轮都在上一轮的结果上再丢细节",
+          "为了追某个 KB 上限，把质量一路压到 30。先改尺寸能早得多达标，画质还更好",
+          "把 PNG 截图改尺寸后再存 PNG。文字边缘会重新采样，压成糊边就该换 JPEG 了",
+          ],
+        },
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            { q: "改尺寸算不算降低画质？", a: "看怎么定义。剩下的像素没有被重新编码，所以在目标尺寸下看是清楚的；被丢掉的那些细节确实没了，放大会遇到软边。判断标准应当是「在多大尺寸下看」，而不是绝对画质。" },
+            { q: "该压缩还是该改尺寸？", a: "图上放多大就先改成多大，多数情况是展示宽度的两倍左右，然后再压一次。只有在像素尺寸必须保留时才反过来，比如带文字的截图和要用于印刷的文件。" },
+            { q: "改小之后还能恢复到原来的清晰度吗？", a: "不能。插值放大只会根据周围像素猜，看着像素数回来了，细节回不来。这也是为什么改尺寸之前一定要留一份原始文件。" },
+            { q: "为什么改了尺寸文件还是很大？", a: "改尺寸只按像素数降一档。原图本身编码效率很低，或者带 alpha 通道、元数据、多张预览图时，降完还是偏大。这时候在改尺寸之后补一次压缩，通常还能再降一半以上。" },
+          ],
+        },
+        { type: "cta", text: "在 image-compressor-saas.shop 浏览器本地压缩图片", href: "/" },
+      ],
+      en: [
+        "Compress vs resize is the question most people hit right after an upload gets rejected. Both make a file smaller, and that is where the similarity ends. Resizing throws away pixels and leaves what remains untouched. Compression keeps every pixel and changes how those pixels are stored. Pick the wrong one and either the file stays over the limit or the image goes soft. The numbers below come from one ordinary photo, so you can see where each step actually lands.",
+        { type: "h2", text: "What resizing changes" },
+        "Resizing changes how many pixels the image holds. Going from 4000 x 3000 to 1200 x 900 resamples the grid once, and everything that lived between the surviving samples disappears. No tool brings it back. The pixels that remain were not re-encoded, which is why edges and small text stay crisp.",
+        {
+          type: "ul",
+          items: [
+          "A 4000 x 3000 photo holds 12 million pixels; at 1200 x 900 it holds about 1.08 million",
+          "File size falls roughly with the pixel count, often 85 to 95 percent smaller",
+          "Edges and text stay clean because nothing outside of the resample was re-coded",
+          "It cannot be reversed. Keep the full-size copy separately",
+          "An image resized below its display area looks soft the moment someone zooms",
+          ],
+        },
+        { type: "h2", text: "What compression changes" },
+        "Compression leaves the pixel grid alone and works on how those pixels are stored. Lossy formats like JPEG and WebP drop detail that human vision struggles to resolve. Lossless formats like PNG only remove statistical redundancy, and decompression returns the exact bytes. Push the quality setting far enough and the artefacts stop hiding.",
+        {
+          type: "ul",
+          items: [
+          "No pixels are lost and nothing is resampled",
+          "Lossless compression restores the file byte for byte",
+          "Lossy compression leaves blocking around edges and letterforms",
+          "A photo usually reaches 60 to 70 percent of its original size before artefacts turn obvious",
+          "Running lossy compression on the same file again costs detail every pass",
+          ],
+        },
+        { type: "h2", text: "Same photo, four treatments" },
+        "These figures use a straight-out-of-camera 4000 x 3000 holiday photo. They are the magnitudes you normally see for this kind of file, not a universal result.",
+        {
+          type: "ul",
+          items: [
+          "Original JPEG from the camera: 4.2 MB at 4000 x 3000",
+          "Resized to 1600 x 1200 only: about 480 KB, and sharpness is unchanged at normal viewing size",
+          "Compressed to quality 75 with no resize: about 1.3 MB, all detail present but foliage and hair start to fringe",
+          "Resized to 1600 x 1200 then compressed to 75: about 190 KB, which is what most pages actually ship",
+          "Compressed three separate times at quality 60: about 900 KB, and visibly worse than the 1.3 MB single pass",
+          ],
+        },
+        "The last two rows settle the argument. Resize once and compress once gives the smallest file and acceptable sharpness. Compressing the same file three times leaves it larger and worse looking.",
+        { type: "h2", text: "Which one to reach for first" },
+        "Work backwards from where the image ends up. If the layout shows it 800 pixels wide, there is nothing to discuss: resize first, then apply one light compression pass.",
+        {
+          type: "ul",
+          items: [
+          "Web page or social post: resize to roughly twice the displayed width, then compress once",
+          "Print layout: stay above about 300 pixels per inch at the printed size",
+          "Screenshots with text: keep the pixel dimensions and use PNG, since resampling turns letters to mush",
+          "A hard upload cap such as 100 KB: resize first, because compression alone rarely gets there",
+          "Archive copies: resize and compress a derivative only, and never touch the original",
+          ],
+        },
+        { type: "h2", text: "Four habits that cost the most" },
+        "Most quality complaints trace back to these rather than to the codec. Related reads sit at /blog/lossy-vs-lossless-compression, /blog/resize-and-compress-image, and /blog/compress-jpg-under-100kb.",
+        {
+          type: "ul",
+          items: [
+          "Resizing over the original file. Once it is down, the print-sized and large-screen versions are gone",
+          "Compressing the same JPEG repeatedly, since each pass discards detail from the previous result",
+          "Dragging quality down to 30 to hit a KB cap. Resizing reaches the target far earlier and looks better doing it",
+          "Resizing a PNG screenshot and saving it as PNG. Text edges get resampled, and once they blur you should have switched to JPEG",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Does resizing reduce image quality?", a: "It depends on the size you judge it at. The surviving pixels were not re-encoded, so the image is clean at its target size. The discarded detail really is gone, and enlarging shows soft edges. The useful test is the viewing size, not absolute sharpness." },
+            { q: "Should I resize or compress an image?", a: "Resize to the size it will actually be used at, usually around twice the displayed width, then compress once. Reverse the order only when the pixel dimensions have to survive, such as screenshots with text or files heading to print." },
+            { q: "Can I restore sharpness after resizing?", a: "No. Enlarging interpolates from neighbouring pixels, so the pixel count comes back and the detail does not. That is why the full-size file has to be kept before anything gets resized." },
+            { q: "Why is my file still large after resizing?", a: "Resizing only cuts the pixel count once. If the source was encoded inefficiently, or carries an alpha channel, metadata, and embedded previews, the result stays heavy. One compression pass after resizing usually takes another half off." },
+          ],
+        },
+        { type: "cta", text: "Resize and compress images locally on image-compressor-saas.shop", href: "/" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string) {
