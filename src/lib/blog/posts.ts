@@ -5614,6 +5614,155 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "image-resolution-vs-file-size",
+    date: "2026-10-08",
+    title: {
+      zh: "分辨率与文件大小：改哪个才管用",
+      en: "Image Resolution vs File Size: Which One Should You Change",
+    },
+    description: {
+      zh: "分辨率和文件大小经常被当成一件事，其实一个管像素多少，一个管这些像素怎么存。这篇讲清什么时候该改分辨率、什么时候该压缩，以及为什么高分辨率的图也可能很小。",
+      en: "Resolution and file size get treated as one thing, but one counts pixels and the other counts bytes. Here is when to resize, when to compress, and why a high resolution image can still be small.",
+    },
+    keywords: [
+      "resolution vs file size",
+      "image resolution vs file size",
+      "does higher resolution mean bigger file",
+      "reduce file size without changing resolution",
+      "pixels vs file size",
+      "分辨率和文件大小的关系",
+      "图片分辨率与体积",
+    ],
+    content: {
+      zh: [
+        "把分辨率调低和把文件压小是两件事，混在一起谈就容易做错决定。分辨率说的是横向乘纵向一共有多少个像素，文件体积说的是这些像素占用了多少字节。分辨率高的照片体积通常更大，但两者之间不存在固定换算：一张 4000×3000 的纯色截图可能只有 200KB，一张 1200×900 的树叶特写可能超过 1MB。想让文件变小，先弄清是哪一项在撑着体积。",
+        { type: "h2", text: "分辨率管的是像素数量" },
+        "分辨率是几何量，跟压缩算法无关。它决定的是画面里有多少个格子，以及这些格子最多能吃掉多少字节。",
+        {
+          type: "ul",
+          items: [
+            "4000×3000 是 1200 万个像素点，每个点都要占位置",
+            "缩到 2000×1500，像素数变成四分之一，体积天花板也大致降到四分之一",
+            "不可逆。重新采样丢掉的细节，任何工具都补不回来",
+            "打印按每英寸 300 像素算下限，低于这个就会看出颗粒",
+            "网页按展示宽度算，1600 像素宽的图放在 800 宽的位子上，等于多给了一倍",
+          ],
+        },
+        { type: "h2", text: "体积管的是这些像素怎么存" },
+        "同样的像素数可以有完全不同的体积，差别全在编码方式和画面内容上。",
+        {
+          type: "ul",
+          items: [
+            "JPEG、WebP 这类有损格式挑人眼不敏感的细节丢掉",
+            "PNG 无损压缩只去掉统计冗余，解压后逐字节相同",
+            "像素数一样时，画面越杂乱体积越大，树叶、毛发、噪点都难压",
+            "纯色、渐变、大面积天空压得动，纯色截图能小到几十 KB",
+            "元数据、嵌入预览、alpha 通道也在悄悄占体积",
+          ],
+        },
+        { type: "h2", text: "同一张照片的四种数字" },
+        "下面用一张手机直出的 4000×3000 照片举例，数字是这类文件的常见量级。",
+        {
+          type: "ul",
+          items: [
+            "相机直出 4000×3000，约 4.2MB",
+            "只改分辨率到 1600×1200，约 480KB，正常观看尺寸下锐利度没变",
+            "只压到质量 75、分辨率不动，约 1.3MB，细节都在",
+            "先改分辨率再压一次，约 190KB，这是多数网页实际发出去的形态",
+            "连续压三次到质量 60，约 900KB，比压一次更大也更差",
+          ],
+        },
+        "最后两行最能说明问题：先改分辨率再压一次最划算，反复压同一份最亏。",
+        { type: "h2", text: "按用途倒推该动哪一个" },
+        {
+          type: "ul",
+          items: [
+            "网页展示：先改到展示宽度的两倍左右，再压一次",
+            "邮件附件和上传上限：先改分辨率，只靠压缩往往到不了",
+            "带文字的截图：保持分辨率，用 PNG，重新采样会让文字发糊",
+            "印刷：分辨率不能降，只能从压缩和格式上省",
+            "归档：只改派生的副本，原始那份别动",
+          ],
+        },
+        "相关做法见 /blog/resize-and-compress-image、/blog/compress-jpg-under-100kb 和 /blog/how-webp-compression-works。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "分辨率越高文件一定越大吗？", a: "不一定。像素数只是体积的上限，实际大小取决于画面内容和编码方式。同一分辨率下，纯色截图和满屏树叶的照片能差出十倍。" },
+            { q: "不改分辨率能把文件压小吗？", a: "能，但幅度有限。压缩在像素数不变的前提下去掉冗余，通常能省三到七成。要降到 100KB 这种硬上限，多半还是得先改分辨率。" },
+            { q: "为什么我把分辨率降到一半，体积只少了三成？", a: "因为除了像素，体积里还有元数据、嵌入预览和 alpha 通道。改完分辨率再压一次，这部分通常还能再砍一半。" },
+            { q: "打印要不要为了省体积降分辨率？", a: "不要。打印尺寸下每英寸 300 像素是常见下限，降了就会出颗粒。只能从压缩和格式上想办法。" },
+          ],
+        },
+        { type: "cta", text: "在 image-compressor-saas.shop 上按用途改分辨率、压体积，文件不出本机", href: "/" },
+      ],
+      en: [
+        "Lowering resolution and shrinking a file get talked about as if they were one action, which is where bad decisions start. Resolution counts how many pixels the image has across and down. File size counts how many bytes those pixels take to store. Higher resolution usually means a bigger file, but there is no fixed ratio between them: a 4000x3000 screenshot of a flat colour can be 200KB, while a 1200x900 close-up of leaves can pass 1MB. Before you try to make a file smaller, work out which of the two is holding the size up.",
+        { type: "h2", text: "Resolution governs the pixel count" },
+        "Resolution is a geometric quantity and has nothing to do with the codec. It decides how many cells the picture is built from, and therefore the most those cells can weigh.",
+        {
+          type: "ul",
+          items: [
+            "4000x3000 is 12 million pixels, and every one of them takes space",
+            "Dropping to 2000x1500 quarters the pixel count, and the size ceiling drops by roughly the same factor",
+            "It does not reverse. Detail lost to resampling cannot be recovered by any tool",
+            "Print works to a floor of about 300 pixels per inch, and below that you see grain",
+            "On the web, what matters is display width. A 1600 pixel image in an 800 pixel slot ships twice what anyone can see",
+          ],
+        },
+        { type: "h2", text: "File size governs how those pixels are stored" },
+        "The same pixel count can produce wildly different sizes, and the difference comes from the codec and from what is in the frame.",
+        {
+          type: "ul",
+          items: [
+            "Lossy formats such as JPEG and WebP discard detail the eye tends to miss",
+            "PNG compression is lossless and removes statistical redundancy, giving byte-identical output after decoding",
+            "At the same pixel count, busier images weigh more. Leaves, hair and sensor noise resist compression",
+            "Flat colour, gradients and empty sky compress well, and a plain screenshot can land under 100KB",
+            "Metadata, embedded previews and an alpha channel add weight without showing up in the picture",
+          ],
+        },
+        { type: "h2", text: "Four sets of numbers from one photo" },
+        "These come from a 4000x3000 phone photo. Treat them as typical magnitudes rather than exact figures for your own files.",
+        {
+          type: "ul",
+          items: [
+            "Straight from the camera at 4000x3000: about 4.2MB",
+            "Resized only, to 1600x1200: about 480KB, with no visible sharpness change at normal viewing size",
+            "Compressed only, quality 75, resolution untouched: about 1.3MB, all detail intact",
+            "Resized first, then compressed once: about 190KB, which is what most pages actually ship",
+            "Compressed three times at quality 60: about 900KB, larger and worse than a single pass",
+          ],
+        },
+        "The last two lines settle it. Resize once then compress once is the cheap path, and compressing the same file repeatedly costs the most.",
+        { type: "h2", text: "Work backwards from where the image ends up" },
+        {
+          type: "ul",
+          items: [
+            "Web pages: resize to roughly twice the display width, then compress once",
+            "Email attachments and upload caps: resize first, since compression alone rarely reaches the limit",
+            "Screenshots with text: keep the resolution and use PNG, because resampling turns text edges to mush",
+            "Print: leave resolution alone and save on encoding and format instead",
+            "Archiving: only touch derived copies and keep the original where it is",
+          ],
+        },
+        "Related walks through /blog/resize-and-compress-image, /blog/compress-jpg-under-100kb and /blog/how-webp-compression-works.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Does higher resolution always mean a bigger file?", a: "No. The pixel count sets a ceiling, not the outcome. Actual size depends on how much detail the picture holds and how it is encoded, and at the same resolution a flat screenshot and a frame full of leaves can differ tenfold." },
+            { q: "Can I shrink a file without changing resolution?", a: "Yes, within limits. Compression removes redundancy while keeping every pixel, which usually saves 30 to 70 percent. Hitting a hard cap like 100KB generally needs a resize first." },
+            { q: "Why did halving the resolution only cut the size by 30 percent?", a: "Because pixels are not the only thing in there. Metadata, embedded previews and an alpha channel take space too, and one compression pass after the resize usually removes another half." },
+            { q: "Should I drop resolution to save space on print files?", a: "No. Print sizes need around 300 pixels per inch, and going under that shows grain. Save on encoding and format instead." },
+          ],
+        },
+        { type: "cta", text: "Resize and compress for the job at hand on image-compressor-saas.shop, with the file staying on your machine", href: "/" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string) {
