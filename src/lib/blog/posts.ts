@@ -5763,6 +5763,155 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "dpi-vs-ppi-explained",
+    date: "2026-10-09",
+    title: {
+      zh: "DPI 和 PPI 到底差在哪：一次讲清",
+      en: "DPI vs PPI: What the Difference Actually Is",
+    },
+    description: {
+      zh: "DPI 说的是打印机一英寸里落多少墨点，PPI 说的是图片一英寸里排多少像素。屏幕显示只跟 PPI 有关，DPI 是设备的事。只有把图送去打印时两者才碰面，这篇讲清怎么换算，以及什么时候根本不用管 DPI。",
+      en: "DPI counts printer dots per inch, PPI counts pixels per inch in the image. Screens only care about PPI, and DPI belongs to the output device. Print is the one case where the two meet, so here is the conversion and when you can ignore DPI entirely.",
+    },
+    keywords: [
+      "dpi vs ppi",
+      "dpi vs ppi explained",
+      "difference between dpi and ppi",
+      "does dpi affect image quality on screen",
+      "300 dpi for print",
+      "DPI 和 PPI 的区别",
+      "打印分辨率怎么算",
+    ],
+    content: {
+      zh: [
+        "DPI 和 PPI 经常被当成同一个东西，其实它们量的是两个不同的对象。PPI 是图片自身的属性，说的是一英寸里排了多少个像素；DPI 是输出设备的属性，说的是打印机在一英寸里落了多少个墨点。屏幕显示只跟 PPI 有关，跟 DPI 没有关系。只有把图送去打印时两者才碰面，那时你要做的是告诉打印机该用多少个墨点去还原每一个像素。",
+        { type: "h2", text: "两个缩写量的是不同的东西" },
+        {
+          type: "ul",
+          items: [
+            "PPI（pixels per inch）：图片每英寸的像素数，记在文件里，改输出尺寸就会变",
+            "DPI（dots per inch）：打印机每英寸的墨点数，属于设备参数，跟图片文件无关",
+            "一张 3000 像素宽的图，印成 10 英寸宽是 300 PPI，印成 20 英寸宽只剩 150 PPI",
+            "同一个文件在不同成品尺寸下 PPI 不同，像素总数一直没变",
+            "Photoshop 图像大小对话框里那个分辨率框填的是 PPI，不是 DPI",
+          ],
+        },
+        "像素总数才是硬指标。PPI 只是把像素总数除以输出尺寸得到的商，改尺寸就改了 PPI，一个像素都没有变多或变少。",
+        { type: "h2", text: "为什么 DPI 这个词到处乱用" },
+        {
+          type: "ul",
+          items: [
+            "扫描仪把采样精度标成 DPI，它采集的其实是像素，写成 PPI 更准确",
+            "Windows 和 macOS 的系统 DPI 缩放是另一件事，指界面元素的放大倍数",
+            "打印店说 300 DPI 交稿，实际要求是图片按成品尺寸算下来有 300 PPI",
+            "不少看图软件把 PPI 标签写成 DPI，因为后面这个词更眼熟",
+            "手机参数里的 PPI 说的是屏幕像素密度，跟图片文件里的 PPI 又不是一回事",
+          ],
+        },
+        "术语混用会带来具体的麻烦。有人以为把分辨率框从 72 改成 300 就提高了画质，那一步只改了文件里记的一个数字，像素一个没加；重采样开着的时候尺寸还会被一起改小，等于白折腾一趟。",
+        { type: "h2", text: "打印时怎么换算" },
+        {
+          type: "ul",
+          items: [
+            "先定成品尺寸：一张 6×4 英寸的照片，长边就是 6 英寸",
+            "按每英寸 300 像素倒推：6 英寸需要 1800 像素，4 英寸需要 1200 像素",
+            "低于 300 PPI 开始出颗粒，150 PPI 在铜版纸上已经看得出来",
+            "喷墨打印机实际用 1200 DPI 甚至更高去还原一个像素，墨点数远多于像素数",
+            "海报、展板这类远距离观看的成品，150 PPI 通常够用",
+            "灯箱和大幅面喷绘可以更宽松，观看距离每拉远一倍，要求就降一档",
+          ],
+        },
+        "换算只需要一次除法：像素数除以英寸数。反过来，知道成品尺寸和想要的 PPI，乘一下就知道手上的源文件够不够。",
+        { type: "h2", text: "按用途看该盯哪一个" },
+        {
+          type: "ul",
+          items: [
+            "网页和 App：只看像素尺寸，PPI 和 DPI 都不用管，浏览器按 CSS 像素摆放",
+            "高清屏：按展示宽度的两倍出图，仍然是像素尺寸问题，跟 PPI 标签无关",
+            "打印照片和画册：按成品尺寸算 PPI，300 是常见下限",
+            "扫描老照片：扫描仪上的 600 是采样精度，存档用这个档位，日后裁剪还有余量",
+            "压缩前先想清楚：打印用途不要降分辨率，只能从压缩和格式上省体积",
+          ],
+        },
+        "分辨率和文件体积的关系见 /blog/image-resolution-vs-file-size；先改尺寸再压缩的顺序见 /blog/resize-and-compress-image；遇到硬性大小上限的做法见 /blog/compress-jpg-under-100kb。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "把 PPI 从 72 改成 300 会提高画质吗？", a: "不会。那一步只改了文件里记录的一个数字，像素总数没变，画质和体积都不会变。要更多细节只能重新采集，扫描件就重扫一遍。" },
+            { q: "打印店说要 300 DPI 的图，我要给什么？", a: "给按成品尺寸算下来每英寸有 300 个像素的图。6×4 英寸就是 1800×1200 像素。直接报尺寸比报 DPI 省事，也不用争论术语。" },
+            { q: "网页用图需要设 DPI 吗？", a: "不需要。浏览器按 CSS 像素摆放图片，PPI 标签会被忽略。给到展示宽度的两倍就够了，800 像素宽的位子配 1600 像素的图。" },
+            { q: "扫描时选 300 还是 600？", a: "存档选 600。老照片多半要裁掉破损的边缘，裁完还得剩下足够像素，600 的余量比 300 宽得多，代价只是文件更大。" },
+          ],
+        },
+        { type: "cta", text: "在 image-compressor-saas.shop 上按用途算好 PPI 再压体积，文件不出本机", href: "/" },
+      ],
+      en: [
+        "DPI and PPI get used as if they were the same measurement, and they are not. PPI belongs to the image and counts the pixels in one inch of it. DPI belongs to the output device and counts how many ink dots a printer puts in one inch. A screen only cares about PPI. Print is the one place where the two meet, and what you are deciding there is how many dots the printer should spend rendering each pixel.",
+        { type: "h2", text: "The two abbreviations measure different things" },
+        {
+          type: "ul",
+          items: [
+            "PPI (pixels per inch) is stored in the file and changes whenever the output size changes",
+            "DPI (dots per inch) is a printer specification and has nothing to do with the image file",
+            "A 3000 pixel wide image printed 10 inches wide is 300 PPI, and printed 20 inches wide it is 150 PPI",
+            "The same file has different PPI at different finished sizes while the pixel count stays put",
+            "The resolution field in the Photoshop image size dialog is PPI, despite what people call it",
+          ],
+        },
+        "The pixel count is the number that matters. PPI is just that count divided by the output size, so changing the size changes PPI without adding or removing a single pixel.",
+        { type: "h2", text: "Why DPI turns up everywhere" },
+        {
+          type: "ul",
+          items: [
+            "Scanner specifications say DPI while sampling pixels, which PPI would describe more accurately",
+            "System DPI scaling in Windows and macOS is unrelated, referring to how much interface elements are enlarged",
+            "A print shop asking for 300 DPI wants 300 pixels per inch at the finished size",
+            "Plenty of viewers label PPI as DPI, since that is the word people recognise",
+            "PPI in a phone specification means screen pixel density, which is yet another meaning",
+          ],
+        },
+        "The sloppy terminology causes real mistakes. Changing the resolution field from 72 to 300 edits one number in the file and adds no pixels, and with resampling left on it shrinks the dimensions at the same time, so the whole exercise costs you detail instead of gaining it.",
+        { type: "h2", text: "How the conversion works for print" },
+        {
+          type: "ul",
+          items: [
+            "Fix the finished size first: a 6 by 4 inch print has a 6 inch long edge",
+            "Work backwards at 300 pixels per inch: 6 inches needs 1800 pixels and 4 inches needs 1200",
+            "Below 300 PPI grain starts to show, and 150 PPI is already visible on coated stock",
+            "An inkjet uses 1200 DPI or more to render a single pixel, so dots far outnumber pixels",
+            "Posters and display boards viewed from a distance are usually fine at 150 PPI",
+            "Backlit displays and large format banners can go lower, since every doubling of viewing distance relaxes the requirement",
+          ],
+        },
+        "The conversion is one division: pixels divided by inches. Going the other way, multiply the finished size by the PPI you want and you know whether the source file is big enough.",
+        { type: "h2", text: "Which one to watch depends on where the image ends up" },
+        {
+          type: "ul",
+          items: [
+            "Web and apps: only pixel dimensions count, and both PPI and DPI are ignored by the browser, which lays out in CSS pixels",
+            "High density screens: supply twice the display width, which is still a pixel dimension question rather than a PPI one",
+            "Printed photos and booklets: work out PPI at the finished size, with 300 as the usual floor",
+            "Scanning old prints: the 600 on the scanner is sampling precision, and archiving at that setting leaves room to crop later",
+            "Before compressing, decide first: print work should not lose resolution, so save on encoding and format instead",
+          ],
+        },
+        "How resolution relates to file size is covered in /blog/image-resolution-vs-file-size, the resize-then-compress order in /blog/resize-and-compress-image, and hitting a hard size cap in /blog/compress-jpg-under-100kb.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Does changing PPI from 72 to 300 improve quality?", a: "No. That edits one number stored in the file without adding pixels, so neither sharpness nor file size changes. More detail only comes from capturing it again, which for a scan means rescanning." },
+            { q: "The print shop asked for 300 DPI. What do I send?", a: "An image with 300 pixels for every inch of the finished print, which is 1800 by 1200 pixels for a 6 by 4. Quoting dimensions avoids the terminology argument altogether." },
+            { q: "Do web images need a DPI setting?", a: "No. The browser lays images out in CSS pixels and ignores the PPI tag. Twice the display width is enough, so 1600 pixels for a slot 800 pixels wide." },
+            { q: "Should I scan at 300 or 600?", a: "600 for anything you intend to keep. Old prints usually need damaged edges cropped away and still have to leave usable pixels, and the larger file is the cheaper trade." },
+          ],
+        },
+        { type: "cta", text: "Work out the PPI you need and compress on image-compressor-saas.shop, with the file staying on your machine", href: "/" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string) {
