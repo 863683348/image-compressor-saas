@@ -6065,6 +6065,147 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "what-is-a-zip-file",
+    date: "2026-10-12",
+    title: {
+      zh: "ZIP 文件是什么？打包、压缩与常见误区一次讲清",
+      en: "What Is a ZIP File? Packing, Compression and the Myths Around It",
+    },
+    description: {
+      zh: "ZIP 文件既是容器也是压缩格式：每个文件单独压缩，末尾留一份目录清单。这篇讲清它的打包原理、为什么压缩过的图片基本压不动，以及 AES 加密和 ZipCrypto 的差别。",
+      en: "A ZIP file is both a container and a compression format: every file is compressed on its own and a directory listing sits at the end. Here is how it works, why images already in JPEG barely shrink, and what separates AES encryption from legacy ZipCrypto.",
+    },
+    keywords: [
+      "zip file explained",
+      "what is a zip file",
+      "how zip compression works",
+      "zip vs 7z vs rar",
+      "why zipping images does not reduce size",
+    ],
+    content: {
+      zh: [
+        "ZIP 文件是一个容器，同时也自带一套压缩算法：里面的每个文件单独压缩，末尾再写一份目录清单，告诉解压软件每个成员叫什么、从哪个字节开始、用的是哪种压缩方式。这种结构带来两个后果：一是可以随意增删单个成员而不必重压整包，二是某些东西放进压缩包之后几乎不会变小。",
+        { type: "h2", text: "打包时到底发生了什么" },
+        {
+          type: "ul",
+          items: [
+            "压缩算法通常是 DEFLATE：先用滑动窗口把重复出现的字符串替换成「往前多少字节、长度多少」的引用，再按出现频率做一次哈夫曼编码。",
+            "每个成员文件独立压缩，所以删掉其中一个不需要重做整包；代价是无法利用不同文件之间的重复内容。",
+            "ZIP 尾部有一份中央目录，记录文件名、偏移量和校验值，因此解压软件可以先读目录再随机取某个文件。",
+            "压缩方式不止一种：不少实现支持 stored（原样存放，不压缩），压缩不了的内容就这么打包。",
+            ".zipx、.7z、.rar 是不同的容器或格式，跨平台默认支持程度不一样，.zip 是系统自带支持的那个。",
+          ],
+        },
+        { type: "h2", text: "为什么把照片塞进 ZIP 基本压不动" },
+        "这一点最常被误解：ZIP 找的是重复字节序列，而 JPEG、WebP、AVIF、MP4 这类文件在编码时已经做过一遍熵编码，输出接近随机，几乎找不到可引用的重复串。所以一包照片压完常常只小了 1% 到 3%，有时还会因为多出目录和头信息反而变大一点。",
+        {
+          type: "ul",
+          items: [
+            "JPEG、WebP、AVIF、PNG 都已经过一轮压缩，重复空间早被榨干；PNG 用的正是 DEFLATE，压zip几乎没有额外收益。",
+            "真正能变小的是文本类：CSV、日志、未压缩的 BMP、TIFF、SVG，压缩率经常达到 70% 以上。",
+            "想减小 JPEG 或 PNG 的体积，应该重编码而不是打包，取舍逻辑见 /blog/lossy-vs-lossless-compression。",
+            "PNG 不如直接转成 WebP 或 AVIF，同画质下体积通常能砍一半以上。",
+            "HTML、CSS、图片混在一起的站点资产打包，文本部分会明显变小，图片那部分基本不变。",
+          ],
+        },
+        { type: "h2", text: "容器之外的几件事：加密、校验与体积上限" },
+        {
+          type: "ul",
+          items: [
+            "加密有两代：早期的 ZipCrypto 已被证明可被快速破解，含密码的压缩包要用 AES-256。",
+            "ZIP 在每个成员上存 CRC32 校验值，用来发现传输损坏；它防的是误码，不是篡改。",
+            "旧格式单个文件和整包都不能超过 4GB，ZIP64 扩展解除这个限制，现代解压软件默认支持。",
+            "分卷压缩只是把同一个包切成若干段，解压时必须全部齐全，缺一段就读不出任何一个成员。",
+            "文件名编码是历史包袱：跨平台打包时优先选 UTF-8，否则中文名在另一套系统上可能变乱码。",
+          ],
+        },
+        { type: "h2", text: "什么时候该用 ZIP，什么时候不该" },
+        {
+          type: "ul",
+          items: [
+            "一堆文档、表格、日志要一次发出去：适合打包，邮件附件也更省事。",
+            "几百张照片要交给印刷方：打包没问题，但别指望它变小，缩小体积要先把图压好，批量流程见 /blog/batch-compress-images-multiple。",
+            "附件卡在邮件服务器的 10MB 上限：先压图片，再打包，顺序反过来几乎没用，做法见 /blog/compress-image-for-email-attachments。",
+            "只是想让一张图变小：不用打包，直接重编码，原理见 /blog/compressed-vs-resized-image。",
+            "要长期归档：选开放格式 ZIP 加未压缩或标准 DEFLATE，别依赖某个私有解压器。",
+          ],
+        },
+        "打包和压缩是两件事，混在一起就容易误判效果。背后的取舍写在 /blog/lossy-vs-lossless-compression，图片重新编码的实际差别在 /blog/compress-png-without-losing-quality，压完之后打包发出去的流程在 /blog/compress-image-for-email-attachments。",
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            { q: "ZIP 一定会让文件变小吗？", a: "不会。已经压缩过的内容几乎没有冗余可挖，尤其是 JPEG、MP4 这类格式。打包后偶尔还会因为额外的头信息和目录略微变大。" },
+            { q: "为什么有些 ZIP 解开之后出现乱码文件名？", a: "多半是打包时用了非 UTF-8 的文件名编码，另一个系统按自己的默认去读。用支持 UTF-8 的压缩软件重新打包就能解决。" },
+            { q: "加密的 ZIP 够安全吗？", a: "看用了哪一代。老式的 ZipCrypto 已被破解，只能挡住随手一解；AES-256 才是现在该用的选项，密码本身的长度仍然决定下限。" },
+            { q: "ZIP 和 7Z 该怎么选？", a: "要考虑对方能不能打开。ZIP 是各系统自带支持的那个，兼容性最好；7Z 压缩率更高但需要额外软件，适合双方都清楚场景的场合。" },
+          ],
+        },
+        { type: "cta", text: "图片体积交给重编码，打包只负责归拢文件：在 image-compressor-saas.shop 压缩后打包发送", href: "/" },
+      ],
+      en: [
+        "A ZIP file is a container and a compression format in one. Every member inside is compressed on its own, and a directory listing at the end tells whatever opens it the name of each member, which byte it starts at and how it was stored. Two things follow from that structure: single members can be added or removed without rebuilding the archive, and some payloads barely shrink once they are inside.",
+        { type: "h2", text: "What happens when files get zipped" },
+        {
+          type: "ul",
+          items: [
+            "The usual method is DEFLATE: a sliding window replaces repeated strings with a reference saying how far back and how long the match was, then a Huffman pass encodes symbols by frequency.",
+            "Each member is compressed independently, so removing one does not force a rebuild of the rest. The trade-off is that identical blocks shared between two files cannot be exploited.",
+            "A central directory sits at the end of the file carrying names, offsets and checksums, which is why a reader can open one member without touching the others.",
+            "There is more than one storage method; stored means packed as-is with no compression attempt, which is what happens to content that will not shrink.",
+            "Formats such as 7Z and RAR use different containers, and ZIP is the one every operating system opens out of the box.",
+          ],
+        },
+        { type: "h2", text: "Why photos barely shrink inside a ZIP" },
+        "This is the part people misjudge most often. ZIP looks for repeated byte sequences, and JPEG, WebP, AVIF and MP4 have already been through entropy coding, leaving output that is close to random. A folder of photographs commonly comes out one to three percent smaller, and occasionally slightly larger once headers and the directory are added.",
+        {
+          type: "ul",
+          items: [
+            "JPEG, WebP, AVIF and PNG have already been compressed once. PNG uses DEFLATE itself, so zipping a PNG adds almost nothing.",
+            "What does shrink is anything with redundancy left in it: CSV, logs, uncompressed BMP and TIFF, raw SVG files often drop by more than 70 percent.",
+            "To make a JPEG or PNG smaller, re-encode it rather than archive it. The trade-offs are set out in /blog/lossy-vs-lossless-compression.",
+            "Moving PNG to WebP or AVIF usually halves the size at the same quality, which no amount of zipping will do.",
+            "In a mixed bundle of HTML, CSS and images the text parts shrink noticeably and the image parts stay put.",
+          ],
+        },
+        { type: "h2", text: "Beyond packing: encryption, checksums and size limits" },
+        {
+          type: "ul",
+          items: [
+            "There are two generations of encryption. Legacy ZipCrypto has known practical attacks, so anything with a password should use AES-256.",
+            "Every member carries a CRC32 value, which detects corruption in transit. It is a check against errors, not a defence against tampering.",
+            "The original format caps individual files and the archive at 4 GB. The ZIP64 extension lifts that, and modern readers support it by default.",
+            "Split archives are one archive cut into pieces. Every piece has to be present before any member can be extracted.",
+            "File name encoding is a legacy trap: pack in UTF-8, otherwise non-Latin names can come out as garbage on another platform.",
+          ],
+        },
+        { type: "h2", text: "When to reach for ZIP, and when not to" },
+        {
+          type: "ul",
+          items: [
+            "A batch of documents, spreadsheets or logs going out at once: pack them, since email handles one attachment more gracefully than twelve.",
+            "Hundreds of photographs for a print shop: packing is fine, but do not expect shrinkage. Compress the images first, and a batch routine is in /blog/batch-compress-images-multiple.",
+            "An attachment bouncing off a 10 MB mail limit: compress the images first, then pack. Doing it the other way round changes almost nothing, see /blog/compress-image-for-email-attachments.",
+            "A single image that needs to be smaller: do not archive it, re-encode it. The distinction is covered in /blog/compressed-vs-resized-image.",
+            "Long term archives: choose the open ZIP format with stored or standard DEFLATE entries rather than something that needs a specific decompressor.",
+          ],
+        },
+        "Packing and compressing are two separate jobs, and treating them as one is where the wrong expectations come from. The trade-offs sit in /blog/lossy-vs-lossless-compression, re-encoding a PNG without visible damage in /blog/compress-png-without-losing-quality, and the pack-after-compress email flow in /blog/compress-image-for-email-attachments.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Does a ZIP always make files smaller?", a: "No. Content that has already been compressed has little redundancy left, particularly JPEG and MP4. An archive occasionally comes out a touch larger because of headers and the directory." },
+            { q: "Why did some file names turn into garbage after extracting?", a: "The archive was written with a non UTF-8 name encoding and the other system read it with its own default. Repacking with UTF-8 filenames fixes it." },
+            { q: "Is an encrypted ZIP secure enough?", a: "It depends on the generation. Legacy ZipCrypto has practical attacks and only stops casual snooping, while AES-256 is the option to use now. The password itself still sets the floor." },
+            { q: "Should I pick ZIP or 7Z?", a: "Judge by what the recipient can open. Every operating system handles ZIP without extra software, so it travels best. 7Z compresses further but needs a tool on the other end." },
+          ],
+        },
+        { type: "cta", text: "Let re-encoding handle image size and let ZIP handle grouping files together, after compressing on image-compressor-saas.shop", href: "/" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string) {
