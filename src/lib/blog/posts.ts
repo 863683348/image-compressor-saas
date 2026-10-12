@@ -6206,6 +6206,147 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "compress-images-facebook-ads-2026",
+    date: "2026-10-13",
+    title: {
+      zh: "Facebook 广告图片尺寸与压图：2026 年投放前要核清的几项",
+      en: "Facebook Ad Image Size and Compression: What to Check Before Launch in 2026",
+    },
+    description: {
+      zh: "Facebook 广告图片尺寸卡住投放的通常不是像素大小，而是宽高比、画面文字占比和文件重量这三件事。这篇列出信息流单图、轮播、Stories 三类版位在 2026 年的可用参数，给出压到多少 KB 不掉画质，以及上线前的五步检查。",
+      en: "Facebook ad image specs come down to three things rather than raw pixel counts: aspect ratio, how much text sits on the picture, and file weight. Here are the 2026 figures for feed, carousel and Stories placements, how far to compress without visible damage, and a five step check before the campaign goes live.",
+    },
+    keywords: [
+      "facebook ad image size",
+      "facebook feed image specs 2026",
+      "facebook carousel image size",
+      "facebook story ad size",
+      "compress images for facebook ads",
+      "Facebook 广告图片尺寸",
+      "facebook 广告图片规格 2026",
+    ],
+    content: {
+      zh: [
+        "Facebook 广告图片尺寸这件事，卡住投放的通常不是像素够不够，而是三件绑在一起的东西：版位要的宽高比、画面上文字占的面积、以及上传文件的重量。facebook 广告图片规格在 2026 年这一组数字没有大改，变化主要集中在 Reels 和 Advantage+ 的覆盖面。先把这三件事分开处理，尺寸部分其实半个小时就能核完。",
+        { type: "h2", text: "三类版位的尺寸与比例" },
+        {
+          type: "ul",
+          items: [
+            "信息流单图：建议 1080 x 1080（1:1）或 1080 x 1350（4:5），最小宽度 600 像素。4:5 在手机上占的屏幕面积更大，电商类投放多数时候选它。",
+            "轮播：每张 1080 x 1080，单条广告 2 到 10 张。同一组卡片必须保持同一个比例，否则预览里每张会被裁成不同高度，滑动时图面会跳。",
+            "Stories 与 Reels：1080 x 1920（9:16），画面上下各留出约 250 像素给头像、行动按钮和说明文字，主体不要压在这两条边上。",
+            "右侧栏与 Audience Network：素材同样按 1200 x 1200 以上准备，实际展示面积很小，主体要缩到几百像素还认得出来。",
+            "画面文字：旧的 20% 规则已经停用，现在按低、中、高三档分级，9:16 和竖构图在检测里更容易被判到中或高。",
+          ],
+        },
+        { type: "h2", text: "为什么被限制投放的多半不是尺寸" },
+        "审核这一步走的是机器比对：先把宽高比跟版位模板对着看，再把画面里的文字区域检测出来打分。像素不够只会导致图显示得模糊，比例不对或文字占比偏高才会直接压缩投放范围。同一张图在信息流能跑、切到 Stories 就提示不适用，原因往往在这里，不是文件坏了，是它要匹配的那套模板换了。",
+        {
+          type: "ul",
+          items: [
+            "把 9:16 的素材投到 1:1 版位，系统会把上下裁掉 40% 以上，画面主体的位置基本就废了。",
+            "同一套素材同时给信息流和 Stories 用，需要导出两个比例的版本，不能指望平台自动适配。",
+            "文字压在边缘安全区上，会跟行动按钮叠在一起，这类素材即使通过了检测，点击率也通常偏低。",
+            "重得多的文件在上传后会被平台再压一轮，源头越重，二次压缩留下的噪点和色块越明显。",
+          ],
+        },
+        { type: "h2", text: "压到多少 KB 不掉画质" },
+        "Facebook 拿到手会再编码一次，所以源文件越重，被处理过之后差别越看得出来。按版位给一个实用区间就够了：1080 x 1350 的 JPEG 压到 200 到 400 KB 之间，手机上看和原图几乎没有区别；9:16 因为像素最多可以放宽到 500 KB；轮播每张尽量控制在 300 KB 以内，十条卡片一起加载时才不会因为单张拖慢。取舍逻辑见 /blog/lossy-vs-lossless-compression。",
+        {
+          type: "ul",
+          items: [
+            "信息流单图：目标 200 到 400 KB，一张带货图的文案区域先按 4:5 排好再压。",
+            "轮播：每张 300 KB 上下，同一组用同一档压缩参数，避免卡片之间画质不一致。",
+            "Stories 与 Reels：可以到 500 KB，这里像素多，压太狠反而先糊的是渐变色天空这类大面积过渡。",
+            "带透明背景的素材别强行用 JPEG，透明通道会被填成白色或黑色；这类图的处理办法见 /blog/compress-png-without-losing-quality。",
+            "两者看起来差不多时优先保主体：人脸和商品边缘先开到 100% 看一遍，再决定保留哪一档参数。",
+          ],
+        },
+        { type: "h2", text: "上线前的五步检查" },
+        {
+          type: "ul",
+          items: [
+            "先定版位再定比例：是一次意图投信息流还是 Stories，这两件事决定了拍摄和构图的起点。",
+            "导出时锁定短边 1080，长边按比例算出来，不要先裁成奇怪的尺寸再去补。",
+            "把体积压到上面那组区间，压完开到 100% 看一遍人脸和商品边缘。",
+            "用广告预览工具按每个版位过一遍，重点看主体有没有被安全区盖住。",
+            "留一份未压缩的母版单独存着，下一轮改文案或换版位从母版重新导出，不要拿平台上已经处理过的成品反复救。",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Facebook 广告图片的最大上传尺寸是多少？", a: "上传接口能收的像素很宽，瓶颈在比例和清晰度。按官方建议给到 1080 系就够了，再往上堆像素没有收益：超过的部分会在到达后被平台用自己的编码器压掉。" },
+            { q: "20% 文字规则还在吗？", a: "已经停用。现在按画面文字量分低、中、高三档，实务上构图和字幕条仍然是影响投放的因素，建议关键信息放在文案区而不是图上。" },
+            { q: "同一套素材能不能同时跑信息流和 Stories？", a: "不建议直接复用。比例不同会被大幅裁切，正确做法是导出两个比例的版本，各自保留自己的安全区。" },
+            { q: "要不要用 PNG 保画质？", a: "JPEG 或 WebP 更适合照片类广告素材。PNG 只在需要透明背景或界面截图时用，同等观感下它比 WebP 大不少；PNG 与位图是不同的取舍，具体见 /blog/compressed-vs-resized-image。" },
+          ],
+        },
+        { type: "cta", text: "在 image-compressor-saas.shop 按目标 KB 压缩广告图，文件不出本机", href: "/" },
+      ],
+      en: [
+        "Facebook ad image size causes trouble less often than people expect. What actually stalls a campaign are three things bundled together: the aspect ratio the placement wants, how much of the frame is covered by text, and how heavy the uploaded file is. The 2026 numbers have barely moved, with most of the change sitting in how far Reels and Advantage+ placements reach. Separate those three and the sizing part takes half an hour.",
+        { type: "h2", text: "Sizes and ratios for the three placements" },
+        {
+          type: "ul",
+          items: [
+            "Feed single image: 1080 x 1080 (1:1) or 1080 x 1350 (4:5), with a minimum width of 600 pixels. The 4:5 frame fills more of a phone screen, which is why commerce campaigns lean on it.",
+            "Carousel: 1080 x 1080 per card, two to ten cards per ad. Every card has to share one ratio, otherwise the preview crops them to different heights and the set jumps as it scrolls.",
+            "Stories and Reels: 1080 x 1920 (9:16). Leave roughly 250 pixels clear at the top and bottom for the profile badge, the action button and the caption, and keep the subject out of that band.",
+            "Right column and Audience Network: prepare at 1200 x 1200 or larger. The real display area is small, so the subject has to survive being shrunk to a few hundred pixels.",
+            "Text on the image: the 20 percent rule was retired, and the system now grades coverage as low, medium or high. Portrait formats tend to land in the middle or upper band.",
+          ],
+        },
+        { type: "h2", text: "Why the restriction usually is not about size" },
+        "Review runs as a machine comparison. The aspect ratio is checked against the placement template first, then text regions are detected and scored. Low pixel counts merely make the picture look soft, while a wrong ratio or heavy text coverage cuts the delivery itself. That is also why one image runs fine in the feed and gets flagged as unsupported in Stories: the file is unchanged, the template it has to match is not.",
+        {
+          type: "ul",
+          items: [
+            "A 9:16 asset dropped into a 1:1 placement loses more than 40 percent off the top and bottom, which usually ruins where the subject sits.",
+            "Reusing one asset for both feed and Stories means exporting two ratio versions rather than trusting the platform to adapt it.",
+            "Text pressed against the safe zone collides with the action button, and those creatives tend to draw fewer clicks even when they pass the check.",
+            "Heavier uploads get re-encoded once they land, and the heavier the source, the more visible the second round of compression becomes.",
+          ],
+        },
+        { type: "h2", text: "How many KB before quality drops" },
+        "Facebook re-encodes whatever arrives, so a heavier source means a more visible difference afterwards. A practical range per placement is enough. A 1080 x 1350 JPEG down to somewhere between 200 and 400 KB looks almost identical to the original on a phone. The 9:16 frame can stretch to 500 KB since it carries the most pixels. Keep carousel cards around 300 KB so a set of ten does not stall because of one card. The trade-off is set out in /blog/lossy-vs-lossless-compression.",
+        {
+          type: "ul",
+          items: [
+            "Feed single image: aim for 200 to 400 KB, and lay the copy area out in 4:5 before compressing rather than after.",
+            "Carousel: around 300 KB per card, and use one set of compression settings across the group so the cards match each other.",
+            "Stories and Reels: up to 500 KB. Large smooth gradients such as evening sky are the first thing to break if you squeeze this one too hard.",
+            "Do not force a transparent background through JPEG, since the alpha channel gets flattened to white or black. The approach for those files is in /blog/compress-png-without-losing-quality.",
+            "When two options look similar, protect the subject: check faces and product edges at 100 percent and only then decide which setting to keep.",
+          ],
+        },
+        { type: "h2", text: "Five checks before launch" },
+        {
+          type: "ul",
+          items: [
+            "Pick the placement before the ratio, since running in the feed or in Stories decides how the shot is framed in the first place.",
+            "Lock the short edge at 1080 on export and let the long edge follow the ratio, rather than cropping to something odd and patching it later.",
+            "Bring the file weight into the ranges above, then inspect faces and product edges at 100 percent.",
+            "Walk every placement in the ad preview tool and check that the safe zone is not covering the subject.",
+            "Keep an uncompressed master in a separate folder. New copy or a new placement means another export from that master, not rescuing the copy the platform already processed.",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "How large can a Facebook ad image be?", a: "Practical limits come from the ratio and from sharpness rather than a pixel ceiling, and the 1080 series covers what the platform asks for. Sending a file far bigger than the placement needs is wasted effort, because the surplus gets re-encoded on arrival anyway." },
+            { q: "Is the 20 percent text rule still applied?", a: "It was retired. Text is graded as low, medium or high, and heavy coverage still affects delivery in practice, so put the key message in the copy field instead of burning it into the picture." },
+            { q: "Can one asset run in both feed and Stories?", a: "Not usefully. The cropping is severe in one direction, so export two ratio versions and give each one its own safe zone." },
+            { q: "Is PNG worth it for quality?", a: "JPEG or WebP suit photographic creative. PNG earns its size mainly for transparency or interface captures, and it runs considerably heavier than WebP at a comparable look. Comparing compression against resizing is covered in /blog/compressed-vs-resized-image." },
+          ],
+        },
+        { type: "cta", text: "Compress your ad creative to a target KB on image-compressor-saas.shop, with the file staying on your machine", href: "/" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string) {
