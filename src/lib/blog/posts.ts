@@ -6347,6 +6347,157 @@ export const POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: "google-display-ad-image-specs-2026",
+    date: "2026-10-14",
+    title: {
+      zh: "Google Ads 图片尺寸规格 2026：展示广告素材怎么压才过审",
+      en: "Google Ads Image Size Specs 2026: Display Creative That Passes Review",
+    },
+    description: {
+      zh: "Google Ads 图片尺寸不是一个数字，而是三种广告位各自的比率加一套文件大小上限：展示图片广告卡在 150 KB，自适应展示广告的营销图和 logo 上限 5120 KB。这篇列出各位置的推荐像素、体积上限和一份上传前的压缩清单。",
+      en: "Google Ads image size is not one number. It is a ratio per placement plus a size ceiling per asset type: 150 KB for classic display image ads, 5120 KB for responsive display marketing images and logos. Here are the recommended pixel sizes, the caps, and a compression checklist to run before upload.",
+    },
+    keywords: [
+      "google ads image size",
+      "google display ad image specs 2026",
+      "google ads image size requirements",
+      "responsive display ad image size",
+      "google ads logo size",
+      "Google Ads 图片尺寸",
+      "谷歌广告图片规格",
+      "展示广告图片 150KB",
+      "Google Ads 素材压缩",
+      "image-compressor-saas.shop 广告图片",
+    ],
+    content: {
+      zh: [
+        "Google Ads 图片尺寸这件事被问得多，是因为它其实不是一个数字。投放位决定比率，素材类型决定文件上限：经典展示图片广告卡在 150 KB，自适应展示广告的营销图和 logo 放宽到 5120 KB。本文按这个顺序把各位置的推荐像素、体积上限和上传前的压缩步骤列出来，比率、像素、KB 三项对齐之后，过审剩下的就只是文案问题。",
+        { type: "h2", text: "三种广告位各自的图片比率与推荐像素" },
+        {
+          type: "ul",
+          items: [
+            "营销图（自适应展示广告）1.91:1 —— 推荐 1200×628，最小 600×314；这是信息流和横幅里出现最多的一种",
+            "营销图 1:1 —— 推荐 1200×1200，最小 300×300；正方形素材在移动端版位上通用性最好",
+            "竖版 4:5 —— 推荐 960×1200，最小 480×600；走移动应用和部分版位时才需要单独出一张",
+            "Logo 1:1 —— 推荐 1200×1200，最小 128×128",
+            "Logo 4:1 —— 推荐 1200×300，最小 512×128；横幅位置的品牌标识用这个",
+            "经典展示图片广告 —— 按固定尺寸上传（300×250、728×90、300×600、320×100、160×600、970×90 等），不超过 150 KB",
+          ],
+        },
+        "比率的实用含义是裁切：同一张照片出 1.91:1 和 1:1 两版，主体位置要重新安排，直接等比缩放会把商品或人脸切掉一半。先定版位再定构图，别指望上传时系统帮你救回来。",
+        { type: "h2", text: "文件上限：150 KB 与 5120 KB 的分界" },
+        "两组上限常常被混为一谈，卡住素材的通常是第一组。",
+        {
+          type: "ul",
+          items: [
+            "经典展示图片广告：单张不超过 150 KB，格式 JPG、PNG、GIF（可动图）。这是最紧的一道坎，手机直出的照片往往一上来就超了三到五倍",
+            "自适应展示广告营销图：不超过 5120 KB，最小 300×300 或 600×314",
+            "Logo：不超过 5120 KB，PNG 允许透明背景",
+            "Gmail 与部分版位另有自己的要求，投放前在广告预览里逐个位置走一遍",
+            "各项数值会随产品调整，最终以 Ads 后台上传时的提示为准",
+          ],
+        },
+        { type: "h2", text: "上传前把图片压进合规范围的四步" },
+        {
+          type: "ul",
+          items: [
+            "先定尺寸再压体积。改画布尺寸和改压缩质量是两件不同的事，顺序错了会出现\"压到 150 KB 但画面糊得没法看\"，原因往往是一开始就拿着 4000 像素的原图硬压。尺寸与压缩的关系见 /blog/resize-and-compress-image。",
+            "按目标 KB 而不是按质量百分比去压。150 KB 是硬门槛，压到 148 KB 才算过，滑块拉到 70 没有意义。目标大小的设置思路见 /blog/compress-image-to-200kb。",
+            "横幅和纯色区块用 PNG，照片用 JPG 或 WebP。PNG 在照片上比 WebP 重不少，格式选择见 /blog/png-vs-jpg-differences 与 /blog/webp-vs-jpeg-comparison。",
+            "一次压一整套。轮播和多个版位要的是视觉一致，逐个手动调压出来的卡片亮度会不一样，批量统一参数见 /blog/batch-compress-images-multiple。",
+          ],
+        },
+        "收尾时做一次 100% 放大检查：看人脸边缘、商品轮廓和文字笔画。广告素材被压坏的位置几乎总是在边缘，缩略图上看不出来。压缩到什么程度会开始掉画质，见 /blog/does-compressing-image-reduce-quality。",
+        { type: "h2", text: "上传前的检查清单" },
+        {
+          type: "ul",
+          items: [
+            "版位先定：信息流、横幅还是竖版，决定了先出哪张比率",
+            "短边锁定到推荐值（1200 系列），长边按比率跟着走",
+            "营销图与 Logo 分开导出，Logo 保留透明背景时用 PNG",
+            "文件体积压进对应上限：经典展示 150 KB，自适应展示 5120 KB",
+            "100% 放大检查主体边缘与文字笔画",
+            "未压缩的原图另存一份，换文案或加版位时从原图重新导出",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Google Ads 展示广告的图片最大多少 KB？", a: "分两类。经典展示图片广告单张上限 150 KB，这是最常卡住素材的一道坎；自适应展示广告的营销图和 Logo 上限 5120 KB。两套规格不要混用，先确认自己投放的是哪一种。" },
+            { q: "1.91:1 和 1:1 能不能只出一张然后让系统裁？", a: "不建议。系统裁切以画面中心为准，商品或人脸偏离中心时会被切掉。两个比率各导一版，构图各自安排主体位置，效果差很多。" },
+            { q: "压到 150 KB 之后画面明显发糊，怎么办？", a: "多半是尺寸没改就硬压。先把画布缩到 300×250 这类投放实际需要的尺寸，再压体积，同样 150 KB 下清晰度会好很多。尺寸与压缩谁先谁后见 /blog/resize-and-compress-image。" },
+            { q: "Logo 用 PNG 还是 JPG？", a: "需要透明背景就必须是 PNG，JPG 不支持透明通道，透明区域会被填成白底或黑底。不需要透明时 JPG 更轻。透明文件的处理方式见 /blog/compress-png-without-losing-quality。" },
+          ],
+        },
+        { type: "cta", text: "在 image-compressor-saas.shop 按目标 KB 压缩 Google Ads 素材，文件留在本机不出网 →", href: "/" },
+      ],
+      en: [
+        "Google Ads image size gets asked about so often because it is not one number. The placement decides the ratio and the asset type decides the file cap: 150 KB for a classic display image ad, 5120 KB for responsive display marketing images and logos. This page lists the recommended pixel sizes per placement, the caps that apply to each, and the compression steps to run before upload. Once ratio, pixels and weight line up, what is left is a copy problem.",
+        { type: "h2", text: "Ratio and recommended pixels per placement" },
+        {
+          type: "ul",
+          items: [
+            "Marketing image, responsive display, 1.91:1: 1200 by 628 recommended, 600 by 314 minimum. This is the one that appears most across feeds and banners.",
+            "Marketing image 1:1: 1200 by 1200 recommended, 300 by 300 minimum. The square asset travels best across mobile placements.",
+            "Portrait 4:5: 960 by 1200 recommended, 480 by 600 minimum. Only worth a separate export when you are running app or portrait inventory.",
+            "Logo 1:1: 1200 by 1200 recommended, 128 by 128 minimum.",
+            "Logo 4:1: 1200 by 300 recommended, 512 by 128 minimum. This is the banner position brand mark.",
+            "Classic display image ads: fixed sizes such as 300 by 250, 728 by 90, 300 by 600, 320 by 100, 160 by 600 and 970 by 90, under 150 KB.",
+          ],
+        },
+        "What a ratio really means for you is cropping. The same photograph needs a separate arrangement of the subject at 1.91:1 and at 1:1, and a straight proportional scale will cut the product or the face in half. Decide the placement before you frame the shot rather than hoping the upload step rescues it.",
+        { type: "h2", text: "The size limits: where 150 KB and 5120 KB split" },
+        "These two caps are constantly confused, and it is usually the first one that stops a creative from running.",
+        {
+          type: "ul",
+          items: [
+            "Classic display image ads: 150 KB per file, in JPG, PNG or animated GIF. This is the tight gate, and a straight-from-phone photograph routinely arrives three to five times over it.",
+            "Responsive display marketing images: 5120 KB, minimum 300 by 300 or 600 by 314.",
+            "Logos: 5120 KB, with PNG allowed to keep transparency.",
+            "Gmail and some other inventory carry their own requirements, so walk every placement in the ad preview before launch.",
+            "Values move as the product changes, so treat the upload prompt in the Ads interface as the final word.",
+          ],
+        },
+        { type: "h2", text: "Four steps to land inside the limit" },
+        {
+          type: "ul",
+          items: [
+            "Set the dimensions first, compress second. Resizing and quality reduction are different operations, and doing them in the wrong order is what produces a 150 KB file that is too soft to use, usually because a 4000 pixel original was squeezed as-is. The relationship between the two is set out in /blog/resize-and-compress-image.",
+            "Compress to a target KB rather than to a quality percentage. 150 KB is a hard threshold, so 148 KB passes and 70 percent on a slider means nothing. The reasoning behind target-size settings is in /blog/compress-image-to-200kb.",
+            "PNG for banners and flat colour, JPG or WebP for photographs. PNG runs considerably heavier than WebP on a photo; format choice is covered in /blog/png-vs-jpg-differences and /blog/webp-vs-jpeg-comparison.",
+            "Compress the whole set in one pass. Carousels and multi-placement campaigns need visual consistency, and per-image manual settings leave the cards at different brightness. Uniform batch settings are in /blog/batch-compress-images-multiple.",
+          ],
+        },
+        "Finish with one check at 100 percent zoom: face edges, product outlines and the strokes of any text. Compression damage in ad creative almost always shows at the edges first, and it is invisible in a thumbnail. Where quality starts to fall away is covered in /blog/does-compressing-image-reduce-quality.",
+        { type: "h2", text: "Checklist before you upload" },
+        {
+          type: "ul",
+          items: [
+            "Placement first: feed, banner or portrait decides which ratio you export first.",
+            "Lock the short edge to the recommended value in the 1200 series and let the long edge follow the ratio.",
+            "Export marketing image and logo separately, keeping PNG for a transparent logo.",
+            "Bring the file under the cap that applies: 150 KB for classic display, 5120 KB for responsive display.",
+            "Inspect subject edges and text strokes at 100 percent.",
+            "Keep an uncompressed master apart; new copy or a new placement means a fresh export from it.",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "What is the maximum file size for a Google Ads display image?", a: "There are two answers. A classic display image ad caps at 150 KB per file, which is the limit that stops most creative, while responsive display marketing images and logos go up to 5120 KB. Do not mix the two: confirm which format your campaign uses first." },
+            { q: "Can I upload one asset and let the system crop for 1.91:1 and 1:1?", a: "You can, but it crops around the centre. Anything off-centre, a product or a face, gets cut. Export both ratios and arrange the subject in each; the difference in delivery is visible." },
+            { q: "My image looks mushy once it is under 150 KB. What went wrong?", a: "Usually the dimensions were never changed. Scale the canvas down to what the placement actually needs, such as 300 by 250, and then compress: at the same 150 KB the result is far sharper. Resize before or after compressing is covered in /blog/resize-and-compress-image." },
+            { q: "PNG or JPG for the logo?", a: "PNG whenever you need transparency, since JPG has no alpha channel and flattens it to white or black. Without transparency JPG is lighter. Transparent files are handled in /blog/compress-png-without-losing-quality." },
+          ],
+        },
+        { type: "cta", text: "Compress Google Ads creative to a target KB on image-compressor-saas.shop, with the file staying on your machine", href: "/" },
+      ],
+    },
+  },
+
 ];
 
 export function getPost(slug: string) {
