@@ -6498,6 +6498,175 @@ export const POSTS: BlogPost[] = [
     },
   },
 
+  {
+    slug: "compress-images-tiktok-specs",
+    date: "2026-10-15",
+    title: {
+      zh: "TikTok 图片规格与压缩：2026 年投放前要对齐的几项",
+      en: "TikTok Image Specs and Compression: What to Line Up Before You Ship in 2026",
+    },
+    description: {
+      zh: "TikTok 图片规格看着复杂，真正会卡住投放的只有三件事：宽高比、文件大小和安全区。这篇列出信息流单图、轮播、Spark Ads 和 Pangle 在 2026 年常用的尺寸参数，给出压到多少 KB 画质还在，以及上线前的六步检查。",
+      en: "TikTok image specs look complicated, but only three things derail a delivery: aspect ratio, file weight and safe zones. Here are the 2026 figures most campaigns need for feed, carousel, Spark Ads and Pangle, how far to compress before quality shows it, and six checks to run before launch.",
+    },
+    keywords: [
+      "tiktok image specs",
+      "tiktok ad image size",
+      "tiktok carousel image specs",
+      "tiktok image size 1080x1920",
+      "compress images for tiktok ads",
+      "TikTok 图片尺寸",
+      "tiktok 图片广告规格 2026",
+    ],
+    content: {
+      zh: [
+        "TikTok 图片规格看起来有许多组数字，实际能决定素材能不能跑的只有三件事：版位要求哪种宽高比、文件多重、以及主体有没有被界面盖住。 tiktok 图片广告规格在 2026 年依然以 1080 x 1920（9:16）为主轴，方形和横向能用，但会在信息流里留出黑边。把这三件事拆开按顺序处理，静态素材通常半天就能定稿。",
+        { type: "h2", text: "四类素材的尺寸与格式" },
+        {
+          type: "ul",
+          items: [
+            "信息流单图：推荐 1080 x 1920（9:16），支持 1:1 和 16:9，格式是 JPG 与 PNG，单图上限普遍标注到 100 MB。",
+            "轮播：每张同样按 1080 x 1920 出，一组 2 到 35 张，每张单独计算文件大小。同一组必须保持同一个比例，否则预览时每张占的高度不同，滑动会跳。",
+            "Spark Ads 图片：沿用原帖的原始尺寸，推荐值仍写在 1080 x 1920 这一档，格式同样是 JPG 与 PNG。",
+            "Pangle 展示位：常见写法是 1200 x 628（1.91:1），跟本土信息流的竖版不是一套参数，别混用。",
+            "账号头像：1:1 的 JPG 或 PNG，限制明显更严（有资料写到 50 KB 以内），这一项要单独准备，不要顺手用素材顶上。",
+          ],
+        },
+        { type: "h2", text: "为什么素材被打回来，多半不是像素不够" },
+        "TikTok 是竖屏全屏的信息流，比例不对的影响远大于分辨率少几十像素。9:16 之外的素材会被上下留出黑边，用户滑到时画面明显偏短，停留和点击一起往下掉。真正会触发机器判定的通常是两件事：低分辨率素材（把 720p 拉到 1080p 这种）以及构图上把关键信息压进了底部那块被界面占住的区域。纯粹的超限反而少见，多数人导出的横向或方形素材根本没到文件上限。",
+        {
+          type: "ul",
+          items: [
+            "把 16:9 的素材投到 9:16 版位，系统会留出大片黑边，画面主体被压到中间一条，等于主动放弃了整屏。",
+            "一组轮播里混了两种比例，预览时每张被裁成不同高度，滑动看图会跳，这类问题在后台预览里一眼能看到。",
+            "把 720p 素材拉伸到 1080 x 1920 上传，会被判画质过低，而不是判通过。",
+            "文案和行动按钮压在底部约 480 像素那条带上，会被标题栏和按钮叠住，素材即使过审点击率也偏低。",
+            "重量超标通常不是上传被拒，而是平台二次编码后噪点变多：源头越重，处理完掉得越明显。",
+          ],
+        },
+        { type: "h2", text: "压到多少 KB 画质还在" },
+        "TikTok 拿到图之后还会再编码一次，所以源文件越重，处理完以后差别越能看出来。按 1080 x 1920 这一档给个实用区间就够了：JPEG 压到 200 到 400 KB 之间，手机上看基本没有损失；画面里如果有大面积渐变（天空、背景虚化）可以放宽到 500 KB；轮播每张尽量不超过 300 KB，十几张一起加载时最先拖慢的永远是那张最大的。带透明背景的素材不要硬转 JPEG，透明通道会被填成白色或黑色，这类图的处理办法见 /blog/compress-png-without-losing-quality。",
+        {
+          type: "ul",
+          items: [
+            "信息流单图：目标 200 到 400 KB，人像和商品先按竖版构图排好再压。",
+            "轮播：每张 300 KB 上下，同一组用同一档压缩参数，卡片之间的明暗才不会打架。",
+            "大面积渐变或夜景：可以放到 500 KB，压过头先糊的是过渡区，不是主体边缘。",
+            "定帧封面别忘了压：视频素材抽出缩略图那一帧也按这套重压一遍，它在部分版位直接当封面用。",
+            "取舍逻辑拿不准时先看 /blog/lossy-vs-lossless-compression，有损和无损的分界线讲得更细。",
+          ],
+        },
+        { type: "h2", text: "安全区：别让界面盖住主体" },
+        "TikTok 会把自己的界面叠在画面上：顶部约 130 像素是状态区和顶部导航，底部约 480 像素堆着文案、行动按钮和用户名，右侧约 140 像素是点赞、评论、分享那一列按钮，左侧约 60 像素留给文字换行。稳妥做法是把 logo、卖点、必要的免责声明全部放进画面中间那块 1080 x 1310 的区域，字幕比画面垂直中心略高一点更安全。同一套竖版素材如果还要上 Meta Reels，两边的安全区并不完全重合，居中构图是唯一两边都能过的写法。同类的版位参数对比见 /blog/instagram-image-sizes-2026。",
+        {
+          type: "ul",
+          items: [
+            "顶部约 130 像素：状态区与顶部导航，标题不要贴这条边。",
+            "底部约 480 像素：文案、行动按钮、用户名的堆叠区，卖点和按钮都别放这里。",
+            "右侧约 140 像素：点赞、评论、分享、头像入口，主体别靠右。",
+            "左侧约 60 像素：文字换行区，边缘留够空白。",
+            "中间约 1080 x 1310：真正的安全构图范围，关键信息全部往这里收。",
+          ],
+        },
+        { type: "h2", text: "上线前的六步检查" },
+        {
+          type: "ul",
+          items: [
+            "先定版位再定比例：信息流、轮播还是 Pangle，这一步决定了构图和导出的起点。",
+            "锁短边 1080，长边按 9:16 算到 1920，不要先裁成奇怪的尺寸再补回去。",
+            "按上面的区间压体积，压完开到 100% 看人脸边缘、商品轮廓和文字笔画。",
+            "用预览工具按每个版位过一遍，确认主体没进上下几条安全带。",
+            "一组轮播统一压缩参数，避免卡片之间画质和亮度不一致。",
+            "留一份未压缩的母版单独存着，换版位或改文案从母版重新导出，不要反复拯救已经压过的成品。",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "TikTok 图片广告一定要 9:16 吗？", a: "不是强制，1:1 和 16:9 也能上传，但只有 9:16 能铺满全屏。横向和方形素材在信息流里会留出黑边，停留和点击通常跟着往下走。真要用横版素材，建议重新构图成竖版，而不是补黑边上传。" },
+            { q: "单张图的大小上限到底是多少？", a: "后台在不同版位标注的数字不一样，常见口径是信息流图片与轮播每张 100 MB，账号头像这类小图另有更严格的限制（有资料写到 50 KB）。写进流程时以广告后台当前显示的数值为准，别套用二手清单。" },
+            { q: "压到 200 KB 以下会不会影响画质？", a: "1080 x 1920 的 JPEG 压到 200 到 400 KB 区间，手机屏幕上基本看不出差别。真正掉画质的是两种情况：先把 720p 拉到 1080p 再压，以及同一张图被反复导出压缩。画质从哪一档开始崩，/blog/does-compressing-image-reduce-quality 讲得更具体。" },
+            { q: "几十张轮播图要怎么批量压？", a: "用同一组参数一次压完整组，保证卡片之间明暗和锐度一致；逐张手调参数的结果是每张卡片看起来都不一样。批量压缩的做法见 /blog/batch-compress-images-multiple。" },
+          ],
+        },
+        { type: "cta", text: "按目标大小压缩 TikTok 素材，文件留在你自己的机器上 —— image-compressor-saas.shop", href: "/" },
+      ],
+      en: [
+        "TikTok image specs look like dozens of numbers, but only three decide whether a creative actually runs: which aspect ratio the placement wants, how heavy the file is, and whether the interface covers the subject. TikTok ad image size figures still centre on 1080 x 1920 (9:16) in 2026, with square and landscape accepted but letterboxed in the feed. Take those three in order and a static set is usually finished in half a day.",
+        { type: "h2", text: "Dimensions and formats across four placements" },
+        {
+          type: "ul",
+          items: [
+            "In-feed single image: 1080 x 1920 (9:16) recommended, with 1:1 and 16:9 supported, JPG and PNG, and a per file cap commonly listed at 100 MB.",
+            "Carousel: every card exported at 1080 x 1920, between 2 and 35 images per set, with the cap applied to each image. Keep one ratio per set, otherwise each card crops to a different height and the swipes jump.",
+            "Spark Ads images: follow the original post dimensions. The recommended figure is still 1080 x 1920, with JPG and PNG as the accepted formats.",
+            "Pangle display: usually given as 1200 x 628 (1.91:1). This is not the same set of numbers as the vertical feed, so do not reuse one for the other.",
+            "Profile picture: 1:1 JPG or PNG with a far tighter limit, sometimes cited as 50 KB. Prepare it separately rather than cropping an ad creative into it.",
+          ],
+        },
+        { type: "h2", text: "Why creative fails, and it is rarely the pixel count" },
+        "TikTok is a full-screen vertical feed, so a wrong ratio costs far more than being a few dozen pixels short. Anything other than 9:16 gets black bars top and bottom, the frame looks visibly short as users scroll past, and dwell time and clicks go down together. What actually trips the machine check tends to be one of two things: low-resolution source material, such as 720p upscaled to 1080p, and key message pushed into the strip at the bottom that the interface occupies. Breaching the file cap is uncommon, since most sideways or square exports never come close to it.",
+        {
+          type: "ul",
+          items: [
+            "A 16:9 asset dropped into a 9:16 placement gets wide black bars, and the subject collapses into a strip across the middle, wasting the whole screen.",
+            "Mixing two ratios inside one carousel means each card crops to a different height, so the grid stutters as people swipe. The preview in Ads Manager shows it immediately.",
+            "Upscaling 720p footage to 1080 x 1920 gets flagged for low quality rather than accepted.",
+            "Copy and call-to-action placed inside the bottom 480 pixel band are covered by the caption and the button, so even an approved creative converts poorly.",
+            "An overweight file is usually not rejected on upload. It gets re-encoded, and the heavier the source, the more visible the noise afterwards.",
+          ],
+        },
+        { type: "h2", text: "How many KB before quality shows it" },
+        "TikTok re-encodes whatever you give it, so a heavier source means a more visible difference afterwards. A working range for the 1080 x 1920 tier is enough: JPEG between 200 and 400 KB looks identical to the original on a phone, and you can stretch to 500 KB when the frame has large gradients such as sky or heavy background blur. Keep each carousel card under 300 KB, because with a dozen cards loading together the heaviest one sets the pace. Do not force a transparent asset into JPEG: the alpha channel gets flattened to white or black, and /blog/compress-png-without-losing-quality covers that case.",
+        {
+          type: "ul",
+          items: [
+            "In-feed single image: target 200 to 400 KB, with portrait or product composed vertically before compressing.",
+            "Carousel: around 300 KB per card, using one compression setting across the set so the cards do not fight on brightness.",
+            "Large gradients or night scenes: up to 500 KB, since gradients break before subject edges do.",
+            "Do not forget the thumbnail frame pulled from video; run it through the same settings, because some placements use it as the cover.",
+            "When the trade-off is unclear, /blog/lossy-vs-lossless-compression draws the line between the two in more detail.",
+          ],
+        },
+        { type: "h2", text: "Safe zones, or the interface eats your subject" },
+        "TikTok overlays its own chrome: roughly the top 130 pixels hold the status area and top navigation, the bottom 480 pixels stack up the caption, call-to-action button and username, the right 140 pixels carry the like, comment and share column, and the left 60 pixels are where text wraps. The safe move is to keep logos, selling points and any required disclaimer inside the centre band of roughly 1080 x 1310, with captions sitting a little above the vertical centre. If the same vertical cut also runs on Meta Reels, the two safe zones do not line up exactly, and centre-weighted composition is the only layout that passes both. A comparable placement breakdown is in /blog/instagram-image-sizes-2026.",
+        {
+          type: "ul",
+          items: [
+            "Top 130 pixels: status area and top navigation, so no headlines against that edge.",
+            "Bottom 480 pixels: where caption, button and username stack up, so keep selling points and buttons out of it.",
+            "Right 140 pixels: like, comment, share and profile entry, so nothing important on the right.",
+            "Left 60 pixels: the wrap margin for text, so leave the edge clear.",
+            "Centre 1080 x 1310: the frame that actually reads on every device, so put everything critical inside it.",
+          ],
+        },
+        { type: "h2", text: "Six checks before launch" },
+        {
+          type: "ul",
+          items: [
+            "Placement decides the ratio: feed, carousel or Pangle sets where composition and export start.",
+            "Lock the short edge at 1080 and let the long edge reach 1920 at 9:16, rather than cropping oddly and patching later.",
+            "Compress into the range above, then inspect face edges, product outlines and text strokes at 100 percent.",
+            "Step through every placement in the preview tool and confirm nothing sits inside the bottom or top bands.",
+            "Use one compression setting across a carousel set so quality and brightness match card to card.",
+            "Keep an uncompressed master separately; new placement or new copy means a fresh export from it, not another rescue of a compressed file.",
+          ],
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Do TikTok image ads have to be 9:16?", a: "Not strictly. 1:1 and 16:9 upload fine, but only 9:16 fills the screen. Landscape and square assets letterbox in the feed, and dwell time and clicks usually follow them down. If you have landscape material, recompose it vertically rather than padding black bars around it." },
+            { q: "What is the actual file size cap per image?", a: "It varies by placement, and figures differ between sources. A common reading is 100 MB per image for feed and carousel, with a much tighter limit for small assets such as profile pictures, sometimes cited as 50 KB. Write down whatever Ads Manager shows today rather than copying a second-hand list." },
+            { q: "Will dropping under 200 KB hurt quality?", a: "At 1080 x 1920, JPEG between 200 and 400 KB is indistinguishable on a phone. What does hurt is upscaling 720p source material to 1080p before compressing, and re-exporting the same file repeatedly. Where quality starts to break is set out in /blog/does-compressing-image-reduce-quality." },
+            { q: "How should I handle a carousel running into dozens of cards?", a: "Compress the whole set in one pass with a single setting so brightness and sharpness match across cards. Adjusting each card by hand leaves every frame looking slightly different. The batch route is in /blog/batch-compress-images-multiple." },
+          ],
+        },
+        { type: "cta", text: "Compress TikTok creative to a target size on image-compressor-saas.shop, with the file staying on your machine", href: "/" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string) {
