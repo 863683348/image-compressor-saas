@@ -6666,7 +6666,250 @@ export const POSTS: BlogPost[] = [
         { type: "cta", text: "Compress TikTok creative to a target size on image-compressor-saas.shop, with the file staying on your machine", href: "/" },
       ],
     },
-  },
+  },,
+  {
+    slug: "compress-photos-iphone-3-ways",
+    date: "2026-10-20",
+    title: {
+      zh: "压缩 iPhone 照片的 3 种方法：不装 App、不传云端",
+      en: "How to Compress Photos on iPhone: 3 Ways That Need No App"
+    },
+    description: {
+      zh: "iPhone 照片压缩有三种不装 App 的做法：快捷指令批量压、邮件插入时选尺寸、Safari 打开本地压缩工具定目标大小。这篇给出每种的具体步骤、各自的短板，以及 HEIC 该不该先转 JPEG。",
+      en: "Three ways to compress photos on iPhone without installing anything: batch resize in Shortcuts, pick a size when attaching in Mail, or set a target size in a browser-local compressor. Steps for each, where each falls short, and whether to convert HEIC first."
+    },
+    keywords: [
+      "compress photos iphone",
+      "how to compress photos on iphone without app",
+      "reduce iphone photo size before emailing",
+      "iphone heic vs jpeg file size",
+      "compress iphone photos batch",
+      "压缩 iPhone 照片",
+      "iPhone 照片压缩方法",
+      "iPhone 照片太大怎么变小",
+      "iPhone 批量压缩照片"
+    ],
+    content: {
+      zh: [
+        "一张 iPhone 14 Pro 拍出来的照片，默认设置下大概是 2 到 3MB，ProRAW 能到 25MB 以上。发邮件、填在线表格、传到公司系统，卡住的概率很高。压缩 iPhone 照片这件事有三种做法，都不需要装额外 App：用系统自带的「快捷指令」批量压、用邮件 App 插入时选尺寸、或者用 Safari 打开浏览器本地压缩工具定一个目标大小。前两种零门槛但有各自的短板，第三种能控制到具体 KB。",
+        {
+          type: "h2",
+          text: "为什么 iPhone 照片这么占地方"
+        },
+        "原因有两个，一个是传感器，一个是格式。4800 万像素的传感器拍出来的原始信息量摆在那里，而 iPhone 默认用 HEIC 存，同画质下比 JPEG 小四到五成，但还是扛不住一次发二十张这种场景。HEIC 和 JPEG 的实际差别见 /blog/heic-vs-jpg-iphone-photos，需要兼容老系统时的转换步骤见 /blog/convert-heic-to-jpg-free。",
+        {
+          type: "ul",
+          items: [
+            "传感器：4800 万像素的原始数据本身就大，ProRAW 更是直接翻倍",
+            "格式：HEIC 比 JPEG 省四到五成，但接收端不一定认",
+            "连拍与实况：实况照片带一段视频，体积远超静态图"
+          ]
+        },
+        "真正决定体积的其实是像素数和压缩质量这两项，跟用什么手机拍的关系没那么大，这点在 /blog/image-resolution-vs-file-size 里拆过。",
+        {
+          type: "h2",
+          text: "方法 1：用「快捷指令」批量压缩（系统自带）"
+        },
+        {
+          type: "ul",
+          items: [
+            "打开「快捷指令」App，右上角新建",
+            "添加操作「选择照片」，打开「选择多张」",
+            "添加「调整图像大小」，把最大宽度设成 1920，横屏竖屏都够清晰",
+            "收件方用 Windows 或老系统时，再加一个「更改图像格式」选 JPEG",
+            "最后加「存储到相簿」或「存储到文件」，命名成已压缩那一类",
+            "跑一次，二十张照片几秒钟处理完"
+          ]
+        },
+        "这条路的优点是批量和自动化，缺点是精度不够。「调整图像大小」只能给宽度，不能给目标 KB，压完多大得看结果。做一版够用的归档很合适，卡着 100KB 硬限制的场景就不稳。",
+        {
+          type: "h2",
+          text: "方法 2：邮件 App 插入时选尺寸"
+        },
+        {
+          type: "ul",
+          items: [
+            "在「邮件」里新建邮件，长按正文选「插入照片或视频」",
+            "选完照片后，底部会出现小 / 中 / 大 / 实际大小四个选项",
+            "选中通常落在几百 KB，选小能压到一百 KB 上下",
+            "收件方需要看清细节时别选小，文字和人脸会先糊"
+          ]
+        },
+        "这是最省事的一种，局限也很明确：只在邮件里生效，压完拿不到一份可以复用的小文件，而且四个档位是系统定死的。邮件附件的体积区间见 /blog/compress-image-for-email-attachments 和 /blog/compress-photo-to-1mb-email。",
+        {
+          type: "h2",
+          text: "方法 3：浏览器本地压缩，能定目标大小"
+        },
+        {
+          type: "ul",
+          items: [
+            "用 Safari 打开 image-compressor-saas.shop",
+            "从「照片」里选一张或多张，不需要提前导出成 JPEG",
+            "设定目标大小，比如 200KB，或者拉质量滑块",
+            "压完直接存回「照片」，原图留在原地"
+          ]
+        },
+        "这条路的好处是三件事同时成立：不装 App、不上传到别人的服务器、能压到具体数字。文件从头到尾都在手机里处理，这点对含人脸或工作材料的照片挺重要。压缩会不会掉画质单独写在 /blog/does-compressing-image-reduce-quality，一次处理几十张的做法写在 /blog/batch-compress-images-multiple。",
+        {
+          type: "h2",
+          text: "三种方法怎么选"
+        },
+        {
+          type: "ul",
+          items: [
+            "要批量、不卡具体数字：快捷指令",
+            "只在发邮件时临时变小：邮件 App 的档位",
+            "卡着某个 KB 上限，或者照片不能外传：浏览器本地压缩",
+            "要打印：先定尺寸再压质量，别一次压到底"
+          ]
+        },
+        {
+          type: "h2",
+          text: "HEIC 还是 JPEG，先别急着转"
+        },
+        "HEIC 在同画质下比 JPEG 小，这是它在 iPhone 上成为默认格式的理由。问题出在接收端：不少企业系统、老版本 Windows 和一些在线表单不认 HEIC，传上去直接报错，而报错信息往往含糊，看起来像文件太大。判断顺序是先看收件方是谁，再决定要不要转，而不是一律先转 JPEG，因为转成 JPEG 之后再压缩，体积优势就没了。",
+        {
+          type: "h2",
+          text: "常见问题"
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "压缩后的照片还能打印吗？",
+              a: "看尺寸。压到 1920px 宽、200KB 左右，冲印 6 寸没问题，A4 以上会看出细节不足。要打印就别压太狠，先定尺寸再压质量。"
+            },
+            {
+              q: "为什么压完还是传不上去？",
+              a: "多数情况不是体积，是格式。系统不认 HEIC 时会给出模糊的报错，看起来像文件太大。先转成 JPEG 再试一次，步骤见 /blog/convert-heic-to-jpg-free。"
+            },
+            {
+              q: "快捷指令压完，原图还在吗？",
+              a: "在。快捷指令默认输出到新文件，不会覆盖「照片」里的原件。想省空间可以之后手动删，但建议先确认压完的能看。"
+            },
+            {
+              q: "一次压二十张会掉画质吗？",
+              a: "不会，批量只是把同样的一次处理跑二十遍。真正伤画质的是同一张图反复压缩，每压一次细节少一层，原因见 /blog/does-compressing-image-reduce-quality。"
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "在 image-compressor-saas.shop 给 iPhone 照片定一个目标大小，照片不离开手机",
+          href: "/"
+        }
+      ],
+      en: [
+        "A photo from an iPhone 14 Pro lands around 2 to 3 MB at default settings, and ProRAW goes past 25 MB. Emails, online forms and corporate upload portals reject those regularly. There are three ways to compress photos on iPhone, and none of them need an extra app: batch resize through the built-in Shortcuts app, pick a size when attaching in Mail, or open a browser-local compressor in Safari and set a target size. The first two have no learning curve but come with limits. The third gets you to a specific KB figure.",
+        {
+          type: "h2",
+          text: "Why iPhone photos are large"
+        },
+        "Two reasons, the sensor and the format. A 48-megapixel sensor captures what it captures, and while HEIC stores the same quality in roughly half the space of JPEG, it still buckles under sending twenty at once. The practical difference between HEIC and JPEG is set out in /blog/heic-vs-jpg-iphone-photos, and converting when an older system needs it is in /blog/convert-heic-to-jpg-free.",
+        {
+          type: "ul",
+          items: [
+            "Sensor: 48 megapixels of raw data is already large, and ProRAW roughly doubles it",
+            "Format: HEIC saves 40 to 50 percent over JPEG, but the receiving end may not read it",
+            "Bursts and Live Photos: a Live Photo carries a video clip and outweighs a still by a wide margin"
+          ]
+        },
+        "What actually drives file size is pixel count and compression quality, which has less to do with the phone than people assume. That is broken down in /blog/image-resolution-vs-file-size.",
+        {
+          type: "h2",
+          text: "Method 1: batch resize with Shortcuts"
+        },
+        {
+          type: "ul",
+          items: [
+            "Open Shortcuts, tap the plus to create a new one",
+            "Add the Select Photos action and turn on Select Multiple",
+            "Add Resize Image and set the maximum width to 1920, which holds up in both orientations",
+            "If the recipient runs Windows or something older, add Change Image Format and pick JPEG",
+            "Finish with Save to Photo Album or Save to File, and name the output something like compressed",
+            "Run it once and twenty photos are done in seconds"
+          ]
+        },
+        "Batch and automation are the win here. Precision is not: Resize Image takes a width, not a target file size, so you find out afterwards what you got. Fine for an archive pass, unreliable against a hard 100 KB cap.",
+        {
+          type: "h2",
+          text: "Method 2: pick a size when attaching in Mail"
+        },
+        {
+          type: "ul",
+          items: [
+            "Start a new message in Mail, long press the body, choose Insert Photo or Video",
+            "After picking photos, the Small, Medium, Large and Actual Size options appear at the bottom",
+            "Medium usually lands in the hundreds of KB, Small goes near 100 KB",
+            "Skip Small when the recipient needs to read detail; text and faces soften first"
+          ]
+        },
+        "Cheapest option by a distance, with a matching limit: it only works inside Mail, you never get a reusable small file out of it, and the four tiers are fixed. Sizes for attachments are covered in /blog/compress-image-for-email-attachments and /blog/compress-photo-to-1mb-email.",
+        {
+          type: "h2",
+          text: "Method 3: browser-local compression with a target size"
+        },
+        {
+          type: "ul",
+          items: [
+            "Open image-compressor-saas.shop in Safari",
+            "Pick one photo or several from Photos, no need to export to JPEG first",
+            "Set a target size, say 200 KB, or drag the quality slider",
+            "Save the result back to Photos and leave the original where it is"
+          ]
+        },
+        "Three things hold at once here: no app to install, no upload to someone else's server, and a number you can actually hit. The file is processed on the phone the whole way through, which matters when the pictures contain faces or work material. Whether compression costs visible quality is dealt with in /blog/does-compressing-image-reduce-quality, and doing dozens at a time in /blog/batch-compress-images-multiple.",
+        {
+          type: "h2",
+          text: "Which one to pick"
+        },
+        {
+          type: "ul",
+          items: [
+            "Batch work with no specific number in mind: Shortcuts",
+            "A one-off shrink before sending mail: the Mail size picker",
+            "A hard KB cap, or photos that should not leave the device: browser-local compression",
+            "Printing: set dimensions first, compress quality second, and stop earlier than you would for screen"
+          ]
+        },
+        {
+          type: "h2",
+          text: "HEIC or JPEG, do not convert on reflex"
+        },
+        "HEIC is smaller than JPEG at the same quality, which is why it is the default on iPhone. The trouble is at the receiving end: a fair number of corporate systems, older Windows builds and online forms do not recognise it and fail with an unhelpful error that reads like a size problem. Decide based on who is receiving rather than converting everything up front, because converting to JPEG before compressing throws away the size advantage.",
+        {
+          type: "h2",
+          text: "FAQ"
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Can a compressed photo still be printed?",
+              a: "It depends on dimensions. At 1920 px wide and around 200 KB, a 6 inch print is fine, while A4 and above shows the missing detail. For print, set dimensions first and compress quality second, and stop earlier than you would for screen."
+            },
+            {
+              q: "Why is my photo still rejected after compressing?",
+              a: "Usually the format, not the size. Systems that do not read HEIC often throw a vague error that looks like a size problem. Convert to JPEG first; the steps are in /blog/convert-heic-to-jpg-free."
+            },
+            {
+              q: "Does Shortcuts overwrite the original?",
+              a: "No. It writes to a new file and leaves the version in Photos alone. You can delete the originals afterwards to reclaim space, though check the compressed output first."
+            },
+            {
+              q: "Does compressing twenty at once hurt quality?",
+              a: "No. A batch is the same single operation run twenty times. What does hurt is compressing the same file repeatedly, where each pass removes another layer of fine detail, explained in /blog/does-compressing-image-reduce-quality."
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "Compress iPhone photos to a target size on image-compressor-saas.shop, with the file staying on your phone",
+          href: "/"
+        }
+      ]
+    }
+  }
 ];
 
 export function getPost(slug: string) {
