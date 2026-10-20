@@ -6909,6 +6909,287 @@ export const POSTS: BlogPost[] = [
         }
       ]
     }
+  },
+  {
+    slug: "compress-photos-android-no-app",
+    date: "2026-10-21",
+    title: {
+      zh: "压缩安卓手机照片的 4 种方法：不装 App 也能压到指定大小",
+      en: "How to Compress Photos on Android Without Installing an App"
+    },
+    description: {
+      zh: "压缩安卓照片有四种不装 App 的做法：相册编辑导出、Google 相册画质选项、分享时的尺寸档位、Chrome 打开浏览器本地压缩工具。这篇给出每种的具体步骤、各自的短板，以及 HEIC 该不该先转 JPEG。",
+      en: "Four ways to compress photos on Android without installing anything: export a resized copy from the gallery app, the Google Photos storage saver, the size picker when sharing, or a browser-local compressor opened in Chrome. Steps for each, where each falls short, and whether to convert HEIC first."
+    },
+    keywords: [
+      "compress photos android",
+      "how to compress photos on android without app",
+      "reduce android photo size before sending",
+      "android photo file size limit fix",
+      "compress android photos batch",
+      "压缩安卓照片",
+      "安卓手机照片压缩",
+      "手机照片太大怎么变小",
+      "安卓批量压缩照片"
+    ],
+    content: {
+      zh: [
+        "一台中端安卓机拍出来的照片，默认设置下常在 3 到 6MB，开启高像素模式能到 10MB 以上。发邮件、填报名表、传到公司系统，卡住的概率很高。压缩安卓照片有四种不装 App 的做法：相册自带的编辑导出、Google 相册的画质选项、分享时系统给的尺寸档位、以及用 Chrome 打开浏览器本地压缩工具定目标大小。前三种零门槛但控不住具体数字，第四种能压到指定 KB。",
+        {
+          type: "h2",
+          text: "为什么安卓照片这么大"
+        },
+        "原因有两个，一个是像素数，一个是编码。一亿像素模式拍出来的原始信息量摆在那里，而安卓阵营默认多用 JPEG 存，少数机型用 HEIC 或 HEIF，同画质下比 JPEG 省四到五成。省归省，一次发二十张照样扛不住。",
+        {
+          type: "ul",
+          items: [
+            "像素数：高像素模式下的原始信息量本身就大，部分机型一亿像素模式单张超过 10MB",
+            "编码：HEIC 或 HEIF 比 JPEG 省四到五成，但接收端不一定认",
+            "连拍与动态照片：带一段视频的照片体积远超静态图"
+          ]
+        },
+        "真正决定体积的是像素数和压缩质量这两项，跟用什么手机拍的关系没那么大，这点在 /blog/image-resolution-vs-file-size 里拆过。所以压缩的第一步不是找工具，是先想清楚这张照片最终要多大：发朋友圈和冲印 6 寸是完全不同的两个目标。",
+        "顺带一个常见误会：系统相册里显示的「已优化」「已备份」不代表本地文件变小了。云端存的是另一份，本地原图还在。",
+        {
+          type: "h2",
+          text: "方法 1：相册编辑里改尺寸导出"
+        },
+        {
+          type: "ul",
+          items: [
+            "在相册里打开照片，点编辑",
+            "找到裁切或调整大小的图标，不同品牌位置不同，多在工具栏第二页",
+            "选一个较小的尺寸档位，比如 1920px 宽",
+            "点「另存为副本」或「导出」，别选「保存」，那个会覆盖原图"
+          ]
+        },
+        "这条路的好处是系统自带、不产生新安装。短板也很明确：档位是固定的，压完多大要靠结果说话，而且各家相册的入口位置不一样，换台手机就得重新找一遍。",
+        {
+          type: "h2",
+          text: "方法 2：Google 相册的存储节省器"
+        },
+        "Google 相册的「存储节省器」会把已备份的照片在云端换成画质略低的版本，本地那份不受影响。它能释放的是云端空间，不是本地空间。",
+        {
+          type: "ul",
+          items: [
+            "释放的是云端配额，手机里的原图大小不变",
+            "画质略低的版本只在云端，本地打开仍是原图",
+            "已经备份完成、想让配额撑久一点时才适用"
+          ]
+        },
+        "所以如果你的目标是「把这张照片变小然后发出去」，这条路帮不上忙。",
+        {
+          type: "h2",
+          text: "方法 3：分享时选尺寸档位"
+        },
+        {
+          type: "ul",
+          items: [
+            "微信发送时，勾选「原图」才发原图，不勾就走默认压缩",
+            "Gmail 插入附件时会问你要小 / 中 / 大 / 原始大小",
+            "部分品牌相册在分享面板里直接给了「压缩后分享」"
+          ]
+        },
+        "这是最省事的一种，局限也最明确：只在那个 App 里生效，压完拿不到一份可以复用的小文件，而且档位是系统定死的。邮件附件该压到多大写在 /blog/compress-image-for-email-attachments 和 /blog/compress-photo-to-1mb-email。",
+        {
+          type: "h2",
+          text: "方法 4：Chrome 打开浏览器本地压缩，能定目标大小"
+        },
+        "如果卡着某个具体上限，比如报名表要求 200KB 以内，前三种都给不了保证。这时用浏览器本地工具：",
+        {
+          type: "ul",
+          items: [
+            "用 Chrome 打开 image-compressor-saas.shop",
+            "从相册里选一张或多张，不需要提前导出或转格式",
+            "设定目标大小，比如 200KB，或者拉质量滑块",
+            "压完直接下载，原图留在手机里"
+          ]
+        },
+        "这条路的好处是三件事同时成立：不装 App、不上传到别人的服务器、能压到具体数字。文件从头到尾都在手机里处理，对含人脸或工作材料的照片挺重要。压缩会不会掉画质单独写在 /blog/does-compressing-image-reduce-quality，一次处理几十张的做法写在 /blog/batch-compress-images-multiple。",
+        {
+          type: "h2",
+          text: "四种方法怎么选"
+        },
+        {
+          type: "ul",
+          items: [
+            "只是想顺手小一点、不看具体数字：相册编辑导出",
+            "想让云端配额撑久一点：Google 相册存储节省器",
+            "在微信或邮件里临时发一张：分享时的尺寸档位",
+            "卡着某个 KB 上限，或者照片不能外传：Chrome 打开浏览器本地压缩",
+            "一次要处理几十张：同上，批量跑一遍，见 /blog/batch-compress-images-multiple"
+          ]
+        },
+        {
+          type: "h2",
+          text: "HEIC 和 JPEG，安卓上要不要先转"
+        },
+        "部分安卓机型拍照默认存 HEIC 或 HEIF，同画质下比 JPEG 小。问题出在接收端：不少企业系统、老版本 Windows 和一些在线表单不认这个格式，传上去直接报错，而报错信息往往含糊，看起来像文件太大。",
+        "判断顺序是先看收件方是谁，再决定要不要转，而不是一律先转 JPEG，因为转成 JPEG 之后再压缩，体积优势就没了。iPhone 那边的同款判断和转换步骤见 /blog/heic-vs-jpg-iphone-photos 和 /blog/convert-heic-to-jpg-free。",
+        {
+          type: "h2",
+          text: "常见问题"
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "压缩后的照片还能打印吗？",
+              a: "看尺寸。压到 1920px 宽、200KB 左右，冲印 6 寸没问题，A4 以上会看出细节不足。要打印就别压太狠，先定尺寸再压质量。"
+            },
+            {
+              q: "为什么压完还是传不上去？",
+              a: "多数情况不是体积，是格式。系统不认 HEIC 时会给出模糊的报错，看起来像文件太大。也有部分表单同时卡尺寸和像素数，先看清限制写的是哪一项。"
+            },
+            {
+              q: "相册里「另存为副本」会不会覆盖原图？",
+              a: "不会，这选项本身就是为了留原图。但不同品牌措辞不一样，看到只有「保存」没有「另存为」时，先确认一次再点。"
+            },
+            {
+              q: "一次压二十张会掉画质吗？",
+              a: "不会，批量只是把同样的一次处理跑二十遍。真正伤画质的是同一张图反复压缩，每压一次细节少一层，原因见 /blog/does-compressing-image-reduce-quality。"
+            },
+            {
+              q: "和 iPhone 上的做法有什么差别？",
+              a: "思路一样，入口不同。iPhone 靠快捷指令做批量，安卓多数靠相册自带的编辑导出，两边都能用浏览器本地工具定目标大小。iPhone 那三种方法写在 /blog/compress-photos-iphone-3-ways。"
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "在 image-compressor-saas.shop 给安卓照片定一个目标大小，照片不离开手机",
+          href: "/"
+        }
+      ],
+      en: [
+        "A photo from a mid-range Android phone lands around 3 to 6 MB at default settings, and the high resolution modes go past 10 MB. Emails, application forms and corporate upload portals reject those regularly. There are four ways to compress photos on Android, and none of them need an extra app: export a resized copy from the gallery app, use the Google Photos storage saver, pick a size when sharing, or open a browser-local compressor in Chrome and set a target size. The first three have no learning curve but cannot hit a specific number. The fourth can.",
+        {
+          type: "h2",
+          text: "Why Android photos are large"
+        },
+        "Two reasons, the pixel count and the encoding. A high resolution mode captures what it captures, and while most of the Android side stores JPEG by default, with some models on HEIC or HEIF, those save 40 to 50 percent over JPEG at the same quality. Cheaper per photo, and it still buckles under sending twenty at once.",
+        {
+          type: "ul",
+          items: [
+            "Pixel count: high resolution modes carry the data they carry, and a 108 megapixel mode passes 10 MB per frame",
+            "Encoding: HEIC or HEIF saves 40 to 50 percent over JPEG, but the receiving end may not read it",
+            "Bursts and motion photos: a photo carrying a video clip outweighs a still by a wide margin"
+          ]
+        },
+        "What actually drives file size is pixel count and compression quality, which has less to do with the phone than people assume, broken down in /blog/image-resolution-vs-file-size. So the first step is not finding a tool but working out how large the photo needs to end up, since a feed post and a 6 inch print are two different targets.",
+        "One misconception worth clearing up: an optimised or backed up badge in the gallery app does not mean the local file shrank. The cloud holds a separate copy and the full original stays on the phone.",
+        {
+          type: "h2",
+          text: "Method 1: export a resized copy from the gallery app"
+        },
+        {
+          type: "ul",
+          items: [
+            "Open the photo in the gallery app and tap edit",
+            "Find the crop or resize icon, which sits in a different place on every brand and is often on the second page of the toolbar",
+            "Pick a smaller dimension, say 1920 px wide",
+            "Tap Save as copy or Export, not Save, which overwrites the original"
+          ]
+        },
+        "The win here is that it ships with the phone and adds no install. The limit is just as clear: the tiers are fixed, you find out the resulting size afterwards, and every manufacturer puts the entry point somewhere else, so switching phones means hunting for it again.",
+        {
+          type: "h2",
+          text: "Method 2: the Google Photos storage saver"
+        },
+        "The storage saver swaps already backed up photos for slightly lower quality versions in the cloud, and leaves the copy on your device alone. It frees cloud space, not phone space.",
+        {
+          type: "ul",
+          items: [
+            "It frees cloud quota, and the original on the phone stays the same size",
+            "The lower quality version exists only in the cloud, and opening the photo locally still shows the original",
+            "It suits a finished backup where the point is making the quota last longer"
+          ]
+        },
+        "So if the goal is making one photo smaller in order to send it, this route does nothing for you.",
+        {
+          type: "h2",
+          text: "Method 3: pick a size when sharing"
+        },
+        {
+          type: "ul",
+          items: [
+            "In WeChat, ticking Original sends the original, and leaving it unticked applies the default compression",
+            "Gmail offers Small, Medium, Large and Actual Size when you attach a photo",
+            "Some manufacturer gallery apps put a compress before sharing option directly in the share sheet"
+          ]
+        },
+        "Cheapest option by a distance, with a matching limit: it only works inside that one app, you never get a reusable small file out of it, and the tiers are fixed. What size an attachment should be is covered in /blog/compress-image-for-email-attachments and /blog/compress-photo-to-1mb-email.",
+        {
+          type: "h2",
+          text: "Method 4: browser-local compression in Chrome with a target size"
+        },
+        "Against a specific cap, say a form that demands under 200 KB, none of the first three can promise anything. Use a browser-local tool instead:",
+        {
+          type: "ul",
+          items: [
+            "Open image-compressor-saas.shop in Chrome",
+            "Pick one photo or several from the gallery, no need to export or convert first",
+            "Set a target size, say 200 KB, or drag the quality slider",
+            "Download the result and leave the original on the phone"
+          ]
+        },
+        "Three things hold at once here: no app to install, no upload to someone else's server, and a number you can actually hit. The file is processed on the phone the whole way through, which matters when the pictures contain faces or work material. Whether compression costs visible quality is dealt with in /blog/does-compressing-image-reduce-quality, and doing dozens at a time in /blog/batch-compress-images-multiple.",
+        {
+          type: "h2",
+          text: "Which one to pick"
+        },
+        {
+          type: "ul",
+          items: [
+            "A quick shrink with no specific number in mind: gallery export",
+            "Making cloud quota last longer: the Google Photos storage saver",
+            "A one-off send in WeChat or mail: the size picker when sharing",
+            "A hard KB cap, or photos that should not leave the device: browser-local compression in Chrome",
+            "Dozens at once: same answer, run them in one batch, see /blog/batch-compress-images-multiple"
+          ]
+        },
+        {
+          type: "h2",
+          text: "HEIC or JPEG, do not convert on reflex"
+        },
+        "Some Android phones save HEIC or HEIF by default, which is smaller than JPEG at the same quality. The trouble is at the receiving end: a fair number of corporate systems, older Windows builds and online forms do not read it and fail with an unhelpful error that reads like a size problem.",
+        "Decide based on who is receiving rather than converting everything up front, because converting to JPEG before compressing throws away the size advantage. The same judgement on the iPhone side, and the conversion steps, are in /blog/heic-vs-jpg-iphone-photos and /blog/convert-heic-to-jpg-free.",
+        {
+          type: "h2",
+          text: "FAQ"
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Can a compressed Android photo still be printed?",
+              a: "It depends on dimensions. At 1920 px wide and around 200 KB, a 6 inch print is fine, while A4 and above shows the missing detail. For print, set dimensions first and compress quality second, and stop earlier than you would for screen."
+            },
+            {
+              q: "Why is my photo still rejected after compressing?",
+              a: "Usually the format, not the size. Systems that do not read HEIC often throw a vague error that looks like a size problem. Some forms also cap dimensions and pixel count separately, so check which limit is written down."
+            },
+            {
+              q: "Does saving as a copy overwrite the original?",
+              a: "No, the option exists to keep the original. Wording varies by manufacturer, so when the menu only offers Save with no Save as copy, confirm once before tapping."
+            },
+            {
+              q: "Does compressing twenty at once hurt quality?",
+              a: "No. A batch is the same single operation run twenty times. What does hurt is compressing the same file repeatedly, where each pass removes another layer of fine detail, explained in /blog/does-compressing-image-reduce-quality."
+            },
+            {
+              q: "How does this differ from doing it on iPhone?",
+              a: "The logic is the same and the entry points differ. iPhone batch work runs through Shortcuts, Android mostly through the editing export in the gallery app, and both can set a target size in a browser-local compressor. The three iPhone methods are in /blog/compress-photos-iphone-3-ways."
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "Compress Android photos to a target size on image-compressor-saas.shop, with the file staying on your phone",
+          href: "/"
+        }
+      ]
+    }
   }
 ];
 
