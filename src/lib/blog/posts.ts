@@ -7190,6 +7190,183 @@ export const POSTS: BlogPost[] = [
         }
       ]
     }
+  },
+  {
+    slug: "compress-photos-for-online-forms-2026",
+    date: "2026-10-22",
+    title: {
+      zh: "证件/签证在线表单照片压缩：三个限制只有一个是大小",
+      en: "Compress Photos for Online Forms 2026: Three Limits, Only One Is Size"
+    },
+    description: {
+      zh: "政府、签证、求职表单的上传字段会同时卡三个限制：文件大小、像素尺寸、文件格式。这篇给出各国常见上限、100KB 门槛的过法，以及上传前的六步。",
+      en: "Government, visa and job forms enforce three limits at once: file size, pixel dimensions and format. Common caps by region, how to clear a 100KB ceiling, and six steps before you upload."
+    },
+    keywords: [
+      "compress photo for online form",
+      "passport photo file size limit",
+      "reduce image size for visa application",
+      "100kb photo upload",
+      "photo upload rejected form",
+      "visa photo dimensions requirements"
+    ],
+    content: {
+      zh: [
+        "每个官方表单的上传字段都在同时执行三个限制，其中只有一个跟文件大小有关。把照片压缩到符合在线表单要求却不逐个核对这三条，你会拿到那种什么都说明不了的错误提示：上传失败，原因未知。三条分别是文件大小上限、像素尺寸范围和接受的文件格式。表单按这个顺序检查，遇到第一条不满足就停下。",
+        { type: "h2", text: "上传字段实际检查的三件事" },
+        "证件照片的大小上限多数在 50KB 到 500KB 之间，还有相当数量仍卡在 100KB。签证和居留许可系统对尺寸的挑剔程度通常高于对大小的挑剔。大学和求职系统则是最宽松的一类。顺序很关键：尺寸不满足的文件，根本轮不到大小那一关。",
+        {
+          type: "ul",
+          items: [
+            "文件大小：表单上写明的上限，常见 100KB、200KB 或 1MB",
+            "像素尺寸：既有上限也有下限，宽度低于 300 像素会被判为太小",
+            "文件格式：几乎都要 JPEG，部分系统要 PNG，HEIC 基本不被接受",
+            "色彩配置：少见，但少数移民系统明确指定 sRGB",
+            "方形裁切：护照类系统常要求人脸落在固定的取景框内"
+          ]
+        },
+        { type: "h2", text: "签证申请会遇到的几个上限" },
+        "签证申请是三条限制卡得最紧的地方，因为照片还得同时满足证件照的取景要求。数字会随系统与年份调整，所以你所在的那份表单才是依据，下面这组只是让你知道该去看哪一栏。",
+        {
+          type: "ul",
+          items: [
+            "美国签证与 ESTA：常见 240KB 到 2MB，但尺寸卡在 600x600 到 1200x1200，方形裁切是硬性要求",
+            "英国护照与签证：上限比多数国家小，文件通常先因尺寸被拒，再因大小被拒",
+            "申根：按受理的成员国各自不同，以你正在填写的那个门户为准",
+            "加拿大：4MB 上限几乎卡不住人，真正卡人的是尺寸和头部占比规则",
+            "中国、印度与东南亚多数国家：100KB 上限在这里最常见，也是 100KB 门槛出现频率最高的地区"
+          ]
+        },
+        { type: "h2", text: "怎么让照片进到 100KB 以内" },
+        "在现代手机上听到 100KB 的上限会觉得不可能，其实并不难，因为摄像头一直在进步而表单没有。难点不在算法而在顺序：直接压一张 1200 万像素的照片，压到画质尽失也进不去 100KB；先缩到 1200 像素宽，再压到 70 到 80 画质，通常还剩不少余量。",
+        {
+          type: "ul",
+          items: [
+            "先改尺寸。1200 万像素的照片在任何画质下都进不了 100KB，1200 像素宽的在 70 到 80 画质可以。",
+            "再压大小。缩放和压缩是两个不同的操作，顺序反过来结果就变了，两者的区别在 /blog/resize-and-compress-image 里拆开讲过。",
+            "别动格式。在缩放之前把 HEIC 转成 JPEG，等于先把 HEIC 的体积优势扔掉，转换步骤见 /blog/convert-heic-to-jpg-free。",
+            "验一遍结果，别信预估。部分表单按 KB 计，部分按字节计，两边的 100KB 不是一回事。",
+            "截图不算方法。它自带一套压缩，结果通常还是超上限。"
+          ]
+        },
+        { type: "h2", text: "上传之前的六步" },
+        {
+          type: "ul",
+          items: [
+            "先读表单自己写的字段要求。第三方整理的要求清单会过期，表单本身才是依据。",
+            "先把像素尺寸改到范围内，再处理大小。",
+            "按 KB 设目标大小压缩，这个设置就是为这件事存在的。",
+            "确认格式是表单列出的那个，JPEG 或 PNG。",
+            "保存之后重新看一眼大小，部分相册会按原画质另存。",
+            "上传一次，失败时先读错误提示点名的是三条里的哪一条，再做下一步。"
+          ]
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "压到 100KB 之后照片还能用吗？",
+              a: "表单用途下基本没问题。这类场景接收方本来就只打算在屏幕上小尺寸查看，1200 像素宽、200KB 以内的文件足够清晰。要拿去打印才需要另外一套设置，打印与屏幕的取舍在 /blog/compressed-vs-resized-image 里讲过。"
+            },
+            {
+              q: "为什么大小已经符合要求还是被拒？",
+              a: "多半是尺寸或格式。HEIC 在多数政务系统和旧版 Windows 上读不了，抛出的错误提示常常看着像大小问题。少数表单把尺寸和总像素数分开卡，需要看清写的是哪一条。HEIC 的转换在 /blog/convert-heic-to-jpg-free。"
+            },
+            {
+              q: "表单要求的尺寸和大小冲突怎么办？",
+              a: "尺寸优先。尺寸不满足的文件会被直接拒掉，大小超了还有压缩这一条路。先把像素改到位，再压大小，两步的顺序在 /blog/resize-and-compress-image 里写清楚了。"
+            },
+            {
+              q: "一次要交十几张，逐张压会不会掉画质？",
+              a: "不会。批量只是把同一个操作跑十几遍，真正掉画质的是同一张文件反复压缩，每跑一遍细节少一层。批量做法见 /blog/batch-compress-images-multiple，原理见 /blog/does-compressing-image-reduce-quality。"
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "在 image-compressor-saas.shop 把照片压到表单写明的那个上限，文件全程留在浏览器里",
+          href: "/"
+        }
+      ],
+      en: [
+        "Every upload field on an official form enforces three separate limits at once, and only one of them has anything to do with file size. Compress a photo for an online form without checking all three and you get the error that explains nothing: upload rejected, reason not stated. The three are a maximum file size, a pixel dimension range, and an accepted file format. Forms check them in that order and stop at the first one that fails.",
+        { type: "h2", text: "The three things an upload field checks" },
+        "A passport photo file size limit usually sits somewhere between 50KB and 500KB, and a fair number of portals still cap at 100KB. Visa and residence permit systems tend to be fussier about dimensions than about size. University and job application portals are the loosest of the three. The order decides the outcome: a file that fails on dimensions never reaches the size check.",
+        {
+          type: "ul",
+          items: [
+            "File size: the cap written on the form, commonly 100KB, 200KB or 1MB",
+            "Dimensions: a minimum as well as a maximum, since a photo under 300 px wide gets rejected as too small",
+            "Format: JPEG almost always, PNG on some systems, and HEIC almost never",
+            "Colour profile: rare, though a handful of immigration portals specify sRGB",
+            "Square crop: passport systems often require the face to sit inside a fixed box"
+          ]
+        },
+        { type: "h2", text: "Reduce image size for a visa application: the caps you will actually meet" },
+        "Visa applications are where the three limits bite hardest, because the photo also has to work as a passport photo. The numbers move with the system and the year, so the form in front of you is the authority. This list is here to tell you which field to go and read.",
+        {
+          type: "ul",
+          items: [
+            "US visa and ESTA: 240 KB to 2 MB is typical, but the dimensions are 600x600 to 1200x1200 and the square crop is mandatory",
+            "UK passport and visa: a smaller cap than most, and files are rejected on dimensions before they are rejected on size",
+            "Schengen: it varies with the member state handling the application, so the portal you are on decides",
+            "Canada: a 4 MB maximum that almost nothing fails, while the dimension and head size rules are what catch people",
+            "China, India and much of Southeast Asia: 100KB caps are common here, and this is where the 100KB ceiling turns up most often"
+          ]
+        },
+        { type: "h2", text: "Getting a photo under 100KB" },
+        "A 100KB photo upload ceiling sounds impossible on a modern phone, and it is not, because the cameras kept improving while the forms did not. The difficulty is the order rather than the algorithm. Compressing a 12 megapixel original down to 100KB is impossible at any quality setting. Resizing it to 1200 px wide first and then compressing at quality 70 to 80 usually leaves room to spare.",
+        {
+          type: "ul",
+          items: [
+            "Resize first. A 12 megapixel photo will not fit in 100KB at any quality, and a 1200 px wide one fits at 70 to 80.",
+            "Then compress. Resizing and compressing are two different operations and the order changes the result, which is set out in /blog/resize-and-compress-image.",
+            "Leave the format alone. Converting HEIC to JPEG before resizing throws away the size advantage HEIC had, and the steps are in /blog/convert-heic-to-jpg-free.",
+            "Check the result instead of trusting the estimate. Some forms count in KB and some in bytes, and 100 KB is not the same number in both.",
+            "A screenshot is not a method. It applies its own compression and usually lands above the cap."
+          ]
+        },
+        { type: "h2", text: "Six steps before you upload" },
+        {
+          type: "ul",
+          items: [
+            "Read the field requirements on the form itself. Lists compiled by third parties go stale, and the form is the authority.",
+            "Fix the pixel dimensions first, then the file size.",
+            "Compress to a target size in KB, which is the setting that exists for exactly this job.",
+            "Confirm the format is whichever one the form lists, JPEG or PNG.",
+            "Check the size again after saving, since some galleries save again at full quality.",
+            "Upload once, and if it fails, read which of the three limits the error names before doing anything else."
+          ]
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Is a photo still usable after being compressed to 100KB?",
+              a: "For a form, yes. The receiving side only intends to look at it on a screen at a small size, and 1200 px wide at under 200 KB is plenty for that. Printing needs a different set of settings, and the trade between print and screen is in /blog/compressed-vs-resized-image."
+            },
+            {
+              q: "Why is my photo rejected when the size is already within the limit?",
+              a: "Usually the format or the dimensions. HEIC cannot be read by many government systems and older Windows builds, and the error they throw often looks like a size problem. Some forms also cap dimensions and total pixel count separately, so check which limit is written down. The conversion is in /blog/convert-heic-to-jpg-free."
+            },
+            {
+              q: "What if the dimension and size requirements conflict?",
+              a: "Dimensions win. A file outside the dimension range is rejected outright, while a file over the size cap still has compression available. Fix the pixels first and the size second, and the two-step order is in /blog/resize-and-compress-image."
+            },
+            {
+              q: "Does compressing a dozen photos at once hurt quality?",
+              a: "No. A batch is the same single operation run a dozen times. What does hurt is compressing the same file repeatedly, where each pass removes another layer of fine detail. The batch route is in /blog/batch-compress-images-multiple and the reason in /blog/does-compressing-image-reduce-quality."
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "Compress a photo to the exact cap your form states on image-compressor-saas.shop, with the file staying in your browser",
+          href: "/"
+        }
+      ]
+    }
+
   }
 ];
 
