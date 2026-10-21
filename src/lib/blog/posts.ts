@@ -6666,7 +6666,7 @@ export const POSTS: BlogPost[] = [
         { type: "cta", text: "Compress TikTok creative to a target size on image-compressor-saas.shop, with the file staying on your machine", href: "/" },
       ],
     },
-  },,
+  },
   {
     slug: "compress-photos-iphone-3-ways",
     date: "2026-10-20",
