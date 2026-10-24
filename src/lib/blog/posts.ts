@@ -7367,6 +7367,348 @@ export const POSTS: BlogPost[] = [
       ]
     }
 
+  },
+  {
+    slug: "best-ios-image-compression-app-2026",
+    date: "2026-10-24",
+    title: {
+      zh: "2026 年 iPhone 图片压缩 App 怎么选：五条路的真实差别",
+      en: "Best iOS Image Compression App 2026: Five Routes, Compared Honestly"
+    },
+    description: {
+      zh: "iPhone 上压图有五条路：相册导出、快捷指令批量、HEIC 转 JPEG、第三方批量 App、浏览器本地压缩。按画质控制、批量成本、隐私三件事排下来，差别一目了然，附安装前要看的三项。",
+      en: "Compressing images on an iPhone in 2026 means picking one of five routes: gallery export, Shortcuts batching, HEIC to JPEG conversion, third-party batch apps, or browser-local compression. Compared on quality control, batch cost and privacy, plus three checks before you install anything."
+    },
+    keywords: [
+      "best ios image compression app 2026",
+      "iphone photo compressor app",
+      "compress photos on iphone without losing quality",
+      "ios batch image resizer",
+      "heic to jpeg iphone app",
+      "reduce photo size iphone free"
+    ],
+    content: {
+      zh: [
+        "2026 年在 iPhone 上压缩图片，选哪个 App 的决定因素其实不在 App 本身，而在你要压的东西：一张准备发邮件的截图，和一整个相册准备上传的八百张，答案完全不同。可用的一共五条路：相册自带的导出选择器、把 HEIC 或 JPEG 批量跑一遍的快捷指令、分享菜单里的格式转换、第三方批量压缩 App，以及完全在浏览器里本机跑的压缩工具。它们的差别集中在四件事上：能不能控制画质、五十张要按五十次还是一次、反复压缩会不会一层层掉细节，以及处理的这段时间照片落在谁手里。",
+        { type: "h2", text: "五条路各自设计的场景" },
+        "五条路没有谁全面占优，各自是被不同需求逼出来的。先看清自己的量级和用途，比先去 App Store 翻评分快得多。",
+        {
+          type: "ul",
+          items: [
+            "相册导出：iPhone 在分享或存储到文件时给出的尺寸选项。适合单张、临时、对画质没有精确要求的情况。",
+            "快捷指令：把重复操作固化成一个动作，适合几十张一批、要长期反复用的流程。前期配置慢，后期几乎零成本。",
+            "HEIC 转 JPEG：主要解决兼容性而不是体积，转完通常更大。别人读不了你的文件时才用。",
+            "第三方批量 App：一次选中全部，点一次开始。上手最快，代价是文件要交给这一家处理。",
+            "浏览器本地压缩：在 Safari 里跑，文件不出设备，能按 KB 设目标大小。免费档通常不限制张数。"
+          ]
+        },
+        { type: "h2", text: "画质控制在 iOS 上卡在哪里" },
+        "系统自带的路径基本不给画质滑块，只给一个抽象的尺寸档位，比如大、中、小。这是因为苹果假设你要的是「够小能发出去」，而不是「刚好卡在某个 KB 以内」。表单写死 200KB 这种场景，靠档位猜基本猜不准，要按数字往下试好几次。",
+        {
+          type: "ul",
+          items: [
+            "只要降到不影响查看的程度：系统导出够用，两次就能出结果。",
+            "要卡一个具体数字 100KB 或 200KB：需要能填数字的目标大小设置，而不是三档选择器。",
+            "要在手机上打印：先定像素尺寸再谈压缩，只看文件大小会吃亏。",
+            "反复压同一张会掉画质：每跑一遍有损压缩，细节少一层，所以源文件和成品要分开存。"
+          ]
+        },
+        { type: "h2", text: "批量这条路上，快捷指令最省手" },
+        "iPhone 上没有传统意义上的文件拖拽批处理，快捷指令补的就是这个空缺。它把「选中目录 ‑ 缩放 ‑ 指定大小 ‑ 存到某个文件夹」固化下来，之后每次只是选一个目录再点一次。三十张以上时用它的体验差距非常明显。",
+        {
+          type: "ul",
+          items: [
+            "先在照片 app 里建一个相簿，把要处理的那批放进去，不要在全库上跑。",
+            "加一个「调整图像大小」动作，先定宽度，比如 1600 或 1920 像素。",
+            "再加一个压缩动作，有目标大小就填目标大小，没有就给画质档。",
+            "输出到一个单独的相簿，避免和原图混在一起。",
+            "跑完之后原尺寸核对一张脸或一段文字边缘，确认没问题再清空原相簿。"
+          ]
+        },
+        { type: "h2", text: "装任何 App 之前先看的四项" },
+        "图片压缩 App 是隐私风险比较集中的一类：它需要读你的整个相册，而相册里有身份证件、孩子和门牌。装之前花一分钟确认下面四项，能避开多数麻烦。",
+        {
+          type: "ul",
+          items: [
+            "文件去哪了：页面上写本地处理，还是写上传后返回。两者差别很大。",
+            "免费档的真实上限：多为每天几张，或者单次几张，或者输出加水印。",
+            "要不要全相册权限：iOS 支持只授权选中的照片，不要一次性放开通行。",
+            "会不会保留副本和删除入口：删除是在 App 内消失，还是连服务端一起清。"
+          ]
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "iPhone 上有不用装 App 就能压缩照片的办法吗？",
+              a: "有四条不用装任何东西：相册分享里的尺寸选项、快捷指令 App（系统自带）、把 HEIC 转成 JPEG 的分享转换、以及在 Safari 里用浏览器本地压缩工具走完整的目标大小控制。三条系统自带的方式见 /blog/compress-photos-iphone-3-ways。"
+            },
+            {
+              q: "HEIC 转 JPEG 算不算压缩？",
+              a: "不算，它通常让文件变大。HEIC 在同等画质下比 JPEG 小得多，转过去主要解决的是对方读不了的问题。真要变小，先定尺寸再用HEIC原格式压缩，格式那一侧的取舍见 /blog/heic-vs-jpg-iphone-photos，转换步骤见 /blog/convert-heic-to-jpg-free。"
+            },
+            {
+              q: "为什么同一个 App 压出来的照片有时忽大忽小？",
+              a: "因为内容决定了压缩率。天空、白墙这类大片平坦区域很容易压小；毛发、织物、密排文字这类高频细节多的画面，同样的画质档位下体积就是下不来。先把尺寸降下来再压缩，比反复调画质档可靠，两者的区别在 /blog/resize-and-compress-image。"
+            },
+            {
+              q: "一次压两百张会不会伤画质？",
+              a: "不会。批量只是把同一个操作重复执行两百遍，每一次对那一张的影响和单张处理完全一样。真正掉画质的是同一张文件被压很多遍，每过一遍有损编码细节少一层，原理见 /blog/does-compressing-image-reduce-quality，批量做法见 /blog/batch-compress-images-multiple。"
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "在 iPhone 的 Safari 里按 KB 压缩照片，文件全程留在这台设备上",
+          href: "/"
+        }
+      ],
+      en: [
+        "The best iOS image compression app depends less on the app itself and more on what you are compressing. A single screenshot headed for an email is a different job from eight hundred photos waiting to be uploaded. Five routes exist on an iPhone in 2026: the size picker inside the gallery export sheet, a Shortcut that batches HEIC or JPEG files, format conversion in the share menu, a third-party batch compressor, and a browser-local compressor that never sends anything anywhere. They separate on four things: how much control you get over the result, whether fifty files take fifty taps, what repeated passes do to detail, and who holds the photograph while it is being processed.",
+        { type: "h2", text: "Five routes, and what each one was built for" },
+        "None of the five wins outright, since each exists because a specific job needed it. Working out your own volume and purpose first is faster than reading star ratings in the App Store.",
+        {
+          type: "ul",
+          items: [
+            "Gallery export: the size options the iPhone offers when you share or save to Files. Built for one photo, once, with no exact target in mind.",
+            "Shortcuts: a recorded sequence for a job you repeat. Best for batches of dozens, since setup is slow once and running it afterwards costs almost nothing.",
+            "HEIC to JPEG conversion: solves compatibility rather than size, and usually makes the file larger. Reach for it when the receiving side cannot open what you have.",
+            "Third-party batch apps: select everything, tap once, wait. Fastest to learn, and the file has to go somewhere for it to work.",
+            "Browser-local compression: runs in Safari, keeps the photo on the device, and accepts a target size in KB. Free tiers here usually do not cap the count."
+          ]
+        },
+        { type: "h2", text: "Where quality control gets limited on iOS" },
+        "The system routes give you abstract size tiers rather than a quality slider, because Apple assumes you want something small enough to send rather than something that lands inside a specific ceiling. A form that demands 200 KB is hard to hit by guessing between three tiers, and takes several attempts to get under.",
+        {
+          type: "ul",
+          items: [
+            "Small enough to read on a screen: the built-in export is enough, and it takes two taps.",
+            "A specific number such as 100 KB or 200 KB: you need a field that accepts a number, not a three-way picker.",
+            "Printing from your phone: set pixel dimensions before thinking about file size, since judging by size alone leaves you short.",
+            "Compressing the same file twice: each pass removes another layer of fine detail, so keep the source and the output apart."
+          ]
+        },
+        { type: "h2", text: "For batches, Shortcuts saves the most taps" },
+        "iOS has no drag-files-into-a-folder style batching, and Shortcuts fills that gap. It fixes one sequence, picking an album, resizing, setting a size, saving somewhere, so every later run is one selection and one tap. Above thirty files the difference in effort is obvious.",
+        {
+          type: "ul",
+          items: [
+            "Create an album first and put the batch in it rather than running over the whole library.",
+            "Add a resize action and set the width, 1600 or 1920 pixels covers most uses.",
+            "Add a compression step, using target size when one is offered and quality only when it is not.",
+            "Write the output to a separate album so results never mix with originals.",
+            "Check one face or one line of text at full size before clearing the source album."
+          ]
+        },
+        { type: "h2", text: "Four things to check before installing anything" },
+        "Compressor apps carry more privacy weight than their size suggests, because they ask for the whole photo library, and libraries hold ID documents, children and street numbers. One minute spent on these four avoids most of it.",
+        {
+          type: "ul",
+          items: [
+            "Where the file goes: the listing either says processing happens on device or it says upload and download.",
+            "What the free tier actually caps: usually a few per day, a few per run, or a watermark on output.",
+            "Whether it wants full library access: iOS lets you grant selected photos only, so there is no reason to hand over everything.",
+            "Whether copies are kept and how you delete them, on their side as well as yours."
+          ]
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Can I compress photos on iPhone without installing an app?",
+              a: "Yes, and there are four ways: the size options in the share sheet, the Shortcuts app, which ships with iOS, HEIC to JPEG conversion during sharing, and a browser-local compressor in Safari that gives full control over target size. The three system routes are set out in /blog/compress-photos-iphone-3-ways."
+            },
+            {
+              q: "Does converting HEIC to JPEG count as compression?",
+              a: "No, and it usually makes the file bigger. HEIC holds far more quality per byte than JPEG, so the conversion solves compatibility rather than size. To actually reduce it, set dimensions first and stay in HEIC for the compression pass. The format side is in /blog/heic-vs-jpg-iphone-photos and the steps in /blog/convert-heic-to-jpg-free."
+            },
+            {
+              q: "Why does the same app give wildly different file sizes?",
+              a: "Because the content sets the compression ratio. Flat areas such as sky and painted walls shrink easily, while hair, fabric and dense text hold detail that refuses to go away at the same quality setting. Lowering dimensions first is more reliable than re-picking quality tiers, and the reason those two differ is in /blog/resize-and-compress-image."
+            },
+            {
+              q: "Does compressing two hundred at once hurt quality?",
+              a: "No. A batch is one operation repeated two hundred times, and each photo is affected exactly as it would be alone. What does damage quality is compressing the same file repeatedly, since every pass through a lossy encoder removes another layer of detail. The mechanism is in /blog/does-compressing-image-reduce-quality and the batch route in /blog/batch-compress-images-multiple."
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "Compress photos to an exact KB target in Safari on iPhone, with the file staying on your device",
+          href: "/"
+        }
+      ]
+    }
+  },
+  {
+    slug: "best-android-photo-compression-app",
+    date: "2026-10-25",
+    title: {
+      zh: "Android 图片压缩 App 怎么选：五类工具与三项检查",
+      en: "Best Android Photo Compression App: Five Types and Three Checks"
+    },
+    description: {
+      zh: "Android 上压图有五类工具：相册导出、文件管理器自带、厂商分享流的尺寸选项、第三方批量压缩 App、浏览器本地压缩。按画质控制、批量成本、隐私三项排下来，附装机前要确认的事和一份五步流程。",
+      en: "Five ways to compress photos on Android: gallery export, built-in file manager tools, manufacturer share flows, third-party batch compressors, and browser-local compression. Compared on quality control, batch cost and privacy, plus three checks before installing."
+    },
+    keywords: [
+      "best android photo compression app",
+      "android image compressor app",
+      "reduce photo size on android",
+      "android batch image resizer",
+      "compress photos without losing quality android",
+      "free photo size reducer android"
+    ],
+    content: {
+      zh: [
+        "挑 Android 图片压缩 App 的关键不是排名，而是先看清自己要压的东西：一张用于报名的证件照，和一整个相册要腾到云端的一千张，完全是两件事。Android 上可用的工具分五类：相册自带的导出大小选择、部分文件管理器内置的压缩动作、厂商分享菜单里的尺寸选项、第三方批量压缩 App，以及完全在 Chrome 本机跑的压缩工具。它们在三件事上拉开差距：能不能控住画质、一千张要按几次、以及这张照片在处理的时候到底落在谁手里。",
+        { type: "h2", text: "五类工具各自的定位" },
+        "五类里面有三类不需要装任何东西，这一点常被忽略，因为应用商店里那些广告和推荐位给人的印象相反。先从不要装的那三类试，通常就够用了。",
+        {
+          type: "ul",
+          items: [
+            "相册导出：Google 相册、三星 Gallery、小米相册等都有「大小」或「画质」选项，单张够用，参数给得很粗。",
+            "文件管理器：部分管理器长按文件后有「压缩」或「瘦身」，能一次选中多个，输出多半就地覆盖或另存。",
+            "厂商分享流：微信、WhatsApp 和邮件 App 在发送时会弹尺寸或质量选项，适合「此时此刻发这一张」。",
+            "第三方批量 App：选中全部点一次开始，上手最快，前提是接受文件要交给这一家。",
+            "浏览器本地压缩：在 Chrome 里跑，文件不离开设备，能按 KB 设目标，批量张数通常不限。"
+          ]
+        },
+        { type: "h2", text: "画质能不能控住，是最大的分水岭" },
+        "多数内置路径只给一到三个抽象档位，而同一档位在不同厂商机型上的结果差异很大：同样选「中等」，不同厂商给出的文件可以相差一倍。需要精确控制时，用事后能核对的办法：得出文件后核对实际大小与 100% 放大下的细节，而不是靠档位名去猜。",
+        {
+          type: "ul",
+          items: [
+            "只要压小到能在微信里发出去：内置路径一次就够，不用装任何东西。",
+            "表单写死 200KB 或 100KB：需要能填数字的目标大小设置，档位选择器做不到。",
+            "要打印：先定像素尺寸，再看文件大小，只看大小容易踩坑。",
+            "同一张反复压：每一遍有损编码都少一层细节，源文件跟成品分开放。"
+          ]
+        },
+        { type: "h2", text: "批量一千张，成本差在两个地方" },
+        "批量场景下的瓶颈不是算法速度，是操作次数和通知干扰。选文件或选相册的次数决定了要按多少下，而是否逐张弹通知决定了你能不能在跑的时候去做别的事。装App之前看清这两条，比看压缩率的宣传图有用。",
+        {
+          type: "ul",
+          items: [
+            "先建一个文件夹或相簿，把要处理的这批放进去，不要在全库上跑。",
+            "先改动尺寸，通常 1600 或 1920 像素宽已经足够多数用途。",
+            "再压大小，有目标大小就填目标大小，没有再退到画质档。",
+            "输出到另一个文件夹，避免覆盖源文件。",
+            "跑完之后按 100% 抽看一张脸和一段文字边缘，确认没有明显损失。"
+          ]
+        },
+        { type: "h2", text: "装 App 之前要确认的三项" },
+        "压缩类 App 索要的权限很集中：存储、相册、有时还有网络访问。下面是装机前值得花一分钟确认的三项，比看评分有用。",
+        {
+          type: "ul",
+          items: [
+            "处理方式：写明本机处理，还是默认上传到再返回。前者不需要网络权限也能跑完。",
+            "免费档的真实上限与输出：有没有水印、单次张数上限、输出分辨率是否被压缩。",
+            "权限与副本：只要单行选中的权限就够，不需要全库通行；删除要能同时清掉对方服务器上的副本。"
+          ]
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Android 上有不用装 App 就能压缩照片的办法吗？",
+              a: "有。系统相册的导出大小选项、部分文件管理器自带的压缩动作、聊天和邮件 App 发送时的质量选项，以及在 Chrome 里用浏览器本地压缩工具按 KB 设目标。前面三条的完整操作见 /blog/compress-photos-android-no-app。"
+            },
+            {
+              q: "浏览器里压缩和自己手机上安装的App，效果一样吗？",
+              a: "同一套编码参数下结果接近，差别在文件去哪了和控制粒度。安装的 App 通常要先拿到文件才能处理，浏览器本地方案不上传，同时普遍支持按 KB 设目标，这点在表单写死上限时最有用。"
+            },
+            {
+              q: "为什么同一张照片有时怎么压都下不来？",
+              a: "多为内容本身的高频细节太多：草地、毛发、织物纹理、密排文字都在承载大量信息。此时先降像素尺寸比继续调画质有效得多，两者顺序的区别在 /blog/resize-and-compress-image，压缩率本身的原理在 /blog/lossy-vs-lossless-compression。"
+            },
+            {
+              q: "压到 200KB 的照片还能打印吗？",
+              a: "看尺寸而不是看大小。1920 像素宽、200KB 上下的文件印六寸没问题，A4 以上会看出细节缺失。目标是打印就先锁定像素再压质量，按此顺序救回的情况比反过来多，具体做法见 /blog/compress-image-to-200kb。"
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "在 Android 的 Chrome 里按 KB 压缩照片，文件全程留在这台手机上",
+          href: "/"
+        }
+      ],
+      en: [
+        "The best Android photo compression app depends more on what you are sending than on which store listing ranks highest. An ID photograph for an application form and a thousand holiday photos waiting to be backed up are different jobs. Five types of tool exist on Android: the size picker in the gallery export sheet, compression built into some file managers, manufacturer share flows, third-party batch compressors you install, and a browser-local compressor that runs entirely in Chrome. They separate on three things: how much control you get over quality, how many taps a thousand photos cost, and where the picture actually sits while it is being processed.",
+        { type: "h2", text: "Five types, and what each is for" },
+        "Three of the five need no installation at all, which gets overlooked because the store is full of recommendations pointing the other way. Start with those three, since they cover most cases.",
+        {
+          type: "ul",
+          items: [
+            "Gallery export: Google Photos, Samsung Gallery, Xiaomi Gallery and others offer a size or quality option. Fine for one photo, with very coarse settings.",
+            "File managers: several offer a compress action on long press, accept multiple selections, and save alongside or over the original.",
+            "Manufacturer share flows: WeChat, WhatsApp and mail apps ask about size or quality at send time, which suits sending one photo right now.",
+            "Third-party batch apps: select everything, tap once. Fastest to learn, provided you accept handing the file over.",
+            "Browser-local compression: runs in Chrome, keeps the photo on the device, accepts a target size in KB, and usually imposes no count limit."
+          ]
+        },
+        { type: "h2", text: "Quality control is the widest gap" },
+        "Most built-in routes offer one to three abstract tiers, and what those tiers produce varies a lot between manufacturers, so the medium setting on one phone can be double the file size of the medium setting on another. Where precision matters, judge by measuring: check the actual size afterwards and look at the detail at full magnification rather than trusting the name of the tier.",
+        {
+          type: "ul",
+          items: [
+            "Small enough to send over WeChat: a built-in route handles it in one go, no installation needed.",
+            "A form that states 200 KB or 100 KB: you need a field that takes a number, and a tiered picker cannot do it.",
+            "Printing later: fix pixel dimensions first and file size second, since judging by size alone leads you astray.",
+            "Compressing the same file repeatedly: every pass through a lossy encoder removes a layer of detail, so keep source and output separate."
+          ]
+        },
+        { type: "h2", text: "Where batch cost actually comes from" },
+        "With a thousand photos the bottleneck is not encoder speed, it is tap count and notification noise. How many times you have to select files decides the taps, and whether a notification fires per image decides whether you can do something else while it runs.",
+        {
+          type: "ul",
+          items: [
+            "Put the batch in one folder or album first rather than running over the entire library.",
+            "Change dimensions first, since 1600 or 1920 pixels wide covers most purposes.",
+            "Then reduce file size, using a target size where offered and falling back to a quality tier where it is not.",
+            "Write output to a separate folder so nothing overwrites the originals.",
+            "Spot check one face and one line of text at full magnification when it finishes."
+          ]
+        },
+        { type: "h2", text: "Three things to confirm before installing" },
+        "Compressor apps ask for a concentrated set of permissions: storage, photos, sometimes network access. One minute on these three beats reading star ratings.",
+        {
+          type: "ul",
+          items: [
+            "How it processes: does it say on device, or does it upload and return a result. The first needs no network permission to finish the job.",
+            "What the free tier really caps: watermarks, a per-run image limit, or output pixels silently cut down.",
+            "Permissions and copies: access to selected files is enough, full library access is not needed, and deletion should clear the server side too."
+          ]
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Can I compress photos on Android without installing an app?",
+              a: "Yes. The size picker in the gallery export sheet, compress actions in some file managers, the quality options that chat and mail apps show when you send, and a browser-local compressor in Chrome that takes a target size in KB. The system routes are walked through in /blog/compress-photos-android-no-app."
+            },
+            {
+              q: "Is browser compression as good as an installed app?",
+              a: "With the same encoder settings the results land close together, and the difference is where the file goes and how fine the control is. Installed apps generally need the file before they can process it, while the browser route does not upload and usually accepts a target in KB, which is the setting that matters when a form states a hard ceiling."
+            },
+            {
+              q: "Why does one photo refuse to get any smaller?",
+              a: "Usually too much fine detail in the content. Grass, hair, fabric texture and dense text all carry information that resists compression, and dropping pixel dimensions helps far more than nudging quality down again. The ordering is explained in /blog/resize-and-compress-image and the mechanics in /blog/lossy-vs-lossless-compression."
+            },
+            {
+              q: "Can a photo compressed to 200 KB still be printed?",
+              a: "Judge dimensions rather than file size. At 1920 pixels wide and around 200 KB, a six inch print looks fine, while A4 and above shows what went missing. For print, lock the pixels first and compress quality second, which recovers more cases than reversing them, and the steps are in /blog/compress-image-to-200kb."
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "Compress photos to an exact KB target in Chrome on Android, with the file staying on your phone",
+          href: "/"
+        }
+      ]
+    }
   }
 ];
 
