@@ -7709,7 +7709,311 @@ export const POSTS: BlogPost[] = [
         }
       ]
     }
-  }
+  },
+  {
+    slug: "reduce-photo-size-iphone-email",
+    date: "2026-10-26",
+    title: {
+      zh: "在 iPhone 上把照片缩小到能发邮件：三条可行路径",
+      en: "How to Reduce Photo Size on iPhone for Email"
+    },
+    description: {
+      zh: "iOS 邮件附件超限，或者悄悄换成 Mail Drop？发件之前先把照片缩到目标大小，三条路径都保住可读画质。",
+      en: "iPhone Mail says the attachment is too large, or quietly swaps in Mail Drop. Reduce photo size before you hit send, with three routes that keep the shot readable."
+    },
+    keywords: [
+      "reduce photo size iphone email",
+      "how to send large photos from iphone",
+      "iphone mail attachment too large",
+      "reduce photo size before email",
+      "compress photo for email iphone"
+    ],
+    content: {
+      zh: [
+        "要在 iPhone 上把照片缩小到能发邮件，不需要额外装 App。iOS 邮件大约 20 MB 一条就开始劝退，而一台近年的 iPhone 拍一张 1200 万像素照片通常是 2 到 5 MB，一封信里塞四五张就到墙了。",
+        "失败的样子还不止一种。有时邮件直接说太大，有时悄悄给你换成 Mail Drop，有时只是卡在发送中。先弄清自己走的是哪条路，能省掉一轮重发。",
+        { type: "h2", text: "为什么屏幕上看着挺好，邮件就是不要" },
+        "照片 App 给你看的是解码后的图像，不是那个文件。4032×3024 的画面摆在 6 英寸屏上，和 1600 像素版本看不出区别，可背后的文件重量差好几倍。邮件数的是字节，不是你眼睛觉得好不好看。",
+        "各家邮箱的上限也不一样。20 MB 是常见的粗略天花板，但有些企业邮箱只给 5 或 10 MB，还有的连一张照片都嫌大。同一封信在这个账号发得出去、在那个账号发不出去，多半就是这个原因。",
+        { type: "h2", text: "办法一：邮件里本来就有的尺寸选择" },
+        "在邮件 App 里添加照片时，iOS 会在文件进去之前给一个尺寸选项：小、中、大、实际大小。多数人看都不看就点过去了。",
+        {
+          type: "ul",
+          items: [
+            "小：300 KB 上下，扫一眼够用，图里带字就糊了。",
+            "中：800 KB 左右，在电脑上的邮件预览里还站得住。",
+            "大：2 MB 附近，对方可能要打印或裁剪时选这个。",
+            "实际大小：原图，也就是触发「太大」提示的那个选项。"
+          ]
+        },
+        "这个选择是按附件逐个来的，五张照片要点五次。已经站在邮件里、手里只有两三张图的时候，它最快。",
+        { type: "h2", text: "办法二：先在照片里把图缩好" },
+        "如果对方要在电脑上打开还能看，就先缩再附。窍门是先复制一份，动副本，让原图在相册里保持全分辨率。",
+        {
+          type: "ul",
+          items: [
+            "打开照片走分享，看你的 iOS 版本有没有给尺寸或画质选项。",
+            "只要一份能看清的副本时，直接截屏到你要的大小，土但是快。",
+            "先裁再缩。把没人要看的部分切掉就是在减像素，而像素少了才真的让文件变小。"
+          ]
+        },
+        "这条路慢一点，但你会得到一个能反复用的文件，同一张照片后面还要交表格或上商品页时就省事。为什么像素比画质滑块更管用，写在 /blog/resize-and-compress-image。",
+        { type: "h2", text: "办法三：在浏览器里压到确定的 KB" },
+        "Mail Drop 是苹果在信件过大时的兜底：照片传到 iCloud，对方收到一个会过期的链接。能用，但不少邮件过滤会把它拦掉，用旧客户端的人看到的则是坏附件。",
+        "浏览器压缩不走这条路。你给定 KB 目标，文件在手机本地处理，拿回来的东西能正常附上，到对方手里也是真文件。当要求是硬数字，比如 1 MB 以下或 200 KB 以下，这条路基本一次就过。1 MB 的完整步骤在 /blog/compress-photo-to-1mb-email，200 KB 的在 /blog/compress-image-to-200kb。",
+        { type: "h2", text: "多小算太小" },
+        {
+          type: "ul",
+          items: [
+            "100 KB 以下：签名、小票、小预览里的一张脸，够用。有文字就开始糊。",
+            "100 到 500 KB：对方在屏幕上看的照片，安全区间。",
+            "500 KB 到 2 MB：可能被打印或放大看时留在这个档。",
+            "单张超过 2 MB：只有打印或归档时才需要，即便如此，缩过的原图也比又大又原的强。"
+          ]
+        },
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "照片才 4 MB，邮件为什么说太大？",
+              a: "因为限制是按整封信算的，不是单个文件。几张照片、签名图、引用历史都会往里加。看总量，别只看最大的那一张。"
+            },
+            {
+              q: "不用 iCloud 也能从 iPhone 发大照片吗？",
+              a: "可以。附上之前先把照片缩小，用邮件里的尺寸选择，或者先压到目标大小，信件就不会超线，Mail Drop 也就不会出现。"
+            },
+            {
+              q: "缩小之后相册里的原图会变吗？",
+              a: "走邮件不会，它操作的是副本。用压缩工具时把结果存成新文件，不要覆盖，不需要了再删。更完整的做法见 /blog/compress-photos-iphone-3-ways。"
+            },
+            {
+              q: "求职简历或政府表格该用多大？",
+              a: "以表格上写的数字为准。没写的话，200 到 500 KB、长边 1600 像素左右，大多数检查都能过。具体步骤在 /blog/compress-image-to-200kb。"
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "在 iPhone 上把照片压到确定的 KB 目标，不上传、不用注册",
+          href: "/"
+        }
+      ],
+      en: [
+        "To reduce photo size on iPhone for email, you do not need to install anything. Mail on iOS starts pushing back somewhere around 20 MB per message, and one 12 MP photo from a recent iPhone is usually 2 to 5 MB, so four or five shots in a single thread is where people hit the wall.",
+        "The failure is not always obvious. Sometimes Mail says the message is too large, sometimes it quietly offers Mail Drop, and sometimes the send just hangs. Knowing which route you are on saves a round of resending.",
+        { type: "h2", text: "Why iPhone Mail rejects a photo that looks fine on screen" },
+        "The Photos app shows you a decoded image, not the file. A 4032 by 3024 frame displayed on a 6 inch screen looks no different from a 1600 pixel version of the same shot, but the file behind it weighs several times more. Mail counts bytes, not how good the picture looks to you.",
+        "Attachment limits also vary by provider. A 20 MB message is a rough common ceiling, but some corporate mailboxes cap far lower, at 5 or 10 MB, and a few reject anything bigger than one photo. If the same message fails on one account and works on another, that is usually why.",
+        { type: "h2", text: "Route one: the size picker Mail already shows you" },
+        "When you attach a photo from inside Mail, iOS offers a size choice before the file goes in: Small, Medium, Large, or Actual Size. Most people tap past it without reading.",
+        {
+          type: "ul",
+          items: [
+            "Small lands near 300 KB and is fine for a quick look, weak for anything with text in it.",
+            "Medium is around 800 KB and holds up in a mail preview on a laptop.",
+            "Large sits near 2 MB and is the one to pick if the recipient may print or crop.",
+            "Actual Size sends the original, which is the option that triggers the too large warning."
+          ]
+        },
+        "The picker works per attachment, so a five photo message means five taps. It is the fastest fix when you are already in Mail and only have a couple of shots.",
+        { type: "h2", text: "Route two: shrink the photo in Photos first" },
+        "If the recipient needs the picture to survive being opened on a desktop, do the resize before you attach. The trick is to duplicate first and work on the copy, so the original stays at full resolution in your library.",
+        {
+          type: "ul",
+          items: [
+            "Open the photo, share it, and use the resize or quality options if your iOS version shows them.",
+            "Take a screenshot of the photo at the size you want when you only need a readable copy. Crude, but fast.",
+            "Crop before you shrink. Removing the parts nobody needs cuts pixels, and fewer pixels is what actually moves file size."
+          ]
+        },
+        "This route is slower, but it gives you a file you can reuse, which matters when the same photo later goes to a form or a listing. Why pixels matter more than the quality slider is covered in /blog/resize-and-compress-image.",
+        { type: "h2", text: "Route three: hit an exact KB target in the browser" },
+        "Mail Drop is the fallback Apple uses when a message is too big: your photo goes to iCloud and the recipient gets a link that expires. It works, but plenty of mail filters strip it, and people on older clients see a broken attachment.",
+        "A browser based compressor avoids that. You pick a target in KB, the file is processed on your phone, and what comes back attaches normally and arrives as a real file. When the ask is a hard number, such as under 1 MB or under 200 KB, this is the route that lands it on the first try. The 1 MB walkthrough is in /blog/compress-photo-to-1mb-email and the 200 KB version in /blog/compress-image-to-200kb.",
+        { type: "h2", text: "How small is too small" },
+        {
+          type: "ul",
+          items: [
+            "Under 100 KB: fine for a signature, a receipt, or a face in a small preview. Text starts to smear.",
+            "100 to 500 KB: the safe band for a photo someone reads on screen.",
+            "500 KB to 2 MB: stay here if the image may be printed or zoomed into.",
+            "Over 2 MB per photo: only for a print or archive handoff, and even then a resized original beats a heavy one."
+          ]
+        },
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Why does Mail say my attachment is too large when the photo is only 4 MB?",
+              a: "Because the limit applies to the whole message, not one file. A few photos, a signature image, and any quoted history all add up. Check the total, not the single largest photo."
+            },
+            {
+              q: "Can I send large photos from iPhone without iCloud?",
+              a: "Yes. Reduce the photo before attaching, either through the size picker in Mail or by compressing to a target size first, and the message stays under the limit without Mail Drop ever being offered."
+            },
+            {
+              q: "Does reducing the size change the photo in my library?",
+              a: "Not through Mail, which works on a copy. If you use a compressor, save the result as a new file rather than overwriting, then delete it later if you do not need it. The three iPhone routes are in /blog/compress-photos-iphone-3-ways."
+            },
+            {
+              q: "What size should I use for a job application or a government form?",
+              a: "Follow the number on the form. Where no number is given, 200 KB to 500 KB with the long edge near 1600 pixels passes most checks. The exact steps are in /blog/compress-image-to-200kb."
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "Compress a photo to an exact KB target on your iPhone, with the file staying on your phone",
+          href: "/"
+        }
+      ]
+    }
+  },
+  {
+    slug: "compress-images-mac-built-in",
+    date: "2026-10-22",
+    title: {
+      zh: "Mac 自带工具就能压缩图片：预览、快捷操作与终端",
+      en: "Compress Images on Mac With Built-In Tools (No App Needed)"
+    },
+    description: {
+      zh: "不想为一个压缩动作装软件？Mac 自带的预览、访达快捷操作和一条终端命令，基本覆盖所有情况，包括按 KB 定目标。",
+      en: "You do not need an app to compress images on a Mac. Preview, a Finder quick action, and one terminal command cover nearly every case, including a target size in KB."
+    },
+    keywords: [
+      "compress images mac built in",
+      "mac preview compress image",
+      "reduce image size mac without app",
+      "mac quick action resize images",
+      "compress jpg on mac free"
+    ],
+    content: {
+      zh: [
+        "要在 Mac 上用自带工具压缩图片，把文件丢进预览，导出时把尺寸压小就行。不用下载，不用注册，也不用上传。macOS 自带三条路径，合起来几乎覆盖所有场景，而最常被跳过的那条，恰恰是能给你确定文件大小的一条。",
+        "这件事在下游有硬限制时最要紧：报名表、邮件上限、投稿系统。它们只看 KB，而三条路里只有一条能让你直接说出数字。",
+        { type: "h2", text: "办法一：预览导出" },
+        "预览不只是看图器。文件菜单里的导出会打开一个面板，可以选格式，也有画质滑块，滑块一动下面的预估体积就跟着变。",
+        {
+          type: "ul",
+          items: [
+            "用预览打开图片，选文件，导出。",
+            "如果原图是没有透明通道的 PNG，导出成 JPEG。同一张照片存成 PNG 通常大好几倍，而肉眼几乎看不出区别。",
+            "拖画质滑块，盯住体积读数，在屏幕预览还能接受的地方停手。",
+            "换个名字导出，让原文件保持原样。"
+          ]
+        },
+        "这个滑块调的是画质，不是体积。如果文件怎么都压不下去，问题在像素，不在滑块。",
+        { type: "h2", text: "办法二：访达快捷操作" },
+        "在访达里右键文件就能看到快捷操作，较新的 macOS 里有「调整图像大小」。填一个宽度，选一个输出文件夹，系统会把新文件写在原文件旁边。",
+        {
+          type: "ul",
+          items: [
+            "先选中一个或多个文件再右键，因为这个操作支持批量。",
+            "填宽度，不是文件大小。1600 或 1920 像素覆盖屏幕观看和绝大多数表单。",
+            "输出到一个单独的文件夹，方便在删掉任何东西之前先对比。"
+          ]
+        },
+        "一个文件夹的商品图或截图要统一处理时，这条最快。它改的是尺寸，而尺寸才是真正拉动体积的杠杆，而且一次处理整批。",
+        { type: "h2", text: "办法三：终端里一行搞定" },
+        "如果是下个月还要再处理一遍的文件夹，macOS 自带 sips。先建一个输出文件夹，然后执行：",
+        "mkdir -p out && sips -Z 1600 *.jpg --out out",
+        "-Z 会把文件夹里每个 JPEG 的长边封到 1600 像素，结果写进 out，原文件不动。把 1600 换成对方要求的数字即可。它没有画质控制，这就是取舍：你拿到的是尺寸，不是目标体积。",
+        { type: "h2", text: "自带工具不够用的时候" },
+        "三条路都缺同一件事：没有一条能按 KB 接目标。表单写着 200 KB 以下时，你只能拿滑块猜，然后反复导出，这时候一个直接接受数字的浏览器压缩工具更快。200 KB 的步骤在 /blog/compress-image-to-200kb，100 KB 的同款做法在 /blog/compress-jpg-under-100kb。",
+        "另一个缺口是格式。较新的系统里预览能导出 AVIF 和 HEIC，但接收端的支持参差不齐。要交给别人打开的文件，JPEG 仍然是稳妥答案，PNG 只在需要透明时才上，理由写在 /blog/png-vs-jpg-differences。",
+        { type: "h2", text: "常见问题" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "预览会不会把原图的画质降低？",
+              a: "不会。导出写的是新文件。只有在图片打开状态下用存储、并且格式会重新编码时原文件才会被改，所以一律用导出。"
+            },
+            {
+              q: "为什么我的 PNG 调低画质也小不了多少？",
+              a: "因为 PNG 是无损格式，画质设置没什么可发挥的余地。先把照片转成 JPEG，或者减少像素数量，后者才是真正把体积砍下来的动作。无损与有损的差别见 /blog/lossy-vs-lossless-compression。"
+            },
+            {
+              q: "不装软件也能一次压缩整个文件夹吗？",
+              a: "可以。访达的快捷操作支持批量选中，终端里的 sips 一条命令处理整个文件夹。"
+            },
+            {
+              q: "在 Mac 上，改尺寸和压缩有什么不一样？",
+              a: "改尺寸动的是像素数量，压缩动的是这些像素的存储效率。改尺寸对文件体积的影响大得多。两者的顺序写在 /blog/resize-and-compress-image。"
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "在浏览器里把一批图片压到确定的 KB 目标，不安装、不上传",
+          href: "/"
+        }
+      ],
+      en: [
+        "To compress images on a Mac with built-in tools, open the file in Preview and export it at a smaller size. No download, no account, no upload. macOS ships three routes that between them cover nearly every case, and the one people skip is the one that gives you an exact file size.",
+        "This matters most when something downstream states a limit: an application form, an email cap, a submission portal. Those care about kilobytes, and only one of the three routes lets you name a number.",
+        { type: "h2", text: "Route one: Preview export" },
+        "Preview is not only a viewer. File, Export opens a panel with a format choice and a quality slider, and the estimated size updates as you move it.",
+        {
+          type: "ul",
+          items: [
+            "Open the image in Preview, then choose File, Export.",
+            "Pick JPEG if the original is a PNG without transparency. A photo stored as PNG is usually several times larger for no visible gain.",
+            "Drag the quality slider and watch the size readout, stopping where the on screen preview still looks acceptable.",
+            "Export under a new name so the original stays untouched."
+          ]
+        },
+        "The slider controls quality, not size. If the file refuses to drop far enough, the pixels are the problem, not the slider.",
+        { type: "h2", text: "Route two: a Finder quick action" },
+        "Right clicking a file in Finder gives you Quick Actions, and Resize Image is one of them on recent macOS versions. Pick a width, choose an output folder, and the system writes new files next to the originals.",
+        {
+          type: "ul",
+          items: [
+            "Select one or many files first, then right click, since the action accepts a batch.",
+            "Set the width, not the file size. 1600 or 1920 pixels covers screen viewing and most forms.",
+            "Send output to a separate folder so you can compare before deleting anything."
+          ]
+        },
+        "This is the fastest option for a folder of product shots or screenshots where every file needs the same treatment. It changes dimensions, which is the lever that actually moves size, and it does the whole set at once.",
+        { type: "h2", text: "Route three: one line in Terminal" },
+        "For a folder you will process again next month, macOS ships sips. Create an output folder, then run:",
+        "mkdir -p out && sips -Z 1600 *.jpg --out out",
+        "The -Z flag caps the longer side at 1600 pixels for every JPEG in the folder and writes the results into out, leaving originals alone. Change 1600 to whatever the destination asks for. It has no quality control, and that is the trade: you get dimensions, not a target file size.",
+        { type: "h2", text: "When built-in tools are not enough" },
+        "All three routes stop short of the same thing: none of them takes a target in kilobytes. If a form says under 200 KB, you end up guessing with the slider and re-exporting, which is where a browser compressor that accepts the number directly is faster. The 200 KB steps are in /blog/compress-image-to-200kb and the same idea at 100 KB in /blog/compress-jpg-under-100kb.",
+        "The other gap is format. Preview exports AVIF and HEIC on newer systems, but support on the receiving end is uneven. For a file someone else has to open, JPEG is still the safe answer, and PNG only when you need transparency, which is explained in /blog/png-vs-jpg-differences.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Does Preview reduce the quality of the original file?",
+              a: "No. Export writes a new file. The original only changes if you use Save while the image is open in a format that re-encodes, so always export instead."
+            },
+            {
+              q: "Why does my PNG barely get smaller when I lower the quality?",
+              a: "Because PNG is lossless, so a quality setting has little to work with. Convert the photo to JPEG first, or reduce the pixel dimensions, which is what actually cuts the size. The difference between the two is in /blog/lossy-vs-lossless-compression."
+            },
+            {
+              q: "Can I compress a whole folder at once without installing anything?",
+              a: "Yes. The Finder quick action handles a batch selection, and sips in Terminal handles a whole folder in one command."
+            },
+            {
+              q: "What is the difference between resizing and compressing on a Mac?",
+              a: "Resizing changes pixel dimensions, compressing changes how efficiently those pixels are stored. Resizing moves file size much further, and the order is covered in /blog/resize-and-compress-image."
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "Compress a batch to an exact KB target in your browser, no install and no upload",
+          href: "/"
+        }
+      ]
+    }
+  },
 ];
 
 export function getPost(slug: string) {
