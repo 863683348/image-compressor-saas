@@ -8014,6 +8014,187 @@ export const POSTS: BlogPost[] = [
       ]
     }
   },
+  {
+    slug: "compress-svg-without-breaking",
+    date: "2026-10-29",
+    title: {
+      zh: "怎么压缩 SVG 又不把它弄坏（元数据、精度、验收清单）",
+      en: "How to Compress SVG Without Breaking It: Metadata, Precision, and a Check List"
+    },
+    description: {
+      zh: "SVG 是文本，压缩改的是代码不是画质。这篇讲清哪些能删、坐标精度怎么定、上线前怎么验，附三种做法的取舍。",
+      en: "SVG is markup, so compressing it means editing text rather than discarding pixels. What is safe to delete, how to set coordinate precision, and how to verify the file before it ships."
+    },
+    keywords: [
+      "compress svg",
+      "svg minifier",
+      "reduce svg file size",
+      "svg optimizer online",
+      "compress svg without losing quality"
+    ],
+    content: {
+      zh: [
+        "SVG 是文本而不是像素，所以压缩 SVG 改的是代码，不是画质。清掉编辑器留下的元数据、把坐标小数位收一收、删掉没被引用的 defs 内容，一个 180KB 的图标可以掉到 20KB 以内，肉眼看不出区别。弄错了代价更大：路径偏一个像素、渐变直接消失、动画卡在第一帧。这篇讲清楚哪些能删、哪个数字最关键、上线前怎么验。原理部分和位图的差别在 /blog/lossy-vs-lossless-compression 里讲过，SVG 属于完全无损那一侧。",
+        { type: "h2", text: "压缩 SVG 时哪些东西可以放心删" },
+        "导出设置是冗余的重灾区。Illustrator、Figma、Inkscape 默认会把编辑器信息写进文件，浏览器渲染时一个字节都不看。",
+        {
+          type: "ul",
+          items: [
+            "元数据块：编辑器名称、导出时间、生成器的注释",
+            "sodipodi 与 inkscape 开头的命名空间属性",
+            "设计稿里留下的注释、标题、描述文字",
+            "defs 中没有任何引用的渐变、剪切路径、滤镜和 symbol",
+            "空分组、重复 id，以及没有 CSS 或 JS 指向的 id 属性",
+            "标签之间的空格和换行"
+          ]
+        },
+        "判断标准只有一条：浏览器画这张图时用不到它，就可以删。不确定就留着，一个多余的 id 几十字节，删错了整张图就废了。",
+        { type: "h2", text: "精度：决定体积的那个数字" },
+        "坐标精度是省字节的大头。多数导出默认给每个点写六位小数，收到两位之后，24 到 128 像素的图标在屏幕上没有可见差别，文件却小一大截。",
+        {
+          type: "ul",
+          items: [
+            "一位小数：只适合展示尺寸在 32 像素以下的图标，再大就有肉眼可见的锯齿",
+            "两位小数：通用设置，24 到 128 像素范围内看不出区别",
+            "三位小数：地图、复杂插画、曲线密集的图形用这个",
+            "带滤镜或蒙版的文件先别降精度，几何形状被改动可能让边缘出现异常"
+          ]
+        },
+        "同一份 300KB 的地图插画，六位小数改成两位通常能减掉三分之一。这个数字比删元数据有效得多，也更容易翻车，改完一定要看渲染结果。",
+        { type: "h2", text: "三种压缩 SVG 的做法" },
+        {
+          type: "ul",
+          items: [
+            "浏览器工具：拖进去出结果，文件不上传，适合临时处理一两个文件，也适合不能装软件的公司电脑",
+            "命令行 SVGO：npx svgo input.svg -o output.svg，能批量跑整个目录，配置可以写进 svgo.config.js 固定下来",
+            "构建流程：在 webpack 或 Vite 里挂 svgo 插件，之后每个提交进来的资源都会自动优化，团队不需要记得手动跑"
+          ]
+        },
+        "一次性的活儿用第一种。目录里躺着几十个图标，用第二种。项目长期在改，用第三种，让工具替你记住这件事。",
+        { type: "h2", text: "怎么判断压缩后的文件还是对的" },
+        {
+          type: "ul",
+          items: [
+            "原文件和压缩后的文件各开一个标签页，来回切换看有没有位移",
+            "按实际使用的尺寸渲染，不要放大到百分之百看，舍入误差是在缩放时才暴露的",
+            "搜索 url(# 开头的引用，确认每个被引用的 id 都还在",
+            "内联在 HTML 里的 SVG 要额外检查外部 CSS 有没有依赖被删掉的 id 或 class",
+            "有动画的文件手动播一遍，SMIL 和 CSS 动画都可能因为结构调整停住"
+          ]
+        },
+        { type: "h2", text: "什么时候干脆别压" },
+        "内容由脚本或后端动态改的文件不要过优化器，id 被改了就取不到节点。用户在编辑器里二次编辑的模板同理。已经跑过一遍 SVGO 的文件收益很小，通常只剩下 10% 到 20%，为这点体积承担风险不划算。",
+        "如果你的页面慢是因为图片体积，先确认瓶颈确实在 SVG 而不是位图，判断顺序在 /blog/image-compression-web-performance-guide。混合资源的处理思路见 /blog/compress-png-without-losing-quality。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "压缩 SVG 会降低画质吗？",
+              a: "不会。SVG 里没有像素数据，缩放依然清晰。真正会变的是几何形状：坐标被四舍五入之后，图形边界会移动不到一个像素的距离，曲线密集的图上这个位移偶尔能被看出来。"
+            },
+            {
+              q: "一般能省多少？",
+              a: "从设计软件直接导出的文件通常能减掉 40% 到 70%，因为编辑器元数据和六位小数占比很高。已经处理过的文件一般只剩 10% 到 20% 的余量。"
+            },
+            {
+              q: "能把 SVG 压到指定的 KB 吗？",
+              a: "不能像位图那样给一个目标值。位图可以靠调质量连续逼近目标大小，SVG 只能删掉离散的冗余内容，压到某个下限就没得删了。真有硬性上限的话，剩下的是简化路径或减少锚点，属于改设计，不是压缩。"
+            },
+            {
+              q: "SVGO 用默认配置安全吗？",
+              a: "默认配置偏保守，多数图标没问题。会出事的主要是这几个场景：文件带滤镜或蒙版、id 被外部 CSS 或 JS 引用、以及依赖 viewBox 之外的尺寸信息。这几类先备份再跑。"
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "在浏览器里压缩 SVG，文件不上传，也不用装软件",
+          href: "/tools/compress"
+        }
+      ],
+      en: [
+        "An SVG file is markup, which is why compress svg means editing text rather than discarding pixels. Strip the metadata your editor left behind, round the coordinates, drop the defs nothing references, and a 180 KB icon can land under 20 KB with no visible difference. Do it carelessly and you get the other outcome: paths shifted by a pixel, a gradient gone, an animation stuck on frame one. Here is what is safe to delete, which number matters most, and how to check the result before it goes live. The raster side of this comparison is in /blog/lossy-vs-lossless-compression; SVG sits firmly on the lossless end.",
+        { type: "h2", text: "What a compress svg pass can safely remove" },
+        "Export settings are where the dead weight comes from. Illustrator, Figma and Inkscape all write editor information into the file by default, and the browser reads none of it when drawing the image.",
+        {
+          type: "ul",
+          items: [
+            "Metadata blocks: editor name, export timestamp, generator comments",
+            "Namespaced attributes starting with sodipodi or inkscape",
+            "Comments, titles and descriptions carried over from the design file",
+            "Gradients, clip paths, filters and symbols in defs that nothing references",
+            "Empty groups, duplicate ids, and id attributes no CSS or JS targets",
+            "Whitespace and newlines between tags"
+          ]
+        },
+        "The test is a single question: does the browser need this to draw the picture? If not, it can go. When you are unsure, leave it in. A stray id costs tens of bytes, while deleting the wrong one costs you the whole graphic.",
+        { type: "h2", text: "Precision: the number that decides file size" },
+        "Coordinate precision is where most of the savings live. Exports usually write six decimal places for every point. Two decimals keeps sub-pixel accuracy for icons shown between 24 and 128 pixels, and it removes a large share of the bytes.",
+        {
+          type: "ul",
+          items: [
+            "One decimal: only for icons displayed under 32 pixels, since jagged edges show up above that",
+            "Two decimals: the general setting, invisible difference from 24 to 128 pixels",
+            "Three decimals: for maps, detailed illustrations and curve-heavy artwork",
+            "Skip rounding when the file uses a filter or a mask, because shifted geometry can break the edges"
+          ]
+        },
+        "On a 300 KB map illustration, going from six decimals to two usually removes about a third of the file. That is a bigger win than metadata cleanup, and it is also easier to get wrong, so always look at the rendered result afterwards.",
+        { type: "h2", text: "Three ways to compress svg files" },
+        {
+          type: "ul",
+          items: [
+            "Browser tool: drag it in and get the result back, the file never leaves your machine, good for one or two files and for locked-down work computers",
+            "SVGO on the command line: npx svgo input.svg -o output.svg handles a whole folder, and the settings can be pinned in svgo.config.js",
+            "Build step: hook an svgo plugin into webpack or Vite so every asset gets optimized on commit and nobody on the team has to remember"
+          ]
+        },
+        "Use the first for a one-off job. Use the second when a folder holds a few dozen icons. Use the third when the project keeps changing, and let the tooling remember it for you. None of these touch your PNG or JPG exports, which is a separate job covered in /blog/compress-png-without-losing-quality.",
+        { type: "h2", text: "How to tell whether the optimized file is still correct" },
+        {
+          type: "ul",
+          items: [
+            "Open the original and the optimized file in two tabs and flip between them to catch any shift",
+            "Render at the size you actually use rather than at 100 percent zoom, because rounding errors appear once it scales",
+            "Search for url(# references and confirm every referenced id still exists",
+            "For SVG inlined in HTML, check that no external CSS rule depended on a removed id or class",
+            "Play animated files manually, since both SMIL and CSS animations can stall after a structural change"
+          ]
+        },
+        { type: "h2", text: "When to leave the file alone" },
+        "Skip the optimizer when something else rewrites the file at runtime, since renamed ids break the lookup. The same applies to templates that users edit afterwards. Files that already went through SVGO once have maybe 10 to 20 percent left, which is not worth the risk.",
+        "Confirm the bottleneck is the SVG and not a raster asset before you spend time here; the order to check things is in /blog/image-compression-web-performance-guide.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Does compressing an SVG reduce quality?",
+              a: "No. There are no pixels in an SVG, so scaling stays sharp. What can change is geometry: rounding coordinates moves edges by less than a pixel, and on curve-dense artwork that shift is occasionally visible."
+            },
+            {
+              q: "How much should I expect to save?",
+              a: "Files exported straight from a design tool usually drop 40 to 70 percent, because editor metadata and six-decimal coordinates make up so much of them. A file that has already been processed has maybe 10 to 20 percent left."
+            },
+            {
+              q: "Can I compress an SVG to a specific KB target?",
+              a: "Not the way you can with a photo. Raster files let you walk a quality slider toward a target; an SVG only has discrete chunks of redundancy to remove, and below a certain floor there is nothing left. A hard size cap means simplifying paths or dropping anchors, which is a design change rather than compression."
+            },
+            {
+              q: "Is it safe to run SVGO with default settings?",
+              a: "Defaults lean conservative and most icons come through fine. The cases that break are files with filters or masks, ids referenced from outside CSS or JS, and files that depend on sizing information beyond the viewBox. Back those up before you run it."
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "Minify an SVG in your browser, no upload and nothing to install",
+          href: "/tools/compress"
+        }
+      ]
+    }
+  },
 ];
 
 export function getPost(slug: string) {
