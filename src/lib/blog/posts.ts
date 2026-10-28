@@ -8340,6 +8340,199 @@ export const POSTS: BlogPost[] = [
       ]
     }
   },
+  {
+    slug: "compress-transparent-png-lossless",
+    date: "2026-10-27",
+    title: {
+      zh: "无损压缩带透明通道的 PNG（边缘不发灰的整套流程）",
+      en: "Compress Transparent PNG Losslessly Without Grey Edges: A Full Workflow"
+    },
+    description: {
+      zh: "透明通道多占一个通道，也让很多压缩手法在边缘翻车。这篇讲 PNG-8 与 PNG-32 的取舍、哪些 chunk 能删、以及保住抗锯齿边缘的具体步骤。",
+      en: "Transparency adds a channel and breaks half the usual compression tricks at the edges. PNG-8 versus PNG-32, which chunks are safe to strip, and how to keep anti-aliased edges clean."
+    },
+    keywords: [
+      "transparent png compress",
+      "compress transparent png without losing quality",
+      "lossless png compression transparency",
+      "reduce transparent png file size",
+      "png alpha channel compression"
+    ],
+    content: {
+      zh: [
+        "带透明通道的 PNG 压缩会以一种特定的方式翻车：文件变小了，透明区域还在，logo 看着还是坏的，因为边缘多了一圈灰边。透明 png 压缩比其他图片麻烦，是因为除了 RGB 之外还多了一个 alpha 通道，而很多省体积的手法正好作用在边缘上。这篇讲清 PNG-8 和 PNG-32 怎么选、哪些数据块能删、以及边缘怎么保住。",
+        { type: "h2", text: "透明通道到底多占了什么" },
+        "不带透明的 PNG 每像素存 RGB 三个值，带透明就多一个 alpha，文件体积的上限直接抬高。这也是为什么同一个 logo，去掉背景之后反而变大。",
+        {
+          type: "ul",
+          items: [
+            "PNG-32：每像素 4 个字节，保留完整的 256 级透明度，抗锯齿边缘平滑",
+            "PNG-24：RGB 三个字节，透明度只能是全透或全不透，边缘会有锯齿",
+            "PNG-8：调色板索引色，最多 256 色，配合二值透明度可以压得很小，代价是渐变和阴影出现色带",
+            "带调色板的 PNG-8 支持 tRNS 块做二值透明，体积常常只有 PNG-32 的四分之一"
+          ]
+        },
+        { type: "h2", text: "无损在这里是什么意思" },
+        "PNG 用的是 deflate，本身就是无损算法，所以无损压缩在这里指的是不改任何一个像素值，只换一种更省字节的存法。降调色板、减颜色数都属于有损，因为它们真的改了像素。",
+        {
+          type: "ul",
+          items: [
+            "无损：oxipng、optipng、zopflipng 重新做 deflate，换滤波方式，删多余数据块",
+            "有损：pngquant 把颜色量化到调色板，视觉上通常看不出，但像素值确实变了",
+            "判断标准很简单：压完之后能和原图逐像素比对一致，才算无损"
+          ]
+        },
+        { type: "h2", text: "可以放心删的数据块" },
+        "PNG 由若干 chunk 组成，其中一部分跟渲染无关。",
+        {
+          type: "ul",
+          items: [
+            "tEXt、iTXt、zTXt：编辑器写入的文字信息，常见的是软件名和导出时间",
+            "pHYs：物理尺寸信息，浏览器显示时用不到",
+            "bKGD：背景色建议值，在透明背景下通常没有意义",
+            "sBIT：原始数据的有效位数，删掉不影响显示",
+            "别动 gAMA 和 sRGB，删掉会让颜色在不同浏览器上偏移"
+          ]
+        },
+        "命令行做法：pngcrush -rem alla -reduce in.png out.png，或者 oxipng -o 4 --strip safe in.png。在线工具里选 strip metadata 也有同样效果。",
+        { type: "h2", text: "边缘发灰是怎么来的" },
+        "抗锯齿让边缘像素处于半透明状态，这些像素的颜色是按原始背景混好的。量化到调色板时，如果工具把半透明像素当成实色处理，压完贴到深色底上就会出现一圈浅色描边。",
+        {
+          type: "ul",
+          items: [
+            "量化前先把半透明像素与最终背景色预乘，多数工具叫 premultiply alpha",
+            "阴影和发光效果留在 PNG-32，这类内容量化必然出带状",
+            "压完一定要放到实际使用的底色上看，白底压的图放到深色底上最容易露馅",
+            "一次压不好就用 PNG-32 加无损重排，虽然省得少，但边缘一定是对的"
+          ]
+        },
+        { type: "h2", text: "一套能复用的流程" },
+        {
+          type: "ul",
+          items: [
+            "先判断用途：单色或纯色 logo 走 PNG-8，带阴影或渐变的走 PNG-32",
+            "第二步删数据块，这一步是纯收益，没有视觉代价",
+            "第三步跑无损重排：oxipng -o 4 或 zopflipng，通常再省 10% 到 30%",
+            "还不够再上 pngquant，压完必须在实际底色上比对一次"
+          ]
+        },
+        "和其他格式的取舍在 /blog/png-vs-jpg-differences。针对 PNG 的完整对比见 /blog/compress-png-without-losing-quality。广告位这类有硬性 KB 限制的场景见 /blog/compress-images-facebook-ads-2026，矢量图标的处理方式完全不同，参看 /blog/compress-svg-without-breaking。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "压缩带透明的 PNG 会不会把透明区域弄丢？",
+              a: "无损流程不会。会丢透明的是转成 JPG 或者导出时没勾选透明通道这两种情况，PNG 到 PNG 的处理不涉及格式转换。"
+            },
+            {
+              q: "PNG-8 和 PNG-32 该选哪个？",
+              a: "看内容。纯色 logo、图标、单色插画用 PNG-8，体积常常只有四分之一。带阴影、渐变、半透明叠加的内容用 PNG-32，量化之后会出现色带。"
+            },
+            {
+              q: "为什么压完贴到深色背景上有一圈白边？",
+              a: "半透明像素在量化时被当成实色处理了。用支持预乘 alpha 的工具重压一次，或者退回 PNG-32 走无损路线。"
+            },
+            {
+              q: "无损压缩一般能省多少？",
+              a: "只做删数据块和重排 deflate，通常 10% 到 30%。设计软件导出的文件元数据多，能到 30%；已经优化过的文件剩 5% 左右。要更大降幅就得改颜色数，那是另一回事。"
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "在浏览器里无损压缩带透明的 PNG，文件不上传",
+          href: "/tools/compress"
+        }
+      ],
+      en: [
+        "A transparent png compress job fails in a particular way: the file gets smaller, the transparency is still there, and the logo still looks broken because the edges picked up a grey fringe. Transparency adds an alpha channel next to RGB, and the tricks that save the most bytes tend to act right on those edge pixels. Here is how to choose between PNG-8 and PNG-32, which chunks are safe to strip, and how to keep the edges clean.",
+        { type: "h2", text: "What the alpha channel actually costs" },
+        "A PNG without transparency stores three values per pixel; add transparency and a fourth joins them, which raises the ceiling on file size. That is why the same logo often grows after you cut the background out.",
+        {
+          type: "ul",
+          items: [
+            "PNG-32: four bytes per pixel, full 256 levels of transparency, smooth anti-aliased edges",
+            "PNG-24: three bytes per pixel, transparency is all or nothing, edges go jagged",
+            "PNG-8: indexed palette of up to 256 colors, tiny when paired with binary transparency, at the cost of banding in gradients and shadows",
+            "A paletted PNG-8 carrying a tRNS chunk for binary transparency often lands near a quarter of the PNG-32 size"
+          ]
+        },
+        { type: "h2", text: "What lossless means here" },
+        "PNG already uses deflate, which is a lossless algorithm. So lossless compression means changing no pixel value at all, only finding a cheaper way to store the same ones. Reducing the palette or the color count is lossy, because the pixels really do change.",
+        {
+          type: "ul",
+          items: [
+            "Lossless: oxipng, optipng and zopflipng redo the deflate pass, change the filter strategy and drop dead chunks",
+            "Lossy: pngquant quantizes colors into a palette, usually invisible to the eye but the pixel values are different",
+            "The test is simple: if the result matches the original pixel for pixel, it was lossless"
+          ]
+        },
+        { type: "h2", text: "Chunks you can strip safely" },
+        "A PNG is a set of chunks, and some of them have nothing to do with drawing the image.",
+        {
+          type: "ul",
+          items: [
+            "tEXt, iTXt, zTXt: text your editor wrote in, usually the software name and export time",
+            "pHYs: physical dimensions, which browsers ignore when displaying",
+            "bKGD: a suggested background color, meaningless behind a transparent image",
+            "sBIT: significant bits of the source data, safe to remove with no visible change",
+            "Leave gAMA and sRGB alone, since dropping them shifts colors between browsers"
+          ]
+        },
+        "On the command line: pngcrush -rem alla -reduce in.png out.png, or oxipng -o 4 --strip safe in.png. The strip metadata option in an online tool does the same thing.",
+        { type: "h2", text: "Where the grey fringe comes from" },
+        "Anti-aliasing leaves the edge pixels partly transparent, and their color was blended against whatever background the designer had. When a quantizer treats those pixels as solid, the result grows a pale outline the moment it sits on a dark surface.",
+        {
+          type: "ul",
+          items: [
+            "Premultiply the semi-transparent pixels against the final background before quantizing, an option most tools call premultiply alpha",
+            "Keep shadows and glows in PNG-32, since quantization always bands them",
+            "Check the result on the background you actually ship, because art compressed against white betrays itself on dark",
+            "When one pass is not enough, stay on PNG-32 with a lossless repack: less saved, edges always right"
+          ]
+        },
+        { type: "h2", text: "A workflow worth reusing" },
+        {
+          type: "ul",
+          items: [
+            "Pick the format from the content: flat or single color logos go PNG-8, anything with shadows or gradients goes PNG-32",
+            "Strip chunks next, which is a pure gain with no visual cost",
+            "Run a lossless repack: oxipng -o 4 or zopflipng, usually another 10 to 30 percent",
+            "Only reach for pngquant after that, and always compare on the real background"
+          ]
+        },
+        "The format trade offs sit in /blog/png-vs-jpg-differences, and the full PNG walkthrough is in /blog/compress-png-without-losing-quality. Ad slots with a hard KB cap are covered in /blog/compress-images-facebook-ads-2026, and vector icons work completely differently, which /blog/compress-svg-without-breaking explains.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Will compressing a transparent PNG lose the transparency?",
+              a: "Not through a lossless pass. Transparency disappears when you convert to JPG or export without the alpha channel ticked. PNG to PNG never changes format."
+            },
+            {
+              q: "PNG-8 or PNG-32?",
+              a: "It depends on the artwork. Flat logos, icons and single color illustrations do well as PNG-8 and often come in at a quarter of the size. Anything with a shadow, a gradient or layered translucency belongs in PNG-32, because quantizing bands it."
+            },
+            {
+              q: "Why is there a white outline on my dark background?",
+              a: "The semi-transparent edge pixels were quantized as if they were solid. Re-run the compression with premultiplied alpha, or fall back to PNG-32 and stay lossless."
+            },
+            {
+              q: "How much does lossless compression usually save?",
+              a: "Stripping chunks and repacking deflate typically gives 10 to 30 percent. Files from a design tool carry more metadata and land near 30; already optimized files give around 5. Bigger savings than that mean changing the color count, which is a different trade."
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "Compress a transparent PNG losslessly in your browser, no upload",
+          href: "/tools/compress"
+        }
+      ]
+    }
+  },
 ];
 
 export function getPost(slug: string) {
