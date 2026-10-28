@@ -8195,6 +8195,151 @@ export const POSTS: BlogPost[] = [
       ]
     }
   },
+  {
+    slug: "compress-animated-gifs-online",
+    date: "2026-10-28",
+    title: {
+      zh: "在线压缩动态 GIF（不动帧数、不糊字幕的四步法）",
+      en: "How to Compress Animated GIFs Online Without Ruining the Animation"
+    },
+    description: {
+      zh: "动态 GIF 体积由帧数、尺寸、调色板三者相乘决定。这篇给出可调的四个开关、各自能省多少，以及什么时候该改用视频。",
+      en: "An animated GIF is frames times dimensions times palette. Four settings move the size, here is what each one saves and when you should switch to video instead."
+    },
+    keywords: [
+      "compress gif",
+      "compress animated gif",
+      "reduce gif file size online",
+      "gif compressor no quality loss",
+      "shrink gif for website"
+    ],
+    content: {
+      zh: [
+        "一个要加载九秒的 GIF，多数人根本不会等。压缩 GIF 能把等待时间砍下来，但常见的做法会顺手毁掉你当初选 GIF 的理由：动画本身。掉帧、字幕糊掉、渐变出现色带，都是压过头的结果。这篇讲清体积是怎么算出来的、哪四个开关真正有用、以及什么时候别再用 GIF。",
+        { type: "h2", text: "GIF 的体积是怎么乘出来的" },
+        "GIF 每一帧都是一张索引色图像，配一块最多 256 色的调色板。所以体积大致等于帧数乘尺寸乘调色板深度。三个数里砍掉任何一个都会变小，砍错了就难看。",
+        {
+          type: "ul",
+          items: [
+            "帧数：录屏工具默认按 30 到 50 fps 存，而多数演示内容 12 到 15 fps 就看得很清楚",
+            "尺寸：宽高各减一半，像素数变成四分之一",
+            "调色板：256 色降到 64 色或 32 色，屏幕录制类内容通常看不出变化",
+            "帧间差分：只存变化区域，多数编码器默认就做了，值得确认一下"
+          ]
+        },
+        { type: "h2", text: "压缩动态 GIF 的四个开关" },
+        { type: "h2", text: "开关 1：先砍尺寸" },
+        "收益最大，副作用最可控。一个 1200 像素宽的录屏，缩到 600 宽之后在聊天窗口和文档里没有任何区别，像素数直接掉到四分之一。有字幕的话别压到 480 以下，字会糊。",
+        { type: "h2", text: "开关 2：把帧率降到 12 到 15" },
+        "录屏 GIF 里大量的帧几乎一模一样。从 30 fps 降到 12 fps，帧数直接少六成，动作看起来仍然连贯。例外是快速滚动或动画演示，这类内容低于 20 fps 就会跳。",
+        { type: "h2", text: "开关 3：收调色板" },
+        "256 色是上限，不是默认值。降到 64 色对界面截图、终端演示、单色插画几乎没有影响；有照片或渐变的画面降到 64 会出现色带，这种内容留在 128 或 256。",
+        "抖动（dither）用假色点模拟过渡色，关掉它文件更小、噪点更少，代价是渐变区域出现硬边。界面截图关掉抖动一般更干净。",
+        { type: "h2", text: "开关 4：在线工具跑一遍" },
+        "拖进去、调上面三个参数、出结果，文件不上传。要批量处理几十个 GIF 的话，命令行 gifsicle 更合适：gifsicle --lossy=80 --colors 64 -O3 in.gif -o out.gif，--lossy 是有损模式，能再省三成左右。",
+        { type: "h2", text: "什么时候别再压 GIF 了" },
+        {
+          type: "ul",
+          items: [
+            "超过 10 秒的录屏：改成 MP4 或 WebM，体积通常只有 GIF 的十分之一",
+            "带声音的内容：GIF 本来就没有音轨",
+            "真彩色照片：GIF 的 256 色上限天生不适合，用 WebP 或 AVIF",
+            "已经压过两轮的 GIF：再压只会继续掉画质，收益很小"
+          ]
+        },
+        "不同格式的取舍在 /blog/lossy-vs-lossless-compression 里有对比。一次要处理几十个文件的流程见 /blog/batch-compress-images-multiple，矢量图标则完全不同，参看 /blog/compress-svg-without-breaking。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "GIF 一般能压掉多少？",
+              a: "从录屏工具直接导出的文件，砍尺寸加降帧率通常能减掉 60% 到 80%。已经优化过的文件只剩下 10% 到 20% 的空间，再往下压就要牺牲画质了。"
+            },
+            {
+              q: "压缩 GIF 会掉画质吗？",
+              a: "取决于压哪一项。只砍尺寸和帧率，单帧画质不变。收调色板或开有损模式会真的损失颜色信息，渐变和照片类内容最容易看出来。"
+            },
+            {
+              q: "压完之后页面还是卡，为什么？",
+              a: "多半是同时加载了多个大 GIF，或者 GIF 放在首屏。首屏用视频代替，其余部分改成点击或滚动到可见时再加载，单文件大小不是唯一变量。"
+            },
+            {
+              q: "有损 GIF 压缩和 MP4 该选哪个？",
+              a: "必须在邮件、文档、老系统里直接播放就选 GIF，有损模式能压到能用为止。放在自己网站上的长录屏选 MP4 或 WebM，同等内容小一个数量级。"
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "在浏览器里压缩动态 GIF，文件不上传，不损失帧数",
+          href: "/tools/compress"
+        }
+      ],
+      en: [
+        "A GIF that takes nine seconds to load is a GIF most people never watch. Compress gif files and the wait shrinks, but the obvious ways of doing it wreck the reason you picked the format in the first place: the animation. Dropped frames, smeared subtitles, banding across gradients, all of it comes from pushing too hard. Here is how the size is actually calculated, which four settings move it, and when you should stop using GIF at all.",
+        { type: "h2", text: "How an animated GIF gets its size" },
+        "Every frame in a GIF is an indexed color image with a palette of up to 256 colors. Size is roughly frames multiplied by dimensions multiplied by palette depth. Cut any one of those three and the file shrinks; cut the wrong one and it looks bad.",
+        {
+          type: "ul",
+          items: [
+            "Frames: screen recorders often save at 30 to 50 fps, while most demo content reads fine at 12 to 15",
+            "Dimensions: halving width and height leaves a quarter of the pixels",
+            "Palette: dropping from 256 colors to 64 or 32 is usually invisible on screen recordings",
+            "Frame differencing: storing only the changed region, which most encoders do by default and is worth confirming"
+          ]
+        },
+        { type: "h2", text: "The four settings that compress an animated gif" },
+        { type: "h2", text: "Setting 1: cut the dimensions first" },
+        "Biggest win, most predictable side effects. A 1200 pixel wide screen recording scaled to 600 looks identical in a chat window or a document, and it removes three quarters of the pixels. If there are subtitles, stay above 480 wide or the text goes soft.",
+        { type: "h2", text: "Setting 2: drop the frame rate to 12 or 15" },
+        "Most frames in a screen recording are nearly identical. Going from 30 fps to 12 removes about six in ten frames and the motion still reads as continuous. The exception is fast scrolling or animated transitions, which start to stutter below 20 fps.",
+        { type: "h2", text: "Setting 3: shrink the palette" },
+        "256 colors is a ceiling, not a default. Down to 64 barely affects UI screenshots, terminal demos and flat illustrations. Footage and gradients band at 64 colors, so keep those at 128 or 256.",
+        "Dithering fakes intermediate colors with a dot pattern. Turning it off gives you a smaller file with less noise, and the trade is hard edges in gradients. On interface captures, dithering off usually looks cleaner.",
+        { type: "h2", text: "Setting 4: run it through an online tool" },
+        "Drop the file in, adjust the three settings above, take the result, and nothing gets uploaded. For a folder of dozens, gifsicle on the command line fits better: gifsicle --lossy=80 --colors 64 -O3 in.gif -o out.gif. The lossy flag discards some color detail and takes roughly another third off the top.",
+        { type: "h2", text: "When to stop using GIF" },
+        {
+          type: "ul",
+          items: [
+            "Screen recordings over ten seconds: MP4 or WebM usually lands around a tenth of the size",
+            "Anything with sound, since GIF has no audio track at all",
+            "True color photographs: the 256 color ceiling is the wrong tool, use WebP or AVIF",
+            "Files that already went through two passes: the remaining savings are small and the quality cost keeps climbing"
+          ]
+        },
+        "The format trade offs are laid out in /blog/lossy-vs-lossless-compression. For a workflow that handles dozens of files at once, /blog/batch-compress-images-multiple covers it, and vector icons work completely differently, which /blog/compress-svg-without-breaking explains.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "How much can I compress a GIF?",
+              a: "On a file exported straight from a screen recorder, cutting dimensions and frame rate together usually removes 60 to 80 percent. An already optimized file has maybe 10 to 20 percent left before the quality cost becomes obvious."
+            },
+            {
+              q: "Does compressing a GIF reduce quality?",
+              a: "It depends on which setting you touch. Dimensions and frame rate leave each frame untouched. Reducing the palette or enabling lossy mode discards real color information, and gradients and photographic content show it first."
+            },
+            {
+              q: "Why is my page still slow after compressing?",
+              a: "Usually because several large GIFs load at once, or one sits above the fold. Swap the hero slot for video and lazy load the rest, since file size is not the only variable."
+            },
+            {
+              q: "Lossy GIF or MP4?",
+              a: "Choose lossy GIF when the file has to play inside an email, a document or an older system. Choose MP4 or WebM for long recordings on your own site, where the same content costs an order of magnitude less."
+            }
+          ]
+        },
+        {
+          type: "cta",
+          text: "Compress an animated GIF in your browser, no upload and no dropped frames",
+          href: "/tools/compress"
+        }
+      ]
+    }
+  },
 ];
 
 export function getPost(slug: string) {
