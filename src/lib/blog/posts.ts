@@ -8533,6 +8533,160 @@ export const POSTS: BlogPost[] = [
       ]
     }
   },
+  {
+    slug: "vector-vs-raster-when-to-compress",
+    date: "2026-10-30",
+    title: {
+      zh: "矢量图和位图：什么时候压缩才有用",
+      en: "Vector vs Raster: When Compressing Actually Helps"
+    },
+    description: {
+      zh: "同一个 logo，SVG 40KB、PNG 2.4MB。先分清矢量和位图，再决定要不要压缩。这篇讲清楚两者的压缩逻辑差在哪，以及各自该用哪一套方法。",
+      en: "One logo, 40KB as SVG and 2.4MB as PNG. Settle vector vs raster before you compress, then pick the method that fits the format."
+    },
+    keywords: [
+      "vector vs raster",
+      "raster image compression",
+      "when to compress vector files",
+      "svg vs png compression",
+      "vector vs raster file size",
+      "compress svg smaller"
+    ],
+    content: {
+      zh: [
+        "矢量图和位图的区别，是在打开压缩工具之前就该弄清楚的事，因为它决定了压缩到底有没有用。位图存的是像素网格，有固定的宽高，尺寸越大文件越大。矢量图存的是绘制指令，没有分辨率，文件大小跟着图形数量和锚点数走。所以同一个 logo 可以是 SVG 40KB、PNG 2.4MB，而压缩这两种文件的思路完全是两回事。",
+        { type: "h2", text: "位图压缩到底在删什么" },
+        "位图压缩操作的是像素网格。无损方法（去掉元数据、合并重复调色板、重新打包 deflate 流）不动任何一个像素，一般能省 10% 到 30%。有损方法走得更远：JPEG 丢掉高频细节和色度分辨率，WebP 和 AVIF 在上面加了更好的预测，减色则直接降低颜色数。但它们都没法把细节变回来。把 400px 宽的照片压到 1600px 输出，只会得到一个更大但仍然模糊的文件。分辨率是天花板，压缩只决定你在这个天花板下面装得多紧。",
+        { type: "h2", text: "矢量文件什么时候该压，什么时候是白费劲" },
+        "矢量文件该不该压，主要看它带着什么。从 Figma 或 Illustrator 导出的 SVG 常常塞了编辑器元数据、隐藏图层、没用到的渐变定义、十位小数精度，还有一张没人会渲染的 base64 预览位图。把这些清掉，120KB 的图标可以落到 25KB 左右，画面没有变化。如果 SVG 已经清理过了，服务端的 gzip 或 brotli 会处理剩下的部分，本地这一遍可以跳过。",
+        {
+          type: "ul",
+            items: [
+              "编辑器元数据：Illustrator 和 Inkscape 都会写入大段私有信息，删掉没有代价",
+              "坐标精度：把 12.3456789 改成 12.35，文件里每个路径命令都会变短",
+              "内嵌位图：SVG 里的 base64 预览图可能占了绝大部分体积",
+              "没用到的 defs：改版后残留的渐变和裁剪路径照样会被写进文件",
+              "重复的内联样式：收进一个 class，图标集能省下不少字节"
+            ]
+        },
+        { type: "h2", text: "同一张图，SVG 和 PNG 的体积对比" },
+        "SVG 和 PNG 的压缩走的是两条路，谁占优取决于图本身。六个颜色的扁平 logo 在任何尺寸下都清晰，做成矢量常常不到 10KB。照片没有形状可以描述，硬转成矢量只会得到一个巨大而且更难看的文件。下面是我们在工具里跑出来的大致区间。",
+        {
+          type: "ul",
+            items: [
+              "扁平 logo，6 色：SVG 4 到 12KB，512px 的 PNG-8 约 18KB，PNG-32 约 46KB",
+              "图标集，24 个字形：SVG 22KB，2 倍图 PNG 雪碧图 180KB",
+              "产品照片 1600px：转 SVG 超过 4MB 而且发虚，JPEG q80 约 210KB，WebP q80 约 140KB",
+              "带文字的截图：PNG-32 无损 900KB，PNG-8 减色 240KB，WebP 无损 620KB",
+              "带网格线的折线图：SVG 8KB，2 倍图 PNG 340KB"
+            ]
+        },
+        { type: "h2", text: "先按内容选格式，再谈体积" },
+        "只要问一句这张图是由什么构成的，矢量和位图的体积问题就不难了。硬边、纯色填充和文字是形状，形状该放进矢量文件。渐变、阴影、噪点，以及一切相机拍出来的东西是像素，像素该放进位图文件。真实项目大多是混合的：SVG logo 叠在 JPEG 背景上。各自用自己的方式压缩，总量比只压一遍降得更多。",
+        {
+          type: "ul",
+            items: [
+              "logo、图标、示意图、图表、地图：导出 SVG，清掉编辑器元数据，服务端开 brotli",
+              "照片、扫描件、截图：保持位图，选 WebP 或 AVIF，退回 JPEG",
+              "混合排版：压位图层，矢量层不要动",
+              "印刷输出：先确认印厂要不要矢量，过早栅格化会把分辨率锁死"
+            ]
+        },
+        { type: "h2", text: "一套可以重复用的顺序" },
+        "先判断这个文件是像素网格还是形状列表。位图对质量和尺寸敏感，所以先定输出宽度，再选质量值，反过来做是浪费时间。矢量文件吃清理，所以删掉编辑器加进去的东西，剩下的交给服务端压缩文本。两种都建议最后在真实背景上、按实际发布的尺寸看一眼。",
+        "SVG 清理的完整步骤在 /blog/compress-svg-without-breaking，位图那部分的细节在 /blog/compress-png-without-losing-quality。如果要比较位图格式，/blog/png-vs-jpg-differences 列了各自的取舍；照片为什么缩尺寸比降质量更有效，/blog/image-resolution-vs-file-size 里有解释。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+            items: [
+              {
+                q: "矢量文件能和照片一样压缩吗？",
+                a: "不能。照片压缩操作的是像素，用细节换字节。矢量文件是文本，有用的操作是删掉编辑器元数据、降低坐标精度、清掉没用到的定义。把照片压缩器套在 SVG 上不会有任何效果。"
+              },
+              {
+                q: "为什么我的 SVG 比 PNG 还大？",
+                a: "通常是内嵌了位图预览，或者描摹把每个像素都变成了形状。照片描摹成矢量路径会产生上千个锚点，文件比原图大好几倍。先检查里面有没有 base64 块。"
+              },
+              {
+                q: "压缩矢量文件会掉画质吗？",
+                a: "清理类的操作不会。坐标保留两位小数可能让路径偏移不到一个像素，把文字转成轮廓会改变渲染方式，所以能保留活字就尽量保留。"
+              },
+              {
+                q: "照片该转成 SVG 来变小吗？",
+                a: "不该。照片是连续色调，用形状去描述会得到一个体积巨大、瑕疵明显的文件。设定好尺寸之后用 WebP 或 AVIF，结果小得多。"
+              }
+            ]
+        },
+        { type: "cta", text: "在浏览器里压缩图片，不上传", href: "/tools/compress" }
+      ],
+      en: [
+        "Vector vs raster is the first thing to settle before you open a compression tool, because it decides whether compressing does anything at all. A raster file stores a grid of pixels, so it carries a fixed width and height and its size grows with both. A vector file stores drawing instructions instead, so it has no resolution and its size follows the number of shapes and anchor points in the artwork. That is why one logo can be 40KB as an SVG and 2.4MB as a PNG, and why cutting the size of each is a different job.",
+        { type: "h2", text: "What raster image compression actually removes" },
+        "Raster image compression works on the pixel grid. Lossless methods such as stripping metadata, merging duplicate palettes and repacking the deflate stream leave every pixel alone and usually return 10 to 30 percent. Lossy methods go further: JPEG drops high-frequency detail and chroma resolution, WebP and AVIF add better prediction on top, and quantization lowers the color count. What none of them can do is add detail back. Scale a 400px-wide photo up to 1600px and you get a bigger file holding the same blur. Resolution is the ceiling, and compression only decides how tightly you pack up to it.",
+        { type: "h2", text: "When to compress vector files, and when it is pointless" },
+        "When to compress vector files is mostly a question of what the file carries. An SVG exported from Figma or Illustrator often ships with editor metadata, hidden layers, unused gradient definitions, coordinate precision to ten decimal places, and a base64 preview bitmap nobody renders. Strip all that and a 120KB icon can land near 25KB with no visible change. If the SVG was already cleaned, gzip or brotli at the server handles the rest, and you can skip the local pass entirely.",
+        {
+          type: "ul",
+            items: [
+              "Editor metadata: Illustrator and Inkscape both write large private blocks, and removing them costs nothing",
+              "Coordinate precision: rounding 12.3456789 to 12.35 shortens every path command in the file",
+              "Embedded rasters: a base64 preview image inside an SVG can account for most of the weight",
+              "Unused defs: gradients and clip paths left behind after a design change still get written out",
+              "Repeated inline styles: collapsing them into one class saves real bytes on icon sets"
+            ]
+        },
+        { type: "h2", text: "SVG vs PNG compression on the same artwork" },
+        "SVG vs PNG compression runs along two different paths, and which one wins depends on the picture. A flat logo with six colors stays sharp at any size and often lands under 10KB as a vector. A photograph has no shapes to describe, so forcing it into vector form produces a huge file that looks worse. The ranges below come from files we ran through the tool.",
+        {
+          type: "ul",
+            items: [
+              "Flat logo, 6 colors: SVG 4 to 12KB, PNG-8 at 512px around 18KB, PNG-32 around 46KB",
+              "Icon set, 24 glyphs: SVG 22KB, PNG sprite at 2x 180KB",
+              "Product photo at 1600px: SVG conversion over 4MB and blurry, JPEG q80 around 210KB, WebP q80 around 140KB",
+              "Screenshot with text: PNG-32 lossless 900KB, PNG-8 quantized 240KB, WebP lossless 620KB",
+              "Line chart with gridlines: SVG 8KB, PNG at 2x 340KB"
+            ]
+        },
+        { type: "h2", text: "Vector vs raster file size: pick the format first" },
+        "Vector vs raster file size stops being a puzzle once you ask what the image is made of. Hard edges, flat fills and text are shapes, and shapes belong in a vector file. Gradients, shadows, noise and anything a camera captured are pixels, and pixels belong in a raster file. Most real projects mix both: an SVG logo over a JPEG background. Compress each in its own lane and the total drops further than any single pass.",
+        {
+          type: "ul",
+            items: [
+              "Logos, icons, diagrams, charts, maps: export SVG, strip editor metadata, serve with brotli",
+              "Photos, scans, screenshots: stay raster, pick WebP or AVIF, fall back to JPEG",
+              "Mixed layouts: compress the raster layer and leave the vector layer alone",
+              "Print output: check whether the printer wants vector, since rasterizing early locks the resolution"
+            ]
+        },
+        { type: "h2", text: "A pass you can repeat" },
+        "Start by asking whether the file is a grid of pixels or a list of shapes. Raster files respond to quality and dimension changes, so set the output width first and only then pick a quality value; the reverse order wastes time. Vector files respond to cleanup, so remove what the editor added and let the server compress the text. Both kinds deserve one last look on the real background, at the size you actually ship.",
+        "The full walkthrough for SVG cleanup is in /blog/compress-svg-without-breaking, and /blog/compress-png-without-losing-quality covers the raster side in detail. If you are weighing raster formats, /blog/png-vs-jpg-differences lays out the trade-offs, and /blog/image-resolution-vs-file-size explains why shrinking dimensions beats lowering quality on photos.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+            items: [
+              {
+                q: "Can I compress a vector file the same way I compress a photo?",
+                a: "No. Photo compression works on pixels and trades visual detail for bytes. Vector files are text, so the useful steps are removing editor metadata, rounding coordinate precision and deleting unused definitions. Running a photo compressor over an SVG does nothing."
+              },
+              {
+                q: "Why is my SVG bigger than the PNG?",
+                a: "Usually an embedded raster preview, or a tracing pass that turned every pixel into a shape. A photo traced into vector paths produces thousands of anchors and a file several times larger than the original. Check for a base64 block first."
+              },
+              {
+                q: "Does compressing a vector file reduce quality?",
+                a: "Cleanup passes do not. Rounding coordinates to two decimals can shift a path by a fraction of a pixel, and converting text to outlines changes how it renders, so keep live text where you can."
+              },
+              {
+                q: "Should I convert photos to SVG to make them smaller?",
+                a: "No. Photographs are continuous tone, and describing them as shapes produces a huge file with visible artifacts. Set the dimension first, then use WebP or AVIF for a far smaller result."
+              }
+            ]
+        },
+        { type: "cta", text: "Compress an image in your browser, no upload", href: "/tools/compress" }
+      ]
+    }
+  },
 ];
 
 export function getPost(slug: string) {
