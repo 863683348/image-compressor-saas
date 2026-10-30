@@ -8687,6 +8687,203 @@ export const POSTS: BlogPost[] = [
       ]
     }
   },
+  {
+    slug: "image-compression-retina-2x-3x",
+    date: "2026-10-31",
+    title: {
+      zh: "Retina 图片压缩：2x 和 3x 到底该怎么选",
+      en: "Retina Image Compression: Choosing Between 2x and 3x"
+    },
+    description: {
+      zh: "2x 屏幕把 1 个 CSS 像素画成 4 个物理像素，3x 手机画成 9 个。先算清像素成本，再去动质量滑块。这篇给出 1x / 2x / 3x 的体积对照、srcset 写法和可用质量区间。",
+      en: "A 2x screen paints four physical pixels for one CSS pixel, and a 3x phone paints nine. Count the pixel cost first, then touch the quality slider. Measurements for 1x, 2x and 3x, with srcset markup and workable quality ranges."
+    },
+    keywords: [
+      "retina image compress",
+      "compress retina images",
+      "2x vs 3x image size",
+      "retina image optimization",
+      "device pixel ratio image size",
+      "srcset 2x 3x retina images"
+    ],
+    content: {
+      zh: [
+        "先看 device pixel ratio（设备像素比），再去碰质量滑块。DPR 为 2 的屏幕会把布局里的 1 个 CSS 像素画成 4 个物理像素，DPR 为 3 的手机画成 9 个。按 1x 尺寸导出的素材在这些屏幕上只能被拉伸，同样一张照片在新手机上发虚、在老显示器上正常，原因就在这里。这篇算清楚 Retina 图片压缩的字节账：2x 和 3x 各贵多少、什么情况可以停在 2x，以及尺寸定完之后压缩还能帮上什么忙。",
+        { type: "h2", text: "2x 和 3x 的成本是平方关系" },
+        "像素数跟着 DPR 的平方走。800 × 600 的槽位，1x 是 48 万像素，2x 是 192 万，3x 是 432 万。质量值固定时，照片的文件大小几乎与像素数成正比，所以第一次导出 3x 资源的人都会被体积吓一跳。乘数本身比任何单个数字都重要，因为它作用在每一张图上：把五十张图的分辨率翻一倍，流量跟着翻倍，这还没算多出来的那一档。所以这个决定应该写进设计规范，而不是在每张图的工单里各判一次。顺序记牢：分辨率是天花板，压缩只决定你在天花板下面装得多紧。",
+        {
+          type: "ul",
+          items: [
+            "缩略图 96 × 96：1x 约 3KB，2x 约 9KB，3x 约 19KB，这个尺寸上加到 3x 几乎不用心疼",
+            "卡片图 400 × 300：1x 约 28KB（JPEG q80），2x 约 92KB，3x 约 195KB",
+            "通栏 hero 1200 × 600：1x 约 150KB，2x 约 520KB，3x 约 1.1MB",
+            "同样这张 hero 换成 WebP q75：2x 约 340KB，3x 约 720KB",
+            "再换 AVIF q55：2x 约 260KB，肉眼差别在手机上基本找不到",
+            "24 个字形的图标集，双密度：SVG 约 22KB，PNG 雪碧图约 180KB",
+            "同一张 hero 在 2x 下横向对比：JPEG q80 约 520KB，WebP q75 约 340KB，AVIF q55 约 260KB",
+            "会被双指放大的产品图，才是真正吃得到 3x 红利的那类素材"
+          ]
+        },
+        { type: "h2", text: "什么时候停在 2x 就够了" },
+        "多数内容没必要上 3x。正常观看距离下，人眼对超过 2x 的像素增量几乎没有反应，尤其是细节已经被有损压缩磨平的照片。与其把预算花在第三档分辨率上，不如留给更高的质量值或者更好的格式。",
+        {
+          type: "ul",
+          items: [
+            "照片、插画、背景通图：导出 2x，省下的字节用来提高质量值",
+            "纯色 logo 和图标：走 SVG，任何 DPR 下都清晰，压根不在这套换算里",
+            "支持双指缩放的产品图：给 3x，通常只占全站少数几张",
+            "带小字的 UI 截图和图表：2x 起步，放进需要凑近看的展示位再加 3x",
+            "同时兼容 1.5x 笔记本和老外设的场景：交给 srcset 让设备自己挑，别赌单一档"
+          ]
+        },
+        { type: "h2", text: "Retina 图片该怎么压缩才看不出损失" },
+        "顺序是先把输出尺寸定下来，再去拉质量；反过来做等于先把肉眼可见的细节压掉，再让缩放步骤把倍率补回来。Retina 资源还占一个便宜：多余的像素会把压缩伪影盖住，同一张照片在 2x 下用 q60 到 q75，往往比在 1x 下用 q85 看着更干净。",
+        {
+          type: "ul",
+          items: [
+            "第一步：按上面的对照表定宽度。CSS 里 240 × 240 的头像，导出 480 或 720",
+            "第二步：照片优先 WebP q75 或 AVIF q55，同体积下两者都比 JPEG 干净",
+            "第三步：看实际字节数。超出预算就降质量，一次只改一个变量，归因才准",
+            "第四步：交付前在真机上看一眼，1x 显示器上判断不了 3x 图的锐度",
+            "第五步：批量导出放进构建环节，手点九张 hero 迟早会漏掉一档"
+          ]
+        },
+        { type: "h2", text: "用 srcset 让浏览器自己挑" },
+        "srcset 就是为这件事存在的：同一个位置放多个候选文件，浏览器按当前设备的 DPR 和网络状况挑一个下载。它解决的是 Retina 屏吃不饱、老设备替别人付流量这对矛盾。",
+        {
+          type: "ul",
+          items: [
+            "密度描述符写法：<img src='photo-1x.jpg' srcset='photo-2x.jpg 2x, photo-3x.jpg 3x' alt='产品照片'>",
+            "宽度描述符配 sizes 更灵活：候选给的是宽度，浏览器按布局实际占多少像素来选",
+            "只发 1x 和 2x 也能覆盖绝大多数机型，3x 单独留给 hero 这类少数位置",
+            "别漏 alt 和宽高属性，缺失会让页面在加载时跳动，LCP 也跟着变差"
+          ]
+        },
+        { type: "h2", text: "几个反复出现的误区" },
+        {
+          type: "ul",
+          items: [
+            "在 Photoshop 里把分辨率改成 72 或 300：屏幕只按像素渲染，这个数字对网页没用",
+            "全站统一 3x：流量和 CDN 账单翻倍，画质收益只集中在少数图上",
+            "先压质量再改尺寸：细节一旦丢掉，放大也回不来",
+            "只在自己的 1x 显示器上验收：团队里有人用 4K 屏，问题会当场暴露"
+          ]
+        },
+        "把这些串起来是一套可以重复的顺序：先量出 CSS 里的插槽宽度，乘 2 作为导出宽度，编码选 AVIF 或 WebP，最后在手机和 1x 显示器上各看一眼。单张图在 2x 下仍然超预算时，先改它在布局里的尺寸，而不是继续压低质量，因为调整布局不用付流量。",
+        "关于 image-compressor-saas.shop：压缩全程在你的浏览器里完成，文件不上传服务器，一次导出十几张 Retina 资源也不用排队。尺寸和质量谁先谁的后讨论在 /blog/image-resolution-vs-file-size；为什么 Photoshop 里的 DPI 对网页毫无作用，/blog/dpi-vs-ppi-explained 讲得比较细；2x 之下 AVIF 和 WebP 谁更划算，/blog/avif-vs-webp-in-depth 里有实测数字。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Retina 屏一定要导出 3x 吗？",
+              a: "大部分情况下不用。3x 的像素数是 2x 的 2.25 倍，成本全落在流量和加载时间上，而多数照片看不出差别。可能被放大查看的产品图和主视觉给 3x，其余停在 2x。"
+            },
+            {
+              q: "2x 图用多低的质量还看不出来？",
+              a: "照片通常在 q60 到 q75 之间，多余像素会盖住伪影，这是 1x 图没有的余量。图表和截图例外，有损压缩会糊掉文字边缘，用 WebP 或 PNG-8 更稳。"
+            },
+            {
+              q: "压缩能不能代替 srcset？",
+              a: "不能。压缩减小每个候选文件的体积，srcset 决定设备下载哪个候选。两个一起用才是既省流量又清晰的组合。"
+            },
+            {
+              q: "我把 DPI 设成 300 了，为什么还是糊？",
+              a: "因为浏览器不看 DPI，只看这张图有多少像素。把导出宽度改成布局宽度的 2 倍或 3 倍才是有效动作。"
+            }
+          ]
+        },
+        { type: "cta", text: "在浏览器里压缩图片，不上传", href: "/tools/compress" }
+      ],
+      en: [
+        "Look at device pixel ratio before you touch the quality slider. A screen with DPR 2 paints four physical pixels for every CSS pixel in your layout, and a 3x phone paints nine. Assets exported at 1x get stretched on those displays, which is why one photo looks soft on a new phone and acceptable on an older monitor. This is the part of retina image compression that decides the invoice, so here is the byte cost of 2x against 3x, the cases where stopping at 2x is enough, and what compression still buys you once the dimensions are fixed.",
+        { type: "h2", text: "Why 2x and 3x cost more than they look like" },
+        "Pixel count follows the square of the ratio. An 800 x 600 slot holds 480,000 pixels at 1x, 1.92 million at 2x and 4.32 million at 3x. At a fixed quality setting a photo tracks its pixel count closely, so the first 3x export in any project comes as a shock. The order worth remembering is this: resolution is the ceiling, and compression only decides how tightly you pack up to it.",
+        {
+          type: "ul",
+          items: [
+            "Thumbnail 96 x 96: about 3KB at 1x, 9KB at 2x, 19KB at 3x, cheap enough that adding 3x costs almost nothing",
+            "Card image 400 x 300: about 28KB at 1x (JPEG q80), 92KB at 2x, 195KB at 3x",
+            "Full-width hero 1200 x 600: about 150KB at 1x, 520KB at 2x, 1.1MB at 3x",
+            "The same hero as WebP q75: about 340KB at 2x, 720KB at 3x",
+            "The same hero as AVIF q55: about 260KB at 2x, with a difference most people cannot spot on a phone",
+            "The same hero compared at 2x: JPEG q80 about 520KB, WebP q75 about 340KB, AVIF q55 about 260KB",
+            "Product shots that readers pinch to zoom are the files that actually earn the third tier"
+          ]
+        },
+        { type: "h2", text: "Where stopping at 2x is the right call" },
+        "Most content does not need the third step. At a normal viewing distance the eye stops registering extra pixels past roughly 2x, and that holds even more once lossy compression has sanded off the fine detail. The budget belongs in a higher quality value or a better format rather than another resolution tier.",
+        {
+          type: "ul",
+          items: [
+            "Photos, illustrations, background art: export at 2x and spend what you saved on quality",
+            "Flat logos and icons: use SVG instead, sharp at any DPR and outside this arithmetic entirely",
+            "Product shots with pinch zoom: give them 3x, usually only a handful of files per site",
+            "UI screenshots and charts with small text: start at 2x, add 3x only where people lean in to read",
+            "Mixed fleets with 1.5x laptops and older monitors: let srcset pick instead of betting on one tier"
+          ]
+        },
+        { type: "h2", text: "How to compress retina images without visible loss" },
+        "Set the output dimensions first and pick quality afterwards. Doing it the other way strips detail you can see, then asks a resize step to invent it back. Retina assets carry one bonus: the extra pixels cover compression artifacts, so a photo at q60 to q75 exported at 2x often looks cleaner than the same photo at q85 exported at 1x.",
+        {
+          type: "ul",
+          items: [
+            "Step 1: fix the width from the table above. A 240 x 240 avatar in CSS wants a 480 or 720 export",
+            "Step 2: prefer WebP q75 or AVIF q55 for photos, both cleaner than JPEG at the same size",
+            "Step 3: read the actual byte count. If it is over budget, lower quality, and change one variable at a time so the result is attributable",
+            "Step 4: check on the real device. A 1x monitor cannot tell you anything about a 3x export",
+            "Step 5: automate the batch. Exporting nine hero variants by hand means missing one sooner or later"
+          ]
+        },
+        { type: "h2", text: "Letting the browser choose with srcset" },
+        "srcset exists for this problem. You list several candidate files for one slot, and the browser picks one based on device pixel ratio and connection quality. It settles the argument between Retina screens that starve and older devices that pay for someone else's pixels.",
+        {
+          type: "ul",
+          items: [
+            "Density descriptors: <img src='photo-1x.jpg' srcset='photo-2x.jpg 2x, photo-3x.jpg 3x' alt='Product photo'>",
+            "Width descriptors with sizes are more flexible: candidates describe width, and the browser works out what the layout needs",
+            "Shipping 1x and 2x alone covers most hardware, so keep 3x for the few hero slots",
+            "Keep alt text and width and height attributes, since missing dimensions cause layout shifts and hurt LCP"
+          ]
+        },
+        { type: "h2", text: "Mistakes that keep coming back" },
+        {
+          type: "ul",
+          items: [
+            "Changing resolution to 72 or 300 in Photoshop: screens render pixels, and that number does nothing on the web",
+            "Rolling 3x out site-wide: it doubles traffic and CDN spend for gains concentrated in a few images",
+            "Lowering quality before setting dimensions: detail that is gone does not return when you scale up",
+            "Reviewing only on a 1x monitor: someone on the team with a 4K display will find the problem right away"
+          ]
+        },
+        "One routine covers all of it. Measure the slot in CSS pixels, multiply by two, export at that width, encode as AVIF or WebP, then look at the result on a phone and on a 1x monitor. When a single file is still over budget at 2x, change its size in the layout before pushing quality lower, since layout changes cost nothing at download time.",
+        "About image-compressor-saas.shop: compression runs in your browser, files never reach a server, and exporting a dozen Retina variants at once involves no queue and no upload. The argument for dimensions before quality is in /blog/image-resolution-vs-file-size, the reason Photoshop DPI does nothing on the web is in /blog/dpi-vs-ppi-explained, and measurements comparing AVIF with WebP at 2x are in /blog/avif-vs-webp-in-depth.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Does a Retina screen require 3x exports?",
+              a: "Usually not. 3x carries 2.25 times the pixels of 2x, and the cost lands in bandwidth and load time while most photos look identical. Reserve 3x for product shots and hero art that people zoom into, and stop at 2x everywhere else."
+            },
+            {
+              q: "How low can quality go at 2x before it shows?",
+              a: "Photos usually sit between q60 and q75, because the extra pixels hide artifacts in a way that 1x files cannot. Charts and screenshots are the exception, since lossy compression eats text edges, so WebP or PNG-8 holds up better there."
+            },
+            {
+              q: "Can compression replace srcset?",
+              a: "No. Compression shrinks each candidate file, while srcset decides which candidate gets downloaded. You need both to end up fast and sharp at the same time."
+            },
+            {
+              q: "I set DPI to 300 and it is still blurry. Why?",
+              a: "Browsers ignore DPI and count pixels. Exporting at two or three times the layout width is the change that actually works, and the DPI field only matters for print."
+            }
+          ]
+        },
+        { type: "cta", text: "Compress an image in your browser, no upload", href: "/tools/compress" }
+      ]
+    }
+  },
 ];
 
 export function getPost(slug: string) {
