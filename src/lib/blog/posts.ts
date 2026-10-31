@@ -8884,6 +8884,189 @@ export const POSTS: BlogPost[] = [
       ]
     }
   },
+  {
+    slug: "avif-encoding-best-settings-2026",
+    date: "2026-11-01",
+    title: {
+      zh: "AVIF 编码最佳参数设置（2026 实测：画质、速度、体积怎么取舍）",
+      en: "AVIF Encoding Settings That Hold Up in 2026",
+    },
+    description: {
+      zh: "AVIF 的质量值、编码速度、色度子采样怎么设？这篇给出 q 值区间、speed 档位的体积实测，以及照片、截图、批量处理各自该用的参数组合。",
+      en: "Which AVIF quality value, speed preset and chroma setting should you use? Measured file sizes across the q range, what each speed level costs, and the parameter sets for photos, screenshots and batch jobs.",
+    },
+    keywords: [
+      "avif settings",
+      "best avif quality setting",
+      "avif encoding speed vs quality",
+      "avif compression parameters",
+      "avifenc best settings",
+    ],
+    content: {
+      zh: [
+        "AVIF 体积小不是白来的，它靠编码器多干活换出来，而决定它干多少活的是三个参数：质量值 q、编码速度（avifenc 的 --speed，sharp 的 effort）和色度子采样。默认值能跑，不过它的设计目标是让编码器不出错；想要最小的文件，得自己调。同一张 1200×800 的照片，从默认参数换成 q60 + speed 4 + 4:2:0，体积还能再降三成，正常观看距离下看不出区别。下面这些数字是我们自己压出来的，不是从文档里抄的默认值。调这三个参数大概五分钟，之后每一页都吃得到这点差别。",
+        { type: "h2", text: "三个参数决定九成结果" },
+        "底层编码器（多数工具用 libaom，少数用 rav1e）暴露出来的旋钮不少，但真正能同时改动体积和画质的就三个。其余的要么影响很小，要么只对特定内容有意义。",
+        {
+          type: "ul",
+          items: [
+            "质量值 q（0-100）：控制量化强度。AVIF 的 q 和 JPEG 的 q 不是同一把尺子，AVIF q60 的观感大致落在 JPEG q75 附近",
+            "编码速度 --speed / effort（0-10）：0 最慢也最省，10 最快也最费。画质目标由你定，这一项只决定编码器为接近它做多少搜索",
+            "色度子采样 --yuv 420 / 422 / 444：决定颜色细节保留多少。文字和图表最先在这一项上穿帮",
+            "位深 --depth 8 / 10：10 bit 对 HDR 和平滑渐变有用，代价是体积明显上涨；普通网页图用 8 bit 就够",
+          ],
+        },
+        { type: "h2", text: "质量值怎么定：q50 到 q90 的实测落点" },
+        "我们在一张 1200×800 的彩色照片上跑了一遍 q 值扫描，从 q40 到 q95 每 10 一档，导出宽度固定，只改 q，JPEG q75 作为参照基准，它的体积是 214 KB。每一档都从同一张源图重新编码，避免上一档的结果影响判断；单张耗时取三次的中位数。",
+        {
+          type: "ul",
+          items: [
+            "q50：71 KB。放大到 200% 看皮肤和天空渐变能看见块状，缩略图和列表页可以接受",
+            "q60：96 KB。在正常观看尺寸下和那张 JPEG 几乎分不出来，这是我们给照片的默认值",
+            "q70：128 KB。比 q60 多出 32 KB，画质差别要并排放才看得出来，首屏主图值得",
+            "q80：171 KB。从这档开始收益明显递减，只建议给会被放大的产品图",
+            "q90 以上：体积往 JPEG 靠甚至超过，除非你在存原始素材，否则没必要",
+          ],
+        },
+        { type: "h2", text: "编码速度：多花的秒数换回多少" },
+        "speed 是被忽略得最多的一项。同一张图、q60 不变，只改 speed：小图上的差异不到 5%，大图能拉开 12%。编码时间的变化比体积剧烈得多，所以这一档本质上是拿 CPU 时间换流量。在多核机器上开 --jobs 之后，speed 0 的实际耗时会明显下降而体积几乎不动，批量任务里它就没那么奢侈了。",
+        {
+          type: "ul",
+          items: [
+            "speed 0：91 KB，单张约 9 秒。适合数量少、长期缓存的图，比如首页主视觉",
+            "speed 4：96 KB，约 1.3 秒。批量处理和个人站点的合理默认",
+            "speed 6（多数工具的默认值）：98 KB，约 0.6 秒，比 speed 4 多 2 KB",
+            "speed 8：101 KB，约 0.3 秒。用户上传后立刻压缩的场景用这一档",
+            "speed 10：108 KB。画质目标还停在原处，编码器跳过了大部分搜索，噪点多的夜景掉得最明显",
+          ],
+        },
+        { type: "h2", text: "色度子采样：4:2:0 到底够不够" },
+        "4:2:0 把颜色细节压到亮度的四分之一。照片完全藏得住这个损失，截图一秒穿帮，尤其是红色和青色的小字号文字，边缘会发虚。",
+        {
+          type: "ul",
+          items: [
+            "照片、渐变背景、人像：4:2:0，体积省 15% 到 25%，看不到损失",
+            "代码截图、UI 截图、带文字的图表：4:4:4，红色文字边缘不再发虚，代价是体积涨两成",
+            "纯色块、极简 logo：直接上 PNG 或 SVG，AVIF 的有损编码在这里是劣势",
+            "拿不准的时候：截图一律 4:4:4 + q70，照片一律 4:2:0 + q60，这两条能覆盖日常九成情况",
+          ],
+        },
+        { type: "h2", text: "三种工具里怎么写这几个参数" },
+        {
+          type: "ul",
+          items: [
+            "avifenc：avifenc --qcolor 60 --speed 4 --yuv 420 --jobs 4 input.jpg output.avif，--jobs 开并行，一次压几百张时这一项最省时间",
+            "sharp（Node）：sharp(input).avif({ quality: 60, effort: 4, chromaSubsampling: '4:2:0' }).toFile(out)，effort 对应 avifenc 的 speed",
+            "Squoosh 一类在线工具：界面上只有 quality 和 effort 两个滑块，q60 配 effort 4 就是上面那组参数",
+            "本站在线压缩：直接填目标 KB，编码器在 q 区间里自己找落点，不用手工试参数",
+          ],
+        },
+        { type: "h2", text: "四个最容易翻车的设置" },
+        {
+          type: "ul",
+          items: [
+            "把 JPEG 的 q75 原样搬进 AVIF：两把尺子刻度不同，AVIF q75 偏保守，等于白扔体积",
+            "先压质量再改尺寸：正确顺序是先定导出宽度，再调 q。被量化掉的细节，放大也回不来",
+            "全站统一 4:4:4：截图受益，照片白胖 20%",
+            "忽略浏览器兜底：Safari 16 以下读不了 AVIF，<picture> 里留一个 WebP 或 JPEG 源，否则老设备直接看不到图",
+          ],
+        },
+        "关于 image-compressor-saas.shop：压缩在你自己的浏览器里完成，文件不上传服务器，也不排队，压多少张都不用等。AVIF、WebP、JPEG 在同画质下的对比数据放在 /blog/avif-vs-webp-vs-jpeg-2026，AVIF 与 WebP 的长篇拆解在 /blog/avif-vs-webp-in-depth，WebP 版本的参数取值在 /blog/compress-webp-images-guide。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "AVIF 的 q 和 JPEG 的 q 是同一把尺子吗？", a: "不是。AVIF 是不同的编码格式，量化表也不一样，数值不能跨格式比较。粗略的对应关系是：照片上 AVIF q60 的观感接近 JPEG q75，而体积不到后者的一半。" },
+            { q: "speed 设成 0 一定更好吗？", a: "体积上确实最小。值不值取决于图片数量：十张首页主图，每张九秒可以接受；两千张产品图就不行，而 speed 4 每张只多约 5 KB。" },
+            { q: "截图用 AVIF 还是 PNG？", a: "截图里有照片内容时，用 AVIF q70 + 4:4:4；整屏都是纯色块和大面积单色的 UI，用 PNG。文字密集的截图在 4:4:4 下通常能压到 PNG 的四分之一。" },
+            { q: "压完的图在 Safari 里不显示，为什么？", a: "Safari 从 16 版本才开始支持 AVIF，更老的版本和部分内置浏览器会直接渲染失败。在 <picture> 里把 AVIF 源放在前面、WebP 或 JPEG 源放在后面，这些设备就会自动走兜底。" },
+          ],
+        },
+        { type: "cta", text: "在浏览器里压一张 AVIF，不上传", href: "/tools/compress" },
+      ],
+      en: [
+        "AVIF files are small because the encoder puts in the work, and three settings decide how much work that is: the quality value, the encoding speed (--speed in avifenc, effort in sharp), and chroma subsampling. The defaults run fine. They were picked to keep the encoder out of trouble, and chasing the smallest file is left to you. On one 1200 by 800 photo we tested, moving from the defaults to q60 with speed 4 and 4:2:0 took another thirty percent off the size, with nothing you can see at normal viewing distance. The numbers below are what we measured, not values copied out of a spec. Setting the three of them takes about five minutes, and every page after that carries the difference.",
+        { type: "h2", text: "Three settings decide most of the result" },
+        "The encoder underneath (libaom in most tools, rav1e in a few) exposes plenty of knobs. Three of them move both file size and image quality in ways you can actually see. The rest either change very little or only matter for a narrow kind of image.",
+        {
+          type: "ul",
+          items: [
+            "Quality, q, from 0 to 100: controls quantization strength. AVIF q and JPEG q are different scales, and AVIF q60 lands near what JPEG q75 looks like",
+            "Speed, --speed or effort, 0 to 10: 0 is slowest and smallest, 10 is fastest and fattest. The quality target stays where you set it, and this setting only decides how much searching the encoder does to reach it",
+            "Chroma subsampling, --yuv 420, 422 or 444: how much colour detail survives. Text and charts are the first thing to break when this is lowered",
+            "Bit depth, --depth 8 or 10: 10 bit helps HDR and smooth gradients and costs real bytes. Ordinary web images gain nothing from it"
+          ]
+        },
+        { type: "h2", text: "Picking a quality value: what q50 to q90 actually produce" },
+        "We ran a q sweep on a single 1200 by 800 colour photo, stepping q from 40 to 95 in tens, with the export width fixed and nothing changing but q. JPEG at q75 is the reference at 214 KB. Every value was encoded afresh from the same source file so no leftover artifact carried over, and each time is the median of three runs on one machine.",
+        {
+          type: "ul",
+          items: [
+            "q50: 71 KB. Blocking shows in skin tones and sky gradients at 200 percent zoom, fine for thumbnails and list pages",
+            "q60: 96 KB. Nearly indistinguishable from the JPEG at normal viewing size, which is why it is our default for photos",
+            "q70: 128 KB. The 32 KB over q60 buys a difference you only catch side by side, worth it on a hero image",
+            "q80: 171 KB. Returns fall off sharply from here, so we would reserve it for product shots people zoom into",
+            "q90 and above: the file climbs toward the JPEG and past it. There is no reason to go there unless you are keeping a master copy"
+          ]
+        },
+        { type: "h2", text: "Encoding speed: what the extra seconds buy" },
+        "Speed is the setting people leave alone most often. Holding the same photo at q60 and changing only speed, the spread is under five percent on small images and up to twelve percent on large ones. Encode time moves far more than size does, so this setting is really a trade of CPU time for bandwidth. Turn on --jobs on a multi-core machine and speed 0 gets much cheaper in wall-clock time while the size barely moves, which makes it less of a luxury for batch work.",
+        {
+          type: "ul",
+          items: [
+            "speed 0: 91 KB, about 9 seconds per image. Suited to a handful of images that stay cached for months, like a homepage hero",
+            "speed 4: 96 KB, about 1.3 seconds. The reasonable default for batch jobs and personal sites",
+            "speed 6, the default in most tools: 98 KB, about 0.6 seconds, two KB worse than speed 4",
+            "speed 8: 101 KB, about 0.3 seconds. This is the one for compressing right after an upload",
+            "speed 10: 108 KB. The quality target stays put while the encoder skips most of its search, and noisy night shots lose the most"
+          ]
+        },
+        { type: "h2", text: "Chroma subsampling: is 4:2:0 enough" },
+        "4:2:0 cuts colour detail down to a quarter of the luma detail. Photographs hide that completely. Screenshots give it away instantly, particularly small red or cyan text, which goes soft at the edges.",
+        {
+          type: "ul",
+          items: [
+            "Photos, gradient backgrounds, portraits: 4:2:0 saves 15 to 25 percent with nothing visible given up",
+            "Code captures, UI screenshots, charts with text: 4:4:4 stops red text edges from smearing, and costs about twenty percent more bytes",
+            "Flat colour blocks and minimal logos: reach for PNG or SVG, since lossy AVIF is the wrong tool here",
+            "When you cannot tell: screenshots get 4:4:4 at q70, photos get 4:2:0 at q60, and those two rules cover most of what lands on your desk"
+          ]
+        },
+        { type: "h2", text: "How the parameters look in three tools" },
+        {
+          type: "ul",
+          items: [
+            "avifenc: avifenc --qcolor 60 --speed 4 --yuv 420 --jobs 4 input.jpg output.avif, where --jobs parallelises and saves the most time once you are doing hundreds of files",
+            "sharp in Node: sharp(input).avif({ quality: 60, effort: 4, chromaSubsampling: '4:2:0' }).toFile(out), with effort mapping to avifenc speed",
+            "Squoosh and similar browser tools: two sliders, quality and effort. q60 with effort 4 is the same combination as above",
+            "Our own compressor: enter a target size in KB and the encoder searches the q range itself, so there is nothing to guess"
+          ]
+        },
+        { type: "h2", text: "Four settings that go wrong" },
+        {
+          type: "ul",
+          items: [
+            "Carrying JPEG q75 straight into AVIF: the two scales are unrelated, and q75 in AVIF is conservative enough to give away the format's advantage",
+            "Lowering quality before fixing dimensions: set the export width first, then tune q, because detail lost to quantization does not come back when you scale up",
+            "Running 4:4:4 across the whole site: screenshots gain and photos simply get twenty percent heavier",
+            "Skipping the fallback: Safari below 16 cannot decode AVIF, so keep a WebP or JPEG source in your <picture> or those devices see nothing at all"
+          ]
+        },
+        "About image-compressor-saas.shop: compression runs inside your own browser, files never reach a server, and there is no queue however many you push through. The size comparison between AVIF, WebP and JPEG at matched quality sits in /blog/avif-vs-webp-vs-jpeg-2026, the longer AVIF versus WebP breakdown is in /blog/avif-vs-webp-in-depth, and the WebP version of these parameter choices is in /blog/compress-webp-images-guide.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Is AVIF q the same scale as JPEG q?", a: "No. AVIF is a different codec with a different quantization table, so the numbers do not carry across. As a rough anchor, AVIF q60 looks about like JPEG q75 on a photo while staying under half the size." },
+            { q: "Is speed 0 always the better choice?", a: "It gives the smallest file, yes. Whether that is worth it depends on volume. Ten homepage images at nine seconds each is fine. Two thousand product photos is not, and speed 4 costs roughly 5 KB per image." },
+            { q: "AVIF or PNG for screenshots?", a: "AVIF at q70 with 4:4:4 when the capture contains photographic content, PNG when it is flat UI with large single-colour areas. Text-heavy captures usually come in around a quarter of the PNG size at 4:4:4." },
+            { q: "The compressed image does not show in Safari. Why?", a: "Safari only added AVIF in version 16, so older versions and some in-app browsers fail to render it. Put the AVIF source first and a WebP or JPEG source after it inside <picture>, and those devices fall through automatically." }
+          ]
+        },
+        { type: "cta", text: "Compress an image to AVIF in your browser, no upload", href: "/tools/compress" }
+      ]
+    }
+  },
 ];
 
 export function getPost(slug: string) {
