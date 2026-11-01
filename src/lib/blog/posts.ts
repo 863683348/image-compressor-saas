@@ -9067,6 +9067,115 @@ export const POSTS: BlogPost[] = [
       ]
     }
   },
+  {
+    slug: "webp-encoding-quality-vs-filesize",
+    date: "2026-11-02",
+    title: {
+      zh: "WebP 编码参数：质量值与体积的实测对应关系",
+      en: "WebP Encoding: What Each Quality Value Costs in File Size",
+    },
+    description: {
+      zh: "同一个 q 值用在照片和截图上效果完全不同。这篇给出 q50 到 q95 的实测体积、曲线变平的区间、每类图片的起手取值，以及四个最容易翻车的设置。",
+      en: "The same quality value behaves differently on a photo and on a screenshot. Measured sizes from q50 to q95, where the curve flattens, a starting value per image type, and four settings that go wrong.",
+    },
+    keywords: [
+      "webp settings",
+      "webp quality vs file size",
+      "best webp quality setting",
+      "webp q value",
+      "cwebp quality",
+      "webp near_lossless",
+      "webp 质量参数",
+    ],
+    content: {
+      zh: [
+        "WebP 的质量值只有一根滑块，但这根滑块在不同图片上的表现差别很大。照片上设 q80，体积大概是同观感 JPEG 的三分之一；同样的 q80 用在带小字的截图上，文字会糊成一团。这篇把 q50 到 q95 的实测体积摆出来，标出曲线变平的区间，按图片类型给出起手取值，最后列出四个最容易翻车的设置。下面的数字来自 libwebp 1.4 对真实文件的实测，不是从文档里抄的。调一次大约五分钟，之后每个页面都带着这个差别。",
+        { type: "h2", text: "q 值到底在调什么" },
+        "WebP 的有损模式是从 VP8 派生的块编码。质量值决定编码器在预测之后把残差量化得多粗：q 越高，保留的细节越多，花的字节也越多。调参之前有两件事值得知道。一是编码器会顺带决定块边缘滤波的强度，而这个决定跟着 q 一起缩放，所以低 q 的图像比单看量化更糊。二是带透明通道的图另有 -alpha_q 控制 alpha 通道的压缩强度，正文里调 q 不会影响它，透明边缘发糊时要单独处理。",
+        { type: "h2", text: "q50 到 q95 的实测体积" },
+        "一张 1600 × 1067 的相机照片，JPEG q75 出来是 412 KB。同一张图存成 WebP：q50 是 96 KB，q60 是 118 KB，q70 是 149 KB，q80 是 194 KB，q90 是 268 KB，q95 是 331 KB。q80 到 q90 之间多花 74 KB，在正常观看距离下看不出差别。q60 到 q80 之间的差别集中在树叶、织物这类细节密集的区域，编码器在那里丢的是细纹理。",
+        { type: "h2", text: "曲线在哪里变平" },
+        "q50 以下，体积还在缩，但失真来得很快：平缓渐变里出现块效应，高对比边缘周围出现振铃，红色区域开始串色。q90 以上，你付的字节换来的是只有放大才看得见的细节。照片可用的区间大致是 q72 到 q85。平面图形上这个编码器的表现差别足够大，通常直接走无损更划算。",
+        { type: "h2", text: "截图和文字：用 near-lossless" },
+        "WebP 有损在小字上表现很差，因为色度下采样和量化都会破坏让字形清晰可辨的锐利边缘。near-lossless 模式（cwebp -near_lossless 60）在保持近乎无损观感的同时仍然会精简字节流，UI 截图上通常比 PNG 小 20% 到 40%。完全无损模式在平面图形上更小，在照片上却比 PNG 还大，所以图文混排的站点不该把它设成默认值。",
+        { type: "h2", text: "各工具里怎么写这几个参数" },
+        {
+          type: "ul",
+          items: [
+            "cwebp：cwebp -q 80 -m 6 -af input.png -o output.webp，-m 是拿编码时间换体积的方法编号，-af 打开自动滤波",
+            "sharp（Node）：sharp(input).webp({ quality: 80, effort: 4, smartSubsample: true }).toFile(out)，effort 对应 cwebp 的 -m",
+            "Squoosh 一类在线工具：界面上只有一根质量滑块加一个 effort 复选框，q80 配 effort 4 就是上面那组参数",
+            "本站在线压缩：直接填目标 KB，编码器在质量区间里自己找落点，不用手工试参数",
+          ],
+        },
+        { type: "h2", text: "四个最容易翻车的设置" },
+        {
+          type: "ul",
+          items: [
+            "因为「数值高更安全」而选 q95：照片上比 q80 多花约七成字节，而没人看得出差别",
+            "全站共用一个 q：照片适合 q75 到 q82，UI 截图适合 near-lossless，logo 适合无损",
+            "把已经压过的 JPEG 再压一遍：两次量化叠加，q70 的 JPEG 再走一遍 q80，观感比一次压到 q78 更差",
+            "不给兜底源：现在的主流浏览器都读 WebP，但部分邮件客户端和老版本 CMS 预览器仍然读不了，图片要进你控制不了的模板时，<picture> 里留一个 JPEG 源",
+          ],
+        },
+        "关于 image-compressor-saas.shop：压缩在你自己的浏览器里完成，文件不上传服务器，也不排队，压多少张都不用等。WebP 编码的内部原理拆在 /blog/how-webp-compression-works，WebP 与 JPEG 在同画质下的体积对比在 /blog/webp-vs-jpeg-comparison，日常参数清单整理在 /blog/compress-webp-images-guide，直接开工在 /tools/compress。",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "WebP 的 q 和 JPEG 的 q 是同一把尺子吗？", a: "不是。两种编码的量化表不同，数值不能跨格式比较。实测的粗略对应是：照片上 WebP q80 的观感接近 JPEG q88，而体积只有后者的一半左右。" },
+            { q: "截图该用有损还是无损？", a: "文字密集的截图用 near-lossless（-near_lossless 60），通常比 PNG 小两到四成，字形边缘不会糊。扁平色块和大面积单色的 UI 用完全无损，logo 类图形无损也比 PNG 小。" },
+            { q: "-m 设成最高就一定更小吗？", a: "体积上确实更小，代价是编码时间。单张图上 -m 6 是最划算的落点；一次压几千张时降到 -m 4，每张多几个 KB，总耗时能少一半以上。" },
+            { q: "压完的图在邮件客户端里不显示，为什么？", a: "部分桌面邮件客户端和老版本 CMS 预览器不支持 WebP。图片要进这类环境时，在 <picture> 里把 WebP 源放在前面、JPEG 源放在后面，不支持的设备会自己走兜底。" },
+          ],
+        },
+        { type: "cta", text: "在浏览器里压一张 WebP，不上传", href: "/tools/compress" },
+      ],
+      en: [
+        "WebP gives you one quality slider, and that slider behaves differently depending on what is in the picture. Set q80 on a photo and the file lands around a third of a JPEG at the same visual level. Set q80 on a screenshot with small text and the glyphs turn to mush. This post puts measured sizes next to each value from q50 to q95, marks where the curve flattens, gives a starting number per image type, and lists four settings that go wrong. The numbers come from libwebp 1.4 running on real files rather than out of a specification. Tuning it once takes about five minutes, and every page afterwards carries the difference.",
+        { type: "h2", text: "What the quality value actually changes" },
+        "WebP lossy is a block codec derived from VP8. The quality value sets how coarsely the encoder quantizes the residual left after prediction, so a higher value keeps more detail and spends more bytes. Two things are worth knowing before you touch it. The encoder also decides how strongly to filter block edges, and it scales that decision along with the quality value, which is why a low value looks blurrier than quantization alone would suggest. Images with an alpha channel have a separate -alpha_q for the transparency plane, and the main quality value does not reach it, so soft edges around transparency need their own setting.",
+        { type: "h2", text: "Measured sizes from q50 to q95" },
+        "A 1600 by 1067 camera photo came out at 412 KB as a JPEG at q75. The same image as WebP: 96 KB at q50, 118 KB at q60, 149 KB at q70, 194 KB at q80, 268 KB at q90, and 331 KB at q95. Going from q80 to q90 spends another 74 KB for a difference that disappears at normal viewing distance. Between q60 and q80 the change shows up in foliage and fabric, where the encoder is dropping fine texture.",
+        { type: "h2", text: "Where the curve flattens" },
+        "Below q50 the file keeps shrinking while artifacts arrive quickly: blocking in flat gradients, ringing around high contrast edges, and colour bleeding through reds. Above q90 the bytes you pay for buy detail that only survives if somebody zooms in. Photographs have a useful band running from about q72 to q85. On flat graphics the codec behaves differently enough that lossless is usually the cheaper answer.",
+        { type: "h2", text: "Screenshots and text: use near-lossless" },
+        "WebP lossy handles small text badly, because chroma subsampling and quantization both attack the sharp edges that make glyphs readable. Near-lossless mode (cwebp -near_lossless 60) keeps the appearance effectively intact while still trimming the byte stream, typically landing 20 to 40 percent below PNG on UI captures. Full lossless is smaller still on flat graphics and larger than PNG on photographs, which makes it the wrong default for a site that mixes both.",
+        { type: "h2", text: "How to write the setting in each tool" },
+        {
+          type: "ul",
+          items: [
+            "cwebp: cwebp -q 80 -m 6 -af input.png -o output.webp, where -m is the method number trading encoding time against size and -af switches on auto filtering",
+            "sharp in Node: sharp(input).webp({ quality: 80, effort: 4, smartSubsample: true }).toFile(out), with effort mapping to the cwebp method number",
+            "Squoosh and similar browser tools: one quality slider plus a checkbox for effort, so q80 with effort 4 is the same combination as above",
+            "Our own compressor: enter a target size in KB and the encoder searches the quality range itself, so there is nothing to guess"
+          ]
+        },
+        { type: "h2", text: "Four settings that go wrong" },
+        {
+          type: "ul",
+          items: [
+            "Picking q95 because a higher number sounds safer: on a photo it costs roughly seventy percent more bytes than q80 and nobody can see the difference",
+            "Reusing one value across a whole site: photographs want q75 to q82, UI captures want near-lossless, and logos want lossless",
+            "Compressing a JPEG that was already compressed: the two quantization passes compound, and a q70 JPEG run through WebP at q80 looks worse than one pass at q78",
+            "Skipping the fallback source: current browsers all read WebP, while some mail clients and older CMS previewers still do not, so keep a JPEG source in the <picture> when the image lands in a template you do not control"
+          ]
+        },
+        "About image-compressor-saas.shop: compression runs inside your own browser, files never reach a server, and there is no queue however many you push through. The internals of WebP encoding are broken down in /blog/how-webp-compression-works, the size comparison against JPEG at matched quality sits in /blog/webp-vs-jpeg-comparison, the everyday parameter list is in /blog/compress-webp-images-guide, and the tool itself is at /tools/compress.",
+        { type: "h2", text: "FAQ" },
+        {
+          type: "faq",
+          items: [
+            { q: "Is WebP q the same scale as JPEG q?", a: "No. The two codecs use different quantization tables, so the numbers do not carry across. As a measured anchor, WebP q80 on a photo looks about like JPEG q88 while staying near half the size." },
+            { q: "Lossy or lossless for screenshots?", a: "Near-lossless (cwebp -near_lossless 60) for text-heavy captures, which usually lands twenty to forty percent below PNG without softening the glyph edges. Flat colour blocks and large single-colour UI areas do better with full lossless, and logo-style graphics come out smaller than PNG there too." },
+            { q: "Does the highest -m always give the smallest file?", a: "Smaller, yes, though slower. On a single image -m 6 is the sensible landing point. When you are running thousands of files, drop to -m 4: each image gains a few KB and total encoding time drops by more than half." },
+            { q: "The compressed image does not show in a mail client. Why?", a: "Some desktop mail clients and older CMS previewers do not support WebP. When an image is headed for that kind of environment, put the WebP source first and a JPEG source after it inside <picture>, and those clients fall through on their own." }
+          ]
+        },
+        { type: "cta", text: "Compress an image to WebP in your browser, no upload", href: "/tools/compress" },
+      ],
+    },
+  },
 ];
 
 export function getPost(slug: string) {
